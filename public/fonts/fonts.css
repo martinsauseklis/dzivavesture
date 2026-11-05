@@ -1,3 +1,5 @@
+/* PARKED — not linked from the page since the switch to the system font stack
+   (index.astro has the one-line way back). Kept so the swap is reversible. */
 /* Two complete static instances of Inter — latin, latin-ext, cyrillic, greek
    and vietnamese in ONE file each (109 KB + 112 KB). Fetched from Google Fonts
    with a Firefox 40 signature, which predates unicode-range, so nothing is
