@@ -44,7 +44,18 @@ export type Post = {
   ident?: Ident[];
 };
 
-export type Ident = { rendered: string; ocr: string; candidate_source: string; glyph_match: string };
+// Exactly one admissible kind of evidence, named: 'glyphs' (a position-by-position
+// match against this corpus's own damage patterns) or 'corroboration' (another
+// item in the same source naming the same thing, with its locator). A length or
+// shape comparison is neither and never counts.
+export type Ident = {
+  rendered: string;
+  ocr: string;
+  evidence: 'glyphs' | 'corroboration';
+  candidate_source: string;
+  glyph_match: string;
+  corroboration?: string;
+};
 
 export const TYPE_LABEL: Record<Post['type'], string> = {
   citats: 'citāts',

@@ -85,7 +85,13 @@ const replies = p.comments?.length ?? 0;
         ))}</p>
       )}
       {p.ident && p.ident.map((i) => (
-        <p class="via ident-note"><b>Identificēts:</b> „{i.rendered}“ ← OCR „{i.ocr}“ · <b>avots:</b> {i.candidate_source} · <b>burtu atbilstība:</b> {i.glyph_match}</p>
+        <p class="via ident-note">
+          <b>Identificēts:</b> „{i.rendered}“ ← OCR „{i.ocr}“ ·
+          <b>pierādījums:</b> {i.evidence === 'glyphs' ? 'burtu atbilstība' : 'dokumentārs apliecinājums'} ·
+          <b>avots:</b> {i.candidate_source}
+          {i.corroboration && <> · <b>apliecina:</b> {i.corroboration}</>} ·
+          <b>burtu atbilstība:</b> {i.glyph_match}
+        </p>
       ))}
       <p class="via">{p.via} · <a href={p.url} target="_blank" rel="noopener">skenējums →</a></p>
       {p.ocr ? <pre class="ocr">{p.ocr}</pre> : <p class="via">OCR teksta nav.</p>}

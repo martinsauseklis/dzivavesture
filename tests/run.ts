@@ -87,10 +87,10 @@ check('recon: dotted span with escaped raw tooltip',
 const gaps = bodyHtml('ap [?] procentu un [?] bērnu', {}, accounts, gap);
 check('every [?] becomes a tappable gap with the convention as title', (gaps.html.match(/class="gap"/g) ?? []).length === 2 && gaps.html.includes(`title="${gap}"`));
 
-const ident = bodyHtml('Raiņa „Spēlēju, dancoju“ (turpinājums)', { ident: [{ rendered: 'Spēlēju, dancoju', ocr: '.Äpehlciu "Sanža', candidate_source: 's', glyph_match: 'g' }] }, accounts, gap);
+const ident = bodyHtml('Raiņa „Spēlēju, dancoju“ (turpinājums)', { ident: [{ rendered: 'Spēlēju, dancoju', ocr: '.Äpehlciu "Sanža', evidence: 'glyphs', candidate_source: 's', glyph_match: 'g' }] }, accounts, gap);
 check('ident: wavy span with escaped OCR, followed by a [≈] button',
   ident.html.includes('<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „.Äpehlciu &quot;Sanža“">Spēlēju, dancoju</span><button type="button" class="gap" title="Identificēts — avots un burtu atbilstība zem „avots“">[≈]</button>'));
-check('ident whose rendered string is not in the text is reported', bodyHtml('x', { ident: [{ rendered: 'y', ocr: '', candidate_source: '', glyph_match: '' }] }, accounts, gap).unmatched[0] === 'y');
+check('ident whose rendered string is not in the text is reported', bodyHtml('x', { ident: [{ rendered: 'y', ocr: '', evidence: 'glyphs', candidate_source: '', glyph_match: '' }] }, accounts, gap).unmatched[0] === 'y');
 
 check('escapeHtml covers quotes', escapeHtml(`"'<>&`) === '&quot;&#39;&lt;&gt;&amp;');
 
@@ -123,7 +123,9 @@ const reasons = corpus.map((p) => refusalReason(p, data.accounts[p.handle]));
 check('corpus: every post passes the guards', reasons.every((r) => r === null), reasons.filter(Boolean).join('; '));
 check('corpus: every `at` is HH.MM', corpus.every((p) => isClock(p.at)));
 check('corpus: no meta post in the data', corpus.every((p) => p.type !== 'nezinamais'));
-check('corpus: every ident renders inside its post', corpus.every((p) => (p.ident ?? []).every((i) => p.lv.includes(i.rendered) && i.candidate_source && i.glyph_match)));
+check('corpus: every ident renders inside its post and names its evidence kind', corpus.every((p) => (p.ident ?? []).every((i) =>
+  p.lv.includes(i.rendered) && i.candidate_source && i.glyph_match && (i.evidence === 'glyphs' || (i.evidence === 'corroboration' && i.corroboration)))));
+check('corpus: no ident record argues from word length or shape', corpus.every((p) => (p.ident ?? []).every((i) => !/zīm(es|ēm)|garum|form/.test(i.glyph_match))));
 const reachable = new Set([...corpus.map((p) => p.handle), ...corpus.flatMap((p) => Object.values(p.mentions ?? {}))]);
 check('corpus: every account is reachable from a post or a printed mention', Object.keys(data.accounts).every((h) => reachable.has(h)), Object.keys(data.accounts).filter((h) => !reachable.has(h)).join());
 check('corpus: sampler saw both sides', reasons.length > 0 && refusals.some(([, , w]) => w !== null), 'guards rejected hostile fixtures above AND accepted the corpus');
