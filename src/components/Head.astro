@@ -1,0 +1,64 @@
+---
+// The <head> every page shares: one CSP, one description of the link preview,
+// every reference relative to `base` so the same dist/ serves from a root, a
+// subdomain or a sub-path. The only absolutes are the canonical URL and the
+// og:* tags, which crawlers fetch without a page to resolve against.
+import { GOATCOUNTER_CODE, ORIGIN } from '../lib/site.ts';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;      // '' for the feed, '@handle/' for a profile — appended to ORIGIN
+  base: string;      // '' on the feed, '../' on a profile — prefix for relative assets
+  image: string;     // relative to the site root, e.g. 'og.png' or 'og/@k_ulmanis.png'
+  imageAlt: string;
+}
+const { title, description, path, base, image, imageAlt } = Astro.props;
+
+// Static page: no inline scripts or styles, so every source is 'self'. The
+// analytics host is added only when a site code is set.
+const gc = GOATCOUNTER_CODE ? ` https://${GOATCOUNTER_CODE}.goatcounter.com` : '';
+const csp = [
+  "default-src 'none'",
+  `script-src 'self'${GOATCOUNTER_CODE ? ' https://gc.zgo.at' : ''}`,
+  "style-src 'self'",
+  "font-src 'self'",
+  `img-src 'self'${gc}`,
+  `connect-src 'self'${gc}`,
+  "base-uri 'none'",
+  "form-action 'none'",
+].join('; ');
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta http-equiv="Content-Security-Policy" content={csp} />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={`${ORIGIN}/${path}`} />
+
+<meta property="og:type" content={path ? 'profile' : 'website'} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={`${ORIGIN}/${path}`} />
+<meta property="og:locale" content="lv_LV" />
+<meta property="og:site_name" content="dzīvā vēsture" />
+<meta property="og:image" content={`${ORIGIN}/${image}`} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={imageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={`${ORIGIN}/${image}`} />
+
+{/* All relative: the same build serves from a root, a subdomain or a sub-path.
+    No web font: the page is set in the phone's own face, as the feed apps are.
+    To restore Inter, add `<link rel="stylesheet" href={`${base}fonts/fonts.css`} />`
+    here and put `Inter,` at the front of the body font stack in feed.css. */}
+<link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+<link rel="stylesheet" href={`${base}feed.css`} />
+<noscript><link rel="stylesheet" href={`${base}nojs.css`} /></noscript>
+<script type="module" src={`${base}feed.js`} is:inline></script>
+{GOATCOUNTER_CODE && (
+  <script is:inline async src="https://gc.zgo.at/count.js"
+    data-goatcounter={`https://${GOATCOUNTER_CODE}.goatcounter.com/count`}
+    data-goatcounter-settings='{"no_onload": true, "allow_frame": false}'></script>
+)}

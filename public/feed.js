@@ -1,6 +1,7 @@
-// Interactions only. Every piece of content — folds, profiles, trends — is
-// already in the HTML; this file shows and hides it. With scripts off,
-// nojs.css unfolds everything instead.
+// Interactions only. Every piece of content — folds, trends — is already in
+// the HTML; this file shows and hides it. With scripts off, nojs.css unfolds
+// everything instead. The same file runs on the feed and on every profile
+// page; the feed-only hooks (tabs, trends, chip) find nothing there and do nothing.
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -20,7 +21,7 @@ const gc = $('script[data-goatcounter]');
 if (window.goatcounter) logEvent('pageview');
 else gc?.addEventListener('load', () => logEvent('pageview'));
 
-// ---- tabs ------------------------------------------------------------------
+// ---- tabs (feed page only; a profile page has none of these) --------------
 function showTab(name) {
   for (const b of $$('.tabs [data-tab]')) b.setAttribute('aria-selected', String(b.dataset.tab === name));
   $('#panel-feed').hidden = name !== 'feed';
@@ -63,25 +64,6 @@ for (const g of $$('.gap'))
     $('.warn', src).scrollIntoView({ block: 'nearest' });
   });
 
-// ---- profiles: who this account was on 18 November 1918 ---------------------
-// Tapping the name opens it above the text; tapping a mention opens it below.
-// Tapping the same one again closes it.
-function toggleProfile(button) {
-  const body = $('.body', button.closest('.post'));
-  const open = $('.profile', body);
-  if (open) {
-    open.remove();
-    $('[aria-expanded="true"][data-handle]', body.parentElement)?.setAttribute('aria-expanded', 'false');
-    if (open.dataset.handle === button.dataset.handle) return;
-  }
-  const tpl = document.getElementById('prof-' + button.dataset.handle);
-  if (!tpl) return; // no profile exists for this handle — show nothing rather than guess
-  const card = tpl.content.firstElementChild.cloneNode(true);
-  button.matches('.acct') ? body.prepend(card) : body.append(card);
-  button.setAttribute('aria-expanded', 'true');
-}
-for (const b of $$('.acct, .mention')) b.addEventListener('click', () => toggleProfile(b));
-
 // ---- trends filter -----------------------------------------------------------
 // Topics are joined with "\n" in data-topics because topic names contain
 // commas ("Dievs, svētī Latviju"); a newline cannot occur in a JSON topic string.
@@ -93,4 +75,4 @@ function filterTopic(topic) {
 }
 for (const b of $$('.trend'))
   b.addEventListener('click', () => { filterTopic(b.dataset.topic); showTab('feed'); logEvent('topic'); });
-$('#chip').addEventListener('click', () => filterTopic(null));
+$('#chip')?.addEventListener('click', () => filterTopic(null));

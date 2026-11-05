@@ -80,6 +80,9 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 .avatar.h-6 { background:#475569; } .avatar.h-7 { background:#9d174d; }
 .meta { flex:1; min-width:0; }
 .meta { line-height:1.35; padding-top:9px; }
+/* The name is the way to the account's page; it looks like a name, not a link. */
+.acct { color:inherit; text-decoration:none; }
+.acct:hover .name { text-decoration:underline; }
 .name { font-weight:600; }
 .handle, .stamp, .seqno { color:var(--soft); font-size:14px; }
 /* Astro drops the whitespace between the two spans in the button. */
@@ -112,7 +115,7 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
    not a redaction), an identified title or name (thin wavy line, with its own
    [≈] button) — the wave is what tells "we looked this up" apart from "we read
    this off the scan". */
-.mention { color:var(--accent); font-weight:500; }
+.mention { color:var(--accent); font-weight:500; text-decoration:none; }
 /* „(@handle)“ wraps as one piece, never leaving a lone „(“ at a line end. The
    longest handle is 22 characters ≈ 190 px at 17 px — well inside a 368 px line. */
 .m { white-space:nowrap; }
@@ -164,12 +167,24 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 .cmt { margin-bottom:12px; font-size:15px; }
 .cmt .cvia { color:var(--soft); font-size:12px; display:block; margin-top:3px; }
 
-/* Who this account was on 18 November 1918 — opened from a name or a mention. */
-.profile { margin:8px 0; padding:12px; border-radius:10px; background:var(--panel); font-size:14px; }
-.profile .what { display:block; margin-top:2px; font-size:13px; color:var(--soft); }
-.profile .silent { display:block; margin-top:6px; color:var(--accent); }
-.profile .today { display:block; margin-top:8px; padding-top:8px; border-top:1px solid var(--line);
-                  font-size:13px; color:var(--soft); }
+/* ---- a profile page: who this account was on 18 November 1918 ---------- */
+.top .back { font-weight:600; font-size:15px; text-decoration:none; color:var(--ink); }
+.phead { padding:18px 0 14px; border-bottom:1px solid var(--line); }
+.phead .avatar { width:64px; height:64px; font-size:22px; margin-bottom:10px; }
+.phead h1 { margin:0; font-size:22px; line-height:1.2; font-weight:600; letter-spacing:-.01em; }
+.phead .handle { font-size:15px; }
+.phead .what { margin:6px 0 0; font-size:15px; color:var(--soft); }
+.phead .bio { margin:10px 0 0; font-size:16px; }
+.phead .pwarn, .phead .today { margin:10px 0 0; font-size:13px; color:var(--soft); }
+.pcount { margin:14px 0 0; font-size:14px; color:var(--soft); }
+/* The account said nothing that day: a statement, not an empty list. */
+.empty { margin:16px 0; padding:14px 16px; border-radius:10px; background:var(--panel); font-size:16px; }
+.empty p { margin:0; }
+.named { padding:14px 0 6px; }
+.named h2 { margin:0 0 4px; font-size:13px; font-weight:600; color:var(--soft); }
+.named a { display:block; padding:10px 0; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); font-size:15px; }
+.named a:hover { color:var(--accent); }
+.named .nw { color:var(--soft); font-size:13px; }
 .chandle { color:var(--soft); font-size:13px; }
 
 /* ---- what the day talked about ------------------------------------------- */

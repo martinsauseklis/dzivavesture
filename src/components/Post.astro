@@ -6,21 +6,22 @@
 // but folded under „avots“. A long item is a thread: the first segment is the post, the rest
 // hang below it, collapsed behind „rādīt pavedienu (n)“.
 import Segment from './Segment.astro';
-import { avatarHue, bodyHtml, initials, reportedBy, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
+import { avatarHue, bodyHtml, initials, profilePath, reportedBy, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
 
 interface Props {
   post: Post;
   account: Account;
   accounts: Record<string, Account>;
   gapNote: string;
+  base?: string;  // relative path to the site root from the page rendering this post
 }
-const { post: p, account, accounts, gapNote } = Astro.props;
+const { post: p, account, accounts, gapNote, base = '' } = Astro.props;
 
 const segments: Seg[] = p.thread ?? [{ lv: p.lv, ocr: p.ocr, recon: p.recon, warn: p.warn, ident: p.ident }];
-const bodies = segments.map((s) => bodyHtml(s.lv, { recon: s.recon, mentions: p.mentions, ident: s.ident }, accounts, gapNote));
+const bodies = segments.map((s) => bodyHtml(s.lv, { recon: s.recon, mentions: p.mentions, ident: s.ident }, accounts, gapNote, base));
 // The paper's framing may carry the same mentions (prototype grammar). A key
 // is only "unmatched" if it is printed in no segment and not in the framing.
-const context = p.context ? bodyHtml(p.context, { mentions: p.mentions }, accounts, gapNote) : null;
+const context = p.context ? bodyHtml(p.context, { mentions: p.mentions }, accounts, gapNote, base) : null;
 const unmatched = Object.keys(p.mentions ?? {}).filter((k) =>
   bodies.every((b) => b.unmatched.includes(k)) && (!context || context.unmatched.includes(k)));
 if (unmatched.length) console.warn(`post ${p.seq}: nav tekstā, netiek rādīts: ${unmatched.join(' · ')}`);
@@ -30,13 +31,14 @@ const reporter = account.kind === 'person' && p.type === 'atstastits' ? reported
 ---
 <article class="post" id={`p-${p.seq}`} data-topics={p.topics.join('\n')}>
   <div class="who">
-    {/* Circle for a person, rounded square for a paper or an office; one hue per account. */}
+    {/* Circle for a person, rounded square for a paper or an office; one hue per
+        account. The name beside it is the link to the account's page. */}
     <span class={`avatar k-${account.kind} h-${avatarHue(p.handle)}`} aria-hidden="true">{initials(account.name)}</span>
     <div class="meta">
-      <button type="button" class="acct" data-handle={p.handle} aria-expanded="false">
+      <a class="acct" href={profilePath(p.handle, base)}>
         <span class="name">{account.name}</span>
         <span class="handle">{p.handle}</span>
-      </button>
+      </a>
       {/* The clock time is an estimate for nearly every post; the fold says what bounds it. */}
       <span class="stamp" title={p.atNote || undefined}>{p.at}</span>
       {n > 1 && <span class="seqno"> · 1/{n}</span>}

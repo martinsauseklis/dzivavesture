@@ -99,6 +99,31 @@ export function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 }
 
+// The one place a profile URL is spelled: `/@handle/` — the handle is already
+// the account's identity, so the address is the handle. Pages are static
+// directories, so the trailing slash is the canonical form. `base` is the
+// relative path back to the site root from the page that links ('' on the
+// feed, '../' on a profile), because the build carries no absolute `base`.
+export const profilePath = (handle: string, base = '') => `${base}${handle}/`;
+
+// Posts in which the paper printed this account's name, in feed order — what
+// a profile can show when the account itself said nothing that day.
+export function mentionsOf(handle: string, posts: Post[]): Post[] {
+  return posts.filter((p) => Object.values(p.mentions ?? {}).includes(handle)).sort((a, b) => a.seq - b.seq);
+}
+
+// What a post-less profile says, in the page's own voice, where the data has
+// no `silent` text. Written per account from its bio and the posts that name
+// it — never a default, because an empty page that looks like a bug would undo
+// the point: a profile with nothing to show states a fact of the day.
+// tests/run.ts asserts this covers exactly the post-less accounts without `silent`.
+export const EMPTY_COPY: Record<string, string> = {
+  '@erasts_bite': 'Tajā dienā viņš runāja — Operas namā nolasīja vakardienas sēdes protokolu —, bet viņa paša vārdus neviena avīze nepierakstīja. Zināms tikai, ka viņš to darīja.',
+  '@h_j_seraphim': 'Viņa vārdi šodien ir Rigasche Zeitung — 11. turpinājums —, bet tie ir vēstule tēvam par janvāri. Par 18. novembri viņš nesaka nekā; avīze viņu iespiež.',
+  '@w_j_locke': 'Viņa romāns „Jūras zvaigzne“ šodien turpinās Baltijas Ziņās, tulkots. Pats viņš par šo dienu Rīgā neko nav teicis.',
+  '@l_laicens': 'Šodien par viņu raksta divas avīzes — Līdums recenzē „Ieslēgtos“, Baltijas Ziņas nosauc viņu „Taurētāja“ dzejnieku vidū —, bet neviena neiespiež viņa paša vārdus.',
+};
+
 export type BodyMarkup = {
   html: string;
   // Keys that do not occur in the text. They cannot be rendered under this
@@ -111,8 +136,9 @@ export type BodyMarkup = {
 // historical text is never treated as HTML.
 //   - reconstructed words: dotted underline + the raw string as tooltip
 //   - mentions: printed wording intact, handle in parentheses — parentheses
-//     mean "the publisher inserted this"; the group is one unbreakable span,
-//     so a line never ends on the opening „(“
+//     mean "the publisher inserted this"; the handle links to that account's
+//     page (relative to `base`); the group is one unbreakable span, so a line
+//     never ends on the opening „(“
 //   - identified items: wavy underline + a [≈] button beside them, so a reader
 //     can tell "what the paper printed" from "what we identified it as"
 //   - [?]: a button, so the gap reaches its explanation (the source fold) in one tap
@@ -121,6 +147,7 @@ export function bodyHtml(
   post: Pick<Post, 'recon' | 'mentions' | 'ident'>,
   accounts: Record<string, Account>,
   gapNote: string,
+  base = '',
 ): BodyMarkup {
   let out = escapeHtml(text);
   const unmatched: string[] = [];
@@ -137,7 +164,7 @@ export function bodyHtml(
     // Never link a profile that does not exist, and never a string that is not printed.
     if (!accounts[handle] || !out.includes(needle)) { unmatched.push(printed); continue; }
     out = out.replace(needle,
-      `${needle} <span class="m">(<button type="button" class="mention" data-handle="${escapeHtml(handle)}">${escapeHtml(handle)}</button>)</span>`);
+      `${needle} <span class="m">(<a class="mention" href="${escapeHtml(profilePath(handle, base))}">${escapeHtml(handle)}</a>)</span>`);
   }
 
   for (const i of post.ident ?? []) {

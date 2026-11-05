@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
-  avatarHue, HUE_COUNT, reportedBy, viaText, type Post, type Account,
+  avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -64,15 +64,17 @@ for (const [at, want] of clocks) check(`isClock ${at}`, isClock(at) === want);
 // --- bodyHtml: escaping, recon, mentions, gaps --------------------------------
 const gap = 'cipars, ko OCR nedod';
 const plain = bodyHtml('Pateicību Vilsonam, ka valsts.', { mentions: { Vilsonam: '@POTUS' } }, accounts, gap);
-check('mention keeps printed wording, handle in parentheses, the group unbreakable',
-  plain.html.includes('Vilsonam <span class="m">(<button type="button" class="mention" data-handle="@POTUS">@POTUS</button>)</span>'));
+check('mention keeps printed wording, handle in parentheses linking to its page, the group unbreakable',
+  plain.html.includes('Vilsonam <span class="m">(<a class="mention" href="@POTUS/">@POTUS</a>)</span>'));
+check('mention link is relative to the linking page',
+  bodyHtml('Vilsonam', { mentions: { Vilsonam: '@POTUS' } }, accounts, gap, '../').html.includes('href="../@POTUS/"'));
 check('mention: nothing unmatched', plain.unmatched.length === 0);
 
 const hostile = bodyHtml('<script>alert("x")</script> Vilsonam', { mentions: { Vilsonam: '@POTUS' } }, accounts, gap);
 check('text is escaped before any markup', !hostile.html.includes('<script>') && hostile.html.includes('&lt;script&gt;'));
 
 const injectedKey = bodyHtml('a <b> c', { mentions: { '<b>': '@POTUS' } }, accounts, gap);
-check('mention key containing markup is matched escaped, not raw', injectedKey.html.includes('&lt;b&gt; <span class="m">(<button'));
+check('mention key containing markup is matched escaped, not raw', injectedKey.html.includes('&lt;b&gt; <span class="m">(<a'));
 
 const unknownHandle = bodyHtml('Vilsonam', { mentions: { Vilsonam: '@ghost' } }, accounts, gap);
 check('mention to a handle with no account is not linked', !unknownHandle.html.includes('mention') && unknownHandle.unmatched[0] === 'Vilsonam');
@@ -130,6 +132,16 @@ const reported: [string, string | null][] = [
 ];
 for (const [via, want] of reported) check(`reportedBy ${JSON.stringify(via).slice(0, 40)}`, reportedBy(via) === want, `want ${want}`);
 check('viaText drops only the leading prefix', viaText('Atstāstīts: Līdums Nr.219') === 'Līdums Nr.219' && viaText('Līdums Nr.219') === 'Līdums Nr.219');
+
+// --- profile pages: the address, the mentions list, the empty-state copy ----
+// | input                               | expected                         |
+// | profilePath('@k_ulmanis')           | '@k_ulmanis/'                    |
+// | profilePath('@k_ulmanis', '../')    | '../@k_ulmanis/'                 |
+// | mentionsOf: two posts name @POTUS, one does not, out of order | the two, by seq |
+check('profilePath from the feed', profilePath('@k_ulmanis') === '@k_ulmanis/');
+check('profilePath from a profile', profilePath('@k_ulmanis', '../') === '../@k_ulmanis/');
+const named = mentionsOf('@POTUS', [post({ seq: 9, mentions: { x: '@POTUS' } }), post({ seq: 2 }), post({ seq: 3, mentions: { y: '@POTUS', z: '@lidums' } })]);
+check('mentionsOf: only the posts that name the handle, in seq order', named.map((p) => p.seq).join() === '3,9');
 
 // --- contrast: the floor is 4.5:1 (WCAG AA), computed, not eyeballed -------
 // Relative luminance per WCAG 2.x; sRGB channel linearised at the 0.03928 knee.
@@ -192,6 +204,13 @@ check('corpus: sampler saw both sides', reasons.length > 0 && refusals.some(([, 
 const personRendered = corpus.filter((p) => p.type === 'atstastits' && data.accounts[p.handle].kind === 'person');
 check('corpus: every person-account rendering names its reporter on the face', personRendered.length > 0 && personRendered.every((p) => reportedBy(p.via)),
   personRendered.filter((p) => !reportedBy(p.via)).map((p) => p.seq).join());
+// The post-less accounts without `silent` text in the data are exactly the
+// ones with page copy — no default empty state, and no copy shadowing data.
+const postless = Object.keys(data.accounts).filter((h) => !corpus.some((p) => p.handle === h));
+const needCopy = postless.filter((h) => !data.accounts[h].silent).sort();
+check('profiles: 8 accounts have no post', postless.length === 8, postless.join());
+check('profiles: EMPTY_COPY covers exactly the post-less accounts without silent text', JSON.stringify(Object.keys(EMPTY_COPY).sort()) === JSON.stringify(needCopy), `need ${needCopy.join()}`);
+check('profiles: every post-less account has a mention to show', postless.every((h) => mentionsOf(h, corpus).length > 0), postless.filter((h) => !mentionsOf(h, corpus).length).join());
 const gapped = corpus.filter((p) => p.lv.includes('[?]'));
 check('corpus: every [?] post carries a warn that explains it', gapped.length > 0 && gapped.every((p) => p.warn), gapped.filter((p) => !p.warn).map((p) => p.seq).join());
 
