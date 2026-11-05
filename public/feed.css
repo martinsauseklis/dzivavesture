@@ -62,11 +62,15 @@ header { border-bottom:3px double var(--ink); background:var(--paper);
 .t-dokuments { color:var(--doc); }
 .t-nezinamais { color:var(--unknown); }
 
-/* Three kinds of mark inside the text, all from the prototype:
-   a mention (tappable), a reconstructed word (tooltip), a gap (tappable). */
+/* Four kinds of mark inside the text: a mention (tappable), a reconstructed
+   word (dotted, tooltip), a gap [?] (tappable), and an identified title or
+   name (wavy, with its own [≈] button) — the wave is what tells "we looked
+   this up" apart from "we read this off the scan". */
 .mention { color:var(--carmine); border-bottom:1px dotted currentColor; }
 .recon { border-bottom:1px dotted var(--ink-soft); cursor:help; }
 .gap { color:var(--carmine); border-bottom:1px dotted currentColor; }
+.ident { text-decoration:underline wavy var(--ink-soft); text-underline-offset:3px; cursor:help; }
+.ident-note b { color:var(--ink); font-weight:700; }
 
 .via { font-size:13px; color:var(--ink-soft); margin-top:8px; }
 .via a { color:var(--ink-soft); }
@@ -118,5 +122,6 @@ header { border-bottom:3px double var(--ink); background:var(--paper);
 .trend b { font-size:16px; font-weight:700; }
 
 footer { padding:22px 0 40px; color:var(--ink-soft); font-size:13px; }
+footer h2 { font-size:13px; letter-spacing:.1em; text-transform:uppercase; margin:18px 0 4px; color:var(--ink); }
 footer .inv { padding:8px 10px; background:#eee8db; border-radius:3px; color:var(--quote); }
 footer .inv.bad { color:var(--carmine); }

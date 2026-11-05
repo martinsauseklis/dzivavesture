@@ -33,6 +33,7 @@ const post = (over: Partial<Post>): Post => ({ ...base, ...over });
 // | path traversal in url        | url 'https://periodika.lv/../../etc'   | null (archive host, path is theirs) |
 // | unknown handle               | handle '@nobody'                       | nezināms konts                |
 // | type outside the four        | type 'tvīts'                           | nezināms tips                 |
+// | meta post                    | type 'nezinamais'                      | meta-ieraksts nav plūsmā      |
 // | comment without archive url  | comments:[{url:''}]                    | komentārs bez avota saites    |
 const refusals: [string, Post, string | null][] = [
   ['sourced publication quote', post({}), null],
@@ -44,6 +45,7 @@ const refusals: [string, Post, string | null][] = [
   ['path traversal in url', post({ url: 'https://periodika.lv/../../etc' }), null],
   ['unknown handle', post({ handle: '@nobody' }), 'nezināms konts'],
   ['type outside the four', post({ type: 'tvīts' as Post['type'] }), 'nezināms tips'],
+  ['meta post refused from the feed', post({ type: 'nezinamais' }), 'meta-ieraksts nav plūsmā'],
   ['comment without archive url', post({ comments: [{ name: 'x', handle: '@lidums', text: 't', via: 'v', url: '' }] }), 'komentārs bez avota saites'],
 ];
 for (const [name, p, want] of refusals)
@@ -85,6 +87,11 @@ check('recon: dotted span with escaped raw tooltip',
 const gaps = bodyHtml('ap [?] procentu un [?] bērnu', {}, accounts, gap);
 check('every [?] becomes a tappable gap with the convention as title', (gaps.html.match(/class="gap"/g) ?? []).length === 2 && gaps.html.includes(`title="${gap}"`));
 
+const ident = bodyHtml('Raiņa „Spēlēju, dancoju“ (turpinājums)', { ident: [{ rendered: 'Spēlēju, dancoju', ocr: '.Äpehlciu "Sanža', candidate_source: 's', glyph_match: 'g' }] }, accounts, gap);
+check('ident: wavy span with escaped OCR, followed by a [≈] button',
+  ident.html.includes('<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „.Äpehlciu &quot;Sanža“">Spēlēju, dancoju</span><button type="button" class="gap" title="Identificēts — avots un burtu atbilstība zem „avots“">[≈]</button>'));
+check('ident whose rendered string is not in the text is reported', bodyHtml('x', { ident: [{ rendered: 'y', ocr: '', candidate_source: '', glyph_match: '' }] }, accounts, gap).unmatched[0] === 'y');
+
 check('escapeHtml covers quotes', escapeHtml(`"'<>&`) === '&quot;&#39;&lt;&gt;&amp;');
 
 // --- trends -----------------------------------------------------------------
@@ -115,6 +122,10 @@ const corpus: Post[] = data.posts;
 const reasons = corpus.map((p) => refusalReason(p, data.accounts[p.handle]));
 check('corpus: every post passes the guards', reasons.every((r) => r === null), reasons.filter(Boolean).join('; '));
 check('corpus: every `at` is HH.MM', corpus.every((p) => isClock(p.at)));
+check('corpus: no meta post in the data', corpus.every((p) => p.type !== 'nezinamais'));
+check('corpus: every ident renders inside its post', corpus.every((p) => (p.ident ?? []).every((i) => p.lv.includes(i.rendered) && i.candidate_source && i.glyph_match)));
+const reachable = new Set([...corpus.map((p) => p.handle), ...corpus.flatMap((p) => Object.values(p.mentions ?? {}))]);
+check('corpus: every account is reachable from a post or a printed mention', Object.keys(data.accounts).every((h) => reachable.has(h)), Object.keys(data.accounts).filter((h) => !reachable.has(h)).join());
 check('corpus: sampler saw both sides', reasons.length > 0 && refusals.some(([, , w]) => w !== null), 'guards rejected hostile fixtures above AND accepted the corpus');
 const gapped = corpus.filter((p) => p.lv.includes('[?]'));
 check('corpus: every [?] post carries a warn that explains it', gapped.length > 0 && gapped.every((p) => p.warn), gapped.filter((p) => !p.warn).map((p) => p.seq).join());

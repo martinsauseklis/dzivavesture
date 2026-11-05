@@ -37,7 +37,14 @@ export type Post = {
   context?: string;
   later?: string;
   comments?: Comment[];
+  // A title, name or place that damaged OCR could not yield and that was
+  // IDENTIFIED against an external register — never ordinary prose. The
+  // record carries the candidate's source and the glyph match, and the page
+  // marks it apart from both a plain reading and a recon.
+  ident?: Ident[];
 };
+
+export type Ident = { rendered: string; ocr: string; candidate_source: string; glyph_match: string };
 
 export const TYPE_LABEL: Record<Post['type'], string> = {
   citats: 'citāts',
@@ -61,9 +68,13 @@ const isArchiveUrl = (url: unknown) => typeof url === 'string' && url.startsWith
 //   3. A comment is held to the same rule as a post.
 //   4. A handle with no account, or a type outside the four, is refused —
 //      never rendered half-empty.
+//   5. A `nezinamais` post is a note about the sources, not a post; it is
+//      refused from the feed and counted, so a meta-device can never sit in
+//      the timeline again. Gaps are stated in the page's own note instead.
 export function refusalReason(post: Post, account: Account | undefined): string | null {
   if (!account) return 'nezināms konts';
   if (!(post.type in TYPE_LABEL)) return 'nezināms tips';
+  if (post.type === 'nezinamais') return 'meta-ieraksts nav plūsmā';
   if (!isArchiveUrl(post.url)) return 'nav avota saites';
   if (account.kind === 'person' && post.type === 'citats') return 'personas kontam nevar būt tiešs citāts';
   for (const c of post.comments ?? []) if (!isArchiveUrl(c.url)) return 'komentārs bez avota saites';
@@ -90,10 +101,12 @@ export type BodyMarkup = {
 //   - reconstructed words: dotted underline + the raw string as tooltip
 //   - mentions: printed wording intact, handle in parentheses — parentheses
 //     mean "the publisher inserted this"
+//   - identified items: wavy underline + a [≈] button beside them, so a reader
+//     can tell "what the paper printed" from "what we identified it as"
 //   - [?]: a button, so the gap reaches its explanation (the source fold) in one tap
 export function bodyHtml(
   text: string,
-  post: Pick<Post, 'recon' | 'mentions'>,
+  post: Pick<Post, 'recon' | 'mentions' | 'ident'>,
   accounts: Record<string, Account>,
   gapNote: string,
 ): BodyMarkup {
@@ -113,6 +126,13 @@ export function bodyHtml(
     if (!accounts[handle] || !out.includes(needle)) { unmatched.push(printed); continue; }
     out = out.replace(needle,
       `${needle} (<button type="button" class="mention" data-handle="${escapeHtml(handle)}">${escapeHtml(handle)}</button>)`);
+  }
+
+  for (const i of post.ident ?? []) {
+    const needle = escapeHtml(i.rendered);
+    if (!out.includes(needle)) { unmatched.push(i.rendered); continue; }
+    out = out.replace(needle,
+      `<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „${escapeHtml(i.ocr)}“">${needle}</span><button type="button" class="gap" title="Identificēts — avots un burtu atbilstība zem „avots“">[≈]</button>`);
   }
 
   out = out.replaceAll('[?]',
