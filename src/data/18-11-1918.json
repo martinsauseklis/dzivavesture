@@ -204,7 +204,7 @@
    "type": "dokuments",
    "at": "06.15",
    "seq": 5,
-   "lv": "Ja uzsaukumā teikts, ka visiem kārtību mīlošiem Baltijas iedzīvotājiem atzīta tiesība uz politisko darbību, brīvu domu izteikšanu, preses brīvību, tad tas te ir jāsaprot, ka zaldātu padome no savas puses neliek ceļā šķēršļus. Katras kārtības uzturēšanas pabalstīšana ir viņai patīkama. Bet līdzšinējiem noteikumiem katrā ziņā vajaga palikt spēkā, lai novērstu smagus satricinājumus. Ja lielinieku elementiem, kam ar zaldātiem un mierīgiem visu tautību iedzīvotājiem nav neka kopēja, iedotu brīvību piekopt savu kaitīgo darbību, tad pilnīga preses brīvība nav atļaujama. Bet katrs zemes iedzīvotājs var būt pārliecināts, ka arī mēs no savas puses pabalstīt to, ka zemes iekšējo apstākļu nokārtošana paliek pašu iedzīvotāju darīšana, un ka mēs tajā neiejauksimies. Rīgas zaldātu padomes priekšniecība.",
+   "lv": "Ja uzsaukumā teikts, ka visiem kārtību mīlošiem Baltijas iedzīvotājiem atzīta tiesība uz politisko darbību, brīvu domu izteikšanu, preses brīvību, tad tas te ir jāsaprot, ka zaldātu padome no savas puses neliek ceļā šķēršļus. Katras kārtības uzturēšanas pabalstīšana ir viņai patīkama. Bet līdzšinējiem noteikumiem katrā ziņā vajaga palikt spēkā, lai novērstu smagus satricinājumus. Tāpat kā līdz šim iedzīvotājiem [?] pie attiecīgām iestādēm, kuras strādās saskaņā ar zaldātu padomi. Ja lielinieku elementiem, kam ar zaldātiem un mierīgiem visu tautību iedzīvotājiem nav neka kopēja, iedotu brīvību piekopt savu kaitīgo darbību, tad pilnīga preses brīvība nav atļaujama. Pārgrozījušos apstākļus vērā ņemot, līdzšinējā preses nodaļa Rīgā, kopā ar zaldātu padomi apsverot visus jautājumus, ļāvusies vadīties tikai no tā, ka netiktu pielaistas lietas, kas varētu traucēt kārtību un pilsoņu drošību. Bet katrs zemes iedzīvotājs var būt pārliecināts, ka arī mēs no savas puses pabalstīt to, ka zemes iekšējo apstākļu nokārtošana paliek pašu iedzīvotāju darīšana, un ka mēs tajā neiejauksimies. Rīgas zaldātu padomes priekšniecība.",
    "ocr": "3« ufsaukumā teikts, ka wļşeenr kahr» tibu mihloşcheem Baltijas eednhmoļajeem atsihìa teefiba us politisko darbību, brihwu domu isteikschanu, pres-s brļh» wibu, tad tas te ir jāsaprot, ka saldam padome no şawas puşis peleek zeļâ şchķshrschļus. Aaļras kahrtibas ustureşchauas pabalstişchana ir wlņai patihkania. Bet lihdsschinejeem notcikumeem katrā fiņâ wajaga palikt şpehka, lai nowehrstu smagus satricinājumus. Tàpat kà lihds şchim eedsihwotajeem ja« pee atteezigàm eestahdem,kuras strahdàs saskaņā ar saldatu padomi. îai leelineeku elementeem, kani ar saldaleem un m«ļtg»em wişu ļautibu eedsihwotajeem naw neka kopēja, i,edotu brihwibu peekopt sawu kaittgo darbibu, tad pilniga preses brihwiba naw aììaujanla. pahrgrosijuşchos apstahklus wehrâ ņemot, lihdsşchinejà preşes nodala Rigâ, kopā ar saldatu padomi apşwerot mişus jautājumus, ļahwuşès waditees tikai no tanī, ka netiktu peelaistas leetas, kas maretu trauzet kahrtibu un pilsoņu droschibu. Bet katrs semes eedsthwotajs war buht pahrleezinats, ka ari mehs no şawas puses pabalstit to, ka semes eekschejo apstahkļu nokahrtoşchana paleek paşchu eedsihwotaju darişchana, un ka mehs tajā ueeemaişişimees. Rigas saldatu padomes preekşchneeziba",
    "via": "Līdums Nr.217, 17.11.1918, „Rīga“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/941686|article:DIVL32|panel:pa",
@@ -214,9 +214,11 @@
    ],
    "atNote": "Svētdienas Līdums — pirmdien, 18. novembrī, Līdums neiznāk, tāpēc šis ir jaunākais numurs, kas šorīt ir pie lasītāja. Laiks ir aplēse.",
    "recon": {
+    "Pārgrozījušos": "pahrgrosijuşchos",
+    "ļāvusies": "ļahwuşès",
     "pabalstīt": "pabalstit"
    },
-   "warn": "Paskaidrojums datēts ar 15. novembri. Vidusdaļa („Tāpat kā līdz šim iedzīvotājiem jā… pie attiecīgām iestādēm“) OCR ir nepilna un šeit izlaista; trimts pie teikuma robežām.",
+   "warn": "Paskaidrojums datēts ar 15. novembri. Teikumā „Tāpat kā līdz šim iedzīvotājiem … pie attiecīgām iestādēm“ OCR trūkst darbības vārda („ja« pee“) — tā vietā [?]. Teikums par preses nodaļu agrāk bija izlaists bez atzīmes un ir atjaunots no tā paša OCR.",
    "later": "Iepriekšējā cenzūra laikrakstiem Rīgā tika atcelta — Līduma 20. novembra numurs raksta, ka laikrakstiem par to paziņots „aizvakar“, t. i. 17. vai 18. novembrī; sleja neļauj būt drošam."
   },
   {
@@ -224,7 +226,7 @@
    "type": "citats",
    "at": "06.25",
    "seq": 7,
-   "lv": "Jauns laikraksts. Kopš novembra Rīgā sācis atkal iznākt „Baltijas Vēstnesis“. Kā redaktors parakstās Juris Kalniņš (prātkopis). Par pārmaiņām avīžniecībā ziņo: „Rīgas Latviešu Avīze“, kuru kopš vācu karaspēka ienākšanas izdeva kopīgi agrāk avīžu izdevēji A. Benjamiņš, Fr. Veinbergs un B. Dīriķa firma, novembrī nobeidza savu gaitu. A. Benjamiņš un Emīlija Elks atkal izdod agrākās Ziņas, un B. Dīriķa firma Vēstnesi, bet namā paliek Veinbergs, no kura abi pārējie izdevēji atvienojušies. Dzird, ka arī „Jauno Vārdu“ drīz atkal izdošot un no jauna iznākšot soc.-revol. partijas avīze, žurnālista Š. Gruzevska vadībā.",
+   "lv": "Jauns laikraksts. Kopš [?] novembra Rīgā sācis atkal iznākt „Baltijas Vēstnesis“. Kā redaktors parakstās Juris Kalniņš (prātkopis). „B. Z.“ par pārmaiņām avīžniecībā ziņo: „Rīgas Latviešu Avīze“, kuru kopš vācu karaspēka ienākšanas izdeva kopīgi agrāk avīžu izdevēji A. Benjamiņš, Fr. Veinbergs un B. Dīriķa firma, [?] novembrī nobeidza savu gaitu. A. Benjamiņš un Emīlija Elks atkal izdod agrākās Ziņas, un B. Dīriķa firma Vēstnesi, bet namā paliek Veinbergs, no kura abi pārējie izdevēji atvienojušies. Dzird, ka arī „Jauno Vārdu“ drīz atkal izdošot un no jauna iznākšot soc.-revol. partijas avīze, žurnālista Š. Gruzevska vadībā.",
    "ocr": "Jauns laikrasts. Aopsch \\<k. nowembra Rigâ sahzis atkal isnahkt „Baltijas tvehstnesss\". Uà redaktors parakstās 3 uris Kaln i ņ ş ch (prahtkopis). Ş .B. S.\" par pahrmaiņam amischneezibâ fiņo: .Rigas tatweeşchn Awise\", kuru kopşch mahju karaşpehka eenahkşchanas isdewa kopigi agrak amischu isdeweji A Benjamiņich, Fr. lDeinbcrgs un B. D.hriķa firnm, tş. nowembri nobeidsa şawn gaitu. A. Benjammsch un Emilija Elks atkal isdod azrakàs Siņasķ un B. Oihriķa firma Wthstņeşi bet beşchâ paleek lveinbergs, no kura abi pahrejee isdeveji atmzijuşchees. — Dficd, ta ari „)auno Ivahrdu\" drihs atkal isdoschot un no jauna linahks soz-rewol. partijas 'avise, ?churnalista Sch. Grusevska vadiba",
    "via": "Līdums Nr.217, 17.11.1918, „Rīga“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/941686|article:DIVL32|panel:pa",
@@ -235,16 +237,17 @@
    "atNote": "Svētdienas Līdums — pirmdien, 18. novembrī, Līdums neiznāk, tāpēc šis ir jaunākais numurs, kas šorīt ir pie lasītāja. Laiks ir aplēse.",
    "recon": {
     "Gruzevska": "Grusevska",
-    "prātkopis": "prahtkopis"
+    "prātkopis": "prahtkopis",
+    "„B. Z.“": "Ş .B. S.\""
    },
-   "warn": "Trīs datumi šajā slejā OCR nav salasāmi („Aopsch \\<k. nowembra“, „tş. nowembri“) un šeit nav uzminēti. Avīžu nosaukumi un izdevēju uzvārdi pirms publicēšanas jāsalīdzina ar skenējumu."
+   "warn": "Divi datumu cipari OCR nav salasāmi („Aopsch \\<k. nowembra“, „tş. nowembri“) — to vietā [?]. Citētais laikraksts „B. Z.“ OCR ir „Ş .B. S.“ — lasīts, nevis drošs. Avīžu nosaukumi un izdevēju uzvārdi pirms publicēšanas jāsalīdzina ar skenējumu."
   },
   {
    "handle": "@baltijas_zinas",
    "type": "dokuments",
    "at": "06.30",
    "seq": 10,
-   "lv": "Baltijas Ziņas maksā no 17. novembra 1918. g. Bez piesūtīšanas un izdalāmās vietās: no 15. nov. līdz gada beigām 4 r. 50 k., no 1. decembra līdz 31. dec. 3 r. —. Ar piesūtīšanu pa pastu: no 15. nov. līdz gada beigām 4 r. 50 k. Numurs maksā 20 kap. Ekspedīcija.",
+   "lv": "Baltijas Ziņas maksā no 17. novembra 1918. g. Bez piesūtīšanas un izdalāmās vietās: no 15. nov. līdz gada beigām 4 r. 50 k., no 1. decembra līdz 31. dec. 3 r. —. Ar piesūtīšanu pa pastu: no 15. nov. līdz gada beigām 4 r. 50 k., no 1. decembra līdz 31. dec. [?]. Numurs maksā 20 kap. Ekspedīcija.",
    "ocr": "SllltîļuS Sîklls m«kşà no IT. nowembra INB g. V«s PO-şMhrtşchaņaS uņ isdalaņâS w-eķâSļ Sîo 15 uow. liHds gada beig ,« 4 r. 50 k. 1. dez-mbra Uhds 31. dez. 3 . — ķ Aî ptîsuhtischêņņ »» pa paķMî Şļo 15. rww. !tdds g.'da beigam 4 r. so k. â 1. dezeņdra lthds 31. dez.. 5 ķ -5 , NuumrŞ «akşà »L kâp. Ekspedizija.",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, sludinājumu bloks",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL147|panel:pa",
@@ -256,7 +259,7 @@
     "20 kap.": "»L kâp.",
     "3 r. —": "3 . —"
    },
-   "warn": "Abonementa cenu tabulā divi skaitļi OCR nav salasāmi — rinda „â 1. dezeņdra lthds 31. dez.. 5 ķ -5“ un numura cena „»L kâp.“. Numura cena šeit lasīta kā 20 kap., bet tā nav apstiprināta."
+   "warn": "Abonementa cenu tabulā pasta rindas otrā cena („â 1. dezeņdra lthds 31. dez.. 5 ķ -5“) OCR nav salasāma — tā vietā [?]; agrāk visa šī rinda bija izlaista bez atzīmes. Numura cena („»L kâp.“) šeit lasīta kā 20 kap., bet tā nav apstiprināta."
   },
   {
    "handle": "@baltijas_zinas",
@@ -303,7 +306,7 @@
    "type": "citats",
    "at": "07.10",
    "seq": 40,
-   "lv": "Rakstītājam kādu labu gadu atpakaļ bij izdevība sarunāties ar kādu augstāku vācu okupācijas valdes amatvīru, kurš vēl acumirklī ieņem noteicošu vietu Latvijā. … Bet kad rakstītājs ieminējās starpā: bet tautas dvēsele, kas to kops? Tad augstais amatvīrs mazliet samulsa un pēc tam sāka runāt par baznīcu apgādību, par skolām u. t. t. Ka viņam būtu bijusi arī kāda jausma par latviešu inteliģenci, ka tālāk viņš kaut ko būtu zinājis par latviešu literatūru un gara un izglītības centieniem — ka par to augstajam amata vīram nav nekas zināms, tas acumirklī bij nomanāms.",
+   "lv": "Rakstītājam kādu labu gadu atpakaļ bij izdevība sarunāties ar kādu augstāku vācu okupācijas valdes amatvīru, kurš vēl acumirklī ieņem noteicošu vietu Latvijā. … Bet kad rakstītājs ieminējās starpā: bet tautas dvēsele, kas to kops? Tad augstais amatvīrs mazliet samulsa un pēc tam sāka runāt par baznīcu apgādību, par skolām u. t. t. Ka viņam būtu bijusi arī kāda jausma par latviešu inteliģenci [?], ka tālāk viņš kaut ko būtu zinājis par latviešu literatūru un gara un izglītības centieniem, un ka arī viņa minētie 3 prūšu pārvaldības pamata principi nav nekas jauns priekš Baltijas, kad arī ne tik pilnīgi izkoptā veidā, kā [?] — ka par to augstajam amata vīram nav nekas zināms, tas acumirklī bij nomanāms.",
    "ocr": "Rakstītajam kahdu labu gadu atpakaļ bij isdewlva mruņaree» ar raodu augiļaku wahzu okupazlşas «aldcs amatwihru, kuŗşch wehl ozumirklk eeņem noļetzoschu weetu Lat vijā. … Bet kad ratstitajs eemiuejàs starpā: bet tautas dwehşele, kosto kops? Tad augstais «matwihrS masleet samulsa un pehz tc-m sahka ruuat par basnizu apgahdibu, par skolām v t, t. Ka miņam bşu bijuse ari kahda jausma par latmeeschu inteliģcnzi (miņsch sarunā miņeju Nlai jemneeluS, kas jau pilnigi peegreesuşchêeS ioahzu orentazija», tà peerahdizumu peeroesbaluS pahrtS persouu, kuras sinamu lomu spehleja pee pirmàS weetejàS şem« padomei sattàhdischonas; ka tahlak miņsch kaut ko buhtu sinajiS par lotu-seschu literatūru un gara ņn isglihtibas zeutîaueem, un ka ari wiņa minetee 3 piuschu pahrwaldiâas pamato prinzipi nam nekaS jaunS preeksch Baltijas, kad ari ne tik pilnigi iskoptâ N'eidâ, kà ais — ka par to augstajam amata mihram naw nekas sinams",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, „Tautas dvēseles kopšana“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL13|panel:pa",
@@ -315,9 +318,11 @@
    "recon": {
     "izdevība sarunāties": "isdewlva mruņaree»",
     "noteicošu": "noļetzoschu",
-    "amatvīrs": "«matwihrS"
+    "amatvīrs": "«matwihrS",
+    "prūšu pārvaldības": "3 piuschu pahrwaldiâas",
+    "izkoptā": "iskoptâ"
    },
-   "warn": "Ieraksts sākts ar raksta pirmo teikumu, lai būtu skaidrs, kas ir „augstais amatvīrs“. Vidusdaļa — iekavu teikums par zemes padomes sastādīšanu — šeit izlaista, jo OCR tajā vietā nav salasāms. Trimts pie teikuma robežas."
+   "warn": "Ieraksts sākts ar raksta pirmo teikumu, lai būtu skaidrs, kas ir „augstais amatvīrs“. Iekavu teikums pēc „inteliģenci“ (par zemes padomes sastādīšanu) OCR ir sadrupis — tā vietā [?]; teikuma daļa par trim prūšu pārvaldības principiem agrāk bija izlaista bez atzīmes un ir atjaunota; tās pēdējais vārds („ais“) nav salasāms — [?]."
   },
   {
    "handle": "@rigasche_zeitung",
@@ -576,7 +581,7 @@
    "type": "citats",
    "at": "11.50",
    "seq": 285,
-   "lv": "Sociāldemokrātiskas sapulces. Ar sienas uzsaukumiem Sociāldemokrātijas Centrālā komiteja un Rīgas komiteja vakar bija aicinājušas Rīgas strādniekus un strādnieces uz sapulcēm biedrībā un Torņakalna latviešu palīdzības biedrībā. … Sapulce pieņēma ierosinātās rezolūcijas. Tās prasa varas nodošanu strādniekiem, policijas atlaišanu un atbruņošanu, kuras ieročus vajagot nodot strādniekiem, vācu karaspēka aizvešanu, politisko ieslodzīto atbrīvošanu u. c. Sapulce nolēma sveicināt Ļeņinu, Lībknehtu un latviešu tautas komisāru Stučku un beidzās ar saucienu: Lai dzīvo komunistiskā Latvija!",
+   "lv": "Sociāldemokrātiskas sapulces. Ar sienas uzsaukumiem Sociāldemokrātijas Centrālā komiteja un Rīgas komiteja vakar bija aicinājušas Rīgas strādniekus un strādnieces uz sapulcēm biedrībā un Torņakalna latviešu palīdzības biedrībā. … Sapulce pieņēma ierosinātās rezolūcijas. Tās prasa varas nodošanu strādniekiem, policijas atlaišanu un atbruņošanu, kuras ieročus vajagot nodot strādniekiem, vācu karaspēka aizvešanu, politisko ieslodzīto atbrīvošanu u. c. Sapulce nolēma sveicināt Ļeņinu, Lībknehtu un latviešu tautas komisāru Stučku un beidzās ar saucienu: Lai dzīvo [?] komunistiskā Latvija!",
    "ocr": "Sozialdemokratische Bersarnrnlnugen. Darch Mrueeaaschlägt ane wareea gestern v.iv Zeatralko utee an» vsrn Risasche» Ko» rniiea der Sozialdemokratie rigasche v» d Aeveiteiinvea za langen im Verein a d im Thoren»» Iberer lettischen Hklssvere« … wurden von de - ÄersammtN.g die v-rgefch lageren Nesolutio»«« Me en verlangen dle Uedergabe der M«chi an die Arbiter, die Au ldsunz »nd die Entwaffnung der Polizei, detea Bantuone» den A beitera ü ergeben werden soll n, de» Abzug der deutschen Truppen, di Freileffang I d:c puliU-che» Wesang-nen ic. Dir B rsam nbeschl ß Lenin, Liebknecht un? de» lettischen Volkskommissar Stutschka zu begrüße« und endete «tt dem Nus: »Hoch das rme, kommanistische Lettland",
    "via": "Rigasche Zeitung Nr.267, 18.11.1918, „Lokales“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/264862|article:DIVL89|panel:pa",
@@ -590,9 +595,9 @@
     "strādniekus un strādnieces": "v» d Aeveiteiinvea",
     "sapulcēm": "za langen",
     "Torņakalna latviešu palīdzības biedrībā": "Thoren»» Iberer lettischen Hklssvere«",
-    "Lai dzīvo komunistiskā Latvija": "Hoch das rme, kommanistische Lettland"
+    "komunistiskā Latvija": "Hoch das rme, kommanistische Lettland"
    },
-   "warn": "Ieraksts sākts ar ziņas virsrakstu un pirmo teikumu, lai „sapulce“ būtu nosaukta. Pirmās sapulces vietas apzīmētājs OCR („im Verein“) ir bez vārda; nākamais teikums slejā saka „namentlich im lettischen Verein“ — Rīgas Latviešu biedrība, bet šeit tas nav ielikts. Vārds starp „Lai dzīvo“ un „komunistiskā Latvija“ OCR ir nesalasāms („Hoch das rme, kommanistische Lettland“) un šeit nav aizpildīts. Rezolūciju saraksts ir avīzes atstāstījums, nevis rezolūciju teksts.",
+   "warn": "Ieraksts sākts ar ziņas virsrakstu un pirmo teikumu, lai „sapulce“ būtu nosaukta. Pirmās sapulces vietas apzīmētājs OCR („im Verein“) ir bez vārda; nākamais teikums slejā saka „namentlich im lettischen Verein“ — Rīgas Latviešu biedrība, bet šeit tas nav ielikts. Vārds starp „Lai dzīvo“ un „komunistiskā Latvija“ OCR ir nesalasāms („Hoch das rme, kommanistische Lettland“) — tā vietā [?]. Rezolūciju saraksts ir avīzes atstāstījums, nevis rezolūciju teksts.",
    "comments": [
     {
      "name": "Baltijas Ziņas",
@@ -663,7 +668,7 @@
    "type": "dokuments",
    "at": "12.40",
    "seq": 330,
-   "lv": "Liepājas un Rīgas zaldātu padomes izziņojušas uz svētdienu, 17. novembri, Rīgā delegātu sapulci, lai noteiktu virzienu, pie kāda turēties attiecībā uz zemes iedzīvotājiem un kara pulku promsūtīšanu. Uzaicinājumi jau būs saņemti. Mēs ļoti lūdzam, līdz tam 1) neslēgt nekādas izšķirošās norunas ar politiskām partijām, tā kā tā var būt tikai mūsu tautas valdības lieta, par kuras orgāniem mums jāskaitās; 2) neatļaut nekādus pārsteidzīgus kara pulku transportus, tāpēc ka pulku sūtīšanai uz māju jānotiek pēc noteikta plāna un kārtības un ikkura patvaļa var radīt cukas un ļaunākās nekārtības.",
+   "lv": "Liepājas un Rīgas zaldātu padomes izziņojušas uz svētdienu, 17. novembri, Rīgā delegātu sapulci, lai noteiktu virzienu, pie kāda turēties attiecībā uz zemes iedzīvotājiem un kara pulku promsūtīšanu. Uzaicinājumi jau būs saņemti. Mēs ļoti lūdzam, līdz tam 1) neslēgt nekādas izšķirošās norunas ar politiskām partijām, tā kā tā var būt tikai mūsu tautas valdības lieta, par kuras orgāniem mums jāskaitās; 2) neatļaut nekādus pārsteidzīgus kara pulku transportus, tāpēc ka pulku sūtīšanai uz māju jānotiek pēc noteikta plāna un kārtības un ikkura patvaļa var radīt [?] un ļaunākās nekārtības.",
    "ocr": "LeepajaS un RigoS saldam padomes issiņojuschaS ņs svehtdeeuu, Z7. novembri, Rigâ delegotu sarulzi, lai noteiktu mirseenu, pee kahda tureteeS atteezibâ us semeS eedsihmotajeem un ks?a pulku promsuhtjschanu. Eeaiziuojumi jaņ buhS saņemti. MehS ļoti luhdsam, lihds tam t) nenoslehgt nekahdas isschķiroschoS norunas or peliiişkàņ pariijom, tà ta ta war buht tikai mahzu tautaS maldibaS leeta. por kuraS organeem mums jāskaitās,- 2) neatļaut nekahduS pahrsteidsiguS kara pņlku transportus, tapehz ka pulku sì hlischanai us mahju janoteek pehz noteikta plāna un kahrtibas un ikkura patvaļa ņarelu radit znkaS »n ļaunākās nekahrtibaS",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, „Rīga“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL101|panel:pa",
@@ -675,10 +680,9 @@
    "recon": {
     "delegātu sapulci": "delegotu sarulzi",
     "virzienu": "mirseenu",
-    "kara pulku": "ks?a pulku",
-    "cukas": "znkas"
+    "kara pulku": "ks?a pulku"
    },
-   "warn": "Ieraksts sākts ar iepriekšējiem teikumiem, lai „līdz tam“ būtu skaidrs — līdz 17. novembra delegātu sapulcei. „var radīt cukas“ ir OCR („war buht tikai mahzu tautaS maldibaS leeta“ … „znkas »n ļaunākās nekahrtibaS“); vārds nav salasāms. Paraksts zem uzsaukuma: „Augusts Vinnigs. valsts [..] Baltijā“ — amata apzīmējums OCR nav salasāms."
+   "warn": "Ieraksts sākts ar iepriekšējiem teikumiem, lai „līdz tam“ būtu skaidrs — līdz 17. novembra delegātu sapulcei. Vārds pēc „var radīt“ OCR ir „znkaS“ un nav salasāms — tā vietā [?]; agrāk tas stāvēja tekstā kā „cukas“. Paraksts zem uzsaukuma („Augusts Vinnigs. valsts [..] Baltijā“) ir ārpus izgrieztā OCR; amata apzīmējums tajā nav salasāms."
   },
   {
    "handle": "@baltijas_zinas",
@@ -904,7 +908,7 @@
    "type": "citats",
    "at": "14.45",
    "seq": 465,
-   "lv": "Malkas pievedumi ir apsīkuši. Pilsētas apgādātā malka Ranķa dambī pie Pētera parka, Vējzaķu salā un pēdējās dienās arī pie Krastu līnijas maksā: bērzu 152, priežu 140, apšu 120 m. ass mērā, kad privāti tirgotāji pārdod bērzu malku par 160—[?], alkšņu 150—160, priežu 150—180, egļu 120—150, priežu tranšeju malku par 110—180 un zaru malku par 80—90 marku ass mērā.",
+   "lv": "Malkas pievedumi ir apsīkuši. Pilsētas apgādātā malka Ranķa dambī pie Pētera parka, Vējzaķu salā pie [?] ielas un pēdējās dienās arī pie Krastu līnijas maksā: bērzu 152, priežu 140, [?], apšu 120 m. ass [?], kad privāti tirgotāji pārdod bērzu malku par 160—[?], alkšņu 150—160, priežu 150—180, egļu 120—150, priežu tranšeju malku par 110—180 un zaru malku par 80—90 marku ass mērā.",
    "ocr": "MalkaS peewedņmi ir ap«e«»lņ»schi. PilsehtaS apgahdstâ malla Naņķa da«N pee Pētera Parka, Wehjsaķu sal» pee Pchļauaisch» eela» un pehdejâs deeņâS ari pee Kraftu lwjijaS, maksà: behrsu IS2, preeschu 140. «tzļu l»« v» apşchu 120 vi. ass X-îSŞ ««àņâ, h« priwaļi tiryotaji pahrdod behrsu malku par 160— 130, eltschņu 150-160, pieeschu ISO-1d«, eglu 120 -150, preeschu tranşcheju maltu par 110 — 180 un saru maltu par 80—»0 «arka» asi mehrâ",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, „Tirdzniecība un rūpniecība“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL129|panel:pa",
@@ -918,7 +922,7 @@
     "152": "IS2"
    },
    "context": "Tajā pašā slejā: „Malka vēl arvien ir spekulantiem. Viņi apstāj ... pirmo, nopērk visu uz reizi un pārdod tad ar lielu peļņu tālāk pircējiem. Daži spekulanti peļņā 15—30 m. uz katru asi. Spekulācija vajadzētu jāaprobežo.“",
-   "warn": "Divi cipari OCR nav salasāmi — „«tzļu l»« v»“ (viena koka suga ar cenu) un pirmās cenu rindas gals („ass X-îSŞ ««àņâ“). Šeit tie nav uzminēti. Otrā ielas nosaukums („Pchļauaisch» eela»“) arī nav salasāms. Bērzu malkas augšējā cena OCR ir „130“, kas ar lejupējo robežu 160 nesaskan — visdrīzāk bojāts „180“, bet tas šeit nav uzminēts, un vietā stāv [?]. Ielas nosaukums „Pchļauaisch» eela»“ pārbaudīts pret Rīgas ielu nosaukumiem: „Pļavnieku iela“ (vecā ortogrāfijā „Pļauneeku“) sakrīt tikai pirmajos četros burtos, „aisch»“ nav „neeku“ — noraidīts, paliek nenosaukts."
+   "warn": "Trīs vietas OCR nav salasāmas, un visās trijās tekstā stāv [?]: viena koka suga ar tās cenu starp priežu un apšu malku („«tzļu l»« v»“), pirmās cenu rindas gals pēc „ass“ („X-îSŞ ««àņâ“) un bērzu malkas augšējā cena, kas OCR ir „130“ un ar lejupējo robežu 160 nesaskan — visdrīzāk bojāts „180“, bet tas nav uzminēts. Ielas nosaukums „Pchļauaisch» eela»“ arī nav salasāms un tā vietā stāv [?]; pārbaudīts pret Rīgas ielu nosaukumiem: „Pļavnieku iela“ (vecā ortogrāfijā „Pļauneeku“) sakrīt tikai pirmajos četros burtos, „aisch»“ nav „neeku“ — noraidīts."
   },
   {
    "handle": "@baltijas_zinas",
@@ -944,7 +948,7 @@
    "type": "dokuments",
    "at": "15.00",
    "seq": 490,
-   "lv": "1) Satversmes Sapulce. 1. Latvijas Satversmes Sapulce sasaucama pēc iespējas drīzā laikā. 2. Satversmes Sapulces locekļu ievēlēšana notiek, abiem dzimumiem piedaloties, uz vispārīgo, vienlīdzīgo, tiešo, aizklāto un proporcionālo vēlēšanas tiesību pamata. 2) Valsts formas un attiecības pret citām tautām. 1. Republika uz demokrātiskiem pamatiem. 2. Apvienota, patstāvīga un neatkarīga Latvija tautu savienībā. 3) Suverēnā vara un valsts politiskā un saimnieciskā iekārta. 1. Suverēnā vara līdz Satversmes Sapulces sasaukšanai pieder Latvijas Tautas Padomei, kura ieceļ arī Pagaidu Valdību. 3. Pie Pagaidu Valdības sastādīšanas jāievēro koalīcijas princips. 4. Līdz Satversmes Sapulcei visa izpildu vara atrodas Pagaidu Valdības rokās. 5. Pagaidu Valdībai līdz Satversmes Sapulcei nav tiesības grozīt pastāvošo sociālo iekārtu.",
+   "lv": "1) Satversmes Sapulce. 1. Latvijas Satversmes Sapulce sasaucama pēc iespējas drīzā laikā. 2. Satversmes Sapulces locekļu ievēlēšana notiek, abiem dzimumiem piedaloties, uz vispārīgo, vienlīdzīgo, tiešo, aizklāto un proporcionālo vēlēšanas tiesību pamata. 2) Valsts formas un attiecības pret citām tautām. 1. Republika uz demokrātiskiem pamatiem. 2. Apvienota, patstāvīga un neatkarīga Latvija tautu savienībā. 3) Suverēnā vara un valsts politiskā un saimnieciskā iekārta. 1. Suverēnā vara līdz Satversmes Sapulces sasaukšanai pieder Latvijas Tautas Padomei, kura ieceļ arī Pagaidu Valdību. 2. Pie Latvijas Tautas Padomes piedalās ar saviem delegātiem: a) politiskas partijas, b) nacionālas minoritātes un c) tie Latvijas novadi, t. i. Kurzeme un Latgale, kuros šimbrīžam nepastāv politiskas partijas. 3. Pie Pagaidu Valdības sastādīšanas jāievēro koalīcijas princips. 4. Līdz Satversmes Sapulcei visa izpildu vara atrodas Pagaidu Valdības rokās. 5. Pagaidu Valdībai līdz Satversmes Sapulcei nav tiesības grozīt pastāvošo sociālo iekārtu.",
    "ocr": "1) Şatwerşmes Şa^pulzs. 1. Lativijas Şatwerşmes Şapulze şaşauzama pehz eespehjas drihsâ laikâ. 2. Satwerşmes Şapnlzes lozekļu eewehleşchana noteck, abeem dsimumeem peedalotees, us wispahrigo, weenlihdsigo, teescho, aisklahto un proporziouelo wehleşchanas teeşibu pamata. 2) Walsts formas un atteezibas pret zitàm tautam. 1. Republika us demokratişkeem pamateem. 2. Apweenota, patstahwiga un neatkariga Latwija tautu şaweenibâ. 3) Suwerenà wara un walsts politiska un şaimneezişka eekah r t a. 1. Suwcrenà wara lihds Şatwerşmes Şapulzes şaşaukşchanai peeder Lativijas Tautas Padomei, ļuŗa eezeļ ari Pagaidu Waldibu. 2. Pee Lativijas Tautas Padomes peedalas ar satveem delegateem: a) politiskas partijas, l>) uazioiialas minoritātes un o) tee Lativijas nomadi, t. i. Kurseme un Latgale, kuros schimbrihscham nepastahiv politiskas partijas. 3. Pee Pagaidu Waldibas şastaļ)dişchanas jaeewehro koalizijas prinzips. 4. -Lihds Satwerşmes Sapulzei wişa ispildn wara atrodas Pagaidu Waldibas rokās. 5. Pagaidu Waldibai lihds Şatwcrşmes Şapulzei naw teeşibas grosit pastahtvoscho sozialo eekahrtu",
    "via": "Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, politiskā platforma",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/737483|article:DIVL39|panel:pa",
@@ -953,8 +957,12 @@
     "Valsts pasludināšana"
    ],
    "atNote": "Platforma pieņemta 17. novembra sēdē; iespiesta Tautas padomes sēžu stenogrammu pirmajā numurā, kas datēts ar 18. novembri.",
-   "warn": "Platformas 3. nodaļas 2. punkts (par delegātu sastāvu) šeit izlaists, lai citāts paliktu veselos punktos; tas ir numura tekstā starp 1. un 3. punktu.",
-   "later": "Satversmes Sapulce tika ievēlēta 1920. gada 17. un 18. aprīlī un sanāca 1920. gada 1. maijā."
+   "warn": "Platformas 3. nodaļas 2. punkts agrāk bija izlaists bez atzīmes un ir atjaunots no tā paša OCR.",
+   "later": "Satversmes Sapulce tika ievēlēta 1920. gada 17. un 18. aprīlī un sanāca 1920. gada 1. maijā.",
+   "recon": {
+    "nacionālas minoritātes": "uazioiialas minoritātes",
+    "novadi": "nomadi"
+   }
   },
   {
    "handle": "@lidums",
@@ -1110,7 +1118,7 @@
    "type": "atstastits",
    "at": "16.55",
    "seq": 600,
-   "lv": "Tad vārdu ņem ministru prezidents agronoms K. Ulmanis. … Neminot sīkumos valdības programmu, prezidents uzsver kā galvenos uzdevumus: 1) pārtikas lietas nokārtošanu, kuru būs iespējams veikt, ja visi pilsoņi uz laukiem un pilsētās pabalstīs jauno valdību, 2) agrāro un sociālo reformu izvešanu, 3) gūstekņu mājās atgriešanos, gādājot, lai viņiem būtu un maize.",
+   "lv": "Tad vārdu ņem ministru prezidents agronoms K. Ulmanis. … Neminot sīkumos valdības programmu, prezidents uzsver kā galvenos uzdevumus: 1) pārtikas lietas nokārtošanu, kuru būs iespējams veikt, ja visi pilsoņi uz laukiem un pilsētās pabalstīs jauno valdību, 2) agrāro un sociālo reformu izvešanu, 3) gūstekņu mājās atgriešanos, gādājot, lai viņiem būtu [?] un maize.",
    "ocr": "Tad mahrdu ņem ministru prefidents agronoms R. Ulmanis. … Neminot şhkumos walbibas prcgran.u, presiden!» usşwer kà galwcnos usdervumus, i) pahrtikas leelas nskahrtoşchanu, kuru buhs eejpehjams meiks, ja wisi pilsoņi us laukeem un pilşeh iâ< pubaistis jauno nJolMbu, 2) agrāro un fojtalo reformu isweşchanu, 3) guhftetņu mahjás atgreeşchanos, gahdajot, lai uiņeem buhtu un maife",
    "via": "Līdums Nr.219, 20.11.1918",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/723281|article:DIVL19|panel:pa",
@@ -1122,12 +1130,12 @@
    "recon": {
     "K. Ulmanis": "R. Ulmanis",
     "programmu": "prcgran.u",
-    "būtu un maize": "buhtu un maife"
+    "un maize": "buhtu un maife"
    },
    "mentions": {
     "K. Ulmanis": "@k_ulmanis"
    },
-   "warn": "Ieraksts sākts ar teikumu, kas nosauc „prezidentu“; izlaistā runa ir ieraksts 16.50. Trešajā punktā starp „būtu“ un „maize“ OCR ir robs — viens vārds, visdrīzāk apģērbs, nav salasāms. Tas šeit nav aizpildīts."
+   "warn": "Ieraksts sākts ar teikumu, kas nosauc „prezidentu“; izlaistā runa ir ieraksts 16.50. Trešajā punktā starp „būtu“ un „maize“ OCR ir robs — viens vārds, visdrīzāk apģērbs, nav salasāms. Tā vietā [?]."
   },
   {
    "handle": "@k_ulmanis",
@@ -1184,7 +1192,7 @@
    "type": "atstastits",
    "at": "17.39",
    "seq": 700,
-   "lv": "Metot skatu uz mūsu tautas vēstures pēdējiem septiņi simti gadiem, ieraugām Latgali kā no koka atgrieztu zaru, kuram nepiepļūst vairs dzīvības vielas. Latgales garīgā kultūra bijusi galvenā kārtā poļu rokās, bagātie meži piederējuši muižniekiem, tirdzniecība ir svešnieku rokās, ierēdņi bijuši krievi. Mums pašiem nekā nebija. Ne runāt latgaliski nedrīkstēja, ne domāt. Tādos apstākļos tauta nevarēja dzīvot. Tādēļ tā vienmēr gribējusi pieslieties pārējai Latvijai. Jau pagājušā gadu simteņa gados izteikta šī vēlēšanās, bet muižniecība šim nodomam nostājusies ceļā. Tā tas gājis līdz tagadējam laikam. Kad ienāca vāci, mēs domājām, ka tie izpildīs mūsu prasības, bet atbildes vietā nāca Brestas pamiera papildu noteikumi, ar kuriem Latgale tika atkal pievienota Krievijai. Apvienotā Latvija nu jāceļ pašu rokām, ar pašu spēku, ar politisku partiju un grupu apvienošanos. Dievs lai svētī brīvo Latviju!",
+   "lv": "Metot skatu uz mūsu tautas vēstures pēdējiem septiņi simti gadiem, ieraugām Latgali kā no koka atgrieztu zaru, kuram nepiepļūst vairs dzīvības vielas. Latgales garīgā kultūra bijusi galvenā kārtā poļu rokās, bagātie meži piederējuši muižniekiem, tirdzniecība ir svešnieku rokās, ierēdņi bijuši krievi. Mums pašiem nekā nebija. Ne runāt latgaliski nedrīkstēja, ne domāt. Tādos apstākļos tauta nevarēja dzīvot. Tādēļ tā vienmēr gribējusi pieslieties pārējai Latvijai. Jau pagājušā gadu simteņa [?] gados izteikta šī vēlēšanās, bet muižniecība šim nodomam nostājusies ceļā. Tā tas gājis līdz tagadējam laikam. Kad ienāca vāci, mēs domājām, ka tie izpildīs mūsu prasības, bet atbildes vietā nāca Brestas pamiera papildu noteikumi, ar kuriem Latgale tika atkal pievienota Krievijai. Apvienotā Latvija nu jāceļ pašu rokām, ar pašu spēku, ar politisku partiju un grupu apvienošanos. Dievs lai svētī brīvo Latviju!",
    "ocr": "Vietot skatu ns niuhşu tantas wehstnres pehdejeem septiņi simti gadeem, eeraugam Latgali, kà no koka atgrcestn saru, kuram nepecpluhst wairs dsihwibas tveelas. Latgales garigà kultūra bijusi galwenâ kahrtâ poļn rokās, bagatee meschi peederejuschi muischneekeem, tirdsneeziba ir şweşchnceku rokās, eerehdņi bijuschi kreeivi. Mums pascheem ueka nebija. Ne rnnat latgaliski nedrihksteja, ne domāt. Tahdos apstahkļos tauta uewareja dsihwot. Tadehļ ta weeumehr gribējusi pccşleetees pahrejai Latwijai. Jau pagahjuscha gadu simteņa gados isteìkia şchì wehleşchauàs, bet muischneeziba schim nodomam nostahjuşès zcļââ Tà tas gahjis lihds tagadējam laikam. Kad eenahza wahzi, mehs domājam, ka tee ispildis muhsu prasibas, bet atbildes weetâ nahza Brestas pameera papildu noteikunn, ar knreem Latgale tika atkal peeweenota Kreewijai. Apweenotà Latwija uu jazeļ paşchu rokam, ar paşchu şpehku, ar politisku partiju uu grupu apwecuoşchanos. Deeros lai şwehti brihwo Latwiju!",
    "via": "Atstāstīts: Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, stenogramma",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/737483|article:DIVL39|panel:pa",
@@ -1193,7 +1201,7 @@
     "Tautas padome"
    ],
    "atNote": "Stenogramma. Precīzs runas laiks protokolā nav dots; laiks te ir aplēse starp akta sākumu plkst. 16.30 un beigām plkst. 17.45.",
-   "warn": "Stenogrammā trūkst gadu simteņa cipara teikumā „Jau pagājušā gadu simteņa gados“ — pēc „simteņa“ OCR ir robs. Tas šeit nav aizpildīts.",
+   "warn": "Stenogrammā pēc „gadu simteņa“ OCR ir robs — gadu desmita cipars trūkst; tā vietā [?].",
    "later": "Apvienotā Latvija, par kuru Kambala runā, tika panākta ar Latgales atbrīvošanu: Daugavpils tika ieņemta 1920. gada 3. janvārī.",
    "comments": [
     {
@@ -1285,13 +1293,15 @@
     "„Jevgeņijs Oņegins“": "levUliijs VygLii«B"
    },
    "context": "„II. pilsētas teātrs“ ir tā pati zāle, kurā šodien plkst. 16.30 pasludināja valsti. Operas afiša un akts dala vienu namu un vienu dienu.",
-   "warn": "Pirmās izrādes nosaukums sludinājumā OCR nav salasāms — identificēts pēc tā paša numura mākslas slejas, skat. „identificēts“. Piektdienas sākuma laiks nav salasāms.",
+   "warn": "Pirmās izrādes nosaukums sludinājumā OCR nav salasāms — identificēts pēc tā paša numura mākslas slejas (dokumentārs apliecinājums, ne burtu atbilstība), skat. „identificēts“. Piektdienas sākuma laiks nav salasāms.",
    "ident": [
     {
      "rendered": "Klejojošais holandietis",
      "ocr": ".ZllļjllM NIIiIIIIIÌM",
-     "candidate_source": "Tā paša numura „Māksla“ sleja (Baltijas Ziņas Nr.168, ieraksts 18.25): „Rītvakar izrāda R. Vāgnera „Klejojošo holandieti““ — tā pati otrdienas izrāde.",
-     "glyph_match": "Burti nav salasāmi; sakrīt tikai forma: divi vārdi, 7 un 11 zīmes, pret „Klejojošais“ (11) un „holandietis“ (11) — otrais vārds garumā sakrīt precīzi, pirmais par 4 zīmēm īsāks. Cita otrdienas izrāde repertuārā nav minēta."
+     "evidence": "corroboration",
+     "candidate_source": "Latvju Operas repertuārs: R. Vāgnera „Klejojošais holandietis“ (Der fliegende Holländer).",
+     "corroboration": "Tā paša numura „Māksla“ sleja — Baltijas Ziņas Nr.168, 18.11.1918 (šajā plūsmā ieraksts seq 780, plkst. 18.25): „Rītvakar izrāda R. Vāgnera „Klejojošo holandieti““. Sludinājums un sleja nosauc vienu un to pašu otrdienas, 19. novembra, izrādi.",
+     "glyph_match": "Burti nav salasāmi — OCR „.ZllļjllM NIIiIIIIIÌM“ nedod nevienu atpazīstamu burtu. Glifiem šajā identifikācijā nav nekāda svara; tā balstās vienīgi uz dokumentāro apliecinājumu."
     }
    ]
   },
@@ -1300,7 +1310,7 @@
    "type": "citats",
    "at": "18.25",
    "seq": 780,
-   "lv": "Rītvakar izrāda R. Vāgnera „Klejojošo holandieti“. Piedalīsies sekoši spēki: Rozenbergs-Turs, Vīgnere, Kaktiņš, Tunce, Niedra. Diriģents T. Reiters. Nākošā operas izrāde būs piektdien, 22. novembrī, nevis kā parasti sestdienā. Šī pārmaiņa notiek tikai šo reizi ārkārtēju apstākļu dēļ.",
+   "lv": "Rītvakar izrāda R. Vāgnera „Klejojošo holandieti“. Piedalīsies sekoši spēki: Rozenbergs-Turs, Vīgnere-[?], Kaktiņš, Tunce, [?], Niedra. Diriģents T. Reiters. Nākošā operas izrāde būs piektdien, 22. novembrī, nevis kā parasti sestdienā. Šī pārmaiņa notiek tikai šo reizi ārkārtēju apstākļu dēļ.",
    "ocr": "Rihtwatar israhda R. Waņnera »Ģ kre jo, scho Holan d c c t i\". PeedalişeeS şeķofchi şpehki: Rosenberg-TurS. Wiegner-Şruàrg, Kaktiņsch. Tunze, Meests. Needra. Bbļ4a-mt« T. Reiters. ìltahķoşchâ opaaaS isaatzde buh» peektdeen 22 nowembrî, nawiS kà pa«PS şestdeenâ. Şchi pahrmaiņa noteek titai ķcha reifi ahrkahrteju apstahtļu dehļ",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, „Māksla“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL122|panel:pa",
@@ -1313,7 +1323,7 @@
     "Vīgnere": "Wiegner-Şruàrg",
     "Diriģents": "Bbļ4a-mt«"
    },
-   "warn": "Dziedātāju saraksts OCR ir daļēji nesalasāms („Rosenberg-TurS. Wiegner-Şruàrg, Kaktiņsch. Tunze, Meests. Needra“) — viens vārds izlaists un viens saīsināts."
+   "warn": "Dziedātāju saraksts OCR ir daļēji nesalasāms („Rosenberg-TurS. Wiegner-Şruàrg, Kaktiņsch. Tunze, Meests. Needra“): Vīgneres otrais uzvārds un viens vārds starp Tunci un Niedru nav salasāmi — to vietā [?]."
   },
   {
    "handle": "@baltijas_zinas",
@@ -1377,7 +1387,7 @@
    "type": "dokuments",
    "at": "19.40",
    "seq": 850,
-   "lv": "Par direktora Staņislava atkāpšanos mēs vēlētos piezīmēt, ka tikai visa personāla acumirklīgais trūkuma stāvoklis mūs pamudinājis pārņemt direkciju pašreizējos apstākļos — ne vieglprātīgi, bet ar visiem pienākumiem un tiesībām. Pašlaik runa nav par lielu mākslinieciku uzdevumu risināšanu, bet par visa ap 200 cilvēku lielā personāla eksistenci. Mēs negribam zināt, kā apstākļi veidosies nākotnē, bet ticam, ka esam darījuši savu pienākumu, un lūdzam visas iedzīvotāju aprindas, sevišķi presi, mūsu grūto uzdevumu laipni atbalstīt. Pirmā pilsētas teātra direkcija: Villijs Šveisguts, Frīdrihs Volfgangs Kēslins.",
+   "lv": "Par direktora Staņislava atkāpšanos mēs vēlētos piezīmēt, ka tikai visa personāla acumirklīgais trūkuma stāvoklis mūs pamudinājis pārņemt direkciju pašreizējos apstākļos — ne vieglprātīgi, bet ar visiem pienākumiem un tiesībām. Pašlaik runa nav par lielu mākslinieciku uzdevumu risināšanu, bet par visa ap 200 cilvēku lielā personāla eksistenci. Mēs arī visu darīsim, lai vācu pilsētas teātra labo māksliniecisko slavu turētu augstu un pēc iespējas veicinātu. Mēs nezinām, kā apstākļi veidosies nākotnē, bet ticam, ka esam darījuši savu pienākumu, un lūdzam visas iedzīvotāju aprindas, sevišķi presi, mūsu grūto uzdevumu laipni atbalstīt. Pirmā pilsētas teātra direkcija: Villijs Šveisguts, Frīdrihs Volfgangs Kēslins.",
    "ocr": "Zasch.ift za Zum «ücktritt de» Dir«klor» Staut-laos möchtes wir bemerken, daß »ar di 4 auze.vblicklich» Notlage «e» gejamtea Personalß пи! bewog n hat oit Direktion anter j-tz'gea Brrhältniffen rieht v ittttuigimift sondern mit allen Pflicht:« and «echt.-п zn übernehme«. H \\пЩ «eh u. E jetzt rieht u« Ldsang großer küustler« scher ttatgfttn, sondern am dta «xistenz de» gesamten etwa 200 Köpfe starke« Personal». Ät:. fielen aach alle» daran setzen den guten kü-istlerisch-n Ras de» deatsche« Stadttheater» hochzuhalten and nach Mvx ich« küt zn sö-dern. Wir wissen nicht, vre »te <!»rhalwtsse fich in Zakanft gestalten w:rdeu. wir glrabiN aber, a s -re Pflicht and Schuld g. k-it geta». z 4 hüben and bitten alle Kreise der Bevölkerung, insbesondere die Pr:ffe an» W ans-rer schweren Aasgabe gütigst za aater, stützen. Die Direktion de» feste« Stadttheater»: Willi Schw?i»zath. Friedrich Wolsgaug Kt'Slin.",
    "via": "Rigasche Zeitung Nr.267, 18.11.1918, „Lokales“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/264862|article:DIVL89|panel:pa",
@@ -1386,14 +1396,19 @@
     "Teātris"
    ],
    "atNote": "Direkcijas vēstule avīzei; datums vēstulē nav dots.",
-   "warn": "„nicht leichtfertig“ un „wir wissen nicht“ OCR vietās ir bojāti („rieht v ittttuigimift“, „Wir wissen nicht, vre »te <!»rhalwtsse“); abi lasīti, nevis droši."
+   "warn": "Teikums „Mēs arī visu darīsim … veicinātu“ agrāk bija izlaists bez atzīmes; tas atjaunots no tā paša OCR, bojātās vietas — skat. „rekonstruēts“. „nicht leichtfertig“ OCR vietā ir „rieht v ittttuigimift“ — lasīts, nevis drošs. Agrākais „Mēs negribam zināt“ bija pārlasījums; OCR „Wir wissen nicht“ ir „Mēs nezinām“.",
+   "recon": {
+    "Mēs arī visu darīsim": "Ät:. fielen aach alle» daran setzen",
+    "pēc iespējas veicinātu": "nach Mvx ich« küt zn sö-dern",
+    "Mēs nezinām": "Wir wissen nicht, vre »te"
+   }
   },
   {
    "handle": "@rigasche_zeitung",
    "type": "citats",
    "at": "20.00",
    "seq": 870,
-   "lv": "Vācu kareivju namā otrdien, 19. novembrī, vakarā notiek Rīgas stīgu kvarteta tautasdziesmu vakars. Līdz ar kvarteta dziedājumiem kundze soprāns un Pfafa kungs sniegs dažas dziesmas. Pie klavierēm piedalās kungs. Ieeja civilpersonām un virsniekiem 1 marka, apakšvirsniekiem un kareivjiem 40 feniņi.",
+   "lv": "Vācu kareivju namā ([?]) otrdien, 19. novembrī, vakarā [?] notiek Rīgas stīgu kvarteta tautasdziesmu vakars. Līdz ar kvarteta dziedājumiem [?] kundze, soprāns, un Pfafa kungs sniegs dažas dziesmas. Pie klavierēm piedalās [?] kungs. Ieeja civilpersonām un virsniekiem 1 marka, apakšvirsniekiem un kareivjiem 40 feniņi.",
    "ocr": "Deutsches «olvatenheim («r. «dniest-aß, I). Dien» rag, b:u ъшжэн, abend- Д^, Snbrt tm v-lk»liede,abend de» Rigaer otosqui-rttti» ftott. Reben den Oua'trtt.»rsäng,n wird fttL Jcedl t>mg- «opran., Her, Vfaff etalge «ab- «nd X„r Mische etliche leu.r.Gvtt ,»« »m-teag »ringen, i.ß.ed.» w.rlt an Nlavin Herr «°,lar mit. De» G.nteM deträat für Zivil und OfstM- «»nd 1 Mark, fit Nnter-sf. und M-nujchafteu 40 Pf«.",
    "via": "Rigasche Zeitung Nr.267, 18.11.1918, „Lokales“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/264862|article:DIVL89|panel:pa",
@@ -1403,7 +1418,10 @@
     "Okupācija"
    ],
    "atNote": "Vietējā sleja; pasākums paredzēts rītdienai.",
-   "warn": "Dziedātājas un pianista uzvārdi OCR ir nesalasāmi („fttL Jcedl t>mg- «opran.“, „an Nlavin Herr «°,lar“) un šeit nav nosaukti. Nama adrese un vakara sākuma laiks arī nav salasāmi."
+   "warn": "Nama adrese („«r. «dniest-aß, I“), vakara sākuma laiks („Д^“), dziedātājas uzvārds („fttL Jcedl t>mg- «opran.“) un pianista uzvārds („an Nlavin Herr «°,lar“) OCR nav salasāmi — katrā vietā [?]. „Pfafa“ ir OCR „Vfaff“ lasījums.",
+   "recon": {
+    "Pfafa": "Vfaff"
+   }
   },
   {
    "handle": "@baltijas_zinas",
@@ -1434,13 +1452,15 @@
      "rendered": "Spēlēju, dancoju",
      "ocr": ".Äpehlciu Sanža,.».*",
      "candidate_source": "Rainis, luga „Spēlēju, dancoju“ — sarakstīta 1915, grāmatā 1919, atsevišķas daļas presē no 1916. gada, arī „Taurētājā“ (enciklopedija.lv, šķirklis „Daugava“; literatura.lv, Rainis).",
-     "glyph_match": "„Äpehlciu“ ↔ vecās ortogrāfijas „Spehleju“: Ä≈S, p, e, h, l, c≈e, i≈j, u — 8 no 8 pozīcijām. „Sanža“ ↔ „danzoju“: S≈d, a, n, ž≈z, tad drupas „a,.».*“ galotnes „oju“ vietā — 4 no 7. Otrs Raiņa darbs, kas tolaik iznāca turpinājumos „Taurētājā“, „Daugava“ (7 burti, bez p/h/l), glifiem neatbilst un ir noraidīts."
+     "glyph_match": "„Äpehlciu“ ↔ vecās ortogrāfijas „Spehleju“: Ä≈S, p, e, h, l, c≈e, i≈j, u — 8 no 8 pozīcijām. „Sanža“ ↔ „danzoju“: S≈d, a, n, ž≈z, tad drupas „a,.».*“ galotnes „oju“ vietā — 4 no 7. Otrs Raiņa darbs, kas tolaik iznāca turpinājumos „Taurētājā“, „Daugava“ (7 burti, bez p/h/l), glifiem neatbilst un ir noraidīts.",
+     "evidence": "glyphs"
     },
     {
      "rendered": "Kultūra un māksla",
      "ocr": ".Suluņ «ahtşlaķ",
      "candidate_source": "Aleksandrs Dauge, apcere „Kultūra un māksla“, žurnālos 1918–1919 (literatura.lv, Aleksandrs Dauge).",
-     "glyph_match": "„«ahtşlaķ“ ↔ „mahksla“: «≈m, a, h, t≈k, ş≈s, l, a, lieks ķ — 7 no 8; šajā pašā korpusā „māksl-“ OCR dod „mahksl-“, tātad t↔k ir vienīgā novirze. „Suluņ“ ↔ „Kultura un“: S≈K, u, l, u≈t, ņ — 3 no 5, „ra un“ nav redzams. Pirmais vārds vājš, otrais stiprs; cits Dauges turpinājumos iespiests darbs 1918. gadā reģistrā nav atrasts."
+     "glyph_match": "„«ahtşlaķ“ ↔ „mahksla“: «≈m, a, h, t≈k, ş≈s, l, a, lieks ķ — 7 no 8; šajā pašā korpusā „māksl-“ OCR dod „mahksl-“, tātad t↔k ir vienīgā novirze. „Suluņ“ ↔ „Kultura un“: S≈K, u, l, u≈t, ņ — 3 no 5, „ra un“ nav redzams. Pirmais vārds vājš, otrais stiprs; cits Dauges turpinājumos iespiests darbs 1918. gadā reģistrā nav atrasts.",
+     "evidence": "glyphs"
     }
    ]
   },
@@ -1509,7 +1529,7 @@
    "recon": {
     "Anna Muške": "Лша musCbke"
    },
-   "warn": "Sludinājumu slejas OCR savij divus blakus esošus sludinājumus — fotonama Ziemassvētku aicinājumu un privātu sēru paziņojumu — un starp tiem ir citu sludinājumu atlūzas, kas šeit nav atveidotas. Mirušās pirmslaulību uzvārds OCR nav salasāms. Pēdējā rinda („der Mann u. der Sohn“ — vīrs un dēls) atrodas sludinājuma beigās. Pirmslaulību uzvārda vietā stāv [?]; agrākais lasījums „Gešta“ (OCR „©fftfcbt“) bija minējums un ir atsaukts — uzvārda burtu nav, tāpēc arī reģistrs nelīdz."
+   "warn": "Sludinājumu slejas OCR savij divus blakus esošus sludinājumus — fotonama Ziemassvētku aicinājumu un privātu sēru paziņojumu — un starp tiem OCR satur citu sludinājumu atlūzas (vagoni, ķēdes, tipogrāfija), kas nepieder nevienam no abiem un šeit nav atveidotas. Mirušās pirmslaulību uzvārds OCR nav salasāms. Pēdējā rinda („der Mann u. der Sohn“ — vīrs un dēls) atrodas sludinājuma beigās. Pirmslaulību uzvārda vietā stāv [?]; agrākais lasījums „Gešta“ (OCR „©fftfcbt“) bija minējums un ir atsaukts — uzvārda burtu nav, tāpēc arī reģistrs nelīdz."
   },
   {
    "handle": "@rigasche_zeitung",
@@ -1703,7 +1723,7 @@
    "type": "dokuments",
    "at": "22.35",
    "seq": 985,
-   "lv": "Esmu pārbraucis. K. Aumeisters. Paziņoju savai Lenei, ka mana adrese ir: Lielā Salacas ielā 49, dz. 2. M. Zeks.",
+   "lv": "Esmu pārbraucis. K. Aumeisters. [?] Paziņoju savai Lenei, ka mana adrese ir: Lielā Salacas ielā 49, dz. 2. M. Zeks.",
    "ocr": "Lsmu pakrbrauzîs Ķ Aumeisters Adrciendusld», 5. 1«. ». V«i«i> s»«i Ģi Leenei Mcķs, ka mana oiķ? ir: leelâ Saleşu eelà 49. ds. 2. M. Seks.",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, sludinājumu bloks",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL146|panel:pa",
@@ -1718,7 +1738,7 @@
     "Lielā Salacas ielā": "leelâ Saleşu eelà",
     "M. Zeks": "M. Seks"
    },
-   "warn": "Divi privāti sludinājumi pirmās lappuses apakšā. Abi uzvārdi un adreses OCR ir nesalasāmi („Ķ Aumeisters Adrciendusld»“, „V«i«i> s»«i Ģi Leenei Mcķs“, „leelâ Saleşu eelà 49“) un pirms publicēšanas jāsalasa no skenējuma. Ielas nosaukums šeit lasīts kā Salacas — nav apstiprināts."
+   "warn": "Divi privāti sludinājumi pirmās lappuses apakšā. Pēc Aumeistera vārda OCR ir vēl rinda („Adrciendusld», 5. 1«. ».“ — visdrīzāk adrese), kas nav salasāma — tā vietā [?]. Abi uzvārdi un adreses OCR ir nesalasāmi („Ķ Aumeisters“, „V«i«i> s»«i Ģi Leenei Mcķs“, „leelâ Saleşu eelà 49“) un pirms publicēšanas jāsalasa no skenējuma. Ielas nosaukums šeit lasīts kā Salacas — nav apstiprināts."
   },
   {
    "handle": "@rigasche_zeitung",
@@ -1744,6 +1764,7 @@
  ],
  "conventions": {
   "gap": "[?] — cipars vai vārds, ko OCR nedod un ko mēs neuzminam. Paskaidrojums katra ieraksta „warn“ laukā (saskarnē — zem „avots“).",
-  "ident": "[≈] — nosaukums, vārds vai vieta, ko bojātā OCR vietā identificējām pēc ārēja reģistra (bibliogrāfijas, repertuāra, vārdu saraksta), nevis nolasījām. Kandidāts, avots un burtu atbilstība — zem „avots“. Tikai nosaukumiem, personām, vietām un iestādēm; parastam tekstam nekad."
+  "ident": "[≈] — nosaukums, vārds vai vieta, ko bojātā OCR vietā identificējām pēc ārēja reģistra (bibliogrāfijas, repertuāra, vārdu saraksta), nevis nolasījām. Katram ierakstam zem „avots“ ir kandidāts, tā avots un pierādījums — tieši viena no divām sugām, nosaukta vārdā: „burtu atbilstība“ (pozīciju pa pozīcijai pret OCR, pārbaudīta pret to, kā tas pats vārds šajā korpusā sadrūp citur) vai „dokumentārs apliecinājums“ (cits tā paša avota ieraksts, kas to pašu nosauc neatkarīgi, ar savu atrašanās vietu). Vārda garuma vai formas salīdzinājums nav pierādījums. Tikai nosaukumiem, personām, vietām un iestādēm; parastam tekstam nekad.",
+  "today": "Konta lauki „today“, „todayWhat“ un „live“ ir TAGADNES fakti par iestādi, nevis par 1918. gadu: „today“ ir mūsdienu pēctecības iestādes X konts un „todayWhat“ — tās nosaukums šodien (@tautas_padome → Saeima); „live“ nozīmē, ka amats ir nepārtraukts un šis X konts ir reāls un šodien aktīvs (@POTUS). Tie rādās VIENĪGI profila kartītē, nekad plūsmā, nekad ieraksta tekstā un ne „later“ vietā — tie nesaka, kas ar 18. novembri notika vēlāk, tikai kur šī iestāde ir sasniedzama šodien."
  }
 }
