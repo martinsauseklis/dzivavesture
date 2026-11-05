@@ -60,13 +60,13 @@ const csp = [
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   {/* Must say what public/og.png shows; regenerate both together with tools/og-card.sh. */}
-  <meta property="og:image:alt" content="dzīvā vēsture — 1918. gada 18. novembris. Kā to rakstīja tajā dienā." />
+  <meta property="og:image:alt" content="dzīvā vēsture, 18. novembris 1918 — Kārļa Ulmaņa ieraksts „Latvijas valstij jābūt demokrātiski taisnai valstij…“ un tā turpinājums: 1934. gadā viņš atlaida Saeimu." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content={`${ORIGIN}/og.png`} />
 
   {/* All relative: the same build serves from a root, a subdomain or a sub-path. */}
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="preload" href="fonts/literata-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="fonts/fonts.css" />
   <link rel="stylesheet" href="feed.css" />
   <noscript><link rel="stylesheet" href="nojs.css" /></noscript>
@@ -79,18 +79,19 @@ const csp = [
 </head>
 <body>
   <header>
-    <div class="wrap">
-      <div class="masthead">
-        <h1>dzīvā <b>vēsture</b></h1>
-        <div class="sub">Kā to rakstīja tajā dienā</div>
-      </div>
-      <div class="day">
-        <b>Pirmdiena, 1918. gada 18. novembris</b>
-        {data.place} · vācu okupācija
-        <span class="one">Pagaidām šeit ir viena diena.</span>
-      </div>
+    <div class="wrap top">
+      <span class="brand">dzīvā vēsture</span>
+      <span class="date">18.11.1918</span>
     </div>
   </header>
+
+  {/* The day is the headline. One day exists, and the page says so instead of
+      showing arrows that go nowhere. */}
+  <div class="wrap hero">
+    <h1>Pirmdiena, 18. novembris 1918</h1>
+    <p class="when">{data.place} · vācu okupācija</p>
+    <p class="one">Pagaidām šeit ir viena diena.</p>
+  </div>
 
   <nav class="tabs wrap" role="tablist">
     <button type="button" role="tab" data-tab="feed" aria-selected="true" aria-controls="panel-feed">Plūsma</button>

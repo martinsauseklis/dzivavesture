@@ -3,9 +3,14 @@
 <!--
   Source for public/og.png — the link-preview card (1200×630).
 
-  Rendered in Chrome rather than drawn by a script so it uses the very same
-  font files and colours as the page and cannot drift from it. Pattern taken
-  from ~/dev/mai-lv/tools/og-card.sh.
+  One real post, shown the way the page shows it, with its reveal: the product
+  in a single frame, not a poster about it. Rendered in Chrome so it uses the
+  very same font files and tokens as the page and cannot drift from it.
+  Pattern taken from ~/dev/mai-lv/tools/og-card.sh.
+
+  The post is seq 610 in src/data/18-11-1918.json (Ulmanis, 17.00, atstāstīts)
+  and its „later“ — copied verbatim; if that record changes, change this.
+  The avatar hue is avatarHue('@k_ulmanis') = h-5 in public/feed.css.
 
   REGENERATE:  bash tools/og-card.sh
   Then keep <meta property="og:image:alt"> in src/pages/index.astro in step.
@@ -13,22 +18,37 @@
 <link rel="stylesheet" href="../public/fonts/fonts.css">
 <style>
   /* Same tokens as public/feed.css — do not re-pick these by eye. */
-  :root { --ink:#1b1714; --ink-soft:#5a5048; --paper:#f4efe4; --carmine:#9e3039; }
+  :root { --bg:#ffffff; --ink:#15181c; --soft:#5d646c; --line:#e5e7ea; --accent:#b01f2e; --accent-tint:#fbeef0; --rep:#9a5100; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    width:1200px; height:630px; background:var(--paper); color:var(--ink);
-    font-family:Literata, Georgia, serif; padding:0 90px;
-    display:flex; flex-direction:column; justify-content:center;
-    border-top:12px double var(--ink); border-bottom:12px double var(--ink);
-  }
+  body { width:1200px; height:630px; background:var(--bg); color:var(--ink);
+         font-family:Inter, system-ui, sans-serif; padding:44px 80px 0;
+         display:flex; flex-direction:column; }
   /* 1200 px shrinks to 360 px in a phone's share sheet, a factor of 3.33 —
-     so 40 px here is 12 px there, the smallest size still readable. */
-  .masthead { font-size:40px; letter-spacing:.06em; color:var(--ink-soft); }
-  .masthead b { color:var(--carmine); font-weight:400; }
-  h1 { font-size:88px; line-height:1.08; font-weight:700; margin:22px 0 26px; letter-spacing:-.01em; }
-  .sub { font-size:40px; line-height:1.3; color:var(--ink-soft); max-width:26ch; }
+     so 40 px here is 12 px there, the smallest size still readable; the quote
+     at 50 px is 15 px there, the size of the page's own text. */
+  .top { display:flex; justify-content:space-between; align-items:baseline; font-size:34px; color:var(--soft);
+         padding-bottom:20px; border-bottom:2px solid var(--line); }
+  .top b { color:var(--ink); font-weight:600; }
+  .who { display:flex; gap:22px; align-items:center; margin-top:26px; }
+  .avatar { width:84px; height:84px; border-radius:50%; background:#15803d; color:#fff; font-weight:600; font-size:32px;
+            display:grid; place-items:center; flex:none; }
+  .name { font-size:40px; font-weight:600; line-height:1.15; }
+  .line { font-size:30px; color:var(--soft); margin-top:4px; display:flex; gap:16px; align-items:center; }
+  .badge { font-size:26px; line-height:1; padding:8px 14px; border-radius:10px; font-weight:500; color:var(--rep);
+           background:color-mix(in srgb, currentColor 11%, transparent); }
+  .lv { font-size:50px; line-height:1.25; margin-top:24px; letter-spacing:-.01em; }
+  .later { margin-top:auto; margin-bottom:0; background:var(--accent-tint); border-radius:22px 22px 0 0;
+           padding:22px 34px 26px; font-size:32px; line-height:1.3; }
+  .later b { display:block; color:var(--accent); font-weight:600; font-size:30px; margin-bottom:6px; }
 </style>
 
-<div class="masthead">dzīvā <b>vēsture</b></div>
-<h1>1918. gada 18. novembris</h1>
-<p class="sub">Kā to rakstīja tajā dienā — tās dienas avīzes kā plūsma, katrs ieraksts ar avotu.</p>
+<div class="top"><b>dzīvā vēsture</b><span>Pirmdiena, 18. novembris 1918 · Rīga</span></div>
+<div class="who">
+  <span class="avatar">KU</span>
+  <div>
+    <div class="name">Kārlis Ulmanis</div>
+    <div class="line">@k_ulmanis · 17.00 <span class="badge">atstāstīts</span></div>
+  </div>
+</div>
+<p class="lv">Latvijas valstij jābūt demokrātiski taisnai valstij, lai nedotu viņā vietas ne apspiešanai, ne netaisnībai.</p>
+<div class="later"><b>Kā tas beidzās →</b>1934. gada 15. maijā Kārlis Ulmanis atlaida Saeimu, aizliedza politiskās partijas un valdīja ar dekrētiem.</div>

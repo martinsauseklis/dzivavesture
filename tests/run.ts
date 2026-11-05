@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
-  type Post, type Account,
+  avatarHue, HUE_COUNT, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -64,15 +64,15 @@ for (const [at, want] of clocks) check(`isClock ${at}`, isClock(at) === want);
 // --- bodyHtml: escaping, recon, mentions, gaps --------------------------------
 const gap = 'cipars, ko OCR nedod';
 const plain = bodyHtml('Pateicību Vilsonam, ka valsts.', { mentions: { Vilsonam: '@POTUS' } }, accounts, gap);
-check('mention keeps printed wording, handle in parentheses',
-  plain.html.includes('Vilsonam (<button type="button" class="mention" data-handle="@POTUS">@POTUS</button>)'));
+check('mention keeps printed wording, handle in parentheses, the group unbreakable',
+  plain.html.includes('Vilsonam <span class="m">(<button type="button" class="mention" data-handle="@POTUS">@POTUS</button>)</span>'));
 check('mention: nothing unmatched', plain.unmatched.length === 0);
 
 const hostile = bodyHtml('<script>alert("x")</script> Vilsonam', { mentions: { Vilsonam: '@POTUS' } }, accounts, gap);
 check('text is escaped before any markup', !hostile.html.includes('<script>') && hostile.html.includes('&lt;script&gt;'));
 
 const injectedKey = bodyHtml('a <b> c', { mentions: { '<b>': '@POTUS' } }, accounts, gap);
-check('mention key containing markup is matched escaped, not raw', injectedKey.html.includes('&lt;b&gt; (<button'));
+check('mention key containing markup is matched escaped, not raw', injectedKey.html.includes('&lt;b&gt; <span class="m">(<button'));
 
 const unknownHandle = bodyHtml('Vilsonam', { mentions: { Vilsonam: '@ghost' } }, accounts, gap);
 check('mention to a handle with no account is not linked', !unknownHandle.html.includes('mention') && unknownHandle.unmatched[0] === 'Vilsonam');
@@ -111,6 +111,47 @@ const plurals: [number, string][] = [[1, 'ieraksts'], [2, 'ieraksti'], [11, 'ier
 for (const [n, want] of plurals) check(`plural ${n}`, plural(n) === want);
 
 check('initials', initials('Kārlis Ulmanis') === 'KU' && initials('Līdums') === 'L');
+
+// --- contrast: the floor is 4.5:1 (WCAG AA), computed, not eyeballed -------
+// Relative luminance per WCAG 2.x; sRGB channel linearised at the 0.03928 knee.
+function luminance(hex: string): number {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+const contrast = (a: string, b: string) => { const [x, y] = [luminance(a), luminance(b)]; return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+check('contrast: the formula agrees with the known black-on-white 21:1', Math.abs(contrast('#000000', '#ffffff') - 21) < 0.01);
+
+// --- avatar hue: stable, in range, readable under white initials ----------
+// | input                      | expected                                   |
+// | same handle twice          | same index                                 |
+// | '' (hostile: empty)        | an integer in [0, HUE_COUNT)               |
+// | '@rīgas_ž' (non-ASCII)     | an integer in [0, HUE_COUNT)               |
+// | feed.css .avatar.h-N rules | exactly HUE_COUNT, each ≥ 4.5:1 vs #ffffff |
+const inRange = (i: number) => Number.isInteger(i) && i >= 0 && i < HUE_COUNT;
+check('avatarHue is stable', avatarHue('@k_ulmanis') === avatarHue('@k_ulmanis'));
+check('avatarHue: empty and non-ASCII handles still land in range', inRange(avatarHue('')) && inRange(avatarHue('@rīgas_ž')));
+const css = readFileSync(new URL('../public/feed.css', import.meta.url), 'utf8');
+const hues = [...css.matchAll(/\.avatar\.h-(\d+)\s*\{\s*background:(#[0-9a-f]{6})/g)].map((m) => [Number(m[1]), m[2]] as const);
+check('css: exactly HUE_COUNT avatar hues, numbered 0…n-1', hues.length === HUE_COUNT && hues.every(([i]) => inRange(i)), `${hues.length} found`);
+check('css: every avatar hue carries white initials at ≥ 4.5:1', hues.every(([, h]) => contrast(h, '#ffffff') >= 4.5),
+  hues.map(([i, h]) => `h-${i} ${contrast(h, '#ffffff').toFixed(2)}`).join(' '));
+
+// --- the stylesheet's tokens meet the same floor, light and dark -----------
+// | pair (fg on bg)                               | expected |
+// | ink, soft, accent, quote, rep, doc on bg      | ≥ 4.5    |
+// | ink, soft, accent on panel                    | ≥ 4.5    |
+// | ink on accent-tint (the reveal)               | ≥ 4.5    |
+const tokens = (block: string) => Object.fromEntries([...block.matchAll(/--([\w-]+):(#[0-9a-f]{6})/g)].map((m) => [m[1], m[2]]));
+const light = tokens(css.slice(0, css.indexOf('@media (prefers-color-scheme: dark)')));
+const dark = tokens(css.slice(css.indexOf('@media (prefers-color-scheme: dark)')));
+const pairs: [string, string][] = [['ink', 'bg'], ['soft', 'bg'], ['accent', 'bg'], ['quote', 'bg'], ['rep', 'bg'], ['doc', 'bg'],
+  ['ink', 'panel'], ['soft', 'panel'], ['accent', 'panel'], ['ink', 'accent-tint']];
+for (const [name, t] of [['light', light], ['dark', dark]] as const) {
+  check(`css ${name}: all ${Object.keys(t).length ? '' : 'MISSING '}tokens parsed`, Object.keys(t).length >= 10);
+  for (const [fg, bg] of pairs)
+    check(`css ${name}: ${fg} on ${bg} ≥ 4.5:1`, !!t[fg] && !!t[bg] && contrast(t[fg], t[bg]) >= 4.5, t[fg] && t[bg] ? contrast(t[fg], t[bg]).toFixed(2) : 'token missing');
+}
 
 // --- the pure layer imports no framework ------------------------------------
 const src = readFileSync(new URL('../src/lib/feed.ts', import.meta.url), 'utf8');

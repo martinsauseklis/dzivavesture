@@ -1,9 +1,9 @@
-/* Two complete static instances of Literata — latin, latin-ext and cyrillic in
-   ONE file each. Fetched from Google Fonts with a browser signature that
-   predates unicode-range, so nothing is split across files. Split subsets
-   displace Latvian macrons: the precomposed ā is a composite glyph whose base
-   `a` lives in the other file. Verified by rendering (tools/shot.sh), not
-   assumed. 56 KB + 61 KB.
-   `swap`: text paints in the fallback serif first, so the fonts never block. */
-@font-face { font-family: Literata; font-weight: 400; font-display: swap; src: url(literata-400.woff2) format('woff2'); }
-@font-face { font-family: Literata; font-weight: 700; font-display: swap; src: url(literata-700.woff2) format('woff2'); }
+/* Two complete static instances of Inter — latin, latin-ext, cyrillic, greek
+   and vietnamese in ONE file each (109 KB + 112 KB). Fetched from Google Fonts
+   with a Firefox 40 signature, which predates unicode-range, so nothing is
+   split across files. Split subsets displace Latvian macrons: the precomposed
+   ā is a composite glyph whose base `a` lives in the other file. Verified by
+   rendering (tools/shot.sh), not assumed.
+   `swap`: text paints in the system sans first, so the fonts never block. */
+@font-face { font-family: Inter; font-weight: 400; font-display: swap; src: url(inter-400.woff2) format('woff2'); }
+@font-face { font-family: Inter; font-weight: 600; font-display: swap; src: url(inter-600.woff2) format('woff2'); }

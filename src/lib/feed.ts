@@ -111,7 +111,8 @@ export type BodyMarkup = {
 // historical text is never treated as HTML.
 //   - reconstructed words: dotted underline + the raw string as tooltip
 //   - mentions: printed wording intact, handle in parentheses — parentheses
-//     mean "the publisher inserted this"
+//     mean "the publisher inserted this"; the group is one unbreakable span,
+//     so a line never ends on the opening „(“
 //   - identified items: wavy underline + a [≈] button beside them, so a reader
 //     can tell "what the paper printed" from "what we identified it as"
 //   - [?]: a button, so the gap reaches its explanation (the source fold) in one tap
@@ -136,7 +137,7 @@ export function bodyHtml(
     // Never link a profile that does not exist, and never a string that is not printed.
     if (!accounts[handle] || !out.includes(needle)) { unmatched.push(printed); continue; }
     out = out.replace(needle,
-      `${needle} (<button type="button" class="mention" data-handle="${escapeHtml(handle)}">${escapeHtml(handle)}</button>)`);
+      `${needle} <span class="m">(<button type="button" class="mention" data-handle="${escapeHtml(handle)}">${escapeHtml(handle)}</button>)</span>`);
   }
 
   for (const i of post.ident ?? []) {
@@ -175,3 +176,18 @@ export const plural = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'ieraksts
 
 // Two initials for the avatar — a feed shows a face, we show letters.
 export const initials = (name: string) => name.split(/\s+/).slice(0, 2).map((w) => w[0]).join('');
+
+// One hue per account, so a voice stays recognisable while scrolling: the
+// reader starts to know who is speaking before reading the name. Picked by a
+// stable hash of the handle, never by hand, so adding an account cannot shift
+// the others. The hues themselves live in feed.css as `.avatar.h-0` … `.h-7`
+// (the page's CSP forbids inline styles); tests/run.ts asserts there are
+// exactly HUE_COUNT of them and that white initials read on each at ≥ 4.5:1.
+export const HUE_COUNT = 8;
+export function avatarHue(handle: string): number {
+  let h = 0;
+  // 31 is the usual string-hash multiplier; the modulus keeps h a safe integer
+  // for any handle length. '' hashes to 0, which is still a valid hue.
+  for (const c of handle) h = (h * 31 + c.codePointAt(0)!) % 1_000_003;
+  return h % HUE_COUNT;
+}

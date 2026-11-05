@@ -21,20 +21,23 @@ const replies = p.comments?.length ?? 0;
   {k > 0 && <div class="seghead">{p.handle} · <b>{k + 1}/{n}</b></div>}
   <p class="lv" set:html={html} />
 
+  {/* Reading first (the rest of the thread), then the reveal, then replies;
+      the source sits at the far right — present on every segment, never loud. */}
   <div class="bar">
-    {k === 0 && p.comments && (
-      <button type="button" aria-controls={id('c')} aria-expanded="false">atbildes · {replies}</button>
-    )}
-    {k === 0 && p.later && (
-      <button type="button" aria-controls={id('l')} aria-expanded="false">Kā tas beidzās →</button>
-    )}
-    {/* The ⚠ is the only trace a caveat leaves on the face: folded, not invisible. */}
-    <button type="button" aria-controls={id('s')} aria-expanded="false" aria-label={s.warn ? 'avots, ar piezīmi' : 'avots'}>
-      avots{s.warn && ' ⚠'}
-    </button>
     {k === 0 && n > 1 && (
       <button type="button" class="thread-toggle" aria-controls={id('t')} aria-expanded="false">rādīt pavedienu ({n})</button>
     )}
+    {k === 0 && p.later && (
+      <button type="button" class="later-btn" aria-controls={id('l')} aria-expanded="false">Kā tas beidzās →</button>
+    )}
+    {k === 0 && p.comments && (
+      <button type="button" aria-controls={id('c')} aria-expanded="false">atbildes · {replies}</button>
+    )}
+    {/* The ⚠ is the only trace a caveat leaves on the face: folded, not invisible.
+        U+FE0E keeps it a text glyph, not a yellow emoji, on phones. */}
+    <button type="button" class="src-btn" aria-controls={id('s')} aria-expanded="false" aria-label={s.warn ? 'avots, ar piezīmi' : 'avots'}>
+      avots{s.warn && <span class="warnmark" aria-hidden="true">⚠︎</span>}
+    </button>
   </div>
 
   {k === 0 && p.comments && (
@@ -61,7 +64,7 @@ const replies = p.comments?.length ?? 0;
     {k === 0 && contextHtml && (
       <div class="context"><div class="k">Kā to ierāmēja laikraksts</div><Fragment set:html={contextHtml} /></div>
     )}
-    {s.warn && <p class="warn">⚠ {s.warn}</p>}
+    {s.warn && <p class="warn">⚠︎ {s.warn}</p>}
     {/* Tooltips do not open on a phone, so the same notes are repeated here. */}
     {k === 0 && p.atNote && <p class="via">Laiks {p.at} — {p.atNote}</p>}
     {s.recon && (
