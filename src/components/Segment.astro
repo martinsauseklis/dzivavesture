@@ -3,7 +3,7 @@
 // apparatus. A plain post is one segment; a thread is several, and only the
 // first (k = 0) carries the item-level things — replies, „Kā tas beidzās“,
 // the paper's framing, the time note.
-import type { Post, Segment } from '../lib/feed.ts';
+import { TYPE_LABEL, viaText, type Post, type Segment } from '../lib/feed.ts';
 
 interface Props {
   post: Post;
@@ -33,11 +33,8 @@ const replies = p.comments?.length ?? 0;
     {k === 0 && p.comments && (
       <button type="button" aria-controls={id('c')} aria-expanded="false">atbildes · {replies}</button>
     )}
-    {/* The ⚠ is the only trace a caveat leaves on the face: folded, not invisible.
-        U+FE0E keeps it a text glyph, not a yellow emoji, on phones. */}
-    <button type="button" class="src-btn" aria-controls={id('s')} aria-expanded="false" aria-label={s.warn ? 'avots, ar piezīmi' : 'avots'}>
-      avots{s.warn && <span class="warnmark" aria-hidden="true">⚠︎</span>}
-    </button>
+    {/* A caveat leaves no mark on the face; the label names it for a screen reader. */}
+    <button type="button" class="src-btn" aria-controls={id('s')} aria-expanded="false" aria-label={s.warn ? 'avots, ar piezīmi' : 'avots'}>avots</button>
   </div>
 
   {k === 0 && p.comments && (
@@ -64,7 +61,7 @@ const replies = p.comments?.length ?? 0;
     {k === 0 && contextHtml && (
       <div class="context"><div class="k">Kā to ierāmēja laikraksts</div><Fragment set:html={contextHtml} /></div>
     )}
-    {s.warn && <p class="warn">⚠︎ {s.warn}</p>}
+    {s.warn && <p class="warn">{s.warn}</p>}
     {/* Tooltips do not open on a phone, so the same notes are repeated here. */}
     {k === 0 && p.atNote && <p class="via">Laiks {p.at} — {p.atNote}</p>}
     {s.recon && (
@@ -81,7 +78,10 @@ const replies = p.comments?.length ?? 0;
         <b>burtu atbilstība:</b> {i.glyph_match}
       </p>
     ))}
-    <p class="via">{p.via}{n > 1 && ` · pavediena ${k + 1}. daļa`} · <a href={p.url} target="_blank" rel="noopener">skenējums →</a></p>
+    {/* The kind of words these are lives here, not on the face: the paper's own
+        (citāts), a reporter's rendering of a person (atstāstīts), a printed
+        document (dokuments). The guards in feed.ts make the field required. */}
+    <p class="via"><span class={`badge t-${p.type}`}>{TYPE_LABEL[p.type]}</span> {viaText(p.via)}{n > 1 && ` · pavediena ${k + 1}. daļa`} · <a href={p.url} target="_blank" rel="noopener">skenējums →</a></p>
     {s.ocr ? <pre class="ocr">{s.ocr}</pre> : <p class="via">OCR teksta nav.</p>}
   </div>
 </div>

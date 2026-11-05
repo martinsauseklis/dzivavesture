@@ -174,6 +174,23 @@ export function invariantLine(shown: number, refused: number, warned: number): s
 // Latvian: 1, 21, 31 … take the singular, except 11 (and 111 …).
 export const plural = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'ieraksts' : 'ieraksti');
 
+// The face of a person-account post whose words a paper rendered says so in
+// language — „kā ziņo Līdums“ — instead of a classification beside the name.
+// The source is read off the `via` line, whose shape for these posts is
+// "Atstāstīts: <source> Nr.<n>, <date>[, <where>]". Anything else returns
+// null and the face shows nothing: the fold still carries the whole line.
+// One closed mapping: when <where> is the word „stenogramma“, the honest
+// reporter is the stenogram, not the session it records.
+export function reportedBy(via: string): string | null {
+  const m = /^Atstāstīts: (.+?) Nr\.\d+, \d\d\.\d\d\.\d{4}(?:, (.+))?$/.exec(via);
+  if (!m) return null;
+  return m[2] === 'stenogramma' ? 'stenogramma' : m[1];
+}
+
+// In the fold the type is printed as its own word, so the `via` line drops
+// the "Atstāstīts: " prefix it carries in the data rather than say it twice.
+export const viaText = (via: string) => via.replace(/^Atstāstīts: /, '');
+
 // Two initials for the avatar — a feed shows a face, we show letters.
 export const initials = (name: string) => name.split(/\s+/).slice(0, 2).map((w) => w[0]).join('');
 

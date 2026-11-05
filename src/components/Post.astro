@@ -1,11 +1,12 @@
 ---
-// One post: avatar · name · handle · HH.MM · type badge · the words · one
-// thin action row. Nothing else on the face. Everything scholarly — the
-// source, the raw OCR, the paper's framing, the caveats — is in the HTML but
-// folded. A long item is a thread: the first segment is the post, the rest
+// One post: avatar · name · handle · HH.MM · the words · one thin action row.
+// Nothing else on the face — no type badge, no notes: it must read as a feed
+// first and as 1918 only through the words. Everything scholarly — the type,
+// the source, the raw OCR, the paper's framing, the caveats — is in the HTML
+// but folded under „avots“. A long item is a thread: the first segment is the post, the rest
 // hang below it, collapsed behind „rādīt pavedienu (n)“.
 import Segment from './Segment.astro';
-import { avatarHue, bodyHtml, initials, TYPE_LABEL, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
+import { avatarHue, bodyHtml, initials, reportedBy, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
 
 interface Props {
   post: Post;
@@ -24,6 +25,8 @@ const unmatched = Object.keys(p.mentions ?? {}).filter((k) =>
   bodies.every((b) => b.unmatched.includes(k)) && (!context || context.unmatched.includes(k)));
 if (unmatched.length) console.warn(`post ${p.seq}: nav tekstā, netiek rādīts: ${unmatched.join(' · ')}`);
 const n = segments.length;
+// A person's words as a paper rendered them: said in language on the face.
+const reporter = account.kind === 'person' && p.type === 'atstastits' ? reportedBy(p.via) : null;
 ---
 <article class="post" id={`p-${p.seq}`} data-topics={p.topics.join('\n')}>
   <div class="who">
@@ -34,16 +37,14 @@ const n = segments.length;
         <span class="name">{account.name}</span>
         <span class="handle">{p.handle}</span>
       </button>
-      <div class="line">
-        {/* A dotted underline means the clock time is an estimate; the title says what bounds it. */}
-        <span class:list={['stamp', { derived: !!p.atNote }]} title={p.atNote || undefined}>{p.at}</span>
-        <span class={`badge t-${p.type}`}>{TYPE_LABEL[p.type]}</span>
-        {n > 1 && <span class="seqno">1/{n}</span>}
-      </div>
+      {/* The clock time is an estimate for nearly every post; the fold says what bounds it. */}
+      <span class="stamp" title={p.atNote || undefined}>{p.at}</span>
+      {n > 1 && <span class="seqno"> · 1/{n}</span>}
     </div>
   </div>
 
   <div class="body">
+    {reporter && <p class="reporter">kā ziņo {reporter}</p>}
     <Segment post={p} segment={segments[0]} html={bodies[0].html} contextHtml={context?.html ?? null} k={0} n={n} />
     {n > 1 && (
       <div class="thread" id={`t-${p.seq}`} hidden>

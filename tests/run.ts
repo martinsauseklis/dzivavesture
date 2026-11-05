@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
-  avatarHue, HUE_COUNT, type Post, type Account,
+  avatarHue, HUE_COUNT, reportedBy, viaText, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -112,6 +112,25 @@ for (const [n, want] of plurals) check(`plural ${n}`, plural(n) === want);
 
 check('initials', initials('Kārlis Ulmanis') === 'KU' && initials('Līdums') === 'L');
 
+// --- reportedBy: the face says who rendered a person's words -----------------
+// | via                                                              | expected       |
+// | Atstāstīts: Līdums Nr.219, 20.11.1918                            | Līdums         |
+// | Atstāstīts: Baltijas Ziņas Nr.168, 18.11.1918, „Stāvoklis …“     | Baltijas Ziņas |
+// | Atstāstīts: Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, stenogramma | stenogramma |
+// | Līdums Nr.219, 20.11.1918 (no prefix: not a rendering)           | null           |
+// | Atstāstīts: <script> (hostile, wrong shape)                      | null           |
+// | '' (empty)                                                       | null           |
+const reported: [string, string | null][] = [
+  ['Atstāstīts: Līdums Nr.219, 20.11.1918', 'Līdums'],
+  ['Atstāstīts: Baltijas Ziņas Nr.168, 18.11.1918, „Stāvoklis Austro-Ungārijā“', 'Baltijas Ziņas'],
+  ['Atstāstīts: Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, stenogramma', 'stenogramma'],
+  ['Līdums Nr.219, 20.11.1918', null],
+  ['Atstāstīts: <script>', null],
+  ['', null],
+];
+for (const [via, want] of reported) check(`reportedBy ${JSON.stringify(via).slice(0, 40)}`, reportedBy(via) === want, `want ${want}`);
+check('viaText drops only the leading prefix', viaText('Atstāstīts: Līdums Nr.219') === 'Līdums Nr.219' && viaText('Līdums Nr.219') === 'Līdums Nr.219');
+
 // --- contrast: the floor is 4.5:1 (WCAG AA), computed, not eyeballed -------
 // Relative luminance per WCAG 2.x; sRGB channel linearised at the 0.03928 knee.
 function luminance(hex: string): number {
@@ -170,6 +189,9 @@ check('corpus: no ident record argues from word length or shape', corpus.every((
 const reachable = new Set([...corpus.map((p) => p.handle), ...corpus.flatMap((p) => Object.values(p.mentions ?? {}))]);
 check('corpus: every account is reachable from a post or a printed mention', Object.keys(data.accounts).every((h) => reachable.has(h)), Object.keys(data.accounts).filter((h) => !reachable.has(h)).join());
 check('corpus: sampler saw both sides', reasons.length > 0 && refusals.some(([, , w]) => w !== null), 'guards rejected hostile fixtures above AND accepted the corpus');
+const personRendered = corpus.filter((p) => p.type === 'atstastits' && data.accounts[p.handle].kind === 'person');
+check('corpus: every person-account rendering names its reporter on the face', personRendered.length > 0 && personRendered.every((p) => reportedBy(p.via)),
+  personRendered.filter((p) => !reportedBy(p.via)).map((p) => p.seq).join());
 const gapped = corpus.filter((p) => p.lv.includes('[?]'));
 check('corpus: every [?] post carries a warn that explains it', gapped.length > 0 && gapped.every((p) => p.warn), gapped.filter((p) => !p.warn).map((p) => p.seq).join());
 
