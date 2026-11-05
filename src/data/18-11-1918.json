@@ -216,7 +216,8 @@
    "recon": {
     "Pārgrozījušos": "pahrgrosijuşchos",
     "ļāvusies": "ļahwuşès",
-    "pabalstīt": "pabalstit"
+    "pabalstīt": "pabalstit",
+    "mierīgiem": "m«ļtg»em"
    },
    "warn": "Paskaidrojums datēts ar 15. novembri. Teikumā „Tāpat kā līdz šim iedzīvotājiem … pie attiecīgām iestādēm“ OCR trūkst darbības vārda („ja« pee“) — tā vietā [?]. Teikums par preses nodaļu agrāk bija izlaists bez atzīmes un ir atjaunots no tā paša OCR.",
    "later": "Iepriekšējā cenzūra laikrakstiem Rīgā tika atcelta — Līduma 20. novembra numurs raksta, ka laikrakstiem par to paziņots „aizvakar“, t. i. 17. vai 18. novembrī; sleja neļauj būt drošam."
@@ -346,7 +347,9 @@
     "uzsaukums": "Aafrus",
     "karaspēks": "T?»ppe».",
     "atbrīvotājs": "Vefreie?",
-    "mūsu dzimteni": "»?sere Heimat"
+    "mūsu dzimteni": "»?sere Heimat",
+    "atstās": "verlesse»erde».",
+    "un lielās grūtības": "»n* dt- grtche:. Schwierigkeiten"
    }
   },
   {
@@ -387,7 +390,13 @@
     "Pasaulē"
    ],
    "atNote": "Vadraksts. Konkrēts laiks nav zināms.",
-   "warn": "„Qui vivra, verra“ — kas dzīvos, tas redzēs — ir pašas slejas nākamā rinda tūlīt pēc šī teikuma."
+   "warn": "„Qui vivra, verra“ — kas dzīvos, tas redzēs — ir pašas slejas nākamā rinda tūlīt pēc šī teikuma.",
+   "recon": {
+    "lietas": "»i«ge",
+    "attīstībā": "Eat»tck,»»«g",
+    "maiņa": "Aeader»»g",
+    "gaidāma": "e>e»te«."
+   }
   },
   {
    "handle": "@baltijas_zinas",
@@ -496,7 +505,8 @@
    "atNote": "Paziņojums presei Berlīnē 17. novembrī; laiks te ir rīta avīzes lasīšanas aplēse.",
    "recon": {
     "nežēlīgāks": "gr»«f»«er",
-    "ietvaros": "Nahne«"
+    "ietvaros": "Nahne«",
+    "mūsu sievām": "««fere Fraaen"
    },
    "warn": "Vācu OCR ir bojāts („Nach « i e ist ei« Krieg gr»«f»«er anb noch nie i« Nahne« eine» Kriege»“); teksts salasīts. Paziņojuma ievads: „Vācijas valsts vadības loceklis Šeidemanis izteicās preses pārstāvjiem par nepietiekamā uztura jautājumu Vācijā.“"
   },
@@ -518,7 +528,11 @@
    "recon": {
     "gripas sērga": "Grippe, s e a eh e",
     "nedēļnieču": "» eh n e r i » n e n",
-    "Bērnus mātes nevar barot": "Die Kt»der könne? vo« den Mütter« «icht »«stillt"
+    "Bērnus mātes nevar barot": "Die Kt»der könne? vo« den Mütter« «icht »«stillt",
+    "nonāk": "ko»«e»",
+    "Nepietiekams uzturs un mazasinība": "Unterer^ätzrang «»d Blatar«at",
+    "apjomu": "U«fan»",
+    "vismaz": "«indestea»"
    },
    "warn": "Divi procentu skaitļi OCR nav salasāmi („nahezu LOV. HallerSchwa» gere«“ un „bJ Ь H van c» »nrhel chen Kinder»“) un šeit nav uzminēti — tāpēc divās vietās skaitļa nav. Tas ir vienīgais 1918. gada gripas pandēmijas piemināšanas gadījums, ko es atradu abos 18. novembra numuros. Nesalasāmo skaitļu vietā tekstā stāv [?]."
   },
@@ -608,7 +622,8 @@
     "sapulcēm": "za langen",
     "Torņakalna latviešu palīdzības biedrībā": "Thoren»» Iberer lettischen Hklssvere«",
     "komunistiskā Latvija": "Hoch das rme, kommanistische Lettland",
-    "Ļeņinu, Lībknehtu un": "Lenin, Liebknecht un?"
+    "Ļeņinu, Lībknehtu un": "Lenin, Liebknecht un?",
+    "rezolūcijas": "Nesolutio»««"
    },
    "warn": "Ieraksts sākts ar ziņas virsrakstu un pirmo teikumu, lai „sapulce“ būtu nosaukta. Pirmās sapulces vietas apzīmētājs OCR („im Verein“) ir bez vārda; nākamais teikums slejā saka „namentlich im lettischen Verein“ — Rīgas Latviešu biedrība, bet šeit tas nav ielikts. Vārds starp „Lai dzīvo“ un „komunistiskā Latvija“ OCR ir nesalasāms („Hoch das rme, kommanistische Lettland“) — tā vietā [?]. Rezolūciju saraksts ir avīzes atstāstījums, nevis rezolūciju teksts.",
    "comments": [
@@ -637,7 +652,8 @@
    "atNote": "Rīta avīze. Konkrēts iznākšanas laiks nav zināms; laiks ir aplēse pēc tā, kur sleja atrodas numurā.",
    "recon": {
     "kļuvis": "ļļņmiS",
-    "sauceņa uz lūpām": "şouzeeņa «s lņhpan"
+    "sauceņa uz lūpām": "şouzeeņa «s lņhpan",
+    "Bet": "B«»"
    },
    "warn": "Virsraksts: „Latvju kareivju Nacionālās Savienības rezolūcija“. Teksta sākumā minēts biedru skaits („ap 3Y.VW“) — cipars OCR nav salasāms un šeit nav iekļauts. Pirmā teikuma sākums („Aŗ brihwos «n ņeotkarioaS Lat ijoS şouzeeņa «s lņhpan“) ir bojāts un šeit lasīts.",
    "later": "Rezolūcija parakstīta 16. novembrī un iespiesta 18. novembra rītā. Partijas bija vienojušās jau 17. novembrī."
@@ -674,7 +690,11 @@
     "Rīgas dzīve"
    ],
    "atNote": "Paziņojums datēts ar 16. novembri; iespiests 18. novembra rītā.",
-   "warn": "Tautību uzskaitījums OCR ir gandrīz iznīcināts: „Rigas igauņu, ļaimeescha, ņaķizu, tr-emu schihdu. paļu, lerschņ ļoņt.oņ preekschpahmji“. Iespējamais lasījums — igauņu, latviešu, vācu, krievu, žīdu, poļu — šeit NAV iespiests, jo tas ir minējums: „vācu“ šajā pašā korpusā OCR vienmēr dod kā „wahzu“, nevis „ņaķizu“. Jāsalasa no skenējuma — pirmais darbs skenējumu sarakstā."
+   "warn": "Tautību uzskaitījums OCR ir gandrīz iznīcināts: „Rigas igauņu, ļaimeescha, ņaķizu, tr-emu schihdu. paļu, lerschņ ļoņt.oņ preekschpahmji“. Iespējamais lasījums — igauņu, latviešu, vācu, krievu, žīdu, poļu — šeit NAV iespiests, jo tas ir minējums: „vācu“ šajā pašā korpusā OCR vienmēr dod kā „wahzu“, nevis „ņaķizu“. Jāsalasa no skenējuma — pirmais darbs skenējumu sarakstā.",
+   "recon": {
+    "Paziņojums": "Pasi»o>»«s.",
+    "visus": "vis»»"
+   }
   },
   {
    "handle": "@a_winnig",
@@ -921,7 +941,7 @@
    "type": "citats",
    "at": "14.45",
    "seq": 465,
-   "lv": "Malkas pievedumi ir apsīkuši. Pilsētas apgādātā malka Ranķa dambī pie Pētera parka, Vējzaķu salā pie [?] ielas un pēdējās dienās arī pie Krastu līnijas maksā: bērzu 152, priežu 140, [?], apšu 120 m. ass [?], kad privāti tirgotāji pārdod bērzu malku par 160—[?], alkšņu 150—160, priežu 150—180, egļu 120—150, priežu tranšeju malku par 110—180 un zaru malku par 80—90 marku ass mērā.",
+   "lv": "Malkas pievedumi ir [?]. Pilsētas apgādātā malka Ranķa dambī pie Pētera parka, Vējzaķu salā pie [?] ielas un pēdējās dienās arī pie Krastu līnijas maksā: bērzu 152, priežu 140, [?], apšu 120 m. ass [?], kad privāti tirgotāji pārdod bērzu malku par 160—[?], alkšņu 150—160, priežu 150—180, egļu 120—150, priežu tranšeju malku par 110—180 un zaru malku par 80—90 marku ass mērā.",
    "ocr": "MalkaS peewedņmi ir ap«e«»lņ»schi. PilsehtaS apgahdstâ malla Naņķa da«N pee Pētera Parka, Wehjsaķu sal» pee Pchļauaisch» eela» un pehdejâs deeņâS ari pee Kraftu lwjijaS, maksà: behrsu IS2, preeschu 140. «tzļu l»« v» apşchu 120 vi. ass X-îSŞ ««àņâ, h« priwaļi tiryotaji pahrdod behrsu malku par 160— 130, eltschņu 150-160, pieeschu ISO-1d«, eglu 120 -150, preeschu tranşcheju maltu par 110 — 180 un saru maltu par 80—»0 «arka» asi mehrâ",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, „Tirdzniecība un rūpniecība“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL129|panel:pa",
@@ -932,10 +952,11 @@
    ],
    "atNote": "Rīta avīze. Laiks ir aplēse — kad dienas gaitā lasītājs nonāktu pie šīs slejas. Precīzs laiks nav zināms.",
    "recon": {
-    "152": "IS2"
+    "152": "IS2",
+    "marku": "«arka»"
    },
    "context": "Tajā pašā slejā: „Malka vēl arvien ir spekulantiem. Viņi apstāj ... pirmo, nopērk visu uz reizi un pārdod tad ar lielu peļņu tālāk pircējiem. Daži spekulanti peļņā 15—30 m. uz katru asi. Spekulācija vajadzētu jāaprobežo.“",
-   "warn": "Trīs vietas OCR nav salasāmas, un visās trijās tekstā stāv [?]: viena koka suga ar tās cenu starp priežu un apšu malku („«tzļu l»« v»“), pirmās cenu rindas gals pēc „ass“ („X-îSŞ ««àņâ“) un bērzu malkas augšējā cena, kas OCR ir „130“ un ar lejupējo robežu 160 nesaskan — visdrīzāk bojāts „180“, bet tas nav uzminēts. Ielas nosaukums „Pchļauaisch» eela»“ arī nav salasāms un tā vietā stāv [?]; pārbaudīts pret Rīgas ielu nosaukumiem: „Pļavnieku iela“ (vecā ortogrāfijā „Pļauneeku“) sakrīt tikai pirmajos četros burtos, „aisch»“ nav „neeku“ — noraidīts."
+   "warn": "Trīs vietas OCR nav salasāmas, un visās trijās tekstā stāv [?]: viena koka suga ar tās cenu starp priežu un apšu malku („«tzļu l»« v»“), pirmās cenu rindas gals pēc „ass“ („X-îSŞ ««àņâ“) un bērzu malkas augšējā cena, kas OCR ir „130“ un ar lejupējo robežu 160 nesaskan — visdrīzāk bojāts „180“, bet tas nav uzminēts. Ielas nosaukums „Pchļauaisch» eela»“ arī nav salasāms un tā vietā stāv [?]; pārbaudīts pret Rīgas ielu nosaukumiem: „Pļavnieku iela“ (vecā ortogrāfijā „Pļauneeku“) sakrīt tikai pirmajos četros burtos, „aisch»“ nav „neeku“ — noraidīts. Pirmā teikuma pēdējais vārds OCR ir „ap«e«»lņ»schi“ — agrākais „apsīkuši“ bija minējums (vidus burti neatbilst) un ir atsaukts, tā vietā [?]."
   },
   {
    "handle": "@baltijas_zinas",
@@ -1022,7 +1043,8 @@
     "korporāciju": "der lettischen in Fa-.b.n",
     "sarkanbaltsarkanu audumu": "rot'weiß-?otem Stoff",
     "vēl nebija pilnīgi pabeigta": "noch niÄt gen.} beeidet wa?,",
-    "bija pusstunda laika": "tza?te maa eine halbe Stande Z.it"
+    "bija pusstunda laika": "tza?te maa eine halbe Stande Z.it",
+    "un tikai še un tur": "»7.d nur hier uud da"
    }
   },
   {
@@ -1086,7 +1108,8 @@
    },
    "recon": {
     "pirmais sekretārs": "der erste S?« tretär",
-    "sociālrevolucionārus": "Sozialrevolat'v?äre"
+    "sociālrevolucionārus": "Sozialrevolat'v?äre",
+    "demokrātisku": "de«okr«tifcher,"
    }
   },
   {
@@ -1313,7 +1336,8 @@
    "atNote": "Sludinājums rīta avīzē; izrādes laiks sludinājumā ir rītdienai.",
    "recon": {
     "„Klejojošais holandietis“": ".ZllļjllM NIIiIIIIIÌM",
-    "„Jevgeņijs Oņegins“": "levUliijs VygLii«B"
+    "„Jevgeņijs Oņegins“": "levUliijs VygLii«B",
+    "7½": "7»/>"
    },
    "context": "„II. pilsētas teātrs“ ir tā pati zāle, kurā šodien plkst. 16.30 pasludināja valsti. Operas afiša un akts dala vienu namu un vienu dienu.",
    "warn": "Pirmās izrādes nosaukums sludinājumā OCR nav salasāms — identificēts pēc tā paša numura mākslas slejas (dokumentārs apliecinājums, ne burtu atbilstība), skat. „identificēts“. Piektdienas sākuma laiks nav salasāms.",
@@ -1401,7 +1425,8 @@
    ],
    "atNote": "Recenzija par vakardienas koncertu; laiks ir vakara lasīšanas aplēse.",
    "recon": {
-    "orķestra virtuozo skaņdarbu": "v-ch-straleBntaos'nftack"
+    "orķestra virtuozo skaņdarbu": "v-ch-straleBntaos'nftack",
+    "var saukt": "Van k»»et»"
    },
    "warn": "Teikuma pēdējais vārds OCR ir „v-ch-straleBntaos'nftack“ un lasīts kā „Orchester-Virtuosenstück“ (orķestra virtuozais skaņdarbs); agrākais lasījums „meistardarbs“ bija minējums un ir atsaukts. Recenzents raksta arī, ka orķestris šim uzdevumam vēl nebija pilnā mērā izaudzis."
   },
@@ -1424,7 +1449,8 @@
     "Mēs arī visu darīsim": "Ät:. fielen aach alle» daran setzen",
     "pēc iespējas veicinātu": "nach Mvx ich« küt zn sö-dern",
     "Mēs nezinām": "Wir wissen nicht, vre »te",
-    "Frīdrihs Volfgangs": "Friedrich Wolsgaug"
+    "Frīdrihs Volfgangs": "Friedrich Wolsgaug",
+    "apstākļi": "<!»rhalwtsse"
    },
    "ident": [
     {
@@ -1454,7 +1480,9 @@
    "atNote": "Vietējā sleja; pasākums paredzēts rītdienai.",
    "warn": "Nama adrese („«r. «dniest-aß, I“), vakara sākuma laiks („Д^“), dziedātājas uzvārds („fttL Jcedl t>mg- «opran.“) un pianista uzvārds („an Nlavin Herr «°,lar“) OCR nav salasāmi — katrā vietā [?]. „Pfafa“ ir OCR „Vfaff“ lasījums.",
    "recon": {
-    "Pfafa": "Vfaff"
+    "Pfafa": "Vfaff",
+    "civilpersonām un virsniekiem": "für Zivil und OfstM- «»nd",
+    "Pie klavierēm piedalās": "i.ß.ed.» w.rlt an Nlavin"
    }
   },
   {
@@ -1462,7 +1490,7 @@
    "type": "citats",
    "at": "20.15",
    "seq": 880,
-   "lv": "„Taurētāja“ 7./8. numurs (burtnīca) patlaban iznācis un dabūjams visās grāmatu pārdotavās. Šajā burtnīcā uzņemti sekoši raksti: Andr. Kurcija, A. Ersa, Pāvila Rozīša, Linarda Laicena, Teodora Bankina un Klitijas dzejoļi; Raiņa „Spēlēju, dancoju“ (turpinājums); Virgila „Eneīda“ I Sudrabkalna tulkojumā (turpinājums); Ed. Vulfa [?] (beigas); A. Upīša [?] (turpinājums); J. Straujāna [?]; Roberta Sterna „Aforismi“; A. Švābes „Kora dainas“ (turpinājums); A. Kirhenšteina par dzimuma slimībām (beigas); A. Dauges „Kultūra un māksla“ (turpinājums). Apskatā ir ietverti raksti par Jāni Asaru, Jonatānu Sviftu, Anri Barbisa grāmatu „Uguns“, [?], Latviešu Operu un par muziku vispārīgi. Kā redzams, žurnāla saturs ir visai bagāts. Burtnīca maksā tikai 3 markas.",
+   "lv": "„Taurētāja“ 7./8. numurs (burtnīca) patlaban iznācis un dabūjams visās grāmatu pārdotavās. Šī demokrātiskā, [?] un apzinīgi vadītā žurnāla šajā burtnīcā uzņemti sekoši raksti: Andr. Kurcija, A. Ersa, Pāvila Rozīša, Linarda Laicena, Teodora Bankina un Klitijas dzejoļi; Raiņa „Spēlēju, dancoju“ (turpinājums); Virgila „Eneīda“ I Sudrabkalna tulkojumā (turpinājums); Ed. Vulfa [?] (beigas); A. Upīša [?] (turpinājums); J. Straujāna [?]; Roberta Sterna „Aforismi“; A. Švābes „Kora dainas“ (turpinājums); A. Kirhenšteina par dzimuma slimībām (beigas); A. Dauges „Kultūra un māksla“ (turpinājums). Apskatā ir ietverti raksti par Jāni Asaru, Jonatānu Sviftu, Anri Barbisa grāmatu „Uguns“, [?], Latviešu Operu un par muziku vispārīgi. Kā redzams, žurnāla saturs ir visai bagāts. Burtnīca maksā tikai 3 markas.",
    "ocr": ".Taurētajā* 7/8 numurs (buriuiza) patlaban isnahhiS «n oabuja.nS wişâS grahmatu pahrdotawâS. Şcka demokrotiikâ koņs«« mļ apsinigi wadità şchurnala jchojâ burt'«zâ uşņrmti şekoşcdi raksti: Audr. Kurzija. A. Ersa, Pahwiia Rosişcha. Lmarņa Laizena, Teodora Baņ niļa uu Klitijas dşejoli; Raiņa — .Äpehlciu Sanža,.».* (turplnaju »S); Wrrgila — .ìZneida\" I. Şudrabtalua tulkojumā (turvinajumS); Ed. WulU — '.c- (beigaķ)- Aà Upişcha — .Reļahga braì»zee«Sâ (tMipiņajums); I. Straņjaua — Roberta Strrna — .Aforişņi*; A. ŞchwabeS — „Koŗa daiņaS\" (turpinājums); A. Kirchenkeina — un dşimuma şlimibaS (beigaS); A. DaugeS — .Suluņ «ahtşlaķ (tarpinaiamS). Apşkaķâ ir eettxetati rakni par Jahai Aşari, Jonawuu Şwistu. Aņri Baîbckşa grahmatu .UgunS\", Eaulu Dshrfiņu, Lar»«şchu Operu un par muşiku wiS pahrigi. Kà redsaņs, schņrnala şatarS ir wişal bagatS. Burtniza maksà tikai 3 martņS",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, „Grāmatu galds“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL45|panel:pa",
@@ -1474,13 +1502,16 @@
    "recon": {
     "Kirhenšteina": "Kirchenkeina",
     "Teodora Bankina": "Teodora Baņ niļa",
-    "Linarda Laicena": "Lmarņa Laizena"
+    "Linarda Laicena": "Lmarņa Laizena",
+    "Šī demokrātiskā": "Şcka demokrotiikâ",
+    "apzinīgi vadītā žurnāla": "apsinigi wadità şchurnala",
+    "Latviešu Operu": "Lar»«şchu Operu"
    },
    "mentions": {
     "Linarda Laicena": "@l_laicens"
    },
    "context": "Rainis 18. novembrī ir Kastaņolā Šveicē — bet viņa vārds šorīt ir Rīgas avīzē, žurnāla satura rādītājā.",
-   "warn": "Četri OCR nesalasāmi nosaukumi — Vulfa, Upīša („.Reļahga braì»zee«Sâ“), Straujāna un viens apskata objekts („Eaulu Dshrfiņu“) — nav uzminēti, to vietā [?]. Upīša nosaukumam reģistrā (literatura.lv) 1918. gada darbs ar „brauciens“ nav atrasts; kandidāta nav. Raiņa un Dauges nosaukumi ir identificēti pēc ārēja reģistra — skat. „identificēts“.",
+   "warn": "Četri OCR nesalasāmi nosaukumi — Vulfa, Upīša („.Reļahga braì»zee«Sâ“), Straujāna un viens apskata objekts („Eaulu Dshrfiņu“) — nav uzminēti, to vietā [?]. Upīša nosaukumam reģistrā (literatura.lv) 1918. gada darbs ar „brauciens“ nav atrasts; kandidāta nav. Raiņa un Dauges nosaukumi ir identificēti pēc ārēja reģistra — skat. „identificēts“. Frāze „Šī demokrātiskā, … un apzinīgi vadītā žurnāla“ agrāk bija izlaista bez atzīmes un ir atjaunota; vārds starp „demokrātiskā“ un „un“ („koņs««“) nav salasāms — [?].",
    "ident": [
     {
      "rendered": "Spēlēju, dancoju",
@@ -1543,7 +1574,9 @@
    "warn": "Ieraksts sākts ar turpinājuma iespiesto galvu. Pulka numurs OCR ir „6(“ un nav salasāms — tā vietā [?]. Vācu OCR šai rindkopai ir stipri bojāts („Es bl i et), «« Mitternacht, ta,«te etwa» Dnnkle» Vor «n» a«f“) un teksts šeit salasīts.",
    "recon": {
     "17. janvāris — 5. februāris": "17. Aan. bis S. Febr. ШB.",
-    "kara brīvprātīgais": "KU'gSsreiwivizer"
+    "kara brīvprātīgais": "KU'gSsreiwivizer",
+    "un klusās": "»a» waach stille»",
+    "pateicības lūgšanā": "Daak«» I gtdct"
    }
   },
   {
@@ -1561,9 +1594,11 @@
    ],
    "atNote": "Sludinājumu sleja. Laiks ir vakara lasīšanas aplēse.",
    "recon": {
-    "Anna Muške": "Лша musCbke"
+    "Anna Muške": "Лша musCbke",
+    "1918": "1»18",
+    "pusdivos": "'/.2 Uhr"
    },
-   "warn": "Sludinājumu slejas OCR savij divus blakus esošus sludinājumus — fotonama Ziemassvētku aicinājumu un privātu sēru paziņojumu — un starp tiem OCR satur citu sludinājumu atlūzas (vagoni, ķēdes, tipogrāfija), kas nepieder nevienam no abiem un šeit nav atveidotas. Mirušās pirmslaulību uzvārds OCR nav salasāms. Pēdējā rinda („der Mann u. der Sohn“ — vīrs un dēls) atrodas sludinājuma beigās. Pirmslaulību uzvārda vietā stāv [?]; agrākais lasījums „Gešta“ (OCR „©fftfcbt“) bija minējums un ir atsaukts — uzvārda burtu nav, tāpēc arī reģistrs nelīdz."
+   "warn": "Sludinājumu slejas OCR savij divus blakus esošus sludinājumus — fotonama Ziemassvētku aicinājumu un privātu sēru paziņojumu — un starp tiem OCR satur citu sludinājumu atlūzas („*****“, vagoni, ķēdes, tipogrāfija), kas nepieder nevienam no abiem un šeit nav atveidotas. Mirušās pirmslaulību uzvārds OCR nav salasāms. Pēdējā rinda („der Mann u. der Sohn“ — vīrs un dēls) atrodas sludinājuma beigās. Pirmslaulību uzvārda vietā stāv [?]; agrākais lasījums „Gešta“ (OCR „©fftfcbt“) bija minējums un ir atsaukts — uzvārda burtu nav, tāpēc arī reģistrs nelīdz."
   },
   {
    "handle": "@rigasche_zeitung",
@@ -1583,7 +1618,8 @@
    "context": "Dzejolis „Pax vobiscum“ Rigasche Zeitung pirmajā lappusē, parakstīts „J. v. K.“ Tajā pašā dienā, kad dažas ielas tālāk Rīgā pasludina valsti, vācu avīze pirmajā lappusē iespiež sēru dzejoli par zaudētu karu.",
    "warn": "Dzejoļa vācu OCR ir stipri bojāts; šeit atveidota tikai tā daļa, kas salasāma. Autora pilnais vārds nav zināms — paraksts ir tikai „J. v. K.“",
    "recon": {
-    "šajā karā": "dies?« Krrege"
+    "šajā karā": "dies?« Krrege",
+    "kad viņai runā par mieru": "toi-n* man ihr v»« F tede» spricht"
    }
   },
   {
@@ -1613,7 +1649,7 @@
    "type": "dokuments",
    "at": "21.20",
    "seq": 930,
-   "lv": "Laika ratos. A. Saulieša stāsts. (Beigas.) … Viņš tik velk no kabatām ārā cariņus, kerenskus, ostenus un met tos uz visām pusēm veselām gūzmām. Kā kad tā vairs nebūtu nemaz nauda, kura vēl netik sen izlikusies bezgalā vērtīga, bet kaut kādas samazgātas papīra skrejlapas…",
+   "lv": "Laika ratos. A. Saulieša stāsts. (Beigas.) … Viņš tik velk no kabatām ārā cariņus, kerenskus, ostenus un met tos uz visām pusēm veselām gūzmām. Kā kad tā vairs nebūtu nemaz nauda, kura [?] vēl netik sen izlikusies bezgalā vērtīga, bet kaut kādas samazgātas papīra skrejlapas…",
    "ocr": "Laika ratos. A. Sauleescha Stahsts. (Beigas^ … tviņsch tik u»elk no kabatām ahrâ zareņus, kerenşkus, ostenus un met tos us mşşàm puttm meşelàm guhsmam. Ka kad ta rvairs nebuhtu nemās nanda, kura »i-r<r»x mehl netik sen isiikuşès btsgolâ mehniga, bet kaut kahdas şamasatas pģpira şkraizdas",
    "via": "Līdums Nr.217, 17.11.1918, „Laika ratos“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/941686|article:DIVL71|panel:pa",
@@ -1631,7 +1667,7 @@
     "A. Saulieša": "@a_saulietis"
    },
    "context": "A. Saulieša stāsta „Laika ratos“ beigu daļa: Juris Lapsiņš Rīgā kārtīs izspēlē visu, kas kabatā. „Cariņi“, „kerenski“ un „osteni“ ir trīs naudas, kas 1918. gada novembrī staigā rokās vienlaikus — cariskā, Pagaidu valdības un vācu okupācijas.",
-   "warn": "Ieraksts sākts ar stāsta iespiesto galvu, lai lasītājs redz, ka tas ir stāsts. Pēdējais vārds OCR ir „şkraizdas“ un lasīts kā „skrejlapas“; nav apstiprināts. Nākamā rindkopa sākas „Otrā dienā ap launagu naudas vairs nav“."
+   "warn": "Ieraksts sākts ar stāsta iespiesto galvu, lai lasītājs redz, ka tas ir stāsts. Pēdējais vārds OCR ir „şkraizdas“ un lasīts kā „skrejlapas“; nav apstiprināts. Nākamā rindkopa sākas „Otrā dienā ap launagu naudas vairs nav“. Starp „kura“ un „vēl“ OCR ir nesalasāms vārds („»i-r<r»x“) — [?]."
   },
   {
    "handle": "@lidums",
@@ -1758,7 +1794,8 @@
    "warn": "Numuru cipari paskaidrojuma ievadā OCR ir pretrunīgi („i.' uņ lg nswembra numurs» !6S. uņ ĪS4.“) un šeit nav saskaņoti. Vārds „vēlāk“ ir pašā iespiestajā tekstā. Gads pēc „22. decembrī“ OCR ir „lvi?“ — nesalasāms; agrākais „1917“ atsaukts, tā vietā [?].",
    "recon": {
     "priekšapspriedē": "preekschapspreed?,",
-    "saraksta": "sarok?-;"
+    "saraksta": "sarok?-;",
+    "reprezentējis": "„»epreseņteji»"
    }
   },
   {
@@ -1766,8 +1803,8 @@
    "type": "dokuments",
    "at": "22.35",
    "seq": 985,
-   "lv": "Esmu pārbraucis. K. Aumeisters. [?] Paziņoju savai Lenei, ka mana adrese ir: Lielā Salacas ielā 49, dz. 2. M. Zeks.",
-   "ocr": "Lsmu pakrbrauzîs Ķ Aumeisters Adrciendusld», 5. 1«. ». V«i«i> s»«i Ģi Leenei Mcķs, ka mana oiķ? ir: leelâ Saleşu eelà 49. ds. 2. M. Seks.",
+   "lv": "Esmu pārbraucis. K. Aumeisters. [?]",
+   "ocr": "Lsmu pakrbrauzîs Ķ Aumeisters Adrciendusld», 5. 1«. ».",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, sludinājumu bloks",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL146|panel:pa",
    "topics": [
@@ -1776,13 +1813,32 @@
    ],
    "atNote": "Rīta avīze. Laiks ir aplēse — kad dienas gaitā lasītājs nonāktu pie šīs slejas. Precīzs laiks nav zināms.",
    "recon": {
-    "K. Aumeisters": "Ķ Aumeisters Adrciendusld»",
-    "Lenei": "Ģi Leenei Mcķs",
-    "Lielā Salacas ielā": "leelâ Saleşu eelà",
-    "M. Zeks": "M. Seks",
-    "adrese": "oiķ?"
+    "Esmu pārbraucis": "Lsmu pakrbrauzîs",
+    "K. Aumeisters": "Ķ Aumeisters"
    },
-   "warn": "Divi privāti sludinājumi pirmās lappuses apakšā. Pēc Aumeistera vārda OCR ir vēl rinda („Adrciendusld», 5. 1«. ».“ — visdrīzāk adrese), kas nav salasāma — tā vietā [?]. Abi uzvārdi un adreses OCR ir nesalasāmi („Ķ Aumeisters“, „V«i«i> s»«i Ģi Leenei Mcķs“, „leelâ Saleşu eelà 49“) un pirms publicēšanas jāsalasa no skenējuma. Ielas nosaukums šeit lasīts kā Salacas — nav apstiprināts."
+   "warn": "Privāts sludinājums pirmās lappuses apakšā. Uzvārds OCR ir „Ķ Aumeisters“ — lasīts, nevis drošs. Pēc vārda OCR ir vēl rinda („Adrciendusld», 5. 1«. ».“ — visdrīzāk adrese), kas nav salasāma — tā vietā [?]."
+  },
+  {
+   "handle": "@baltijas_zinas",
+   "type": "dokuments",
+   "at": "22.36",
+   "seq": 987,
+   "lv": "[?] Lenei [?], ka mana adrese ir: Lielā Salacas ielā 49, dz. 2. M. Zeks.",
+   "ocr": "V«i«i> s»«i Ģi Leenei Mcķs, ka mana oiķ? ir: leelâ Saleşu eelà 49. ds. 2. M. Seks.",
+   "via": "Baltijas Ziņas Nr.168, 18.11.1918, sludinājumu bloks",
+   "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL146|panel:pa",
+   "topics": [
+    "Gūstekņi",
+    "Rīgas dzīve"
+   ],
+   "atNote": "Rīta avīze. Laiks ir aplēse — kad dienas gaitā lasītājs nonāktu pie šīs slejas. Precīzs laiks nav zināms.",
+   "recon": {
+    "Lenei": "Leenei",
+    "adrese": "oiķ?",
+    "Lielā Salacas ielā": "leelâ Saleşu eelà",
+    "M. Zeks": "M. Seks"
+   },
+   "warn": "Privāts sludinājums pirmās lappuses apakšā, blakus Aumeistera sludinājumam, bet cita cilvēka. Teikuma sākums OCR ir „V«i«i> s»«i Ģi“ — agrākais lasījums „Paziņoju savai“ bija minējums bez burtu atbilstības un ir atsaukts; tā vietā [?]. Vārds aiz „Leenei“ („Mcķs“) arī nav salasāms — [?]. Ielas nosaukums lasīts kā Salacas, uzvārds kā Zeks — nav apstiprināti."
   },
   {
    "handle": "@rigasche_zeitung",
@@ -1800,7 +1856,10 @@
    "atNote": "Kalendārs numura beigās; dati ir rītdienai, 19. novembrim.",
    "recon": {
     "3.2": "3.2",
-    "11.9": "11 , 9 ."
+    "11.9": "11 , 9 .",
+    "Otrdiena": "Dte«»tag.",
+    "minūtes": "«innre»",
+    "mazāks par": "Heiner ist «l»"
    },
    "context": "Rīgas vietējais vidējais laiks ir 36 minūtes priekšā okupācijas „dienesta laikam“ — divi pulksteņi vienā pilsētā. Pēc šā kalendāra saule 19. novembrī riet pirms četriem: šodienas akts Otrajā pilsētas teātrī sākās tumsā.",
    "warn": "Pusdienlaika un saules rieta cipari OCR ir sadrupuši („Wahrer Mittag 11 , 9 .“, „Sonnenuntergang 3.2“) un šeit atstāti tā, kā nolasāmi — tie nav minūtes, kādas šodien rakstītu. Mēness lēkta un rieta cipari ir identiski, kas visdrīzāk ir OCR kļūda."
