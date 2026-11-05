@@ -1,9 +1,8 @@
 ---
-// One post: avatar · name · handle · HH.MM · the words · one thin action row.
-// Nothing else on the face — no type badge, no notes: it must read as a feed
-// first and as 1918 only through the words. Everything scholarly — the type,
-// the source, the raw OCR, the paper's framing, the caveats — is in the HTML
-// but folded under „avots“. A long item is a thread: the first segment is the post, the rest
+// One post: avatar · name · handle · HH.MM · „kā ziņo X“ where it applies ·
+// the words with their inline markers · one thin action row (thread, replies,
+// avots →). Nothing else: it reads as a feed first and as 1918 only through
+// the words. The scholarly fields stay in the data and are not rendered. A long item is a thread: the first segment is the post, the rest
 // hang below it, collapsed behind „rādīt pavedienu (n)“.
 import Segment from './Segment.astro';
 import { avatarHue, bodyHtml, initials, profilePath, reportedBy, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
@@ -18,12 +17,12 @@ interface Props {
 const { post: p, account, accounts, gapNote, base = '' } = Astro.props;
 
 const segments: Seg[] = p.thread ?? [{ lv: p.lv, ocr: p.ocr, recon: p.recon, warn: p.warn, ident: p.ident }];
-const bodies = segments.map((s) => bodyHtml(s.lv, { recon: s.recon, mentions: p.mentions, ident: s.ident }, accounts, gapNote, base));
-// The paper's framing may carry the same mentions (prototype grammar). A key
-// is only "unmatched" if it is printed in no segment and not in the framing.
-const context = p.context ? bodyHtml(p.context, { mentions: p.mentions }, accounts, gapNote, base) : null;
+const bodies = segments.map((s) => bodyHtml(s.lv, { recon: s.recon, mentions: p.mentions, ident: s.ident, warn: s.warn }, accounts, gapNote, base));
+// The paper's framing (p.context) is no longer rendered, but it may carry a
+// mention (prototype grammar): a key is only "unmatched" if it is printed in
+// no segment and not in the framing either.
 const unmatched = Object.keys(p.mentions ?? {}).filter((k) =>
-  bodies.every((b) => b.unmatched.includes(k)) && (!context || context.unmatched.includes(k)));
+  bodies.every((b) => b.unmatched.includes(k)) && !(p.context ?? '').includes(k));
 if (unmatched.length) console.warn(`post ${p.seq}: nav tekstā, netiek rādīts: ${unmatched.join(' · ')}`);
 const n = segments.length;
 // A person's words as a paper rendered them: said in language on the face.
@@ -47,11 +46,11 @@ const reporter = account.kind === 'person' && p.type === 'atstastits' ? reported
 
   <div class="body">
     {reporter && <p class="reporter">kā ziņo {reporter}</p>}
-    <Segment post={p} segment={segments[0]} html={bodies[0].html} contextHtml={context?.html ?? null} k={0} n={n} />
+    <Segment post={p} segment={segments[0]} html={bodies[0].html} k={0} n={n} />
     {n > 1 && (
       <div class="thread" id={`t-${p.seq}`} hidden>
         {segments.slice(1).map((s, i) => (
-          <Segment post={p} segment={s} html={bodies[i + 1].html} contextHtml={null} k={i + 1} n={n} />
+          <Segment post={p} segment={s} html={bodies[i + 1].html} k={i + 1} n={n} />
         ))}
       </div>
     )}

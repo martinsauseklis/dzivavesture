@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
-  avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, type Post, type Account,
+  avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -86,12 +86,16 @@ const recon = bodyHtml('kļuvis par', { recon: { kļuvis: 'ļļņ"miS' } }, acco
 check('recon: dotted span with escaped raw tooltip',
   recon.html.includes('<span class="recon" title="Rekonstruēts no bojāta OCR: „ļļņ&quot;miS“">kļuvis</span>'));
 
-const gaps = bodyHtml('ap [?] procentu un [?] bērnu', {}, accounts, gap);
-check('every [?] becomes a tappable gap with the convention as title', (gaps.html.match(/class="gap"/g) ?? []).length === 2 && gaps.html.includes(`title="${gap}"`));
+// A gap mark is a span (there is no panel to open) whose title is the post's
+// own warn — the explanation the fold used to hold — or the convention when
+// the post has no warn.
+const gaps = bodyHtml('ap [?] procentu un [?] bērnu', { warn: 'OCR: „7<“' }, accounts, gap);
+check('every [?] becomes a marked span with the warn as its title', (gaps.html.match(/<span class="gap" title="OCR: „7&lt;“">\[\?\]<\/span>/g) ?? []).length === 2);
+check('[?] without a warn falls back to the convention', bodyHtml('[?]', {}, accounts, gap).html.includes(`<span class="gap" title="${gap}">[?]</span>`));
 
 const ident = bodyHtml('Raiņa „Spēlēju, dancoju“ (turpinājums)', { ident: [{ rendered: 'Spēlēju, dancoju', ocr: '.Äpehlciu "Sanža', evidence: 'glyphs', candidate_source: 's', glyph_match: 'g' }] }, accounts, gap);
-check('ident: wavy span with escaped OCR, followed by a [≈] button',
-  ident.html.includes('<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „.Äpehlciu &quot;Sanža“">Spēlēju, dancoju</span><button type="button" class="gap" title="Identificēts — avots un burtu atbilstība zem „avots“">[≈]</button>'));
+check('ident: wavy span with escaped OCR, followed by a [≈] mark naming source, evidence kind and match',
+  ident.html.includes('<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „.Äpehlciu &quot;Sanža“">Spēlēju, dancoju</span><span class="gap" title="Identificēts pēc s — burtu atbilstība: g">[≈]</span>'));
 check('ident whose rendered string is not in the text is reported', bodyHtml('x', { ident: [{ rendered: 'y', ocr: '', evidence: 'glyphs', candidate_source: '', glyph_match: '' }] }, accounts, gap).unmatched[0] === 'y');
 
 check('escapeHtml covers quotes', escapeHtml(`"'<>&`) === '&quot;&#39;&lt;&gt;&amp;');
@@ -143,6 +147,18 @@ check('profilePath from a profile', profilePath('@k_ulmanis', '../') === '../@k_
 const named = mentionsOf('@POTUS', [post({ seq: 9, mentions: { x: '@POTUS' } }), post({ seq: 2 }), post({ seq: 3, mentions: { y: '@POTUS', z: '@lidums' } })]);
 check('mentionsOf: only the posts that name the handle, in seq order', named.map((p) => p.seq).join() === '3,9');
 
+// --- descriptionLines: two regimes, never a padded description ----------------
+// | identities file | entry                     | expected          |
+// | absent          | (ignored)                 | [what, bio]       |
+// | present         | { identity: 'Laikraksts' }| ['Laikraksts']    |
+// | present         | { identity: null }        | []                |
+// | present         | undefined (not in file)   | []                |
+const acc: Account = { name: 'X', kind: 'org', what: 'W', bio: 'B' };
+check('descriptionLines: before the file, what and bio', JSON.stringify(descriptionLines(acc, { identity: 'ignored' }, false)) === '["W","B"]');
+check('descriptionLines: with the file, the identity alone', JSON.stringify(descriptionLines(acc, { identity: 'Laikraksts' }, true)) === '["Laikraksts"]');
+check('descriptionLines: null identity → nothing', descriptionLines(acc, { identity: null }, true).length === 0);
+check('descriptionLines: not in the file → nothing', descriptionLines(acc, undefined, true).length === 0);
+
 // --- contrast: the floor is 4.5:1 (WCAG AA), computed, not eyeballed -------
 // Relative luminance per WCAG 2.x; sRGB channel linearised at the 0.03928 knee.
 function luminance(hex: string): number {
@@ -176,10 +192,10 @@ check('css: every avatar hue carries white initials at ≥ 4.5:1', hues.every(([
 const tokens = (block: string) => Object.fromEntries([...block.matchAll(/--([\w-]+):(#[0-9a-f]{6})/g)].map((m) => [m[1], m[2]]));
 const light = tokens(css.slice(0, css.indexOf('@media (prefers-color-scheme: dark)')));
 const dark = tokens(css.slice(css.indexOf('@media (prefers-color-scheme: dark)')));
-const pairs: [string, string][] = [['ink', 'bg'], ['soft', 'bg'], ['accent', 'bg'], ['quote', 'bg'], ['rep', 'bg'], ['doc', 'bg'],
+const pairs: [string, string][] = [['ink', 'bg'], ['soft', 'bg'], ['accent', 'bg'],
   ['ink', 'panel'], ['soft', 'panel'], ['accent', 'panel'], ['ink', 'accent-tint']];
 for (const [name, t] of [['light', light], ['dark', dark]] as const) {
-  check(`css ${name}: all ${Object.keys(t).length ? '' : 'MISSING '}tokens parsed`, Object.keys(t).length >= 10);
+  check(`css ${name}: all ${Object.keys(t).length ? '' : 'MISSING '}tokens parsed`, Object.keys(t).length >= 7);
   for (const [fg, bg] of pairs)
     check(`css ${name}: ${fg} on ${bg} ≥ 4.5:1`, !!t[fg] && !!t[bg] && contrast(t[fg], t[bg]) >= 4.5, t[fg] && t[bg] ? contrast(t[fg], t[bg]).toFixed(2) : 'token missing');
 }

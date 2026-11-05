@@ -139,12 +139,14 @@ export type BodyMarkup = {
 //     mean "the publisher inserted this"; the handle links to that account's
 //     page (relative to `base`); the group is one unbreakable span, so a line
 //     never ends on the opening „(“
-//   - identified items: wavy underline + a [≈] button beside them, so a reader
+//   - identified items: wavy underline + a [≈] mark beside them, so a reader
 //     can tell "what the paper printed" from "what we identified it as"
-//   - [?]: a button, so the gap reaches its explanation (the source fold) in one tap
+//   - [?]: a word the archive does not yield and we refuse to guess
+//   There is no panel any more: each mark carries its explanation in a title
+//   — the post's own `warn` for a gap, the OCR string for a recon or an ident.
 export function bodyHtml(
   text: string,
-  post: Pick<Post, 'recon' | 'mentions' | 'ident'>,
+  post: Pick<Post, 'recon' | 'mentions' | 'ident' | 'warn'>,
   accounts: Record<string, Account>,
   gapNote: string,
   base = '',
@@ -171,11 +173,11 @@ export function bodyHtml(
     const needle = escapeHtml(i.rendered);
     if (!out.includes(needle)) { unmatched.push(i.rendered); continue; }
     out = out.replace(needle,
-      `<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „${escapeHtml(i.ocr)}“">${needle}</span><button type="button" class="gap" title="Identificēts — avots un burtu atbilstība zem „avots“">[≈]</button>`);
+      `<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „${escapeHtml(i.ocr)}“">${needle}</span><span class="gap" title="Identificēts pēc ${escapeHtml(i.candidate_source)} — ${escapeHtml(i.evidence === 'glyphs' ? 'burtu atbilstība' : 'dokumentārs apliecinājums')}: ${escapeHtml(i.glyph_match)}">[≈]</span>`);
   }
 
   out = out.replaceAll('[?]',
-    `<button type="button" class="gap" title="${escapeHtml(gapNote)}">[?]</button>`);
+    `<span class="gap" title="${escapeHtml(post.warn ?? gapNote)}">[?]</span>`);
 
   return { html: out, unmatched };
 }
@@ -217,6 +219,17 @@ export function reportedBy(via: string): string | null {
 // In the fold the type is printed as its own word, so the `via` line drops
 // the "Atstāstīts: " prefix it carries in the data rather than say it twice.
 export const viaText = (via: string) => via.replace(/^Atstāstīts: /, '');
+
+// A profile's description, in two regimes. Before rereading/identities.json
+// exists, the data's own `what` and `bio` stand. Once it exists, the only
+// description is the researched identity line — what this newspaper,
+// organisation or person IS — and an account whose identity is null, or that
+// the file does not name, gets no description at all. Never a padded one.
+export type Identity = { identity: string | null; source?: string };
+export function descriptionLines(a: Account, ident: Identity | undefined, haveIdentities: boolean): string[] {
+  if (!haveIdentities) return [a.what, a.bio];
+  return ident?.identity ? [ident.identity] : [];
+}
 
 // Two initials for the avatar — a feed shows a face, we show letters.
 export const initials = (name: string) => name.split(/\s+/).slice(0, 2).map((w) => w[0]).join('');

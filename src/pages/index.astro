@@ -5,21 +5,21 @@
 import data from '../data/18-11-1918.json';
 import Head from '../components/Head.astro';
 import Post from '../components/Post.astro';
-import { invariantLine, plural, refusalReason, trends, type Account, type Post as PostRecord } from '../lib/feed.ts';
+import { plural, refusalReason, trends, type Account, type Post as PostRecord } from '../lib/feed.ts';
 
 // The JSON is the boundary. Shapes are asserted here once and every record
 // then passes through refusalReason, which is the closed-set check.
 const accounts = data.accounts as Record<string, Account>;
 const posts = (data.posts as PostRecord[]).slice().sort((a, b) => a.seq - b.seq);
 
+// A refused record is reported at build and never rendered. (The count used
+// to print in a footer; the refusal itself is unchanged.)
 const shown: PostRecord[] = [];
-let refused = 0;
 for (const p of posts) {
   const why = refusalReason(p, accounts[p.handle]);
-  if (why) { refused++; console.error(`ieraksts atteikts: ${p.handle} seq ${p.seq} — ${why}`); }
+  if (why) console.error(`ieraksts atteikts: ${p.handle} seq ${p.seq} — ${why}`);
   else shown.push(p);
 }
-const warned = shown.filter((p) => p.warn).length;
 const ranking = trends(shown);
 
 const title = 'dzīvā vēsture — 1918. gada 18. novembris';
@@ -30,7 +30,7 @@ const description = 'Diena, kad pasludināja Latviju — kā to rakstīja tajā 
 <head>
   {/* The alt must say what public/og.png shows; regenerate both together with tools/og-card.sh. */}
   <Head title={title} description={description} path="" base="" image="og.png"
-    imageAlt="dzīvā vēsture, 18. novembris 1918 — Kārļa Ulmaņa ieraksts „Latvijas valstij jābūt demokrātiski taisnai valstij…“ un tā turpinājums: 1934. gadā viņš atlaida Saeimu." />
+    imageAlt="dzīvā vēsture, 18. novembris 1918 — Kārļa Ulmaņa ieraksts „Latvijas valstij jābūt demokrātiski taisnai valstij, lai nedotu viņā vietas ne apspiešanai, ne netaisnībai.“" />
 </head>
 <body>
   <header>
@@ -40,12 +40,11 @@ const description = 'Diena, kad pasludināja Latviju — kā to rakstīja tajā 
     </div>
   </header>
 
-  {/* The day is the headline. One day exists, and the page says so instead of
-      showing arrows that go nowhere. */}
+  {/* The day is the headline — and, by his choice, the only thing the page
+      says about itself: no place line, no standfirst, no note that one day
+      exists. The reader-explanation question is parked, not answered here. */}
   <div class="wrap hero">
     <h1>Pirmdiena, 18. novembris 1918</h1>
-    <p class="when">{data.place} · vācu okupācija</p>
-    <p class="one">Pagaidām šeit ir viena diena.</p>
   </div>
 
   <nav class="tabs wrap" role="tablist">
@@ -56,14 +55,6 @@ const description = 'Diena, kad pasludināja Latviju — kā to rakstīja tajā 
   <main class="wrap">
     <div id="panel-feed" role="tabpanel">
       <div id="filterbar" hidden><button type="button" id="chip"></button></div>
-      {/* Every claim here is carried by an account bio in the corpus
-          (@baltijas_zinas, @lidums) — the page asserts nothing the data does not. */}
-      <p class="standfirst">
-        <b>18. novembris bija pirmdiena, un no latviešu avīzēm Rīgā tajā rītā iznāca tikai Baltijas Ziņas.</b>{' '}
-        Abi lielie latviešu dienas laikraksti tajā dienā neiznāca; svinīgo aktu latviešu prese
-        aprakstīs 20. novembra numuros. Zemāk — tas, ko Rīga tajā rītā tiešām lasīja, un tas, ko
-        avīzes uzrakstīja pēc tam.
-      </p>
       <div id="feed">
         {shown.map((p) => (
           <Post post={p} account={accounts[p.handle]} accounts={accounts} gapNote={data.conventions.gap} />
@@ -85,32 +76,10 @@ const description = 'Diena, kad pasludināja Latviju — kā to rakstīja tajā 
     </div>
   </main>
 
-  <footer class="wrap">
-    <div class:list={['inv', { bad: refused > 0 }]}>{invariantLine(shown.length, refused, warned)}</div>
-    <p>
-      Viss teksts ir no digitalizētiem 1918. gada laikrakstiem
-      (<a href="https://periodika.lv/">periodika.lv</a>, Latvijas Nacionālā bibliotēka).
-      Neviens ieraksts nav sacerēts. Modernizētais pareizrakstības variants ir pārlikums no
-      1918. gada ortogrāfijas (vācu avotiem — tulkojums); oriģinālo OCR tekstu var apskatīt
-      pie katra ieraksta zem „avots“.
-    </p>
-    <p>{data.conventions.gap}</p>
-    <p>{data.conventions.ident}</p>
-    <p>
-      Punktēts pasvītrojums zem vārda vai laika nozīmē, ka tas ir lasīts no bojāta OCR vai
-      aplēsts; no kā — redzams zem „avots“.
-    </p>
-    {/* What the sources do NOT hold is said here, in the page's own voice —
-        never as a post in the timeline. */}
-    <h2>Kā robi avotos</h2>
-    <p>
-      18. novembra numuros nav sporta slejas: tur, kur šodien būtu sports, Baltijas Ziņās un
-      Rigasche Zeitung stāv malkas cenas, teātra recenzija un kritušo saraksts.
-      Lasītāju vēstules netika iespiestas — pastāvīgā sleja „Vēstulnieks“ 18.–20. novembra
-      numuros nav, un pirmās redakcijas atbildes, ko atradām, ir 22. novembrī.
-      Vācu reportieris uz skatuves saskaitīja ap 50 kungu un vienu dāmu; neviens lasītais
-      latviešu avots šo sievieti nemin, un viņas vārda šeit nav.
-    </p>
-  </footer>
+  {/* Nothing below the last post — by his choice: no invariant line, no
+      conventions, no credit. The guards that produced the invariant still run
+      at build (refusalReason above, tests/run.ts, tests/profiles.ts,
+      check-18nov-corpus.py); only the display is gone. Attribution for the
+      National Library's scans now exists only per item (each „avots →“). */}
 </body>
 </html>

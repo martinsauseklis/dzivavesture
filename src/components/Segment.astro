@@ -1,19 +1,21 @@
 ---
-// One segment of a post: its text, its thin action row and its folded
-// apparatus. A plain post is one segment; a thread is several, and only the
-// first (k = 0) carries the item-level things — replies, „Kā tas beidzās“,
-// the paper's framing, the time note.
-import { TYPE_LABEL, viaText, type Post, type Segment } from '../lib/feed.ts';
+// One segment of a post: its text and its thin action row. A plain post is
+// one segment; a thread is several, and only the first (k = 0) carries the
+// replies. „avots“ is a plain link to the article on periodika.lv and nothing
+// else. The record's later / warn / context / ocr / recon / ident notes are
+// not rendered as a panel any more — by his choice; the data keeps them. What
+// remains of them on the face is the inline markers, each explaining itself
+// in a title attribute.
+import type { Post, Segment } from '../lib/feed.ts';
 
 interface Props {
   post: Post;
   segment: Segment;
   html: string;
-  contextHtml: string | null;
   k: number;
   n: number;
 }
-const { post: p, segment: s, html, contextHtml, k, n } = Astro.props;
+const { post: p, html, k, n } = Astro.props;
 const id = (kind: string) => (k ? `${kind}-${p.seq}-${k + 1}` : `${kind}-${p.seq}`);
 const replies = p.comments?.length ?? 0;
 ---
@@ -21,20 +23,15 @@ const replies = p.comments?.length ?? 0;
   {k > 0 && <div class="seghead">{p.handle} · <b>{k + 1}/{n}</b></div>}
   <p class="lv" set:html={html} />
 
-  {/* Reading first (the rest of the thread), then the reveal, then replies;
-      the source sits at the far right — present on every segment, never loud. */}
+  {/* The rest of the thread, replies, and the source link at the far right. */}
   <div class="bar">
     {k === 0 && n > 1 && (
       <button type="button" class="thread-toggle" aria-controls={id('t')} aria-expanded="false">rādīt pavedienu ({n})</button>
     )}
-    {k === 0 && p.later && (
-      <button type="button" class="later-btn" aria-controls={id('l')} aria-expanded="false">Kā tas beidzās →</button>
-    )}
     {k === 0 && p.comments && (
       <button type="button" aria-controls={id('c')} aria-expanded="false">atbildes · {replies}</button>
     )}
-    {/* A caveat leaves no mark on the face; the label names it for a screen reader. */}
-    <button type="button" class="src-btn" aria-controls={id('s')} aria-expanded="false" aria-label={s.warn ? 'avots, ar piezīmi' : 'avots'}>avots</button>
+    <a class="src-link" href={p.url} target="_blank" rel="noopener">avots →</a>
   </div>
 
   {k === 0 && p.comments && (
@@ -50,38 +47,4 @@ const replies = p.comments?.length ?? 0;
     </div>
   )}
 
-  {k === 0 && p.later && (
-    <div class="fold later" id={id('l')} data-kind="later" hidden>
-      <div class="k">Kā tas beidzās</div>
-      {p.later}
-    </div>
-  )}
-
-  <div class="fold src" id={id('s')} data-kind="src" hidden>
-    {k === 0 && contextHtml && (
-      <div class="context"><div class="k">Kā to ierāmēja laikraksts</div><Fragment set:html={contextHtml} /></div>
-    )}
-    {s.warn && <p class="warn">{s.warn}</p>}
-    {/* Tooltips do not open on a phone, so the same notes are repeated here. */}
-    {k === 0 && p.atNote && <p class="via">Laiks {p.at} — {p.atNote}</p>}
-    {s.recon && (
-      <p class="via">Rekonstruēts no OCR: {Object.entries(s.recon).map(([word, raw], i) => (
-        <>{i > 0 && ' · '}<i>{word}</i> ← „{raw}“</>
-      ))}</p>
-    )}
-    {s.ident && s.ident.map((i) => (
-      <p class="via ident-note">
-        <b>Identificēts:</b> „{i.rendered}“ ← OCR „{i.ocr}“ ·
-        <b>pierādījums:</b> {i.evidence === 'glyphs' ? 'burtu atbilstība' : 'dokumentārs apliecinājums'} ·
-        <b>avots:</b> {i.candidate_source}
-        {i.corroboration && <> · <b>apliecina:</b> {i.corroboration}</>} ·
-        <b>burtu atbilstība:</b> {i.glyph_match}
-      </p>
-    ))}
-    {/* The kind of words these are lives here, not on the face: the paper's own
-        (citāts), a reporter's rendering of a person (atstāstīts), a printed
-        document (dokuments). The guards in feed.ts make the field required. */}
-    <p class="via"><span class={`badge t-${p.type}`}>{TYPE_LABEL[p.type]}</span> {viaText(p.via)}{n > 1 && ` · pavediena ${k + 1}. daļa`} · <a href={p.url} target="_blank" rel="noopener">skenējums →</a></p>
-    {s.ocr ? <pre class="ocr">{s.ocr}</pre> : <p class="via">OCR teksta nav.</p>}
-  </div>
 </div>

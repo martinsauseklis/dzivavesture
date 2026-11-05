@@ -3,13 +3,13 @@
 <!--
   Source for public/og.png — the link-preview card (1200×630).
 
-  One real post, shown the way the page shows it, with its reveal: the product
-  in a single frame, not a poster about it. Rendered in Chrome so it uses the
+  One real post, shown the way the page shows it: the product in a single
+  frame, not a poster about it. Rendered in Chrome so it uses the
   very same font files and tokens as the page and cannot drift from it.
   Pattern taken from ~/dev/mai-lv/tools/og-card.sh.
 
-  The post is seq 610 in src/data/18-11-1918.json (Ulmanis, 17.00, atstāstīts)
-  and its „later“ — copied verbatim; if that record changes, change this.
+  The post is seq 610 in src/data/18-11-1918.json (Ulmanis, 17.00) — copied
+  verbatim; if that record changes, change this.
   The avatar hue is avatarHue('@k_ulmanis') = h-5 in public/feed.css.
 
   REGENERATE:  bash tools/og-card.sh
@@ -21,7 +21,7 @@
   :root { --bg:#ffffff; --ink:#15181c; --soft:#5d646c; --line:#e5e7ea; --accent:#b01f2e; --accent-tint:#fbeef0; --rep:#9a5100; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { width:1200px; height:630px; background:var(--bg); color:var(--ink);
-         font-family:Inter, system-ui, sans-serif; padding:44px 80px 0;
+         font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding:44px 80px 0; justify-content:flex-start;
          display:flex; flex-direction:column; }
   /* 1200 px shrinks to 360 px in a phone's share sheet, a factor of 3.33 —
      so 40 px here is 12 px there, the smallest size still readable; the quote
@@ -36,7 +36,7 @@
   .line { font-size:30px; color:var(--soft); margin-top:4px; display:flex; gap:16px; align-items:center; }
   .badge { font-size:26px; line-height:1; padding:8px 14px; border-radius:10px; font-weight:500; color:var(--rep);
            background:color-mix(in srgb, currentColor 11%, transparent); }
-  .lv { font-size:50px; line-height:1.25; margin-top:24px; letter-spacing:-.01em; }
+  .lv { font-size:58px; line-height:1.25; margin-top:40px; letter-spacing:-.01em; }
   .later { margin-top:auto; margin-bottom:0; background:var(--accent-tint); border-radius:22px 22px 0 0;
            padding:22px 34px 26px; font-size:32px; line-height:1.3; }
   .later b { display:block; color:var(--accent); font-weight:600; font-size:30px; margin-bottom:6px; }
@@ -47,8 +47,7 @@
   <span class="avatar">KU</span>
   <div>
     <div class="name">Kārlis Ulmanis</div>
-    <div class="line">@k_ulmanis · 17.00 <span class="badge">atstāstīts</span></div>
+    <div class="line">@k_ulmanis · 17.00</div>
   </div>
 </div>
 <p class="lv">Latvijas valstij jābūt demokrātiski taisnai valstij, lai nedotu viņā vietas ne apspiešanai, ne netaisnībai.</p>
-<div class="later"><b>Kā tas beidzās →</b>1934. gada 15. maijā Kārlis Ulmanis atlaida Saeimu, aizliedza politiskās partijas un valdīja ar dekrētiem.</div>

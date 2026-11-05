@@ -1,16 +1,25 @@
 ---
-// One profile page per account, at /@handle/ — who this was ON 18 NOVEMBER
-// 1918 and what they said that day, in feed order. Nothing about later life:
-// that stays behind „Kā tas beidzās“ on a post. A profile with no post is not
-// an empty list — it says, in the page's voice, why there is nothing, and
+// One profile page per account, at /@handle/ — who this is and what they said
+// on 18 November 1918, in feed order. No footer, no page explaining itself:
+// header block, posts, „Pieminējumi tajā dienā“, back to the feed. A profile
+// with no post is not an empty list — it says why there is nothing, and
 // shows where the papers named the account that day.
+import { existsSync, readFileSync } from 'node:fs';
 import data from '../../data/18-11-1918.json';
 import Head from '../../components/Head.astro';
 import Post from '../../components/Post.astro';
 import {
-  avatarHue, EMPTY_COPY, initials, mentionsOf, plural, refusalReason,
-  type Account, type Post as PostRecord,
+  avatarHue, descriptionLines, EMPTY_COPY, initials, mentionsOf, plural, refusalReason,
+  type Account, type Identity, type Post as PostRecord,
 } from '../../lib/feed.ts';
+
+// Sourced identity lines ("what this newspaper / organisation / person is"),
+// researched separately and landing in rereading/identities.json. Until that
+// file exists the data's own what/bio stand; once it does, an account whose
+// identity is null gets no description at all — never a padded one.
+const identitiesFile = new URL('../../../rereading/identities.json', import.meta.url);
+const haveIdentities = existsSync(identitiesFile);
+const identities: Record<string, Identity> = haveIdentities ? JSON.parse(readFileSync(identitiesFile, 'utf8')) : {};
 
 export function getStaticPaths() {
   return Object.keys(data.accounts).map((handle) => ({ params: { handle } }));
@@ -18,6 +27,7 @@ export function getStaticPaths() {
 const { handle } = Astro.params;
 const accounts = data.accounts as Record<string, Account>;
 const a = accounts[handle];
+const lines = descriptionLines(a, identities[handle], haveIdentities);
 
 // The same guards as the feed, so a profile can never show a post the feed refused.
 const all = (data.posts as PostRecord[]).slice().sort((x, y) => x.seq - y.seq)
@@ -31,10 +41,10 @@ const silent = a.silent ?? EMPTY_COPY[handle];
 if (!n && !silent) throw new Error(`${handle}: no post and no empty-state text`);
 
 const title = `${a.name} (${handle}) — 18. novembris 1918 · dzīvā vēsture`;
-// The preview text: who they were that day, then what the page holds.
+// The preview text: who this is (when known), then what the page holds.
 const holds = n ? `${n} ${plural(n)} tās dienas Rīgas avīzēs.` : 'Tajā dienā neko nesaka — avīzes min.';
-const description = `${a.what}. 1918. gada 18. novembris: ${holds}`;
-const imageAlt = `${a.name} (${handle}) — ${a.what}. dzīvā vēsture, 18. novembris 1918.`;
+const description = `${a.name} (${handle})${lines[0] ? ` — ${lines[0]}` : ''}. 1918. gada 18. novembris: ${holds}`;
+const imageAlt = `${a.name} (${handle})${lines[0] ? ` — ${lines[0]}` : ''}. dzīvā vēsture, 18. novembris 1918.`;
 // The exact words the paper printed for this account in each naming post.
 const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([, h]) => h === handle).map(([w]) => w).join('“, „');
 ---
@@ -56,8 +66,7 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
       <span class={`avatar k-${a.kind} h-${avatarHue(handle)}`} aria-hidden="true">{initials(a.name)}</span>
       <h1>{a.name}</h1>
       <div class="handle">{handle}</div>
-      <p class="what">{a.what}</p>
-      <p class="bio">{a.bio}</p>
+      {lines.map((line, i) => <p class={i === 0 && lines.length > 1 ? 'what' : 'bio'}>{line}</p>)}
       {a.warn && <p class="pwarn">{a.warn}</p>}
       {/* Present-day facts about the institution, never about 1918 — see conventions.today in the data. */}
       {a.today && (
@@ -90,13 +99,5 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
     )}
   </main>
 
-  <footer class="wrap">
-    <p>
-      Konts rāda, kas šis bija 1918. gada 18. novembrī — ne to, kas ar viņu notika vēlāk.
-      Viss teksts no digitalizētiem 1918. gada laikrakstiem
-      (<a href="https://periodika.lv/">periodika.lv</a>, Latvijas Nacionālā bibliotēka);
-      avots pie katra ieraksta zem „avots“. <a href="../">← Atpakaļ uz plūsmu</a>
-    </p>
-  </footer>
 </body>
 </html>

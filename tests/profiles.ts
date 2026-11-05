@@ -73,7 +73,13 @@ for (const h of postless) {
 }
 
 // --- P6: back to the feed on every profile ----------------------------------
-check('P6: every profile has the back link in the header and the footer', handles.every((h) => { const d = html(page(h)); return d.includes('<a class="back" href="../">') && d.includes('<a href="../">← Atpakaļ uz plūsmu</a>'); }));
+check('P6: every profile has the back link in the header (there is no footer)', handles.every((h) => { const d = html(page(h)); return d.includes('<a class="back" href="../">') && !d.includes('<footer'); }));
+// The eight removals: nothing of the reveal, standfirst, place line, one-day
+// note, footers, type badge, source fold or invariant line renders on any page — the
+// corpus text itself may contain the words, so these look for the markup.
+const gone = ['later-btn', 'class="fold later"', 'class="standfirst"', '<p class="when">', '<p class="one">', 'Konts rāda', 'class="badge', 'class="fold src"', '<pre class="ocr"', 'Kā to ierāmēja laikraksts', 'class="src-btn"', '<footer', 'class="inv"', 'Kā robi avotos'];
+check('face: the eight removals render nowhere (no footer on any page)', [feed, ...handles.map((h) => html(page(h)))].every((d) => gone.every((g) => !d.includes(g))));
+check('face: avots is a plain link to periodika.lv on every segment', [feed, ...handles.map((h) => html(page(h)))].every((d) => (d.match(/<a class="src-link" href="https:\/\/periodika\.lv\/[^"]*" target="_blank" rel="noopener">avots →<\/a>/g) ?? []).length === (d.match(/<div class="seg">/g) ?? []).length));
 
 // --- P7: no dead internal link anywhere in the built site --------------------
 const pages: string[] = [];

@@ -30,7 +30,7 @@ function showTab(name) {
 }
 for (const b of $$('.tabs [data-tab]')) b.addEventListener('click', () => showTab(b.dataset.tab));
 
-// ---- folds: one open per card, so the card stays a post --------------------
+// ---- folds (replies): one open per card, so the card stays a post ----------
 function openFold(card, button) {
   const target = document.getElementById(button.getAttribute('aria-controls'));
   const wasOpen = !target.hidden;
@@ -53,15 +53,6 @@ for (const b of $$('.thread-toggle'))
     b.setAttribute('aria-expanded', String(!rest.hidden));
     b.textContent = rest.hidden ? b.textContent.replace('sakļaut pavedienu', 'rādīt pavedienu') : b.textContent.replace('rādīt pavedienu', 'sakļaut pavedienu');
     if (!rest.hidden) logEvent('thread');
-  });
-
-// A [?] gap reaches its explanation in one tap: the source fold holds the warn.
-for (const g of $$('.gap'))
-  g.addEventListener('click', () => {
-    const card = g.closest('.post');
-    const src = $('.fold.src', g.closest('.seg'));
-    if (src.hidden) openFold(card, $(`.bar [aria-controls="${src.id}"]`, card));
-    $('.warn', src).scrollIntoView({ block: 'nearest' });
   });
 
 // ---- trends filter -----------------------------------------------------------

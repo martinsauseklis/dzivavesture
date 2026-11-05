@@ -10,16 +10,12 @@
   /* Carmine from the flag, on white — the one period note left, and only on
      the interactive and the reveal. ≥ 4.5:1 on --bg (tests/run.ts checks). */
   --accent:#b01f2e; --accent-tint:#fbeef0;
-  /* The three kinds of words: the paper's own (green), a reporter's rendering
-     of a person (amber), a printed document (grey). Each ≥ 4.5:1 on --bg. */
-  --quote:#14774a; --rep:#9a5100; --doc:#5d646c;
 }
 /* Phones read this at night. Same tokens, same contrast floor. */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg:#111317; --ink:#e9ebee; --soft:#a1a8b1; --line:#2a2e35; --panel:#1b1e24;
     --accent:#f0808a; --accent-tint:#2d1b1e;
-    --quote:#5bcf8c; --rep:#f0a94a; --doc:#a1a8b1;
   }
 }
 * { box-sizing:border-box; }
@@ -47,14 +43,8 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 
 /* The day is the headline of the whole page — the one fact framing every post.
    (padding-top/bottom only: a shorthand here would wipe .wrap's side gutter.) */
-.hero { padding-top:22px; padding-bottom:6px; }
+.hero { padding-top:22px; padding-bottom:10px; }
 .hero h1 { margin:0; font-size:30px; line-height:1.15; font-weight:600; letter-spacing:-.02em; }
-.hero .when { margin:6px 0 0; font-size:15px; color:var(--soft); }
-.hero .one { margin:2px 0 0; font-size:14px; color:var(--soft); }
-
-.standfirst { margin:14px 0 0; padding:0 0 18px; border-bottom:1px solid var(--line);
-              color:var(--soft); font-size:15px; }
-.standfirst b { color:var(--ink); font-weight:600; }
 
 .tabs { display:flex; border-bottom:1px solid var(--line); }
 .tabs button { flex:1; font-size:15px; padding:13px 0; text-align:center; color:var(--soft);
@@ -92,16 +82,6 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 /* A person's words as a paper rendered them — said, not labelled. */
 .reporter { margin:0 0 2px; font-size:13px; color:var(--soft); }
 
-/* Which kind of words these are. Lives in the source fold only: one colour
-   per kind, so "a reporter's rendering" is never mistaken for "the man's own
-   words" (see the guards in feed.ts) — but never on the face of a post. */
-.badge { font-size:12px; line-height:1; padding:4px 7px; border-radius:6px; font-weight:500;
-         background:color-mix(in srgb, currentColor 11%, transparent); }
-.t-citats { color:var(--quote); }
-.t-atstastits { color:var(--rep); }
-.t-dokuments { color:var(--doc); }
-.t-nezinamais { color:var(--soft); }
-
 /* The words run the full width: on a 400 px phone a 48 px indent under the
    avatar cost an eighth of every line, and 1918 sentences are long. */
 .body { margin-top:6px; }
@@ -113,15 +93,15 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
    no line), a reconstructed word (thin dotted line), a gap [?] (the brackets
    in the muted ink — a price list with five gaps must still read as a voice,
    not a redaction), an identified title or name (thin wavy line, with its own
-   [≈] button) — the wave is what tells "we looked this up" apart from "we read
-   this off the scan". */
+   [≈] mark) — the wave is what tells "we looked this up" apart from "we read
+   this off the scan". Each explains itself in a title; there is no panel. */
 .mention { color:var(--accent); font-weight:500; text-decoration:none; }
 /* „(@handle)“ wraps as one piece, never leaving a lone „(“ at a line end. The
    longest handle is 22 characters ≈ 190 px at 17 px — well inside a 368 px line. */
 .m { white-space:nowrap; }
 .recon { text-decoration:underline dotted; text-decoration-color:var(--soft); text-underline-offset:3px;
          text-decoration-thickness:1px; cursor:help; }
-.gap { color:var(--soft); font-weight:500; }
+.gap { color:var(--soft); font-weight:500; cursor:help; }
 .ident { text-decoration:underline wavy; text-decoration-color:var(--soft); text-underline-offset:3px;
          text-decoration-thickness:1px; cursor:help; }
 .ident-note b { color:var(--ink); font-weight:600; }
@@ -133,36 +113,16 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 .seghead b { font-weight:500; }
 
 /* ---- the action row -------------------------------------------------------
-   One thin row. „Kā tas beidzās“ is the reason the site exists, so it is the
-   one control in the accent; the rest are quiet words. 34 px tall for the thumb. */
+   One thin row of quiet words, 34 px tall for the thumb. */
 .bar { display:flex; gap:0 12px; flex-wrap:wrap; align-items:center; margin-top:2px; }
 .bar button { font-size:14px; color:var(--soft); min-height:34px; display:inline-flex; align-items:center; }
 .bar button:hover, .bar button[aria-expanded="true"] { color:var(--ink); }
-.bar .later-btn, .bar .later-btn[aria-expanded="true"] { color:var(--accent); font-weight:600; }
-.bar .src-btn { margin-left:auto; }
+.bar .src-link { margin-left:auto; font-size:14px; color:var(--soft); text-decoration:none; min-height:34px; display:inline-flex; align-items:center; }
+.bar .src-link:hover { color:var(--accent); }
 
-/* ---- folds: shown only when asked for ------------------------------------- */
+/* ---- the one fold left: replies under the article ------------------------ */
 .fold { margin:4px 0 8px; font-size:14px; }
-.src { padding:12px; border-radius:10px; background:var(--panel); color:var(--soft); }
-.src .via { margin:0 0 6px; }
-.src .via .badge { margin-right:2px; }
-.src .via a { color:var(--accent); }
-.warn { margin:0 0 8px; color:var(--ink); }
-.ocr { margin:8px 0 0; padding:10px; border-radius:8px; background:var(--bg); border:1px solid var(--line);
-       font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.5;
-       /* OCR garbage can be one long run without spaces; it must wrap, not push the page wide. */
-       color:var(--soft); white-space:pre-wrap; overflow-wrap:anywhere; }
 .k { font-size:12px; font-weight:600; letter-spacing:.02em; color:var(--soft); margin-bottom:6px; }
-
-/* The reveal: what became of it. Accent-tinted, in the ink, so it reads as the
-   page speaking after the day is over. */
-.later { padding:12px 14px; border-radius:10px; background:var(--accent-tint); color:var(--ink); font-size:15px; }
-.later .k { color:var(--accent); }
-
-/* The paper's own framing of a quote belongs beside the source, not in the post. */
-.context { margin:0 0 10px; padding:10px 12px; border-radius:8px; background:var(--bg); border:1px solid var(--line);
-           color:var(--ink); }
-
 .comments { padding-left:12px; border-left:2px solid var(--line); }
 .cmt { margin-bottom:12px; font-size:15px; }
 .cmt .cvia { color:var(--soft); font-size:12px; display:block; margin-top:3px; }
@@ -196,7 +156,5 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 .trend b { font-size:16px; font-weight:600; flex:1; }
 .trend .n { font-size:13px; color:var(--soft); }
 
-footer { padding:22px 0 40px; color:var(--soft); font-size:13px; }
-footer h2 { font-size:13px; font-weight:600; margin:18px 0 4px; color:var(--ink); }
-footer .inv { padding:8px 10px; border-radius:8px; background:var(--panel); color:var(--quote); }
-footer .inv.bad { color:var(--accent); }
+/* Nothing below the last post; the feed ends with room for the thumb. */
+main { padding-bottom:48px; }
