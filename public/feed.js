@@ -10,7 +10,7 @@ const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 // Field values are closed enums (the fold kinds) — never free text, because a
 // string field is how content would leak into telemetry. When the script is
 // not on the page (no site code set), this is a no-op.
-const EVENTS = { pageview: 1, fold: 1, topic: 1 };
+const EVENTS = { pageview: 1, fold: 1, topic: 1, thread: 1 };
 function logEvent(name, fields = {}) {
   if (!(name in EVENTS) || !window.goatcounter) return;
   if (name === 'pageview') { window.goatcounter.count(); return; }
@@ -40,14 +40,25 @@ function openFold(card, button) {
   button.setAttribute('aria-expanded', 'true');
   logEvent('fold', { kind: target.dataset.kind });
 }
-for (const b of $$('.bar [aria-controls]'))
+for (const b of $$('.bar [aria-controls]:not(.thread-toggle)'))
   b.addEventListener('click', () => openFold(b.closest('.post'), b));
+
+// A thread is collapsed to its first segment; this unfolds the rest below the
+// connector. Independent of the folds, so opening a source does not close it.
+for (const b of $$('.thread-toggle'))
+  b.addEventListener('click', () => {
+    const rest = document.getElementById(b.getAttribute('aria-controls'));
+    rest.hidden = !rest.hidden;
+    b.setAttribute('aria-expanded', String(!rest.hidden));
+    b.textContent = rest.hidden ? b.textContent.replace('sakļaut pavedienu', 'rādīt pavedienu') : b.textContent.replace('rādīt pavedienu', 'sakļaut pavedienu');
+    if (!rest.hidden) logEvent('thread');
+  });
 
 // A [?] gap reaches its explanation in one tap: the source fold holds the warn.
 for (const g of $$('.gap'))
   g.addEventListener('click', () => {
     const card = g.closest('.post');
-    const src = $('.fold.src', card);
+    const src = $('.fold.src', g.closest('.seg'));
     if (src.hidden) openFold(card, $(`.bar [aria-controls="${src.id}"]`, card));
     $('.warn', src).scrollIntoView({ block: 'nearest' });
   });

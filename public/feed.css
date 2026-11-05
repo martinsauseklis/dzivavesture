@@ -48,6 +48,15 @@ header { border-bottom:3px double var(--ink); background:var(--paper);
 .acct .handle { margin-left:5px; }
 .stamp.derived { border-bottom:1px dotted var(--ink-soft); cursor:help; }
 .body { margin:8px 0 0 48px; }
+.seqno { color:var(--ink-soft); font-size:13px; margin-left:10px; }
+/* The rest of a thread hangs off a line that drops from the avatar's centre:
+   the avatar is 38 px wide and the body starts 48 px in, so the line sits
+   48 − 19 = 29 px to the left of the body, and the text stays aligned with the
+   card above it (29 − 2 px line = 27 px padding). */
+.thread { border-left:2px solid var(--rule); margin-left:-29px; padding-left:27px; }
+.seg + .seg, .thread .seg { margin-top:14px; }
+.seghead { font-size:13px; color:var(--ink-soft); margin-bottom:4px; }
+.seghead b { font-weight:400; }
 .body p { margin:0 0 8px; }
 .lv { font-size:18px; }
 

@@ -132,5 +132,26 @@ check('corpus: sampler saw both sides', reasons.length > 0 && refusals.some(([, 
 const gapped = corpus.filter((p) => p.lv.includes('[?]'));
 check('corpus: every [?] post carries a warn that explains it', gapped.length > 0 && gapped.every((p) => p.warn), gapped.filter((p) => !p.warn).map((p) => p.seq).join());
 
+// --- threads: one printed item split at sentence boundaries, nothing else ---
+// | rule                                                      |
+// | >= 2 segments; segments re-join to exactly lv and ocr     |
+// | every segment opens clean and ends on terminal punctuation|
+// | a segment with [?] carries a warn                         |
+// | recon/ident of the post are partitioned into the segments |
+const threaded = corpus.filter((p) => p.thread);
+check('threads: at least one post is threaded', threaded.length > 0);
+const terminal = /[.!?“…)]$/;
+const opens = /^[„\[0-9A-ZĀČĒĢĪĶĻŅŠŪŽ]/;
+for (const p of threaded) {
+  const t = p.thread!;
+  check(`thread ${p.seq}: >=2 segments that re-join to lv and ocr`, t.length >= 2 && t.map((s) => s.lv).join(' ') === p.lv && t.map((s) => s.ocr).join(' ') === p.ocr);
+  check(`thread ${p.seq}: every segment opens clean and ends on punctuation`, t.every((s) => opens.test(s.lv) && terminal.test(s.lv.trim())), t.map((s) => s.lv.slice(0, 12) + '…' + s.lv.slice(-3)).join(' | '));
+  check(`thread ${p.seq}: a segment with [?] carries a warn`, t.every((s) => !s.lv.includes('[?]') || s.warn));
+  const sortedEntries = (r: Record<string, string> | undefined) => JSON.stringify(Object.entries(r ?? {}).sort());
+  check(`thread ${p.seq}: recon partitioned into segments`, sortedEntries(Object.assign({}, ...t.map((s) => s.recon ?? {}))) === sortedEntries(p.recon)
+    && t.every((s) => Object.entries(s.recon ?? {}).every(([k, v]) => s.lv.includes(k) && s.ocr.includes(v))));
+  check(`thread ${p.seq}: ident partitioned into segments`, t.flatMap((s) => s.ident ?? []).length === (p.ident ?? []).length && t.every((s) => (s.ident ?? []).every((i) => s.lv.includes(i.rendered))));
+}
+
 console.log(failed ? `\n${failed} FAILED` : '\nall green');
 process.exit(failed ? 1 : 0);
