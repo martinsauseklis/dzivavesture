@@ -1,0 +1,34 @@
+<!doctype html>
+<meta charset="utf-8">
+<!--
+  Source for public/og.png — the link-preview card (1200×630).
+
+  Rendered in Chrome rather than drawn by a script so it uses the very same
+  font files and colours as the page and cannot drift from it. Pattern taken
+  from ~/dev/mai-lv/tools/og-card.sh.
+
+  REGENERATE:  bash tools/og-card.sh
+  Then keep <meta property="og:image:alt"> in src/pages/index.astro in step.
+-->
+<link rel="stylesheet" href="../public/fonts/fonts.css">
+<style>
+  /* Same tokens as public/feed.css — do not re-pick these by eye. */
+  :root { --ink:#1b1714; --ink-soft:#5a5048; --paper:#f4efe4; --carmine:#9e3039; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1200px; height:630px; background:var(--paper); color:var(--ink);
+    font-family:Literata, Georgia, serif; padding:0 90px;
+    display:flex; flex-direction:column; justify-content:center;
+    border-top:12px double var(--ink); border-bottom:12px double var(--ink);
+  }
+  /* 1200 px shrinks to 360 px in a phone's share sheet, a factor of 3.33 —
+     so 40 px here is 12 px there, the smallest size still readable. */
+  .masthead { font-size:40px; letter-spacing:.06em; color:var(--ink-soft); }
+  .masthead b { color:var(--carmine); font-weight:400; }
+  h1 { font-size:88px; line-height:1.08; font-weight:700; margin:22px 0 26px; letter-spacing:-.01em; }
+  .sub { font-size:40px; line-height:1.3; color:var(--ink-soft); max-width:26ch; }
+</style>
+
+<div class="masthead">dzīvā <b>vēsture</b></div>
+<h1>1918. gada 18. novembris</h1>
+<p class="sub">Kā to rakstīja tajā dienā — tās dienas avīzes kā plūsma, katrs ieraksts ar avotu.</p>

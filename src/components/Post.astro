@@ -1,0 +1,91 @@
+---
+// One post card: avatar · name · handle · HH.MM · type badge · text · one thin
+// action row. Nothing else on the face. Everything scholarly — the source, the
+// raw OCR, the paper's framing, the caveats — is in the HTML but folded.
+import { bodyHtml, initials, TYPE_LABEL, type Account, type Post } from '../lib/feed.ts';
+
+interface Props {
+  post: Post;
+  account: Account;
+  accounts: Record<string, Account>;
+  gapNote: string;
+}
+const { post: p, account, accounts, gapNote } = Astro.props;
+
+const body = bodyHtml(p.lv, p, accounts, gapNote);
+// The paper's framing may carry the same mentions (prototype grammar). A key
+// is only "unmatched" if it is printed in neither place.
+const context = p.context ? bodyHtml(p.context, { mentions: p.mentions }, accounts, gapNote) : null;
+const unmatched = body.unmatched.filter((k) => !context || context.unmatched.includes(k));
+if (unmatched.length) console.warn(`post ${p.seq}: nav tekstā, netiek rādīts: ${unmatched.join(' · ')}`);
+
+const id = (kind: string) => `${kind}-${p.seq}`;
+const replies = p.comments?.length ?? 0;
+---
+<article class="post" id={`p-${p.seq}`} data-topics={p.topics.join('\n')}>
+  <div class="who">
+    <span class="avatar" aria-hidden="true">{initials(account.name)}</span>
+    <div class="meta">
+      <button type="button" class="acct" data-handle={p.handle} aria-expanded="false">
+        <span class="name">{account.name}</span>
+        <span class="handle">{p.handle}</span>
+      </button><br />
+      {/* A dotted underline means the clock time is an estimate; the title says what bounds it. */}
+      <span class:list={['stamp', { derived: !!p.atNote }]} title={p.atNote || undefined}>{p.at}</span>
+      <span class={`badge t-${p.type}`}>{TYPE_LABEL[p.type]}</span>
+    </div>
+  </div>
+
+  <div class="body">
+    <p class="lv" set:html={body.html} />
+
+    <div class="bar">
+      {p.comments && (
+        <button type="button" aria-controls={id('c')} aria-expanded="false">atbildes · {replies}</button>
+      )}
+      {p.later && (
+        <button type="button" aria-controls={id('l')} aria-expanded="false">Kā tas beidzās →</button>
+      )}
+      {/* The ⚠ is the only trace a caveat leaves on the face: folded, not invisible. */}
+      <button type="button" aria-controls={id('s')} aria-expanded="false" aria-label={p.warn ? 'avots, ar piezīmi' : 'avots'}>
+        avots{p.warn && ' ⚠'}
+      </button>
+    </div>
+
+    {p.comments && (
+      <div class="fold comments" id={id('c')} data-kind="comments" hidden>
+        <div class="k">Zem raksta</div>
+        {p.comments.map((c) => (
+          <div class="cmt">
+            <b>{c.name}</b> <span class="chandle">{c.handle}</span><br />
+            {c.text}
+            <span class="cvia">{c.via} · <a href={c.url} target="_blank" rel="noopener">skenējums →</a></span>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {p.later && (
+      <div class="fold later" id={id('l')} data-kind="later" hidden>
+        <div class="k">Kā tas beidzās</div>
+        {p.later}
+      </div>
+    )}
+
+    <div class="fold src" id={id('s')} data-kind="src" hidden>
+      {context && (
+        <div class="context"><div class="k">Kā to ierāmēja laikraksts</div><Fragment set:html={context.html} /></div>
+      )}
+      {p.warn && <p class="warn">⚠ {p.warn}</p>}
+      {/* Tooltips do not open on a phone, so the same notes are repeated here. */}
+      {p.atNote && <p class="via">Laiks {p.at} — {p.atNote}</p>}
+      {p.recon && (
+        <p class="via">Rekonstruēts no OCR: {Object.entries(p.recon).map(([word, raw], i) => (
+          <>{i > 0 && ' · '}<i>{word}</i> ← „{raw}“</>
+        ))}</p>
+      )}
+      <p class="via">{p.via} · <a href={p.url} target="_blank" rel="noopener">skenējums →</a></p>
+      {p.ocr ? <pre class="ocr">{p.ocr}</pre> : <p class="via">OCR teksta nav.</p>}
+    </div>
+  </div>
+</article>

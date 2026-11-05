@@ -1,0 +1,122 @@
+/* Period skin, not X trade dress: newsprint ground, carmine accent, a serif,
+   Latvian verbs. Carried over from the prototype; only the changes are
+   commented. */
+:root {
+  --ink:#1b1714; --ink-soft:#5a5048; --rule:#d9cfc0; --paper:#f4efe4; --card:#fffdf7;
+  --fold:#efe8da;
+  --carmine:#9e3039; --quote:#2f6b4f; --doc:#5a5048;
+  /* Was #8a8f96 (3.2:1 on the card). 4.94:1 now — the floor is 4.5:1. */
+  --unknown:#687079;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink);
+       font:17px/1.55 Literata, Georgia, "Times New Roman", serif; }
+.wrap { max-width:620px; margin:0 auto; padding:0 16px; }
+a { color:var(--carmine); }
+
+/* Every control is a real <button>, so it is in the tab order; this is the one
+   visible focus ring they all share. */
+button { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; text-align:left; }
+:focus-visible { outline:2px solid var(--carmine); outline-offset:2px; }
+
+header { border-bottom:3px double var(--ink); background:var(--paper);
+         position:sticky; top:env(safe-area-inset-top,0px); z-index:5; }
+.masthead { padding:14px 0 8px; text-align:center; }
+.masthead h1 { margin:0; font-size:30px; letter-spacing:.06em; font-weight:400; }
+.masthead h1 b { color:var(--carmine); font-weight:400; }
+.masthead .sub { font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+                 color:var(--ink-soft); margin-top:3px; }
+
+/* The day line. One day exists, and the page says so instead of showing arrows
+   that go nowhere. */
+.day { padding:8px 0 10px; border-top:1px solid var(--rule); text-align:center; font-size:15px; }
+.day b { display:block; font-size:19px; }
+.day .one { display:block; font-size:13px; color:var(--ink-soft); margin-top:4px; }
+
+.standfirst { padding:16px 0; border-bottom:1px solid var(--rule); color:var(--ink-soft);
+              font-size:15px; margin:0; }
+.standfirst b { color:var(--carmine); }
+
+.post { border-bottom:1px solid var(--rule); padding:16px; background:var(--card); margin:0 -16px; }
+.who { display:flex; gap:10px; align-items:baseline; }
+.avatar { width:38px; height:38px; border-radius:50%; flex:none; display:grid; place-items:center;
+          font-size:15px; color:#fff; background:var(--ink-soft); align-self:flex-start; }
+.meta { flex:1; min-width:0; }
+.name { font-weight:700; }
+.handle, .stamp { color:var(--ink-soft); font-size:14px; }
+/* Astro drops the whitespace between the two spans in the button. */
+.acct .handle { margin-left:5px; }
+.stamp.derived { border-bottom:1px dotted var(--ink-soft); cursor:help; }
+.body { margin:8px 0 0 48px; }
+.body p { margin:0 0 8px; }
+.lv { font-size:18px; }
+
+/* The badge is a required data field, not decoration (see the guards in feed.ts). */
+.badge { font-size:11px; letter-spacing:.1em; text-transform:uppercase; padding:2px 7px;
+         border-radius:3px; border:1px solid currentColor;
+         /* Sits after the time, not at the card's right edge: at 400 px a long
+            handle (@rigas_zaldatu_padome) ran under a right-edge badge. */
+         margin-left:10px; vertical-align:1px; }
+.t-citats { color:var(--quote); }
+.t-atstastits { color:var(--carmine); }
+.t-dokuments { color:var(--doc); }
+.t-nezinamais { color:var(--unknown); }
+
+/* Three kinds of mark inside the text, all from the prototype:
+   a mention (tappable), a reconstructed word (tooltip), a gap (tappable). */
+.mention { color:var(--carmine); border-bottom:1px dotted currentColor; }
+.recon { border-bottom:1px dotted var(--ink-soft); cursor:help; }
+.gap { color:var(--carmine); border-bottom:1px dotted currentColor; }
+
+.via { font-size:13px; color:var(--ink-soft); margin-top:8px; }
+.via a { color:var(--ink-soft); }
+.warn { font-size:13px; color:var(--carmine); margin-top:6px; }
+
+.bar { margin-top:10px; display:flex; gap:18px; flex-wrap:wrap; }
+.bar button { font-size:13px; color:var(--ink-soft); }
+.bar button:hover, .bar button[aria-expanded="true"] { color:var(--carmine); }
+
+.ocr { margin:8px 0 0; padding:10px; background:var(--fold); border-left:3px solid var(--rule);
+       font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; line-height:1.5;
+       /* OCR garbage can be one long run without spaces; it must wrap, not push the page wide. */
+       color:#4a423a; white-space:pre-wrap; overflow-wrap:anywhere; }
+.later { margin-top:10px; padding:12px; border-left:3px solid var(--carmine); background:#f7eeee; }
+.k { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px; }
+.later .k { color:var(--carmine); }
+
+.profile { margin-top:8px; padding:10px; background:var(--fold); border-left:3px solid var(--carmine);
+           font-size:14px; }
+.profile .what { display:block; margin-top:2px; font-size:13px; color:var(--ink-soft); }
+.profile .silent { display:block; margin-top:5px; color:var(--carmine); font-style:italic; }
+.profile .today { display:block; margin-top:6px; padding-top:6px;
+                  border-top:1px solid var(--rule); font-size:13px; color:var(--ink-soft); }
+.chandle { color:var(--ink-soft); font-size:13px; }
+
+/* The paper's own framing of a quote belongs beside the source, not in the post. */
+.context { margin-top:8px; padding:10px; background:var(--fold); border-left:3px solid var(--rule);
+           font-size:14px; color:#4a423a; }
+
+.comments { margin:12px 0 0; border-left:2px solid var(--rule); padding-left:12px; }
+.comments .k { margin-bottom:8px; }
+.cmt { margin-bottom:12px; font-size:15px; }
+.cmt .cvia { color:var(--ink-soft); font-size:12px; display:block; margin-top:3px; }
+
+.tabs { display:flex; border-bottom:1px solid var(--rule); }
+.tabs button { flex:1; font-size:15px; border-bottom:3px solid transparent; padding:12px 0;
+               color:var(--ink-soft); text-align:center; }
+.tabs button[aria-selected="true"] { color:var(--ink); font-weight:700; border-bottom-color:var(--carmine); }
+
+#filterbar { padding:12px 0 0; }
+#filterbar button { font-size:14px; background:#e9e1d2; border:1px solid var(--rule);
+                    border-radius:999px; padding:5px 12px; color:var(--ink); }
+
+#trends { padding:14px 0 10px; }
+#trends .k { margin-bottom:8px; }
+.trend { display:block; width:100%; border-radius:4px; padding:6px 8px; }
+.trend:hover, .trend.on { background:#e9e1d2; }
+.trend .scope, .trend .n { display:block; font-size:12px; color:var(--ink-soft); }
+.trend b { font-size:16px; font-weight:700; }
+
+footer { padding:22px 0 40px; color:var(--ink-soft); font-size:13px; }
+footer .inv { padding:8px 10px; background:#eee8db; border-radius:3px; color:var(--quote); }
+footer .inv.bad { color:var(--carmine); }

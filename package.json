@@ -1,0 +1,18 @@
+{
+  "name": "dzivavesture",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview --host",
+    "test": "node tests/run.ts"
+  },
+  "dependencies": {
+    "astro": "^7.2.0"
+  }
+}

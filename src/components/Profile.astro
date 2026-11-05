@@ -1,0 +1,24 @@
+---
+// A profile says who this account was ON 18 NOVEMBER 1918, never who they
+// became; later life is only behind "Kā tas beidzās". Rendered once per account
+// as a <template>; feed.js clones it into a card when a name or mention is tapped.
+import type { Account } from '../lib/feed.ts';
+
+interface Props { handle: string; account: Account }
+const { handle, account: a } = Astro.props;
+---
+<template id={`prof-${handle}`}>
+  <div class="profile" data-handle={handle}>
+    <b>{a.name}</b> <span class="chandle">{handle}</span>
+    <span class="what">{a.what}</span>
+    <div>{a.bio}</div>
+    {a.warn && <span class="silent">⚠ {a.warn}</span>}
+    {a.silent && <span class="silent">{a.silent}</span>}
+    {a.today && (
+      <span class="today">Šodien {a.todayWhat} raksta kā <a href={`https://x.com/${a.today.slice(1)}`} target="_blank" rel="noopener">{a.today}</a></span>
+    )}
+    {a.live && (
+      <span class="today">{a.live} <a href={`https://x.com/${handle.slice(1)}`} target="_blank" rel="noopener">{handle}</a></span>
+    )}
+  </div>
+</template>
