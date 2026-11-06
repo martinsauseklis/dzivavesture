@@ -5,7 +5,7 @@
 //   node tests/profiles.ts http://host:8150 — additionally fetches every page (P1: 200)
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname, resolve, relative } from 'node:path';
-import { plural, refusalReason, type Account, type Post } from '../src/lib/feed.ts';
+import { descriptionLines, plural, readIdentities, refusalReason, type Account, type Post } from '../src/lib/feed.ts';
 
 const DIST = resolve(new URL('../dist', import.meta.url).pathname);
 if (!existsSync(join(DIST, 'index.html'))) { console.error('dist/ missing — run pnpm build first'); process.exit(1); }
@@ -71,6 +71,19 @@ for (const h of postless) {
     /<section class="empty"><p>[^<]{40,}<\/p><\/section>/.test(doc) && !doc.includes('id="feed"') && !/\b0 ierakst/.test(body) && !new RegExp(`0 ${plural(0)}`).test(body));
   check(`P5: ${h} shows where it was named`, doc.includes('<section class="named">'));
 }
+
+// --- P11: the description is the researched identity, or deliberately nothing --
+// | handle          | identity  | expected on the page                                  |
+// | 28 accounts     | string    | exactly one <p class="bio"> holding it, no <p class="what"> |
+// | @zemes_sargi    | null      | the paper-sourced what + bio                          |
+// | @f_brodermanis  | null      | no description paragraph at all                       |
+const identities = readIdentities(JSON.parse(readFileSync(new URL('../rereading/identities.json', import.meta.url), 'utf8')), handles);
+const described = handles.filter((h) => identities.get(h)!.identity);
+const unescape = (s: string) => s.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+const paras = (h: string) => [...html(page(h)).matchAll(/<p class="(what|bio)">([^<]*)<\/p>/g)].map((m) => [m[1], unescape(m[2])]);
+check('P11: 28 profiles render their identity as the one description paragraph', described.length === 28 && described.every((h) => JSON.stringify(paras(h)) === JSON.stringify([['bio', identities.get(h)!.identity]])), described.filter((h) => JSON.stringify(paras(h)) !== JSON.stringify([['bio', identities.get(h)!.identity]])).join());
+check('P11: @zemes_sargi keeps the paper-sourced what and bio', JSON.stringify(paras('@zemes_sargi')) === JSON.stringify(descriptionLines(accounts['@zemes_sargi'], identities.get('@zemes_sargi')!).map((l, i) => [i === 0 ? 'what' : 'bio', l])));
+check('P11: @f_brodermanis renders no description at all', paras('@f_brodermanis').length === 0 && html(page('@f_brodermanis')).includes('<div class="handle">@f_brodermanis</div>'));
 
 // --- P6: back to the feed on every profile ----------------------------------
 check('P6: every profile has the back link in the header (there is no footer)', handles.every((h) => { const d = html(page(h)); return d.includes('<a class="back" href="../">') && !d.includes('<footer'); }));

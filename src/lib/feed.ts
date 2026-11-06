@@ -220,16 +220,52 @@ export function reportedBy(via: string): string | null {
 // the "Atstāstīts: " prefix it carries in the data rather than say it twice.
 export const viaText = (via: string) => via.replace(/^Atstāstīts: /, '');
 
-// A profile's description, in two regimes. Before rereading/identities.json
-// exists, the data's own `what` and `bio` stand. Once it exists, the only
-// description is the researched identity line — what this newspaper,
-// organisation or person IS — and an account whose identity is null, or that
-// the file does not name, gets no description at all. Never a padded one.
-export type Identity = { identity: string | null; source?: string };
-export function descriptionLines(a: Account, ident: Identity | undefined, haveIdentities: boolean): string[] {
-  if (!haveIdentities) return [a.what, a.bio];
-  return ident?.identity ? [ident.identity] : [];
+// rereading/identities.json — the researched identity line per account ("what
+// this newspaper, organisation or person IS"), an ARRAY under `accounts`, not a
+// handle-keyed map. Read strictly: a wrong shape, an unknown handle, a missing
+// handle or a duplicate throws, so the build fails instead of a profile quietly
+// losing its bio because a key moved. Everything else in the file (identity_en,
+// sources, note, confidence) is for us, never for the page.
+export type Identity = { handle: string; identity: string | null };
+export function readIdentities(raw: unknown, handles: string[]): Map<string, Identity> {
+  const file = 'rereading/identities.json';
+  if (typeof raw !== 'object' || raw === null || !Array.isArray((raw as { accounts?: unknown }).accounts)) {
+    throw new Error(`${file}: expected { accounts: [ … ] } — an array, not a map`);
+  }
+  const out = new Map<string, Identity>();
+  for (const e of (raw as { accounts: unknown[] }).accounts) {
+    const entry = e as Partial<Identity> | null;
+    if (!entry || typeof entry.handle !== 'string') throw new Error(`${file}: an account entry has no string handle`);
+    if (!(typeof entry.identity === 'string' || entry.identity === null)) throw new Error(`${file}: ${entry.handle}: identity must be a string or null`);
+    if (!handles.includes(entry.handle)) throw new Error(`${file}: ${entry.handle} is not an account in the data`);
+    if (out.has(entry.handle)) throw new Error(`${file}: ${entry.handle} appears twice`);
+    out.set(entry.handle, { handle: entry.handle, identity: entry.identity });
+  }
+  for (const h of handles) if (!out.has(h)) throw new Error(`${file}: no entry for ${h}`);
+  return out;
 }
+
+// A null identity means "no encyclopedic entry", not "no information". For
+// @zemes_sargi the data's own what/bio stand because they are sourced to the
+// newspaper's own announcement (the only record of this unit) — and NOT to the
+// Baltische Landeswehr, which took the name "Latvijas zemes sargi" on 7 December:
+// a different body, so never look it up to "improve" this. For @f_brodermanis
+// nothing exists anywhere, and no description is the correct outcome.
+export const PAPER_ON_NULL = new Set(['@zemes_sargi']);
+export function descriptionLines(a: Account, ident: Identity): string[] {
+  if (ident.identity) return [ident.identity];
+  return PAPER_ON_NULL.has(ident.handle) ? [a.what, a.bio] : [];
+}
+
+// The first sentence of a description, without its full stop — what a link
+// preview and the meta description carry, where a paragraph would be truncated
+// by the platform anyway. A sentence ends at a "." that closes a word of three
+// or more letters, a four-digit year or a bracket / closing quote, and is
+// followed by a capital, a digit or an opening quote: so "dz. 1877", "Nr. 59",
+// "A. Šaņavska" and "1888. gada" never split, while "…ģimenē). 1897. gadā" and
+// "1861—1922. Bretkopfa" do. Breaks when a first sentence ends in a three-letter
+// abbreviation before a capital.
+export const lead = (text: string) => text.split(/(?<=(?:\p{L}{3,}|\d{4}|[)“”»])\.)\s+(?=[\p{Lu}\d„])/u)[0].replace(/\.$/, '');
 
 // Two initials for the avatar — a feed shows a face, we show letters.
 export const initials = (name: string) => name.split(/\s+/).slice(0, 2).map((w) => w[0]).join('');

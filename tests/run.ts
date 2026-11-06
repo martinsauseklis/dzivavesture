@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
-  avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, type Post, type Account,
+  avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -147,17 +147,51 @@ check('profilePath from a profile', profilePath('@k_ulmanis', '../') === '../@k_
 const named = mentionsOf('@POTUS', [post({ seq: 9, mentions: { x: '@POTUS' } }), post({ seq: 2 }), post({ seq: 3, mentions: { y: '@POTUS', z: '@lidums' } })]);
 check('mentionsOf: only the posts that name the handle, in seq order', named.map((p) => p.seq).join() === '3,9');
 
-// --- descriptionLines: two regimes, never a padded description ----------------
-// | identities file | entry                     | expected          |
-// | absent          | (ignored)                 | [what, bio]       |
-// | present         | { identity: 'Laikraksts' }| ['Laikraksts']    |
-// | present         | { identity: null }        | []                |
-// | present         | undefined (not in file)   | []                |
+// --- readIdentities: the file's shape, read strictly --------------------------
+// | input                                             | expected                      |
+// | { accounts: [ {handle:'@a', identity:'X'}, {handle:'@b', identity:null} ] } | Map of 2 |
+// | { '@a': {identity:'X'} }  (a map, the old guess)  | throws "an array, not a map"  |
+// | accounts: [ {handle:'@a', identity:'X'} ], handles ['@a','@b'] | throws "no entry for @b" |
+// | accounts: [ …, {handle:'@zz', identity:'X'} ]     | throws "not an account"        |
+// | accounts: [ {handle:'@a'}, {handle:'@a'} ]        | throws "appears twice"         |
+// | identity: 5                                       | throws "string or null"       |
+// | identity: {}  (hostile: object where text belongs)| throws "string or null"       |
+const throws = (fn: () => unknown, msg: string) => { try { fn(); return false; } catch (e) { return String(e).includes(msg); } };
+const good = readIdentities({ accounts: [{ handle: '@a', identity: 'X' }, { handle: '@b', identity: null }] }, ['@a', '@b']);
+check('readIdentities: the array shape reads to a map of every handle', good.size === 2 && good.get('@a')!.identity === 'X' && good.get('@b')!.identity === null);
+check('readIdentities: a handle-keyed map fails loudly', throws(() => readIdentities({ '@a': { identity: 'X' } }, ['@a']), 'an array, not a map'));
+check('readIdentities: a handle missing from the file fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X' }] }, ['@a', '@b']), 'no entry for @b'));
+check('readIdentities: a handle unknown to the data fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X' }, { handle: '@zz', identity: 'X' }] }, ['@a']), 'not an account'));
+check('readIdentities: a duplicate handle fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X' }, { handle: '@a', identity: 'Y' }] }, ['@a']), 'appears twice'));
+check('readIdentities: a numeric identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 5 }] }, ['@a']), 'string or null'));
+check('readIdentities: an object identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: {} }] }, ['@a']), 'string or null'));
+
+// --- descriptionLines: the identity alone; null is two different things ------
+// | handle           | identity      | expected       |
+// | @x               | 'Laikraksts'  | ['Laikraksts'] |
+// | @f_brodermanis   | null          | []             |
+// | @zemes_sargi     | null          | [what, bio]    |
+// | @x (any other)   | null          | []             |
 const acc: Account = { name: 'X', kind: 'org', what: 'W', bio: 'B' };
-check('descriptionLines: before the file, what and bio', JSON.stringify(descriptionLines(acc, { identity: 'ignored' }, false)) === '["W","B"]');
-check('descriptionLines: with the file, the identity alone', JSON.stringify(descriptionLines(acc, { identity: 'Laikraksts' }, true)) === '["Laikraksts"]');
-check('descriptionLines: null identity → nothing', descriptionLines(acc, { identity: null }, true).length === 0);
-check('descriptionLines: not in the file → nothing', descriptionLines(acc, undefined, true).length === 0);
+check('descriptionLines: the identity alone, never what/bio beside it', JSON.stringify(descriptionLines(acc, { handle: '@x', identity: 'Laikraksts' })) === '["Laikraksts"]');
+check('descriptionLines: @f_brodermanis null → no description at all', descriptionLines(acc, { handle: '@f_brodermanis', identity: null }).length === 0);
+check('descriptionLines: @zemes_sargi null → the paper-sourced what and bio stand', JSON.stringify(descriptionLines(acc, { handle: '@zemes_sargi', identity: null })) === '["W","B"]');
+check('descriptionLines: any other null → nothing', descriptionLines(acc, { handle: '@x', identity: null }).length === 0);
+
+// --- lead: the first sentence for a preview, no full stop ---------------------
+// | input                                                   | expected                               |
+// | 'Agronoms un politiķis (dz. 1877. gada 4. septembrī). 1897. gadā beidza.' | 'Agronoms un politiķis (dz. 1877. gada 4. septembrī)' |
+// | 'Laikraksts, Nr. 59 iznāca. Vēl kas.'                   | 'Laikraksts, Nr. 59 iznāca'            |
+// | 'Rīgas pašaizsardzības vienība · dibināta 16. novembrī' | unchanged (no sentence end)            |
+// | 'Pirmais. „Otrais“.'                                    | 'Pirmais'                              |
+// | 'Rīgā, 1861—1922. Bretkopfa izdevumos.'                 | 'Rīgā, 1861—1922'                      |
+// | 'Ķeizars no 1888. gada (dz. 1859). Tronī kāpa.'         | 'Ķeizars no 1888. gada (dz. 1859)'     |
+check('lead: a birth date inside the sentence does not split it', lead('Agronoms un politiķis (dz. 1877. gada 4. septembrī). 1897. gadā beidza.') === 'Agronoms un politiķis (dz. 1877. gada 4. septembrī)');
+check('lead: "Nr. 59" does not split', lead('Laikraksts, Nr. 59 iznāca. Vēl kas.') === 'Laikraksts, Nr. 59 iznāca');
+check('lead: a line without a sentence end is unchanged', lead('Rīgas pašaizsardzības vienība · dibināta 16. novembrī') === 'Rīgas pašaizsardzības vienība · dibināta 16. novembrī');
+check('lead: an opening quote starts the next sentence', lead('Pirmais. „Otrais“.') === 'Pirmais');
+check('lead: a year range closing a sentence ends it', lead('Rīgā, 1861—1922. Bretkopfa izdevumos.') === 'Rīgā, 1861—1922');
+check('lead: "1888. gada" inside a sentence does not split', lead('Ķeizars no 1888. gada (dz. 1859). Tronī kāpa.') === 'Ķeizars no 1888. gada (dz. 1859)');
 
 // --- contrast: the floor is 4.5:1 (WCAG AA), computed, not eyeballed -------
 // Relative luminance per WCAG 2.x; sRGB channel linearised at the 0.03928 knee.

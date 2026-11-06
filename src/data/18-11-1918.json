@@ -129,15 +129,15 @@
   "@kaizers_vilhelms": {
    "name": "Vilhelms II",
    "kind": "person",
-   "what": "Vācijas ķeizars līdz 9. novembrim · bēglis Holandē",
-   "bio": "Atteicies no troņa un 10. novembrī pārbraucis Holandes robežu. Angļu laikraksti prasa viņa izdošanu; vācu neatkarīgie sociāldemokrāti prasa, lai viņu tiesā pati vācu tauta.",
+   "what": "Vācijas ķeizars, kura atteikšanos no troņa 9. novembrī paziņoja Berlīne · bēglis Holandē",
+   "bio": "Avīzes ziņo, ka viņš atteicies no troņa: 9. novembrī Berlīnē to paziņoja viņa vārdā, pats viņš to vēl nav parakstījis. 10. novembrī pārbraucis Holandes robežu. Angļu laikraksti prasa viņa izdošanu; vācu neatkarīgie sociāldemokrāti prasa, lai viņu tiesā pati vācu tauta.",
    "silent": "Viņa vienīgie šodien iespiestie vārdi ir lūgums Holandes karalienei ierādīt viņam kādu mazu vientuļu māju."
   },
   "@h_j_seraphim": {
    "name": "Hanss Jirgens Serafims",
    "kind": "person",
-   "what": "Kara brīvprātīgais lauka artilērijas regimentā · turpinājumstāsta autors",
-   "bio": "Viņa bēgšanas apraksts no Igaunijas pār aizsalušo jūru uz Kurzemi 1918. gada janvārī un februārī iznāk Rigasche Zeitung turpinājumos vēstuļu veidā tēvam. Šodien ir 11. turpinājums.",
+   "what": "19 gadus vecs students · Rigasche Zeitung redaktora Ernsta Serafima dēls",
+   "bio": "Viņa bēgšanas apraksts no Igaunijas pār aizsalušo jūru uz Kurzemi 1918. gada janvārī un februārī iznāk Rigasche Zeitung turpinājumos vēstuļu veidā tēvam; avīze viņu piesaka kā kara brīvprātīgo lauka artilērijas regimentā. Šodien ir 11. turpinājums.",
    "warn": "Regimenta numurs OCR nav salasāms („Feldartillerieregt«ent 6( iv Schwerin“)."
   },
   "@w_j_locke": {
