@@ -226,7 +226,7 @@ export const viaText = (via: string) => via.replace(/^Atstāstīts: /, '');
 // handle or a duplicate throws, so the build fails instead of a profile quietly
 // losing its bio because a key moved. Everything else in the file (identity_en,
 // sources, note, confidence) is for us, never for the page.
-export type Identity = { handle: string; identity: string | null };
+export type Identity = { handle: string; identity: string | null; bio: string | null };
 export function readIdentities(raw: unknown, handles: string[]): Map<string, Identity> {
   const file = 'rereading/identities.json';
   if (typeof raw !== 'object' || raw === null || !Array.isArray((raw as { accounts?: unknown }).accounts)) {
@@ -237,9 +237,12 @@ export function readIdentities(raw: unknown, handles: string[]): Map<string, Ide
     const entry = e as Partial<Identity> | null;
     if (!entry || typeof entry.handle !== 'string') throw new Error(`${file}: an account entry has no string handle`);
     if (!(typeof entry.identity === 'string' || entry.identity === null)) throw new Error(`${file}: ${entry.handle}: identity must be a string or null`);
+    if (!(typeof entry.bio === 'string' || entry.bio === null)) throw new Error(`${file}: ${entry.handle}: bio must be a string or null`);
+    if (entry.identity === null && entry.bio !== null) throw new Error(`${file}: ${entry.handle}: bio without identity`);
+    if (typeof entry.bio === 'string' && entry.bio.length > 280) throw new Error(`${file}: ${entry.handle}: bio is ${entry.bio.length} chars, over 280`);
     if (!handles.includes(entry.handle)) throw new Error(`${file}: ${entry.handle} is not an account in the data`);
     if (out.has(entry.handle)) throw new Error(`${file}: ${entry.handle} appears twice`);
-    out.set(entry.handle, { handle: entry.handle, identity: entry.identity });
+    out.set(entry.handle, { handle: entry.handle, identity: entry.identity, bio: entry.bio ?? null });
   }
   for (const h of handles) if (!out.has(h)) throw new Error(`${file}: no entry for ${h}`);
   return out;
@@ -253,7 +256,7 @@ export function readIdentities(raw: unknown, handles: string[]): Map<string, Ide
 // nothing exists anywhere, and no description is the correct outcome.
 export const PAPER_ON_NULL = new Set(['@zemes_sargi']);
 export function descriptionLines(a: Account, ident: Identity): string[] {
-  if (ident.identity) return [ident.identity];
+  if (ident.bio) return [ident.bio];
   return PAPER_ON_NULL.has(ident.handle) ? [a.what, a.bio] : [];
 }
 

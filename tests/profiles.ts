@@ -75,13 +75,15 @@ for (const h of postless) {
 // --- P11: the description is the researched identity, or deliberately nothing --
 // | handle          | identity  | expected on the page                                  |
 // | 28 accounts     | string    | exactly one <p class="bio"> holding it, no <p class="what"> |
+// | 28 accounts     | bio set   | one <p class="bio"> equal to `bio` — the ~750-char      |
+//                                   `identity` is the record, never the page             |
 // | @zemes_sargi    | null      | the paper-sourced what + bio                          |
 // | @f_brodermanis  | null      | no description paragraph at all                       |
 const identities = readIdentities(JSON.parse(readFileSync(new URL('../rereading/identities.json', import.meta.url), 'utf8')), handles);
-const described = handles.filter((h) => identities.get(h)!.identity);
+const described = handles.filter((h) => identities.get(h)!.bio);
 const unescape = (s: string) => s.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 const paras = (h: string) => [...html(page(h)).matchAll(/<p class="(what|bio)">([^<]*)<\/p>/g)].map((m) => [m[1], unescape(m[2])]);
-check('P11: 28 profiles render their identity as the one description paragraph', described.length === 28 && described.every((h) => JSON.stringify(paras(h)) === JSON.stringify([['bio', identities.get(h)!.identity]])), described.filter((h) => JSON.stringify(paras(h)) !== JSON.stringify([['bio', identities.get(h)!.identity]])).join());
+check('P11: 28 profiles render their BIO as the one description paragraph (never the long identity)', described.length === 28 && described.every((h) => JSON.stringify(paras(h)) === JSON.stringify([['bio', identities.get(h)!.bio]])), described.filter((h) => JSON.stringify(paras(h)) !== JSON.stringify([['bio', identities.get(h)!.bio]])).join());
 check('P11: @zemes_sargi keeps the paper-sourced what and bio', JSON.stringify(paras('@zemes_sargi')) === JSON.stringify(descriptionLines(accounts['@zemes_sargi'], identities.get('@zemes_sargi')!).map((l, i) => [i === 0 ? 'what' : 'bio', l])));
 check('P11: @f_brodermanis renders no description at all', paras('@f_brodermanis').length === 0 && html(page('@f_brodermanis')).includes('<div class="handle">@f_brodermanis</div>'));
 

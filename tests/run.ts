@@ -157,14 +157,20 @@ check('mentionsOf: only the posts that name the handle, in seq order', named.map
 // | identity: 5                                       | throws "string or null"       |
 // | identity: {}  (hostile: object where text belongs)| throws "string or null"       |
 const throws = (fn: () => unknown, msg: string) => { try { fn(); return false; } catch (e) { return String(e).includes(msg); } };
-const good = readIdentities({ accounts: [{ handle: '@a', identity: 'X' }, { handle: '@b', identity: null }] }, ['@a', '@b']);
+const good = readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }, { handle: '@b', identity: null, bio: null }] }, ['@a', '@b']);
 check('readIdentities: the array shape reads to a map of every handle', good.size === 2 && good.get('@a')!.identity === 'X' && good.get('@b')!.identity === null);
 check('readIdentities: a handle-keyed map fails loudly', throws(() => readIdentities({ '@a': { identity: 'X' } }, ['@a']), 'an array, not a map'));
-check('readIdentities: a handle missing from the file fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X' }] }, ['@a', '@b']), 'no entry for @b'));
-check('readIdentities: a handle unknown to the data fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X' }, { handle: '@zz', identity: 'X' }] }, ['@a']), 'not an account'));
-check('readIdentities: a duplicate handle fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X' }, { handle: '@a', identity: 'Y' }] }, ['@a']), 'appears twice'));
-check('readIdentities: a numeric identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 5 }] }, ['@a']), 'string or null'));
-check('readIdentities: an object identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: {} }] }, ['@a']), 'string or null'));
+check('readIdentities: a handle missing from the file fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }] }, ['@a', '@b']), 'no entry for @b'));
+check('readIdentities: a handle unknown to the data fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }, { handle: '@zz', identity: 'X', bio: 'b' }] }, ['@a']), 'not an account'));
+check('readIdentities: a duplicate handle fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }, { handle: '@a', identity: 'Y', bio: 'b' }] }, ['@a']), 'appears twice'));
+// | bio: 5                                            | throws "string or null"       |
+// | bio set, identity null                            | throws "bio without identity" |
+// | bio of 281 chars                                  | throws "over 280"             |
+check('readIdentities: a numeric bio fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 5 }] }, ['@a']), 'string or null'));
+check('readIdentities: a bio without an identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: null, bio: 'b' }] }, ['@a']), 'bio without identity'));
+check('readIdentities: an over-long bio fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'x'.repeat(281) }] }, ['@a']), 'over 280'));
+check('readIdentities: a numeric identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 5, bio: null }] }, ['@a']), 'string or null'));
+check('readIdentities: an object identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: {}, bio: null }] }, ['@a']), 'string or null'));
 
 // --- descriptionLines: the identity alone; null is two different things ------
 // | handle           | identity      | expected       |
@@ -172,11 +178,13 @@ check('readIdentities: an object identity fails loudly', throws(() => readIdenti
 // | @f_brodermanis   | null          | []             |
 // | @zemes_sargi     | null          | [what, bio]    |
 // | @x (any other)   | null          | []             |
+// | bio set          | [bio]  — the long `identity` never reaches the page |
 const acc: Account = { name: 'X', kind: 'org', what: 'W', bio: 'B' };
-check('descriptionLines: the identity alone, never what/bio beside it', JSON.stringify(descriptionLines(acc, { handle: '@x', identity: 'Laikraksts' })) === '["Laikraksts"]');
-check('descriptionLines: @f_brodermanis null → no description at all', descriptionLines(acc, { handle: '@f_brodermanis', identity: null }).length === 0);
-check('descriptionLines: @zemes_sargi null → the paper-sourced what and bio stand', JSON.stringify(descriptionLines(acc, { handle: '@zemes_sargi', identity: null })) === '["W","B"]');
-check('descriptionLines: any other null → nothing', descriptionLines(acc, { handle: '@x', identity: null }).length === 0);
+check('descriptionLines: the bio alone — never the long identity, never what/bio beside it',
+  JSON.stringify(descriptionLines(acc, { handle: '@x', identity: 'A 700-character encyclopedia entry…', bio: 'Laikraksts' })) === '["Laikraksts"]');
+check('descriptionLines: @f_brodermanis null → no description at all', descriptionLines(acc, { handle: '@f_brodermanis', identity: null, bio: null }).length === 0);
+check('descriptionLines: @zemes_sargi null → the paper-sourced what and bio stand', JSON.stringify(descriptionLines(acc, { handle: '@zemes_sargi', identity: null, bio: null })) === '["W","B"]');
+check('descriptionLines: any other null → nothing', descriptionLines(acc, { handle: '@x', identity: null, bio: null }).length === 0);
 
 // --- lead: the first sentence for a preview, no full stop ---------------------
 // | input                                                   | expected                               |
