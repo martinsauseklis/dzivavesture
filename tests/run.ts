@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
   avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
-  isWrittenYear, recollectionLine, recollectionHeader, type Post, type Account,
+  isWrittenYear, recollectionLine, recollectionHeader, holdsLine, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -32,6 +32,9 @@ const post = (over: Partial<Post>): Post => ({ ...base, ...over });
 // | javascript: url              | url 'javascript:alert(1)'              | nav avota saites              |
 // | foreign host                 | url 'https://evil.example/periodika.lv'| nav avota saites              |
 // | path traversal in url        | url 'https://periodika.lv/../../etc'   | null (archive host, path is theirs) |
+// | the book archive             | url 'http://eraksti.lv/fetchbook.php…' | null (second archive in the closed set) |
+// | host that only starts alike  | url 'http://eraksti.lv.evil.example/x' | nav avota saites              |
+// | the book archive over https  | url 'https://eraksti.lv/x'             | nav avota saites — the set is closed, and that origin's certificate is self-signed |
 // | unknown handle               | handle '@nobody'                       | nezināms konts                |
 // | type outside the four        | type 'tvīts'                           | nezināms tips                 |
 // | meta post                    | type 'nezinamais'                      | meta-ieraksts nav plūsmā      |
@@ -48,6 +51,9 @@ const refusals: [string, Post, string | null][] = [
   ['javascript: url', post({ url: 'javascript:alert(1)' }), 'nav avota saites'],
   ['foreign host', post({ url: 'https://evil.example/periodika.lv' }), 'nav avota saites'],
   ['path traversal in url', post({ url: 'https://periodika.lv/../../etc' }), null],
+  ['the book archive', post({ url: 'http://eraksti.lv/fetchbook.php?urlkey=2485426' }), null],
+  ['host that only starts like the book archive', post({ url: 'http://eraksti.lv.evil.example/x' }), 'nav avota saites'],
+  ['the book archive over https', post({ url: 'https://eraksti.lv/x' }), 'nav avota saites'],
   ['unknown handle', post({ handle: '@nobody' }), 'nezināms konts'],
   ['type outside the four', post({ type: 'tvīts' as Post['type'] }), 'nezināms tips'],
   ['meta post refused from the feed', post({ type: 'nezinamais' }), 'meta-ieraksts nav plūsmā'],
@@ -76,6 +82,20 @@ check('recollectionHeader: all recollections, one year', recollectionHeader([{ t
 check('recollectionHeader: two years, both named', recollectionHeader([{ type: 'atminas', written: 1925 }, { type: 'atminas', written: 1923 }]) === 'Visi ieraksti ir atmiņas, rakstītas 1923., 1925. gadā');
 check('recollectionHeader: one contemporary post → null', recollectionHeader([{ type: 'atminas', written: 1923 }, { type: 'citats' }]) === null);
 check('recollectionHeader: no posts → null', recollectionHeader([]) === null);
+// --- holdsLine: the preview line may not call a recollection a newspaper ----
+// | input                                   | expected                                      |
+// | [citats, citats]                        | '2 ieraksti tās dienas Rīgas avīzēs'          |
+// | [atminas 1923] × 8                      | '8 ieraksti — atmiņas, rakstītas 1923. gadā'   |
+// | [atminas 1923, atminas 1925]            | '2 ieraksti — atmiņas, rakstītas 1923., 1925. gadā' |
+// | [atminas 1923, citats] (mixed)          | '2 ieraksti tās dienas Rīgas avīzēs'          |
+// | [atminas, written missing]              | '1 ieraksts tās dienas Rīgas avīzēs' (refused anyway) |
+// | []                                      | 'Tajā dienā neko nesaka — avīzes min'         |
+check('holdsLine: contemporary posts name the papers', holdsLine([{ type: 'citats' }, { type: 'citats' }]) === '2 ieraksti tās dienas Rīgas avīzēs');
+check('holdsLine: all recollections name the writing year, not the papers',
+  holdsLine(Array(8).fill({ type: 'atminas', written: 1923 })) === '8 ieraksti — atmiņas, rakstītas 1923. gadā');
+check('holdsLine: two writing years, both named', holdsLine([{ type: 'atminas', written: 1925 }, { type: 'atminas', written: 1923 }]) === '2 ieraksti — atmiņas, rakstītas 1923., 1925. gadā');
+check('holdsLine: one contemporary post among them → the papers', holdsLine([{ type: 'atminas', written: 1923 }, { type: 'citats' }]) === '2 ieraksti tās dienas Rīgas avīzēs');
+check('holdsLine: no posts → the account said nothing, never a zero', holdsLine([]) === 'Tajā dienā neko nesaka — avīzes min');
 check('isWrittenYear: 1919 and 2099 yes; 1918, 2100, 1923.5, "1923" no',
   isWrittenYear(1919) && isWrittenYear(2099) && !isWrittenYear(1918) && !isWrittenYear(2100) && !isWrittenYear(1923.5) && !isWrittenYear('1923'));
 for (const [name, p, want] of refusals)
@@ -304,6 +324,26 @@ check('profiles: EMPTY_COPY covers exactly the post-less accounts without silent
 check('profiles: every post-less account has a mention to show', postless.every((h) => mentionsOf(h, corpus).length > 0), postless.filter((h) => !mentionsOf(h, corpus).length).join());
 const gapped = corpus.filter((p) => p.lv.includes('[?]'));
 check('corpus: every [?] post carries a warn that explains it', gapped.length > 0 && gapped.every((p) => p.warn), gapped.filter((p) => !p.warn).map((p) => p.seq).join());
+
+// --- the recollections in the real corpus ------------------------------------
+// A recollection is located by volume + page, not by an article permalink, and
+// it is the only type whose `ocr` is empty — the 1923 volume's text layer is
+// clean, so `lv` IS that text and a second "raw" string would be invented.
+// Counted and printed, so these rows show zero rather than pass vacuously.
+const recollected = corpus.filter((p) => p.type === 'atminas');
+check(`corpus: ${recollected.length} recollection(s), each with an integer writing year after 1918`,
+  recollected.length > 0 && recollected.every((p) => isWrittenYear(p.written)),
+  recollected.length ? `written ${[...new Set(recollected.map((p) => p.written))].join()}` : 'none yet');
+check('corpus: every recollection carries via, an archive url and a page number',
+  recollected.every((p) => p.via && refusalReason(p, data.accounts[p.handle]) === null && Number.isInteger(p.page)),
+  recollected.filter((p) => !Number.isInteger(p.page)).map((p) => p.seq).join());
+check('corpus: a recollection has no ocr, every scanned post has one',
+  corpus.every((p) => (p.type === 'atminas') === (p.ocr === null || p.ocr === undefined)),
+  corpus.filter((p) => (p.type === 'atminas') !== (p.ocr === null || p.ocr === undefined)).map((p) => p.seq).join());
+// The three 1918-11-17 recollections were parked, not merged: a recollection of
+// the previous day dissolves a one-day feed. They stay in rereading/atminas.json.
+check('corpus: no post is dated to another day', corpus.every((p) => !(p as { date?: string }).date),
+  corpus.filter((p) => (p as { date?: string }).date).map((p) => p.seq).join());
 
 // --- threads: one printed item split at sentence boundaries, nothing else ---
 // | rule                                                      |

@@ -31,12 +31,12 @@ const titleOf = (doc: string) => attr(doc, /<title>([^<]*)<\/title>/g)[0] ?? '';
 
 // --- P1: exactly one page per account --------------------------------------
 const built = readdirSync(DIST).filter((d) => d.startsWith('@') && statSync(join(DIST, d)).isDirectory());
-check('P1: one directory per account, 30 of them', built.length === 30 && handles.every((h) => existsSync(page(h))), `${built.length} built`);
+check('P1: one directory per account, 33 of them', built.length === 33 && handles.every((h) => existsSync(page(h))), `${built.length} built`);
 check('P1: no profile directory without an account', built.every((d) => handles.includes(d)), built.filter((d) => !handles.includes(d)).join());
 
 // --- P2: every author name and (@mention) on the feed links to its page ------
 const acctLinks = attr(feed, /<a class="acct" href="([^"]*)"/g);
-check('P2: 75 author links on the feed, each to its own account page', acctLinks.length === feedPosts.length && acctLinks.every((href, i) => href === `${feedPosts[i].handle}/`), `${acctLinks.length} links`);
+check('P2: 86 author links on the feed, each to its own account page', acctLinks.length === feedPosts.length && acctLinks.every((href, i) => href === `${feedPosts[i].handle}/`), `${acctLinks.length} links`);
 const mentionLinks = attr(feed, /<a class="mention" href="([^"]*)">/g);
 const mentionsInData = feedPosts.flatMap((p) => Object.values(p.mentions ?? {})).length;
 check('P2: every (@mention) in the feed is a link to an existing page', mentionLinks.length > 0 && mentionLinks.every((href) => existsSync(join(DIST, href, 'index.html'))), `${mentionLinks.length} links, ${mentionsInData} mentions in data`);
@@ -56,7 +56,7 @@ for (const h of handles) {
 const docs = [['feed', feed] as const, ...handles.map((h) => [h, html(page(h))] as const)];
 for (const key of ['title', 'description', 'canonical', 'og:title', 'og:url', 'og:image', 'og:image:alt'] as const) {
   const values = docs.map(([, d]) => key === 'title' ? titleOf(d) : key === 'canonical' ? attr(d, /<link rel="canonical" href="([^"]*)"/g)[0] ?? '' : meta(d, key));
-  check(`P4: ${key} is present and unique across all 31 pages`, values.every(Boolean) && new Set(values).size === values.length, `${new Set(values).size} distinct`);
+  check(`P4: ${key} is present and unique across all 34 pages`, values.every(Boolean) && new Set(values).size === values.length, `${new Set(values).size} distinct`);
 }
 check('P4: every profile title names the account and the day', handles.every((h) => { const t = titleOf(html(page(h))); return t.includes(accounts[h].name) && t.includes(h) && t.includes('18. novembris 1918'); }));
 check('P4: no profile reuses the feed og:image', handles.every((h) => meta(html(page(h)), 'og:image').endsWith(`/og/${h}.png`)));
@@ -80,10 +80,26 @@ for (const h of postless) {
 // | @zemes_sargi    | null      | the paper-sourced what + bio                          |
 // | @f_brodermanis  | null      | no description paragraph at all                       |
 const identities = readIdentities(JSON.parse(readFileSync(new URL('../rereading/identities.json', import.meta.url), 'utf8')), handles);
-const described = handles.filter((h) => identities.get(h)!.bio);
+// `?.` not `!.`: an account the identities file does not list yet is not an
+// error (feed.ts says so) — the three memoirists are described from the 1923
+// volume alone, and the page falls back to the data's own what/bio.
+const described = handles.filter((h) => identities.get(h)?.bio);
 const unescape = (s: string) => s.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 const paras = (h: string) => [...html(page(h)).matchAll(/<p class="(what|bio)">([^<]*)<\/p>/g)].map((m) => [m[1], unescape(m[2])]);
 check('P11: 28 profiles render their BIO as the one description paragraph (never the long identity)', described.length === 28 && described.every((h) => JSON.stringify(paras(h)) === JSON.stringify([['bio', identities.get(h)!.bio]])), described.filter((h) => JSON.stringify(paras(h)) !== JSON.stringify([['bio', identities.get(h)!.bio]])).join());
+// | handle            | identities.json | expected on the page                                     |
+// | the 3 memoirists  | absent          | the data's own what + bio, and the warn word for word     |
+// The warning is the only thing standing between a description built from one
+// 1923 book and a reader taking it for researched biography, so the test is
+// byte equality with the data, not a shape — a reworded warning is a changed
+// claim. (Two of the three open in capitals; Brigadere's does not, because
+// hers states her verified death year first. The wording is the source's.)
+const memoirHandles = handles.filter((h) => !identities.has(h));
+const pwarn = (h) => [...html(page(h)).matchAll(/<p class="pwarn">([^<]*)<\/p>/g)].map((m) => unescape(m[1]));
+check('P11: the 3 unresearched memoirists show the volume-built what and bio, and their warning word for word',
+  memoirHandles.length === 3 && memoirHandles.every((h) => JSON.stringify(paras(h)) === JSON.stringify([['what', accounts[h].what], ['bio', accounts[h].bio]])
+    && JSON.stringify(pwarn(h)) === JSON.stringify([accounts[h].warn])
+    && accounts[h].warn!.includes('pirms publicēšanas')), memoirHandles.join());
 check('P11: @zemes_sargi keeps the paper-sourced what and bio', JSON.stringify(paras('@zemes_sargi')) === JSON.stringify(descriptionLines(accounts['@zemes_sargi'], identities.get('@zemes_sargi')!).map((l, i) => [i === 0 ? 'what' : 'bio', l])));
 check('P11: @f_brodermanis renders no description at all', paras('@f_brodermanis').length === 0 && html(page('@f_brodermanis')).includes('<div class="handle">@f_brodermanis</div>'));
 
@@ -94,7 +110,9 @@ check('P6: every profile has the back link in the header (there is no footer)', 
 // corpus text itself may contain the words, so these look for the markup.
 const gone = ['later-btn', 'class="fold later"', 'class="standfirst"', '<p class="when">', '<p class="one">', 'Konts rāda', 'class="badge', 'class="fold src"', '<pre class="ocr"', 'Kā to ierāmēja laikraksts', 'class="src-btn"', '<footer', 'class="inv"', 'Kā robi avotos'];
 check('face: the eight removals render nowhere (no footer on any page)', [feed, ...handles.map((h) => html(page(h)))].every((d) => gone.every((g) => !d.includes(g))));
-check('face: avots is a plain link to periodika.lv on every segment', [feed, ...handles.map((h) => html(page(h)))].every((d) => (d.match(/<a class="src-link" href="https:\/\/periodika\.lv\/[^"]*" target="_blank" rel="noopener">avots →<\/a>/g) ?? []).length === (d.match(/<div class="seg">/g) ?? []).length));
+// Two archives now: periodika.lv for the newspaper scans, eraksti.lv for the
+// 1923 volume (http — its certificate is self-signed; see feed.ts ARCHIVES).
+check('face: avots is a plain link to one of the two archives on every segment', [feed, ...handles.map((h) => html(page(h)))].every((d) => (d.match(/<a class="src-link" href="(?:https:\/\/periodika\.lv|http:\/\/eraksti\.lv)\/[^"]*" target="_blank" rel="noopener">avots →<\/a>/g) ?? []).length === (d.match(/<div class="seg">/g) ?? []).length));
 
 // --- P7: no dead internal link anywhere in the built site --------------------
 const pages: string[] = [];
@@ -113,7 +131,7 @@ for (const p of pages) {
     if (frag && !ids.get(target)?.has(frag)) dead.push(`${relative(DIST, p)} → ${ref} (no such id)`);
   }
 }
-check('P7: no dead internal link or asset reference in 31 pages', dead.length === 0 && pages.length === 31, dead.slice(0, 5).join('; '));
+check('P7: no dead internal link or asset reference in 34 pages', dead.length === 0 && pages.length === 34, dead.slice(0, 5).join('; '));
 check('P7: every profile links back only with relative paths (no leading slash)', handles.every((h) => !/ href="\/[^/]/.test(html(page(h)))));
 
 // --- P8: size per page, static build ----------------------------------------

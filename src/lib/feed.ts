@@ -33,8 +33,14 @@ export type Post = {
   ocr: string | null;
   via: string;
   url: string;
+  // The page in a printed volume. A newspaper item is located by its archive
+  // permalink; a book's permalink is the whole book, so the page is the locator.
+  page?: number;
   topics: string[];
   atNote: string;
+  // The record's own commentary: where a memoirist goes beyond what he could
+  // have seen, and where he contradicts the papers. Kept, never rendered.
+  note?: string;
   warn?: string;
   // Modern word → the raw OCR string it was read from.
   recon?: Record<string, string>;
@@ -87,16 +93,46 @@ export const recollectionLine = (post: Pick<Post, 'type' | 'written'>) =>
 // later edit could lose. Null when there is nothing, or anything contemporary.
 // Years are listed when they differ („1923., 1925. gadā“).
 export function recollectionHeader(posts: Pick<Post, 'type' | 'written'>[]): string | null {
-  if (!posts.length || !posts.every((p) => p.type === 'atminas' && isWrittenYear(p.written))) return null;
-  const years = [...new Set(posts.map((p) => p.written as number))].sort();
-  return `Visi ieraksti ir atmiņas, rakstītas ${years.map((y) => `${y}.`).join(', ')} gadā`;
+  const years = writtenYears(posts);
+  return years && `Visi ieraksti ir atmiņas, rakstītas ${years} gadā`;
 }
 
-// Every source permalink must point into the archive. A bare "truthy url" check
-// would let `javascript:` or a foreign host through the one guard the whole
-// site rests on.
-const ARCHIVE = 'https://periodika.lv/';
-const isArchiveUrl = (url: unknown) => typeof url === 'string' && url.startsWith(ARCHIVE);
+// „1923.“ or „1923., 1925.“ when every post given is a dated recollection;
+// null the moment one of them is contemporary. One place, so the profile
+// header and the link-preview line can never disagree about the year.
+function writtenYears(posts: Pick<Post, 'type' | 'written'>[]): string | null {
+  if (!posts.length || !posts.every((p) => p.type === 'atminas' && isWrittenYear(p.written))) return null;
+  return [...new Set(posts.map((p) => p.written as number))].sort().map((y) => `${y}.`).join(', ');
+}
+
+// What a profile holds, in one phrase — the line on its link-preview card and
+// in its meta description, which is where most readers meet the page first.
+// A recollection was NOT in that day's Rīga papers, so an account whose posts
+// are all recollections may not be described as if it were: „8 ieraksti tās
+// dienas Rīgas avīzēs“ under Cālītis would be exactly the lie the atmiņas type
+// exists to prevent, told in the one place the type's red line never reaches.
+// No full stop — the caller punctuates.
+export function holdsLine(posts: Pick<Post, 'type' | 'written'>[]): string {
+  const n = posts.length;
+  if (!n) return 'Tajā dienā neko nesaka — avīzes min';
+  const years = writtenYears(posts);
+  return `${n} ${plural(n)} ${years ? `— atmiņas, rakstītas ${years} gadā` : 'tās dienas Rīgas avīzēs'}`;
+}
+
+// Every source permalink must point into an archive — a CLOSED set of origins,
+// prefix-matched. A bare "truthy url" check would let `javascript:` or a foreign
+// host through the one guard the whole site rests on, and a substring check
+// would admit https://evil.example/periodika.lv.
+//   periodika.lv — the National Library's newspaper scans.
+//   eraksti.lv   — the 1923 memoir volume „Valsts pieci gadi“, whose only
+//                  public copy is there. It is listed over plain http because
+//                  its TLS certificate is self-signed, so https does not
+//                  answer; an outbound link downgrades, and that is stated
+//                  here rather than hidden behind an https address that 404s.
+// Breaks when: either archive changes host, or eraksti.lv fixes its certificate
+// (then its https origin has to be added — the set is closed on purpose).
+const ARCHIVES = ['https://periodika.lv/', 'http://eraksti.lv/'];
+const isArchiveUrl = (url: unknown) => typeof url === 'string' && ARCHIVES.some((a) => url.startsWith(a));
 
 // The structural guards. They make the failure mode unrepresentable rather
 // than discouraged:

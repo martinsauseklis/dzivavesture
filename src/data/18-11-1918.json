@@ -1,8 +1,29 @@
 {
  "date": "1918-11-18",
  "place": "Rīga",
- "note": "Visi ieraksti ir no digitalizētiem 1918. gada laikrakstiem periodika.lv (Latvijas Nacionālā bibliotēka). `ocr` ir arhīva neapstrādātais teksts, izgriezts burtiski; `lv` ir modernās ortogrāfijas pārlikums (vācu avotiem — tulkojums latviski); `recon` saista katru lasīto vārdu ar neapstrādāto virkni. Neviens ieraksts nav sacerēts, un neviens cipars nav uzminēts.",
+ "note": "Visi ieraksti ir no digitalizētiem 1918. gada laikrakstiem periodika.lv (Latvijas Nacionālā bibliotēka). `ocr` ir arhīva neapstrādātais teksts, izgriezts burtiski; `lv` ir modernās ortogrāfijas pārlikums (vācu avotiem — tulkojums latviski); `recon` saista katru lasīto vārdu ar neapstrādāto virkni. Neviens ieraksts nav sacerēts, un neviens cipars nav uzminēts. Vienpadsmit ieraksti nav no laikrakstiem: tās ir 1923. gadā rakstītas atmiņas no krājuma „Valsts pieci gadi“ (Rīga 1923, eraksti.lv), un tiem `type` ir `atminas`, `written` ir rakstīšanas gads, `ocr` ir tukšs (grāmatas teksta slānis ir tīrs — `lv` IR tas teksts), un `page` ir lappuse.",
  "accounts": {
+  "@ed_calitis": {
+   "name": "Ed. Cālītis",
+   "kind": "person",
+   "what": "Atmiņu autors · zālē 18. novembrī · „Valsts pieci gadi“ (1923)",
+   "bio": "Piecgadu krājumā viņam ir divas nodaļas: „Valsts pirmā diena (Atmiņas)“ (12.–13. lpp.) un „Latvijas un ,,Latvijas“ “ (24.–26. lpp.). 18. novembrī viņš ir zālē ar ieejas kartiņu un raksta no parketa — no viņa vietas apklust „balsu dunoņa parketā“ un „no partera krēsliem“ pieceļas Fr. Grosvalds. Kas viņš bija pēc amata, krājums nesaka.",
+   "warn": "ŠIS APRAKSTS IR CELTS VIENĪGI NO GRĀMATAS PAŠAS. Pilns vārds, dzimšanas gads, amats un partijas piederība nav noskaidroti un pirms publicēšanas jāiegūst no ārēja reģistra. Autortiesības: miris 1947 → brīvs no 2018 (Latvijā mūžs+70)."
+  },
+  "@j_ampermanis": {
+   "name": "Jānis Ampermanis",
+   "kind": "person",
+   "what": "Tautas Padomes loceklis · Zemnieku Savienības Kārķu nodaļas delegāts",
+   "bio": "Grāmatā viņš ir Zemnieku Savienības Kārķu nodaļas delegāts, kas 15. novembrī kopā ar J. Ābelīti ierodas Valkas konferencē „Līduma“ redakcijas telpās, tiek ievēlēts to delegātu vidū, kuŗus tās pašas dienas plkst. 8 vakara vilciens aizved uz Rīgu, un 17. novembrī ir viens no Zemnieku Savienības 13 delegātiem, kas nodibina Tautas Padomi (Mežmaļu Ata nodaļa, 8. lpp.). 18. novembrī viņš sēž uz skatuves. Savu nodaļu „Lielajā brīdī (Atmiņas)“ (18.–19. lpp.) viņš paraksta: „Kārķu Siguros, 9. novembrī 1923. g.“",
+   "warn": "ŠIS APRAKSTS IR CELTS VIENĪGI NO GRĀMATAS PAŠAS. Dzimšanas gads un vēlākā gaita nav noskaidroti un pirms publicēšanas jāiegūst no ārēja reģistra. Autortiesības: miris 1942 → brīvs no 2013 (Latvijā mūžs+70)."
+  },
+  "@a_brigadere": {
+   "name": "Anna Brigadere",
+   "kind": "person",
+   "what": "Rakstniece · zālē 18. novembrī · „Valsts pieci gadi“ (1923)",
+   "bio": "Krājumā viņas nodaļa ir „Valsts ticības svētkos“ (15.–16. lpp.). Tā sākas ar 1917. gada sapulcēm Maskavā, kur viņa bija bēgļu vidū, un ar okupācijas ziemas lauksaimniecības lekciju, ko lasīja Kārlis Ulmanis un kuŗā viņa klausījās „pavisam ko citu“. 18. novembrī viņa ir zālē un iziet no tās „viena no pēdējiem“. Grāmatā viņa parakstās „Anna Brigader“.",
+   "warn": "Dzīves gadi šim salikumam pārbaudīti tikai autortiesību dēļ: mirusi 1933. gada 25. jūnijā → brīva no 2004 (Latvijā mūžs+70). Viss pārējais šajā aprakstā ir no grāmatas pašas un pirms publicēšanas jāsalīdzina ar ārēju reģistru."
+  },
   "@baltijas_zinas": {
    "name": "Baltijas Ziņas",
    "kind": "publication",
@@ -199,6 +220,215 @@
   }
  },
  "posts": [
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "09.00",
+   "seq": 130,
+   "lv": "Ielu stūŗos un māju aizvējā tikko kūst vēja sanestā plānā, smiltīm sajauktā sniega kārtiņa. Kā tad pēc vairāku dienu kailsalas laiks šodien pielaidīgāks! — Bet ja rīdzinieku gaitas liekas možākas, viņu sejās redzama dziļa līksmība, tad tas nebūt nav laika nopelns. To panākusi ziņa, kas šorīt aplidoja pilsētu, ka vakar vakarā polītsko[?] partiju pārstāvju starpā panākta vienošanās. Šodien jānotiek neatkarīgās Latvijas proklamēšanai. Un rīdzinieku možums un līksmība izskaidrojama ar to, ka katrs steidzas uz to partijas biroju vaj darbinieku, kuŗas loceklis tas skaitās vaj arī pēc pārliecības jūtas tuvāk, lai no visdrošākiem avotiem pārliecinātos par šīs ziņas pareizību.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Rīgas dzīve",
+    "Valsts pasludināšana"
+   ],
+   "atNote": "Stunda avotā nav. Cālītis raksta par rītu — „ziņa, kas šorīt aplidoja pilsētu“ — tāpēc ieraksts novietots rītā; precīzs laiks ir mūsu novērtējums.",
+   "note": "Sniegs, vējš un rīdzinieku sejas ir tas, ko Cālītis redzēja pats. Ziņu par vakardienas vienošanos viņš apraksta kā tādu, kas „aplidoja pilsētu“ — 18. novembŗa rīta avīzēs tās nav: vienīgā latviešu avīze uz ielas, Baltijas Ziņu Nr.168, par gaidāmo aktu neraksta ne vārda. Kā ziņa izplatījās, Cālītis nesaka.",
+   "warn": "„polītsko[?]“ — grāmatā iespiests tā; nolasāms kā „polītisko“, bet nav izlabots."
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "12.00",
+   "seq": 295,
+   "lv": "Tikai ap pusdienas laiku partiju prezidiji un Tautas Padomes locekļi saņem ieejas kartiņas, kas tik vienkāršas, cik vien iespējams: ar trekniem burtiem uz kartona gabaliņa uzdrukāts šīs dienas datums, bet zem tā apakšā aplokā trīs burti ,,L. T. P.“ Tam vajag nozīmēt: ,,Latvijas Tautas Padome“.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Laiks ir avotā: „ap pusdienas laiku“.",
+   "note": "Kartiņu Cālītis turēja rokā. Viņš nosauc arī, kas tās saņēma — partiju prezidiji un Tautas Padomes locekļi; kuŗā no šīm divām kārtām bija viņš pats, grāmata nekur nepasaka."
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "14.00",
+   "seq": 405,
+   "lv": "Tas tomēr nenotika, un jau ap pulksten 2 pēc pusdienas agrākajā II Rīgas pilsētas teātrī, toreizējā operā, bet tagad Nacionālajā teātrī, sāka satecēt ļaužu straumes no visām malām. Pārlaižot acis pār ļaužu pulciņiem garderobē, uz trepēm, fuajè un pašās teātŗa telpās uzkrītoši tas, ka starp tiem brīnum maz sieviešu. Sievietes taču pa laikam nevar atturēties no svinīgiem notikumiem, no kaut kā jauna, nebijuša... Un pakavējoties ilgāk pie tiem nedaudzajiem krāšņajiem punktiem melno svārku un pelēko žakešu rindās, nav grūti tanīs pazīt tās sievietes, kuŗas polītiku izraudzījušās par savu speciālitāti un kopš 1905. gada paspējušas izstrādāt pat savu stilu apģērbā, manierēs, sarunā u. t. t. Varbūt šī ,,vīrišķīgākā“ elementa pārsvars piedod visai sapulcei zināmas nopietnības raksturu, zināmu svarīgumu, jo tanī tiešām neredz nevienu bezbēdīgi vaj vieglprātīgi jsutru[?] seju, tāpat kā vieglajā balsu dunoņā nepaceļas neviena augstāka, pārgalvīga skaņa.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Valsts pasludināšana",
+    "Rīgas dzīve",
+    "Sievietes"
+   ],
+   "atNote": "Laiks ir avotā: „jau ap pulksten 2 pēc pusdienas“. Līdums raksta, ka publika sāk plūst no plkst. 3 — divi pulksteņi, kas nesakrīt, un šis salikums tos nesaskaņo.",
+   "note": "Ievadvārdi „Tas tomēr nenotika“ attiecas uz iepriekšējo rindkopu, kur Cālītis uzskaita četras svešās varas, kas aktu būtu varējušas aizkavēt: vācu zaldātu deputātu padomi, policijas priekšnieku Fūrmani, guberņas priekšnieku un Vācijas komisāru Baltijas zemēs. — Par publikas apģērbu avoti nesaskan: Cālītis redz „melno svārku un pelēko žakešu rindas“ ar nedaudziem krāšņiem punktiem, Rigasche Zeitung 19. novembrī raksta par dāmām sabiedrības tualetēs, daļu pat dekoltētas, bet Anna Brigadere tajā pašā grāmatā raksta, ka liecinieki ieradās „tumšās darbdienas drēbēs“. Neviens lasījums te nav izvēlēts.",
+   "warn": "„jsutru[?]“ — grāmatā iespiests tā; nolasāms kā „jautru“, bet nav izlabots."
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "15.05",
+   "seq": 505,
+   "lv": "Priekš pulksten 3 visas vietas līdz pat pēdējai aizņemtas. Īsi pēc 3 balsu dunoņa parketā apklust: zālē ienāk Tautas Padomes prezidijs un iet itin kā nenoteiktiem, nedrošiem soļiem uz skatuvi. Aiz tā seko Tautas Padomes locekļi. Kā? Pa frakcijām, pa pāŗiem vaj vienam?.. Sapulcētie interesējas arī par to un zīmē gājienā viņiem pazīstamās personas, kuŗas iet gan pa pāŗiem, gan pa vienam, gan cieši cilvēks aiz cilvēka, gan pēc lielākiem atstatumiem, itin kā nodalot partiju no partijas, ieskatu no ieskata. Pec[?] Tautas Padomes pirmās sesijas pirmās sēdes atklāšanas priekšsēža biedrs Zemgals uzaicina sekretāru Biti nolasīt partiju priekšstāvju pēdējās sēdes protokolu un platformu, uz kuŗas pamata visas partijas apņemas kopīgi darboties un vadīt valsti līdz Satversmes Sapulcei. Uz skatuves, Tautas Padomes vidū, paceļas slaiks un kalsens kungs un ar manāmu augšzemnieku akcentu sāk nolasīt abus dokumentus.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Laiks ir avotā un ir PRETRUNĀ ar pārējo korpusu. Cālītis: „Priekš pulksten 3 visas vietas līdz pat pēdējai aizņemtas. Īsi pēc 3 ... zālē ienāk Tautas Padomes prezidijs.“ Līdums: akta sākums nolikts plkst. 4, Tautas Padomes locekļi iet uz skatuvi puspiecos. Tautas Padomes stenogramma: „Sēdi atklāj plkst. ½8 vakarā.“ Rigasche Zeitung 19. novembrī: akts galā ap trīsceturtdaļ sešiem. Ieraksts novietots pēc Cālīša paša pulksteņa, nevis pēc avīzēm — pretruna ir saturs, ne kļūda.",
+   "note": "„Slaiks un kalsens kungs ... ar manāmu augšzemnieku akcentu“ ir sekretārs E. Bite, ko Cālītis nosauc teikumu agrāk. Akcentu nemin neviena avīze un ne stenogramma.",
+   "warn": "„Pec[?]“ — grāmatā iespiests tā; nolasāms kā „Pēc“."
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.17",
+   "seq": 645,
+   "lv": "Kad tas noticis, partijām te vēl reiz sapulcētās tautas priekšā nākas apliecināt, ka viņas apņemas pildīt to, ko solījušās protokolā. Sociāldemokrats P. Kalniņš pieceļas un no papīra lapas lasa savu deklarāciju. Tā ir diezgan gaŗa, diezgan sausa un diezgan apnīkstoša ar saviem atkārtotajiem ,,tik tāl, cik tāl“. Šie ,,tik tāl — cik tāl“ atkārtojas tik bieži, ka pār sapulci jau pārlido kā viegls smieklu vējiņš, kaut arī smiekli paši nav dzirdami.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12.–13. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome",
+    "Strādnieki"
+   ],
+   "atNote": "Stunda avotā nav. Novietots tūlīt pēc P. Kalniņa deklarācijas, ko korpuss pēc stenogrammas liek plkst. 17.15. Pēc Cālīša paša pulksteņa (sk. plkst. 15.05 ierakstu) tas būtu noticis krietni agrāk.",
+   "note": "Smieklus Cālītis tieši noliedz: vējiņš pārlido, bet „smiekli paši nav dzirdami“. Vērtējums („diezgan gaŗa, diezgan sausa un diezgan apnīkstoša“) ir viņa, ne stenogrammas, un Līdums Kalniņa deklarāciju atstāsta vienā teikumā, zāles reakciju neminot. Teikums grāmatā pāriet no 12. uz 13. lappusi."
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.42",
+   "seq": 715,
+   "lv": "Svinīgais valsts proklamēšanas akts ir galā. Zemgalis pieceļas, brīdi stomās, itin kā nule meklētu atmiņā sakāmos vārdus, tad, paziņojis, ka Tautas Padomes sēde slēgta, uzsauc Latvijai saules mūžu un iet no skatuves zemē, Viņam seko Tautas Padomes locekļi tādā pat kārtībā, kā ienākot.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 13,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Stunda avotā nav. Novietots pie sēdes slēgšanas, ko korpuss pēc stenogrammas liek plkst. 17.43.",
+   "note": "Zemgala stostīšanās ir Cālīša novērojums un nav nevienā laikrakstā: stenogrammā un Līdumā stāv tikai slēguma vārdi. Cālītis vienā nodaļā raksta gan „Zemgals“, gan „Zemgalis“ — abas formas atstātas, kā iespiestas."
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.47",
+   "seq": 748,
+   "lv": "Kad Zemgalis vēl atrodas uz pakāpēm no skatuves zālē, no partera krēsliem pieceļas Fr. Grosvalds un ātriem soļiem steidzas pretim Zemgalim. Tas nav paredzēts valsts proklamēšanas ceremoniālā, ka Tautas Padomes priekšsēdi kāds var aizturēt ceļā. Zenmgalis[?] apstājas uz pakāpēm, piesarkst un, neinteresēdamies kādēļ Grosvalds grib tam aizkrustot ceļu, divas reizes atkārto: ,,Tautas Padomes sēde slēgta...“ Tad Grosvalds atkāpjas sānis, un Tautas Padome tam aiziet gaŗām no zāles ārā.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 13,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Stunda avotā nav. Notiek tūlīt pēc sēdes slēgšanas (korpusā plkst. 17.43), kamēr Zemgals vēl ir uz pakāpēm no skatuves zālē; novietots turpat.",
+   "note": "Šīs ainas nav nevienā laikrakstā. Ko Fr. Grosvalds gribēja, Cālītis nesaka — un raksta, ka arī Zemgals to neinteresējās uzzināt. Grāmata nedod ne Grosvalda amatu, ne to, kuŗš no Grosvaldiem tas ir; vārds te stāv tāds, kā iespiests, un nav identificēts.",
+   "warn": "„Zenmgalis[?]“ — grāmatā iespiests tā; nolasāms kā „Zemgalis“."
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "18.10",
+   "seq": 765,
+   "lv": "Kad iznākam uz ielas, ir jau pilnīga tumsa. Vējš, liekas, kļuvis pa to laiku stiprāks un skarbāks. Uz kanāļa tilta kā arvien staigā, itin kā nevarētu miera atrast, vācu kareicvis[?] ar platu bruņu cepuri galvā un uzrakstu uz krūtīm, ka viņš žandarms. Tikpat mierīgi kā vakar un aizvakar pa apledojušo trotuāru šļūc savus nošķiebtos zābakus sirmie vācu zemessargi un smirdina savos milzīgajos pīpjos ķiršu lapas, kumelītes, papardes un ko vēl Dievs devis laukā un mežā, un rūpīgā vācu tauta iepakājusi[?] viņa kareivja tabakas paciņās kā pīpējamās zāles. Vaj šis žandarms un šie zemessargi ar savu līduma dūmu mākuli aiz muguras nav tie, kas šīs dienas svinīgo sēdi padarīja tik bezgala nopietnu? Ejot gar kādu restorānu jau ārpilsētā es tomēr dzirdu pa atvērtām durvīm spēlējam: ,,Dievs, svētī Latviju“. Tas jādzird arī tiem vācu ,,līdumniekiem“ un kaskeniekiem, kas sēd šaī restorānā pie galdiem.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 13,
+   "topics": [
+    "Okupācija",
+    "Rīgas dzīve",
+    "Dievs, svētī Latviju"
+   ],
+   "atNote": "Stunda avotā nav. Cālītis iziet no zāles tūlīt pēc akta un raksta „ir jau pilnīga tumsa“; saule šajā dienā norietēja tūlīt pēc trijiem. Novietots pēc plkst. 17.50 ierakstiem.",
+   "note": "Vienīgā „Dievs, svētī Latviju“ dziedāšana ārpus zāles, kāda šajā dienā ir pierakstīta, un tā ir atmiņa, ne ziņa: Cālītis to dzird pa atvērtām durvīm, ejot gar restorānu ārpilsētā, un neuzraksta ne restorāna, ne ielas vārdu.",
+   "warn": "„kareicvis[?]“ (nolasāms „kareivis“) un „iepakājusi[?]“ (nolasāms „iepakojusi“) — grāmatā iespiests tā, nav izlabots."
+  },
+  {
+   "handle": "@j_ampermanis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.43",
+   "seq": 725,
+   "lv": "18. novembrī jau pāris stundas priekš noliktā laika ļaudis bariem vien devās uz krievu teātri, ieņemdami vietas līdz pēdējai iespējamībai. Tautas Padomes locekļiem ierodoties zālē, tauta viņus saņēma ar ilgiem aplausiem, un kad Tautas Padomes vicepriekšsēdis Zemgals (Čakste, atrazdamies Zemgalē, nebij paspējis ierasties, lai gan telegrafiski bija ticis viņa paziņots[?]) pēc Latvijas valsts proklamēšanas uzaicināja vienoties lūgšanā par valsti, nodziedot ,,Dievs, svētī Latviju“, tad sajūsma bija sasniegusi augstāko pakāpi, ne viena vien asaru pērle noritēja pār Tautas Padomes locekļu un dalībnieku vaigiem, piedzīvojot svinīgo brīdi, kad pēc 700 gadiem tauta un zeme top atkal brīva no svešiem kungiem. Vicepriekšsēdim paziņojot tautai par Kārļa Ulmaņa izvēlēšanu par pirmo Latvijas valsts ministru prezidentu, tauta uzņēma šo ziņu ar vētrainiem aplausiem.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 19. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 19,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome",
+    "Dievs, svētī Latviju"
+   ],
+   "atNote": "Ampermaņa rindkopa ietver visu pēcpusdienu — no ļaužu plūduma „pāris stundas priekš noliktā laika“ līdz himnai akta beigās. Ieraksts novietots pie himnas un sēdes slēgšanas (korpusā plkst. 17.43); rindkopas pirmais teikums attiecas uz plkst. ~14.",
+   "note": "Ampermanis sēdēja uz skatuves kā Tautas Padomes loceklis, Zemnieku Savienības 13 delegātu vidū (Mežmaļu Ata nodaļa, 8. lpp.). Divas vietas, kur viņš pārsniedz to, ko varēja redzēt vai dzirdēt pats: Čakstes prombūtnes iemesls („atrazdamies Zemgalē“) un apgalvojums, ka Zemgals paziņojis tautai par Ulmaņa izvēlēšanu — tādu paziņojumu zālei nemin Līdums, un šajā korpusā tāda nav nevienā ierakstā; Līdums raksta, ka Ulmanis zālē runāja pats. Zemgala amatu Ampermanis sauc par „vicepriekšsēdis“, Līdums — par „priekšsēža otrais biedrs“.",
+   "warn": "„...lai gan telegrafiski bija ticis viņa paziņots[?]“ — iekavās liktais teikums grāmatā ir šādā bojātā formā; tā nozīme nav droša un nav izlabota."
+  },
+  {
+   "handle": "@a_brigadere",
+   "type": "atminas",
+   "written": 1923,
+   "at": "16.25",
+   "seq": 545,
+   "lv": "Uz šo ticību dibinājās 18. novembris 1918. gadā. Nekā vairāk nebija jaunajai Latvijai. Ne armijas, ne naudas, ne pajumta pat, kur nolikt galvu. Neviens karogs nepuškoja Rīgas namus. Tumšās darbdienas drēbēs ieradās pasludināšanas akta liecinieki. Un nekādu citu meslu viņiem nebija ko dot jaunajai valstij kā stipra ticība. Latvija būs, par spīti visiem, kas nevēlēja viņas patstāvībai ilgāku mūžu, kā vienu dienu.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 16. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 16,
+   "topics": [
+    "Valsts pasludināšana",
+    "Rīgas dzīve"
+   ],
+   "atNote": "Stunda avotā nav. Rindkopa ir apcere par dienu, bet divi novērojumi tajā — par karogiem Rīgas namos un par lieciniekiem tumšās darbdienas drēbēs — attiecas uz publiku pirms akta, tāpēc ieraksts novietots tieši pirms tā (korpusā akts sākas plkst. 16.30).",
+   "note": "Brigadere ir viena no tām „brīnum maz sieviešu“, par kuŗām tajā pašā grāmatā raksta Cālītis, un viņas lasījums par apģērbu ir PRETRUNĀ ar Rigasche Zeitung 19. novembŗa aprakstu (dāmas sabiedrības tualetēs, daļa pat dekoltētas) un daļēji ar Cālīti. „Neviens karogs nepuškoja Rīgas namus“ attiecas uz pilsētu, ne uz zāli: zālē karogs bija — Līdums raksta par nacionālo karogu pāri skatuvei, Rigasche Zeitung par sarkanbaltsarkanu audumu uz skatuves un sānu ložās."
+  },
+  {
+   "handle": "@a_brigadere",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.55",
+   "seq": 755,
+   "lv": "Šai neaizmirstamajā dienā man gadījās mazs piedzīvojums, kuŗu es gribētu uzskatīt pr[?] simbolisku. Kad pēc pabeigta akta ātri tukšojās zāle un es izgāju viena no pēdējiem, teātŗa vestibilā uzreiz man piesteidzās — cilvēks, — kuŗš bija labi pazīstams kā Marksa bauslības kalps un internacionāles pielūdzējs. Es viņu personīgi nepazinu, bet viņš piesteidzās man mirdzošām acīm un satvēra manu roku abām savām: ,,Sveiki, sveiki brīvajā Latvijā!“",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 16. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 16,
+   "topics": [
+    "Valsts pasludināšana",
+    "Rīgas dzīve"
+   ],
+   "atNote": "Stunda avotā nav. Notiek pēc akta, zālei tukšojoties — Brigadere iziet „viena no pēdējiem“; novietots pēc plkst. 17.50 ierakstiem.",
+   "note": "Cilvēku, kas satvēra viņas roku, Brigadere nenosauc un raksta, ka personīgi viņu nepazina. Tāpēc šeit nav neviena vārda, ko varētu identificēt, un mēs to nemēģinām.",
+   "warn": "„uzskatīt pr[?] simbolisku“ — grāmatā iespiests tā; nolasāms kā „par“."
+  },
   {
    "handle": "@rigas_zaldatu_padome",
    "type": "dokuments",
@@ -3395,6 +3625,7 @@
   "gap": "[?] — cipars vai vārds, ko OCR nedod un ko mēs neuzminam. Paskaidrojums katra ieraksta „warn“ laukā (saskarnē — zem „avots“).",
   "ident": "[≈] — nosaukums, vārds vai vieta, ko bojātā OCR vietā identificējām pēc ārēja reģistra (bibliogrāfijas, repertuāra, vārdu saraksta), nevis nolasījām. Katram ierakstam zem „avots“ ir kandidāts, tā avots un pierādījums — tieši viena no divām sugām, nosaukta vārdā: „burtu atbilstība“ (pozīciju pa pozīcijai pret OCR, pārbaudīta pret to, kā tas pats vārds šajā korpusā sadrūp citur) vai „dokumentārs apliecinājums“ (cits tā paša avota ieraksts, kas to pašu nosauc neatkarīgi, ar savu atrašanās vietu). Vārda garuma vai formas salīdzinājums nav pierādījums. Tikai nosaukumiem, personām, vietām un iestādēm; parastam tekstam nekad.",
   "today": "Konta lauki „today“, „todayWhat“ un „live“ ir TAGADNES fakti par iestādi, nevis par 1918. gadu: „today“ ir mūsdienu pēctecības iestādes X konts un „todayWhat“ — tās nosaukums šodien (@tautas_padome → Saeima); „live“ nozīmē, ka amats ir nepārtraukts un šis X konts ir reāls un šodien aktīvs (@POTUS). Tie rādās VIENĪGI profila kartītē, nekad plūsmā, nekad ieraksta tekstā un ne „later“ vietā — tie nesaka, kas ar 18. novembri notika vēlāk, tikai kur šī iestāde ir sasniedzama šodien.",
-  "reread": "„reread“ un „change“ — 2026. gada novembra salikums. Divas neatkarīgas pārlasīšanas lasīja pašus lappušu skenējumus: „reocr“ (23 raksti augstā palielinājumā, tīri ievaddati — tā nekad neredzēja agrākos lasījumus) un „gaps-read“ (43 agrāk nesalasāmas vietas; šai pārlasīšanai ievadfailā bija ieplūdušas 48 jau interpretētas virknes, tāpēc tās SAKRITĪBA ar agrāko lasījumu ir vāja liecība, bet PRETRUNA ar to ir stipra). Lauks „ocr“ ir arhīva paša teksts un šajā salikumā nav aiztikts ne vienā ierakstā; jaunais lasījums stāv blakus laukā „reread“, kas nosauc pārlasīšanu, raksta vai vietas numuru un pārliecību. Katrs „lv“ labojums nes ierakstu „change“ ({from, to, source, outcome, why}), kur „outcome“ ir „corrected“ vai „gap closed“. Kur abas pārlasīšanas savā starpā nesakrīt, abi lasījumi ir nosaukti ieraksta „warn“ laukā un neviens nav izvēlēts."
+  "reread": "„reread“ un „change“ — 2026. gada novembra salikums. Divas neatkarīgas pārlasīšanas lasīja pašus lappušu skenējumus: „reocr“ (23 raksti augstā palielinājumā, tīri ievaddati — tā nekad neredzēja agrākos lasījumus) un „gaps-read“ (43 agrāk nesalasāmas vietas; šai pārlasīšanai ievadfailā bija ieplūdušas 48 jau interpretētas virknes, tāpēc tās SAKRITĪBA ar agrāko lasījumu ir vāja liecība, bet PRETRUNA ar to ir stipra). Lauks „ocr“ ir arhīva paša teksts un šajā salikumā nav aiztikts ne vienā ierakstā; jaunais lasījums stāv blakus laukā „reread“, kas nosauc pārlasīšanu, raksta vai vietas numuru un pārliecību. Katrs „lv“ labojums nes ierakstu „change“ ({from, to, source, outcome, why}), kur „outcome“ ir „corrected“ vai „gap closed“. Kur abas pārlasīšanas savā starpā nesakrīt, abi lasījumi ir nosaukti ieraksta „warn“ laukā un neviens nav izvēlēts.",
+  "atminas": "`atminas` — atmiņas, kas rakstītas gadus pēc dienas, nevis tās nedēļas laikraksts. Cita liecību suga, un tāpēc rakstīšanas gads ir kartītes SEJĀ („atmiņas — rakstītas 1923. gadā“), ne metadatos: bez derīga vesela skaitļa `written` ieraksts netiek rādīts, tāpat kā bez avota saites. Lauks `at` paliek 1918. gada mirklis, ko teksts apraksta, nevis rakstīšanas laiks. Šie ieraksti NESASKAŅO pretrunas ar laikrakstiem — ne par apģērbu, ne par pulksteņiem, ne par summām —; katra pretruna ir nosaukta ieraksta `atNote` vai `note` laukā un neviens lasījums nav izvēlēts. Trīs krājuma ieraksti par 17. novembŗa sēdi šajā vienas dienas plūsmā neieiet un paliek rereading/atminas.json."
  }
 }

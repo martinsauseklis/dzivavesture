@@ -1,6 +1,6 @@
 // Render one link-preview card per account to public/og/@handle.png (1200×630).
 //
-//   node tools/og-profiles.mjs            — all 30
+//   node tools/og-profiles.mjs            — all 33
 //   node tools/og-profiles.mjs @k_ulmanis — one
 //
 // Same idea as tools/og-card.sh: the card is HTML rendered in Chrome, so it
@@ -11,7 +11,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { avatarHue, descriptionLines, escapeHtml, initials, plural, readIdentities, refusalReason } from '../src/lib/feed.ts';
+import { avatarHue, descriptionLines, escapeHtml, holdsLine, initials, readIdentities, refusalReason } from '../src/lib/feed.ts';
 
 const root = new URL('..', import.meta.url).pathname;
 const data = JSON.parse(readFileSync(join(root, 'src/data/18-11-1918.json'), 'utf8'));
@@ -30,7 +30,7 @@ mkdirSync(work, { recursive: true });
 
 for (const handle of handles) {
   const a = data.accounts[handle];
-  const n = posts.filter((p) => p.handle === handle).length;
+  const mine = posts.filter((p) => p.handle === handle);
   const square = a.kind !== 'person';
   const lines = descriptionLines(a, identities.get(handle));
   // Room under the name block is ~270 px: 6 lines at 32 px × 1.35. A single
@@ -59,7 +59,7 @@ for (const handle of handles) {
   <div class="who"><span class="avatar">${escapeHtml(initials(a.name))}</span>
     <div><div class="name">${escapeHtml(a.name)}</div><div class="handle">${escapeHtml(handle)}</div></div></div>
   ${lines.map((line, i) => `<p class="${i === 0 && lines.length > 1 ? 'what' : 'bio'}">${escapeHtml(line)}</p>`).join('\n  ')}
-  <div class="n">${n ? `${n} ${plural(n)} tās dienas Rīgas avīzēs` : 'Tajā dienā neko nesaka — avīzes min'}</div>`;
+  <div class="n">${escapeHtml(holdsLine(mine))}</div>`;
   const file = join(work, `${handle}.html`);
   writeFileSync(file, doc);
   const out = join(root, 'public/og', `${handle}.png`);
