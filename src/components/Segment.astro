@@ -6,7 +6,7 @@
 // not rendered as a panel any more — by his choice; the data keeps them. What
 // remains of them on the face is the inline markers, each explaining itself
 // in a title attribute.
-import type { Post, Segment } from '../lib/feed.ts';
+import { recollectionLine, type Post, type Segment } from '../lib/feed.ts';
 
 interface Props {
   post: Post;
@@ -18,9 +18,16 @@ interface Props {
 const { post: p, html, k, n } = Astro.props;
 const id = (kind: string) => (k ? `${kind}-${p.seq}-${k + 1}` : `${kind}-${p.seq}`);
 const replies = p.comments?.length ?? 0;
+// A recollection written years later: the writing year is the one thing on
+// the face a reader cannot infer from the account, so it is the one line in
+// the accent — on EVERY segment, because a reader three segments into a
+// chapter has settled into reading and must still know when the words were
+// written. The clock time stays the moment described, in 1918.
+const written = recollectionLine(p);
 ---
 <div class="seg">
   {k > 0 && <div class="seghead">{p.handle} · <b>{k + 1}/{n}</b></div>}
+  {written && <p class="written" title={`${p.at} ir notikuma laiks; teksts rakstīts ${p.written}. gadā`}>{written}</p>}
   <p class="lv" set:html={html} />
 
   {/* The rest of the thread, replies, and the source link at the far right. */}

@@ -9,7 +9,7 @@ import data from '../../data/18-11-1918.json';
 import Head from '../../components/Head.astro';
 import Post from '../../components/Post.astro';
 import {
-  avatarHue, descriptionLines, EMPTY_COPY, initials, lead, mentionsOf, plural, readIdentities, refusalReason,
+  avatarHue, descriptionLines, EMPTY_COPY, initials, lead, mentionsOf, plural, readIdentities, recollectionHeader, refusalReason,
   type Account, type Post as PostRecord,
 } from '../../lib/feed.ts';
 
@@ -36,6 +36,8 @@ const all = (data.posts as PostRecord[]).slice().sort((x, y) => x.seq - y.seq)
 const posts = all.filter((p) => p.handle === handle);
 const named = mentionsOf(handle, all);
 const n = posts.length;
+// Every post a recollection → the header says so, whatever the bio says.
+const allRecollected = recollectionHeader(posts);
 // What the page says when the account said nothing: the data's own `silent`
 // text first; otherwise the copy written for exactly these accounts.
 const silent = a.silent ?? EMPTY_COPY[handle];
@@ -77,6 +79,7 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
         <p class="today">{a.live} <a href={`https://x.com/${handle.slice(1)}`} target="_blank" rel="noopener">{handle}</a></p>
       )}
       <p class="pcount">Pirmdiena, 18. novembris 1918{n > 0 && ` · ${n} ${plural(n)}`}</p>
+      {allRecollected && <p class="written">{allRecollected}</p>}
     </section>
 
     {n > 0 ? (

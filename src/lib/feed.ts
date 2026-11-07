@@ -82,6 +82,16 @@ export const isWrittenYear = (y: unknown): y is number => Number.isInteger(y) &&
 export const recollectionLine = (post: Pick<Post, 'type' | 'written'>) =>
   post.type === 'atminas' && isWrittenYear(post.written) ? `atmiņas — rakstītas ${post.written}. gadā` : null;
 
+// A profile whose every post is a recollection says so in its header, in its
+// own right — structurally, not by the wording of a researched bio that a
+// later edit could lose. Null when there is nothing, or anything contemporary.
+// Years are listed when they differ („1923., 1925. gadā“).
+export function recollectionHeader(posts: Pick<Post, 'type' | 'written'>[]): string | null {
+  if (!posts.length || !posts.every((p) => p.type === 'atminas' && isWrittenYear(p.written))) return null;
+  const years = [...new Set(posts.map((p) => p.written as number))].sort();
+  return `Visi ieraksti ir atmiņas, rakstītas ${years.map((y) => `${y}.`).join(', ')} gadā`;
+}
+
 // Every source permalink must point into the archive. A bare "truthy url" check
 // would let `javascript:` or a foreign host through the one guard the whole
 // site rests on.

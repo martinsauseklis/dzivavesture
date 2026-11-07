@@ -136,14 +136,21 @@ check('P9: no tabindex="-1" and no interactive element without a real tag', page
 // `<a` followed by whitespace or `>` — not `<article`.
 check('P9: every link on a profile has an href', handles.every((h) => !/<a(?=[\s>])(?![^>]*\shref=)[^>]*>/.test(html(page(h)))));
 
-// --- atmiņas: a recollection's writing year is on the face of every such post --
-// Counted against the data and printed, so a corpus with no recollection yet
-// shows this row passing on zero rather than vacuously.
+// --- atmiņas: the writing year is on the face of EVERY segment of every such post,
+// and on the header of a profile whose posts are all recollections. Counted
+// against the data and printed, so a corpus with no recollection yet shows
+// these rows passing on zero rather than vacuously.
 const recollections = feedPosts.filter((p) => p.type === 'atminas');
-const writtenLines = attr(feed, /<p class="written"[^>]*>atmiņas — rakstītas (\d{4})\. gadā<\/p>/g);
-check(`atmiņas: ${recollections.length} recollection(s) in the corpus, each with its year on the face`,
-  writtenLines.length === recollections.length && recollections.every((p, i) => Number(writtenLines[i]) === p.written),
+const expectedLines = recollections.flatMap((p) => Array(p.thread?.length ?? 1).fill(p.written));
+const writtenLines = attr(feed, /<p class="written"[^>]*>atmiņas — rakstītas (\d{4})\. gadā<\/p>/g).map(Number);
+check(`atmiņas: ${recollections.length} recollection(s), ${expectedLines.length} segment(s), each segment with its year on the face`,
+  JSON.stringify(writtenLines) === JSON.stringify(expectedLines),
   recollections.length ? `years ${writtenLines.join()}` : 'none in the corpus yet — structural until the merge lands');
+const memoirists = handles.filter((h) => feedPosts.some((p) => p.handle === h) && feedPosts.filter((p) => p.handle === h).every((p) => p.type === 'atminas'));
+check(`atmiņas: ${memoirists.length} account(s) whose every post is a recollection say so in the profile header`,
+  memoirists.every((h) => /<p class="written">Visi ieraksti ir atmiņas, rakstītas /.test(html(page(h))))
+  && handles.filter((h) => !memoirists.includes(h)).every((h) => !html(page(h)).includes('Visi ieraksti ir atmiņas')),
+  memoirists.length ? memoirists.join() : 'none in the corpus yet — structural until the merge lands');
 
 // --- P1 over HTTP, when a server is given ---------------------------------
 const origin = process.argv[2];

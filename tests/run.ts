@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
   avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
-  isWrittenYear, recollectionLine, type Post, type Account,
+  isWrittenYear, recollectionLine, recollectionHeader, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -66,6 +66,16 @@ const refusals: [string, Post, string | null][] = [
 check('recollectionLine names the year on the face', recollectionLine({ type: 'atminas', written: 1923 }) === 'atmiņas — rakstītas 1923. gadā');
 check('recollectionLine is null for a contemporary type', recollectionLine({ type: 'citats' }) === null);
 check('recollectionLine is null without a valid year', recollectionLine({ type: 'atminas' }) === null);
+// --- the profile header when every post is a recollection -------------------
+// | posts                                   | expected                                            |
+// | [atminas 1923, atminas 1923]            | 'Visi ieraksti ir atmiņas, rakstītas 1923. gadā'   |
+// | [atminas 1923, atminas 1925]            | '… rakstītas 1923., 1925. gadā'                    |
+// | [atminas 1923, citats]                  | null                                               |
+// | []                                      | null                                               |
+check('recollectionHeader: all recollections, one year', recollectionHeader([{ type: 'atminas', written: 1923 }, { type: 'atminas', written: 1923 }]) === 'Visi ieraksti ir atmiņas, rakstītas 1923. gadā');
+check('recollectionHeader: two years, both named', recollectionHeader([{ type: 'atminas', written: 1925 }, { type: 'atminas', written: 1923 }]) === 'Visi ieraksti ir atmiņas, rakstītas 1923., 1925. gadā');
+check('recollectionHeader: one contemporary post → null', recollectionHeader([{ type: 'atminas', written: 1923 }, { type: 'citats' }]) === null);
+check('recollectionHeader: no posts → null', recollectionHeader([]) === null);
 check('isWrittenYear: 1919 and 2099 yes; 1918, 2100, 1923.5, "1923" no',
   isWrittenYear(1919) && isWrittenYear(2099) && !isWrittenYear(1918) && !isWrittenYear(2100) && !isWrittenYear(1923.5) && !isWrittenYear('1923'));
 for (const [name, p, want] of refusals)

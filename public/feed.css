@@ -82,8 +82,11 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 /* A person's words as a paper rendered them — said, not labelled. */
 .reporter { margin:0 0 2px; font-size:13px; color:var(--soft); }
 /* A recollection written years later. The only accent-coloured text on a card
-   face, so it cannot be missed, and still one quiet line — not a badge. */
+   face, so it cannot be missed, and still one quiet line — not a badge. It is
+   repeated on every thread segment and, when every post of an account is a
+   recollection, on the profile header. */
 .written { margin:0 0 2px; font-size:13px; font-weight:600; color:var(--accent); cursor:help; }
+.phead .written { margin-top:6px; cursor:default; }
 
 /* The words run the full width: on a 400 px phone a 48 px indent under the
    avatar cost an eighth of every line, and 1918 sentences are long. */
