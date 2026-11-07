@@ -136,6 +136,15 @@ check('P9: no tabindex="-1" and no interactive element without a real tag', page
 // `<a` followed by whitespace or `>` — not `<article`.
 check('P9: every link on a profile has an href', handles.every((h) => !/<a(?=[\s>])(?![^>]*\shref=)[^>]*>/.test(html(page(h)))));
 
+// --- atmiņas: a recollection's writing year is on the face of every such post --
+// Counted against the data and printed, so a corpus with no recollection yet
+// shows this row passing on zero rather than vacuously.
+const recollections = feedPosts.filter((p) => p.type === 'atminas');
+const writtenLines = attr(feed, /<p class="written"[^>]*>atmiņas — rakstītas (\d{4})\. gadā<\/p>/g);
+check(`atmiņas: ${recollections.length} recollection(s) in the corpus, each with its year on the face`,
+  writtenLines.length === recollections.length && recollections.every((p, i) => Number(writtenLines[i]) === p.written),
+  recollections.length ? `years ${writtenLines.join()}` : 'none in the corpus yet — structural until the merge lands');
+
 // --- P1 over HTTP, when a server is given ---------------------------------
 const origin = process.argv[2];
 if (origin) {

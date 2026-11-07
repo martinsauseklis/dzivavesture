@@ -15,8 +15,9 @@ import {
 
 // The sourced identity line per account ("what this newspaper / organisation /
 // person is"), researched separately. Read strictly at build time: a wrong shape,
-// a missing file or a handle mismatch fails the build rather than render a
-// profile without its bio.
+// a missing file or an unknown handle fails the build rather than render a
+// profile without its bio. An account not researched yet keeps its what/bio
+// and is named below, so it is never silent and never a broken build.
 const identitiesFile = new URL('../../../rereading/identities.json', import.meta.url);
 const identities = readIdentities(JSON.parse(readFileSync(identitiesFile, 'utf8')), Object.keys(data.accounts));
 
@@ -26,7 +27,8 @@ export function getStaticPaths() {
 const { handle } = Astro.params;
 const accounts = data.accounts as Record<string, Account>;
 const a = accounts[handle];
-const lines = descriptionLines(a, identities.get(handle)!);
+const lines = descriptionLines(a, identities.get(handle));
+if (!identities.has(handle)) console.warn(`${handle}: nav rereading/identities.json ierakstā — rāda datu what/bio`);
 
 // The same guards as the feed, so a profile can never show a post the feed refused.
 const all = (data.posts as PostRecord[]).slice().sort((x, y) => x.seq - y.seq)

@@ -5,7 +5,7 @@
 // the words. The scholarly fields stay in the data and are not rendered. A long item is a thread: the first segment is the post, the rest
 // hang below it, collapsed behind „rādīt pavedienu (n)“.
 import Segment from './Segment.astro';
-import { avatarHue, bodyHtml, initials, profilePath, reportedBy, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
+import { avatarHue, bodyHtml, initials, profilePath, recollectionLine, reportedBy, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
 
 interface Props {
   post: Post;
@@ -27,6 +27,10 @@ if (unmatched.length) console.warn(`post ${p.seq}: nav tekstā, netiek rādīts:
 const n = segments.length;
 // A person's words as a paper rendered them: said in language on the face.
 const reporter = account.kind === 'person' && p.type === 'atstastits' ? reportedBy(p.via) : null;
+// A recollection written years later: the writing year is the one thing on
+// the face a reader cannot infer from the account, so it is the one line in
+// the accent. The clock time stays the moment described, in 1918.
+const written = recollectionLine(p);
 ---
 <article class="post" id={`p-${p.seq}`} data-topics={p.topics.join('\n')}>
   <div class="who">
@@ -46,6 +50,7 @@ const reporter = account.kind === 'person' && p.type === 'atstastits' ? reported
 
   <div class="body">
     {reporter && <p class="reporter">kā ziņo {reporter}</p>}
+    {written && <p class="written" title={`${p.at} ir notikuma laiks; teksts rakstīts ${p.written}. gadā`}>{written}</p>}
     <Segment post={p} segment={segments[0]} html={bodies[0].html} k={0} n={n} />
     {n > 1 && (
       <div class="thread" id={`t-${p.seq}`} hidden>

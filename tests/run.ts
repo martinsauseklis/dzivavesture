@@ -2,7 +2,8 @@
 import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
-  avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead, type Post, type Account,
+  avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
+  isWrittenYear, recollectionLine, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -35,6 +36,10 @@ const post = (over: Partial<Post>): Post => ({ ...base, ...over });
 // | type outside the four        | type 'tvīts'                           | nezināms tips                 |
 // | meta post                    | type 'nezinamais'                      | meta-ieraksts nav plūsmā      |
 // | comment without archive url  | comments:[{url:''}]                    | komentārs bez avota saites    |
+// | recollection with its year   | k_ulmanis, atminas, written 1923       | null                          |
+// | recollection, no year        | k_ulmanis, atminas                     | atmiņām nav derīga …          |
+// | recollection, year a string  | atminas, written '1923'                | atmiņām nav derīga …          |
+// | recollection "written" 1918  | atminas, written 1918 (not later)      | atmiņām nav derīga …          |
 const refusals: [string, Post, string | null][] = [
   ['sourced publication quote', post({}), null],
   ['person account quoting', post({ handle: '@k_ulmanis', type: 'citats' }), 'personas kontam nevar būt tiešs citāts'],
@@ -47,7 +52,22 @@ const refusals: [string, Post, string | null][] = [
   ['type outside the four', post({ type: 'tvīts' as Post['type'] }), 'nezināms tips'],
   ['meta post refused from the feed', post({ type: 'nezinamais' }), 'meta-ieraksts nav plūsmā'],
   ['comment without archive url', post({ comments: [{ name: 'x', handle: '@lidums', text: 't', via: 'v', url: '' }] }), 'komentārs bez avota saites'],
+  ['recollection with its year', post({ handle: '@k_ulmanis', type: 'atminas', written: 1923 }), null],
+  ['recollection without a year', post({ handle: '@k_ulmanis', type: 'atminas' }), 'atmiņām nav derīga rakstīšanas gada'],
+  ['recollection with the year as a string', post({ handle: '@k_ulmanis', type: 'atminas', written: '1923' as unknown as number }), 'atmiņām nav derīga rakstīšanas gada'],
+  ['recollection "written" in 1918', post({ handle: '@k_ulmanis', type: 'atminas', written: 1918 }), 'atmiņām nav derīga rakstīšanas gada'],
 ];
+
+// --- the recollection line on the face ----------------------------------------
+// | input                              | expected                           |
+// | atminas, written 1923              | 'atmiņas — rakstītas 1923. gadā'   |
+// | citats                             | null                               |
+// | atminas, no year (refused anyway)  | null                               |
+check('recollectionLine names the year on the face', recollectionLine({ type: 'atminas', written: 1923 }) === 'atmiņas — rakstītas 1923. gadā');
+check('recollectionLine is null for a contemporary type', recollectionLine({ type: 'citats' }) === null);
+check('recollectionLine is null without a valid year', recollectionLine({ type: 'atminas' }) === null);
+check('isWrittenYear: 1919 and 2099 yes; 1918, 2100, 1923.5, "1923" no',
+  isWrittenYear(1919) && isWrittenYear(2099) && !isWrittenYear(1918) && !isWrittenYear(2100) && !isWrittenYear(1923.5) && !isWrittenYear('1923'));
 for (const [name, p, want] of refusals)
   check(`refusal: ${name}`, refusalReason(p, accounts[p.handle]) === want, `want ${want}`);
 
@@ -151,7 +171,7 @@ check('mentionsOf: only the posts that name the handle, in seq order', named.map
 // | input                                             | expected                      |
 // | { accounts: [ {handle:'@a', identity:'X'}, {handle:'@b', identity:null} ] } | Map of 2 |
 // | { '@a': {identity:'X'} }  (a map, the old guess)  | throws "an array, not a map"  |
-// | accounts: [ {handle:'@a', identity:'X'} ], handles ['@a','@b'] | throws "no entry for @b" |
+// | accounts: [ {handle:'@a', identity:'X'} ], handles ['@a','@b'] | map of 1: @b absent, no throw (not researched yet) |
 // | accounts: [ …, {handle:'@zz', identity:'X'} ]     | throws "not an account"        |
 // | accounts: [ {handle:'@a'}, {handle:'@a'} ]        | throws "appears twice"         |
 // | identity: 5                                       | throws "string or null"       |
@@ -160,7 +180,8 @@ const throws = (fn: () => unknown, msg: string) => { try { fn(); return false; }
 const good = readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }, { handle: '@b', identity: null, bio: null }] }, ['@a', '@b']);
 check('readIdentities: the array shape reads to a map of every handle', good.size === 2 && good.get('@a')!.identity === 'X' && good.get('@b')!.identity === null);
 check('readIdentities: a handle-keyed map fails loudly', throws(() => readIdentities({ '@a': { identity: 'X' } }, ['@a']), 'an array, not a map'));
-check('readIdentities: a handle missing from the file fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }] }, ['@a', '@b']), 'no entry for @b'));
+const partial = readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }] }, ['@a', '@b']);
+check('readIdentities: a handle not in the file yet is absent from the map, never a throw', partial.size === 1 && !partial.has('@b'));
 check('readIdentities: a handle unknown to the data fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }, { handle: '@zz', identity: 'X', bio: 'b' }] }, ['@a']), 'not an account'));
 check('readIdentities: a duplicate handle fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 'X', bio: 'b' }, { handle: '@a', identity: 'Y', bio: 'b' }] }, ['@a']), 'appears twice'));
 // | bio: 5                                            | throws "string or null"       |
@@ -179,12 +200,14 @@ check('readIdentities: an object identity fails loudly', throws(() => readIdenti
 // | @zemes_sargi     | null          | [what, bio]    |
 // | @x (any other)   | null          | []             |
 // | bio set          | [bio]  — the long `identity` never reaches the page |
+// | undefined (not researched yet) | [what, bio] — never silence       |
 const acc: Account = { name: 'X', kind: 'org', what: 'W', bio: 'B' };
 check('descriptionLines: the bio alone — never the long identity, never what/bio beside it',
   JSON.stringify(descriptionLines(acc, { handle: '@x', identity: 'A 700-character encyclopedia entry…', bio: 'Laikraksts' })) === '["Laikraksts"]');
 check('descriptionLines: @f_brodermanis null → no description at all', descriptionLines(acc, { handle: '@f_brodermanis', identity: null, bio: null }).length === 0);
 check('descriptionLines: @zemes_sargi null → the paper-sourced what and bio stand', JSON.stringify(descriptionLines(acc, { handle: '@zemes_sargi', identity: null, bio: null })) === '["W","B"]');
 check('descriptionLines: any other null → nothing', descriptionLines(acc, { handle: '@x', identity: null, bio: null }).length === 0);
+check('descriptionLines: not researched yet → the data\'s own what and bio', JSON.stringify(descriptionLines(acc, undefined)) === '["W","B"]');
 
 // --- lead: the first sentence for a preview, no full stop ---------------------
 // | input                                                   | expected                               |

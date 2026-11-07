@@ -81,6 +81,9 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 .stamp { margin-left:7px; }
 /* A person's words as a paper rendered them — said, not labelled. */
 .reporter { margin:0 0 2px; font-size:13px; color:var(--soft); }
+/* A recollection written years later. The only accent-coloured text on a card
+   face, so it cannot be missed, and still one quiet line — not a badge. */
+.written { margin:0 0 2px; font-size:13px; font-weight:600; color:var(--accent); cursor:help; }
 
 /* The words run the full width: on a 400 px phone a 48 px indent under the
    avatar cost an eighth of every line, and 1918 sentences are long. */

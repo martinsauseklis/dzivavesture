@@ -20,7 +20,13 @@ export type Comment = { name: string; handle: string; text: string; via: string;
 
 export type Post = {
   handle: string;
-  type: 'citats' | 'atstastits' | 'dokuments' | 'nezinamais';
+  // citats / atstastits / dokuments are printed that week. atminas is a
+  // recollection written years later — a different class of evidence, so the
+  // year it was written is required (guard 6) and goes on the card's face.
+  type: 'citats' | 'atstastits' | 'dokuments' | 'nezinamais' | 'atminas';
+  // The year a recollection was written. Required when type is 'atminas';
+  // `at` stays the 1918 clock time of the moment it describes.
+  written?: number;
   at: string;
   seq: number;
   lv: string;
@@ -62,7 +68,19 @@ export const TYPE_LABEL: Record<Post['type'], string> = {
   atstastits: 'atstāstīts',
   dokuments: 'dokuments',
   nezinamais: 'nezināmais',
+  atminas: 'atmiņas',
 };
+
+// A recollection's writing year: a whole year after the day itself, not past
+// the archive. Anything else is a typo, not a date. Breaks when: the site
+// gains a day after 2099, or a memoir genuinely written in 1918.
+export const isWrittenYear = (y: unknown): y is number => Number.isInteger(y) && (y as number) > 1918 && (y as number) <= 2099;
+
+// What the face says above a recollection, so the writing date cannot be
+// missed — the one thing a reader cannot infer from the account. Null for
+// every other type.
+export const recollectionLine = (post: Pick<Post, 'type' | 'written'>) =>
+  post.type === 'atminas' && isWrittenYear(post.written) ? `atmiņas — rakstītas ${post.written}. gadā` : null;
 
 // Every source permalink must point into the archive. A bare "truthy url" check
 // would let `javascript:` or a foreign host through the one guard the whole
@@ -82,12 +100,16 @@ const isArchiveUrl = (url: unknown) => typeof url === 'string' && url.startsWith
 //   5. A `nezinamais` post is a note about the sources, not a post; it is
 //      refused from the feed and counted, so a meta-device can never sit in
 //      the timeline again. Gaps are stated in the page's own note instead.
+//   6. An `atminas` post without a valid writing year cannot render: the year
+//      is the whole point of the type, and a recollection passing as a
+//      contemporary report is the lie this site exists not to tell.
 export function refusalReason(post: Post, account: Account | undefined): string | null {
   if (!account) return 'nezināms konts';
   if (!(post.type in TYPE_LABEL)) return 'nezināms tips';
   if (post.type === 'nezinamais') return 'meta-ieraksts nav plūsmā';
   if (!isArchiveUrl(post.url)) return 'nav avota saites';
   if (account.kind === 'person' && post.type === 'citats') return 'personas kontam nevar būt tiešs citāts';
+  if (post.type === 'atminas' && !isWrittenYear(post.written)) return 'atmiņām nav derīga rakstīšanas gada';
   for (const c of post.comments ?? []) if (!isArchiveUrl(c.url)) return 'komentārs bez avota saites';
   return null;
 }
@@ -222,10 +244,14 @@ export const viaText = (via: string) => via.replace(/^Atstāstīts: /, '');
 
 // rereading/identities.json — the researched identity line per account ("what
 // this newspaper, organisation or person IS"), an ARRAY under `accounts`, not a
-// handle-keyed map. Read strictly: a wrong shape, an unknown handle, a missing
-// handle or a duplicate throws, so the build fails instead of a profile quietly
-// losing its bio because a key moved. Everything else in the file (identity_en,
-// sources, note, confidence) is for us, never for the page.
+// handle-keyed map. Read strictly: a wrong shape, an unknown handle or a
+// duplicate throws, so the build fails instead of a profile quietly losing its
+// bio because a key moved. An account the file does not list yet is NOT an
+// error: it is simply absent from the map, the page shows the data's own
+// what/bio and names the handle in the build log — so a new account (the
+// memoirists) neither breaks the build nor renders nothing until researched.
+// Everything else in the file (identity_en, sources, note, confidence) is for
+// us, never for the page.
 export type Identity = { handle: string; identity: string | null; bio: string | null };
 export function readIdentities(raw: unknown, handles: string[]): Map<string, Identity> {
   const file = 'rereading/identities.json';
@@ -244,7 +270,6 @@ export function readIdentities(raw: unknown, handles: string[]): Map<string, Ide
     if (out.has(entry.handle)) throw new Error(`${file}: ${entry.handle} appears twice`);
     out.set(entry.handle, { handle: entry.handle, identity: entry.identity, bio: entry.bio ?? null });
   }
-  for (const h of handles) if (!out.has(h)) throw new Error(`${file}: no entry for ${h}`);
   return out;
 }
 
@@ -254,8 +279,10 @@ export function readIdentities(raw: unknown, handles: string[]): Map<string, Ide
 // Baltische Landeswehr, which took the name "Latvijas zemes sargi" on 7 December:
 // a different body, so never look it up to "improve" this. For @f_brodermanis
 // nothing exists anywhere, and no description is the correct outcome.
+// An account not in the file yet (undefined) keeps the data's own what/bio.
 export const PAPER_ON_NULL = new Set(['@zemes_sargi']);
-export function descriptionLines(a: Account, ident: Identity): string[] {
+export function descriptionLines(a: Account, ident: Identity | undefined): string[] {
+  if (!ident) return [a.what, a.bio];
   if (ident.bio) return [ident.bio];
   return PAPER_ON_NULL.has(ident.handle) ? [a.what, a.bio] : [];
 }
