@@ -3631,7 +3631,7 @@
    "type": "dokuments",
    "at": "22.36",
    "seq": 987,
-   "lv": "Paziņoju savai māsai Lienei [?], ka mana adrese ir: Lielā Kalēju ielā 49, dz. 2. V. [?].",
+   "lv": "Paziņoju savai māsai Lienei Keks, ka mana adrese ir: Lielā Kalēju ielā 49, dz. 2. V. Keks.",
    "ocr": "V«i«i> s»«i Ģi Leenei Mcķs, ka mana oiķ? ir: leelâ Saleşu eelà 49. ds. 2. M. Seks.",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, sludinājumu bloks",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:869978|article:DIVL146",
@@ -3645,7 +3645,7 @@
     "adrese": "oiķ?",
     "Lielā Kalēju ielā": "leelâ Saleşu eelà"
    },
-   "warn": "Privāts sludinājums pirmās lappuses apakšā, blakus Aumeistera sludinājumam, bet cita cilvēka. Pārlasīts no skenējuma (robu lasījums, vietas 987a un 987b, vidēja pārliecība — rindas ir smagi pārlietas ar iespiedkrāsu un lasītas trijos gājumos). Teikuma sākums ir „Pasinoju sawai mahsai Leenei“ — „māsai“ lasītājs nolasa zīmi pa zīmei (m-a-h-garais s-a-i), un tas ievadā viņam nebija dots; „Paziņoju savai“ gan ievadā bija ielikts, tāpēc tā sakritība pati par sevi ir vāja liecība, lai gan lasītājs abus vārdus sauc par drošiem. Adrese ir LABOTA: skenējumā „leelâ Kaleju eelâ 49, bs. 2.“ — Lielā Kalēju iela, nevis Salacas; šī daļa lasītājam ir droša. Paraksta iniciālis arī ir labots: tas ir nepārprotams divvirsmu fraktūras W, tātad V, nevis M. Abi uzvārdi tomēr paliek [?]: lasītājs tos lasa kā „Kets“, bet pats atzīmē, ka uzvārda sākuma zīme ir tas pats displeja K/R burts, par kuru abas pārlasīšanas ierakstā 22.05 nesakrīt — tāpēc uzvārds šeit nav ielikts. Šis raksts otrās pārlasīšanas lokā neietilpst.",
+   "warn": "Privāts sludinājums pirmās lappuses apakšā. Uzvārds „Keks“ ir identificēts — skat. „identificēts“: tas iespiests divreiz un divos lielumos, un arhīva OCR abās vietās lasa k, nevis t (agrākais robu lasījums deva „Kets“ un pats atzīmēja, ka lielais burts ir strīdīgs; neatkarīga redzes pārlasīšana 2026-11-10 deva „Gel[?]“ un arī neizšķīra). Adrese ir pārbaudīta pret skenējumu: „leelā Kaleju eelā 49, bſ. 2.“ — Lielā Kalēju iela 49, dz. 2. Paraksta iniciālis PALIEK strīdīgs: vecais OCR un redzes pārlasīšana lasa M, robu lasījums lasa fraktūras W (tātad V); šeit atstāts V. kā bija, un tas nav atrisināts.",
    "reread": [
     {
      "pass": "gaps-read",
@@ -3680,6 +3680,15 @@
      "source": "owner",
      "outcome": "corrected",
      "why": "OCR „Leenei“. Vecajā ortogrāfijā ee = ie, nevis e — tātad Liene, nevis Lene."
+    }
+   ],
+   "ident": [
+    {
+     "rendered": "Keks",
+     "ocr": "Mcķs / Seks",
+     "candidate_source": "Uzvārds šajā pašā sludinājumā iespiests DIVAS reizes un divos burtu lielumos: displeja rindā („Leenei Keks,“) un paraksta rindā („V. Keks.“). Avots: periodika.lndb.lv, 869978, DIVL146, 1. lpp.",
+     "glyph_match": "Divi neatkarīgi vienas un tās pašas vārda vietas bojājumi, abi saglabā k. Displeja rinda: arhīva OCR dod „Mcķs“ — M≈K un S≈K ir fraktūras displeja lielo burtu sajaukums, kam šajā korpusā ir precedents (seq 850 „Kt'Slin“, seq 780 „Kaktinsch“/„Kaltinsch“); c≈e (precedents seq 160 „apspreedcS“, seq 600 „galwcnos“); ķ≈k; s≈s. Paraksta rinda: tas pats OCR dod „Seks“ — S≈K tāpat, pārējie četri burti sakrīt precīzi. Nevienā no abiem gadījumiem dzinējs nelasa t. Lielais burts ir apstiprināts atsevišķi: tas ir tas pats glifs, kas vārdā „Kaleju“ tā paša sludinājuma otrajā rindā. Īpašnieks pats nolasīja fraktūru kā „Keks“ (2026-11-10).",
+     "evidence": "glyphs"
     }
    ]
   },
