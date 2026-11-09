@@ -1327,7 +1327,7 @@
    "type": "dokuments",
    "at": "12.00",
    "seq": 290,
-   "lv": "Ar brīvas un neatkarīgas Latvijas sauceņa uz lūpām simtiem un tūkstošiem mūsu labāko biedru krita nevienādā cīņā pie Ložmetējkalna, Tīreļa purvos, Ikšķiles Nāves salā, Austrumprūsijā, Karpatu sniegos. Mēs, dzīvi palikušie, gribam sekot šim lozungam līdz galam, jo tas ir mūsu cerība un ticība. Bet tagadējo lielo vēsturisko pārgrozību brīdī, kad mūsu tautas ilgu sapnis kļuvis par īstenību un pasaules notikumi mūs pēkšņi padarījuši par sava likteņa noteicējiem, — ar dziļām skumjām jāredz, ka vadošās partijas arvien vēl nevar saprasties un vienoties.",
+   "lv": "Ar brīvas un neatkarīgas Latvijas saucienu uz lūpām simtiem un tūkstošiem mūsu labāko biedru krita nevienādā cīņā pie Ložmetējkalna, Tīreļa purvos, Ikšķiles Nāves salā, Austrumprūsijā, Karpatu sniegos. Mēs, dzīvi palikušie, gribam sekot šim lozungam līdz galam, jo tas ir mūsu cerība un ticība. Bet tagadējo lielo vēsturisko pārgrozību brīdī, kad mūsu tautas ilgu sapnis kļuvis par īstenību un pasaules notikumi mūs pēkšņi padarījuši par sava likteņa noteicējiem, — ar dziļām skumjām jāredz, ka vadošās partijas arvien vēl nevar saprasties un vienoties.",
    "ocr": "Aŗ brihwos «n ņeotkarioaS Lat ijoS şouzeeņa «s lņhpan, şimtcem an tuhksiv'che m muhşu labāko beedru krita newecnadâ zihņâ pee Loschmeteju kalna, Tireļa pņrwoS, JkşchķileS uahweS şaļâ, Auftrnm-Pruşijà, Karpsta sneegajoS. MehS dnhwi polisuşchee gribam sekot schim losuagam lihds galam, jo taS ir muhsu s cehrastS un tiziba. B«» tagadējo leelo wehstnrişkņ pahrgrofib» brihdi, kad muhsu tautas ilgu sapnis ļļņmiS par ihļtentbu un pasa,leS notikumi muhS pehks>chņi padarijvschi par saiva lit»eņa noteizeje-m,— or diiļam skumjam jareds, ka wadoschas paritjaS aijween weht nemar japraftces un weenotees",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, „Rīga“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL101|panel:pa",
@@ -1338,11 +1338,20 @@
    "atNote": "Rīta avīze. Konkrēts iznākšanas laiks nav zināms; laiks ir aplēse pēc tā, kur sleja atrodas numurā.",
    "recon": {
     "kļuvis": "ļļņmiS",
-    "sauceņa uz lūpām": "şouzeeņa «s lņhpan",
+    "saucienu uz lūpām": "şouzeeņa «s lņhpan",
     "Bet": "B«»"
    },
-   "warn": "Virsraksts: „Latvju kareivju Nacionālās Savienības rezolūcija“. Teksta sākumā minēts biedru skaits („ap 3Y.VW“) — cipars OCR nav salasāms un šeit nav iekļauts. Pirmā teikuma sākums („Aŗ brihwos «n ņeotkarioaS Lat ijoS şouzeeņa «s lņhpan“) ir bojāts un šeit lasīts.",
-   "later": "Rezolūcija parakstīta 16. novembrī un iespiesta 18. novembra rītā. Partijas bija vienojušās jau 17. novembrī."
+   "warn": "Virsraksts: „Latvju kareivju Nacionālās Savienības rezolūcija“. Teksta sākumā minēts biedru skaits („ap 3Y.VW“) — cipars OCR nav salasāms un šeit nav iekļauts. Pirmā teikuma sākums („Aŗ brihwos «n ņeotkarioaS Lat ijoS şouzeeņa «s lņhpan“) ir bojāts un šeit lasīts. OCR „şouzeeņa“: vecajā ortogrāfijā ee = ie, tātad „saucien-“; „sauceņa“ bija nepareizs lasījums un latviski nav gramatisks. Galotne („-u“) nav atsevišķi pārbaudīta pret skenējumu — tā lasīta pēc nostabilizējušās frāzes „ar … saucienu uz lūpām“.",
+   "later": "Rezolūcija parakstīta 16. novembrī un iespiesta 18. novembra rītā. Partijas bija vienojušās jau 17. novembrī.",
+   "change": [
+    {
+     "from": "Latvijas sauceņa uz lūpām",
+     "to": "Latvijas saucienu uz lūpām",
+     "source": "owner",
+     "outcome": "corrected",
+     "why": "ee = ie; „sauceņa“ nav latviešu vārds. Galotne nav verificēta — sk. warn."
+    }
+   ]
   },
   {
    "handle": "@kareivju_savieniba",
@@ -2007,7 +2016,7 @@
    "type": "citats",
    "at": "16.30",
    "seq": 550,
-   "lv": "Pusfive uz skatuves uzkāpa ap 50 kungu un viena dāma, apsveikti ar dzīviem aplausiem, un ieņēma vietas abās krēslu rindās. Tie bija latviešu Nacionālās padomes locekļi. Tūlīt pēc tam parādījās, vēl siltāk sagaidīti, 5 kungi, padomes prezidijs, un apsēdās pie sarkanā galda.",
+   "lv": "Puspiecos uz skatuves uzkāpa ap 50 kungu un viena dāma, apsveikti ar dzīviem aplausiem, un ieņēma vietas abās krēslu rindās. Tie bija latviešu Nacionālās padomes locekļi. Tūlīt pēc tam parādījās, vēl siltāk sagaidīti, 5 kungi, padomes prezidijs, un apsēdās pie sarkanā galda.",
    "ocr": "Vm Vtb Uhr betraten gegen 50 Herren and eint Dame, m t lebhafte« AprlaaS begrüßt die Bühne und nahmen avf den beiden Stuhl. eih'n Platz. ES waren die Glied:» eineS lettt. fchea NatioaalcatS. Gleich darauf erschienen, n-ch oä-mer empfa gen 5 Herren. daS Präfidtam deß StatS, and fetzten fich an deu roten Tisch.",
    "via": "Rigasche Zeitung Nr.268, 19.11.1918, „Lokales“",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/222949|article:DIVL87|panel:pa",
@@ -2017,11 +2026,20 @@
    ],
    "atNote": "Laiks ir avotā: „Um 4½ Uhr…“ — un Līdums raksta to pašu: „pus piecos“.",
    "recon": {
-    "Pusfive": "Vm Vtb Uhr",
+    "Puspiecos": "Vm Vtb Uhr",
     "Nacionālās padomes": "NatioaalcatS",
     "vēl siltāk sagaidīti": "n-ch oä-mer empfa gen"
    },
-   "warn": "„Ap 50“ ir reportiera aplēse. Enciklopēdija norāda 38 no 40 Tautas padomes locekļiem. Abus skaitļus šeit nesaskaņo. Ieraksts turpināts ar nākamajiem teikumiem, kas nosauc, kas uzkāpa uz skatuves. Vācu avīze Tautas padomi sauc par „Nationalrat“."
+   "warn": "„Ap 50“ ir reportiera aplēse. Enciklopēdija norāda 38 no 40 Tautas padomes locekļiem. Abus skaitļus šeit nesaskaņo. Ieraksts turpināts ar nākamajiem teikumiem, kas nosauc, kas uzkāpa uz skatuves. Vācu avīze Tautas padomi sauc par „Nationalrat“.",
+   "change": [
+    {
+     "from": "Pusfive uz skatuves",
+     "to": "Puspiecos uz skatuves",
+     "source": "owner read it on the page",
+     "outcome": "corrected",
+     "why": "„Pusfive“ nav latviešu vārds — latviskais „pus-“ bija salikts ar angļu „five“. OCR dod „Vm Vtb Uhr“ = „Um ½5 Uhr“, t.i. pusfivi. Korpusā citur šī pati stunda no Līduma ir „Puspeezos“ (1918. g. ortogrāfijā), tātad „Puspiecos“."
+    }
+   ]
   },
   {
    "handle": "@rigasche_zeitung",
@@ -3551,7 +3569,7 @@
    "type": "dokuments",
    "at": "22.36",
    "seq": 987,
-   "lv": "Paziņoju savai māsai Lenei [?], ka mana adrese ir: Lielā Kalēju ielā 49, dz. 2. V. [?].",
+   "lv": "Paziņoju savai māsai Lienei [?], ka mana adrese ir: Lielā Kalēju ielā 49, dz. 2. V. [?].",
    "ocr": "V«i«i> s»«i Ģi Leenei Mcķs, ka mana oiķ? ir: leelâ Saleşu eelà 49. ds. 2. M. Seks.",
    "via": "Baltijas Ziņas Nr.168, 18.11.1918, sludinājumu bloks",
    "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL146|panel:pa",
@@ -3561,7 +3579,7 @@
    ],
    "atNote": "Rīta avīze. Laiks ir aplēse — kad dienas gaitā lasītājs nonāktu pie šīs slejas. Precīzs laiks nav zināms.",
    "recon": {
-    "Lenei": "Leenei",
+    "Lienei": "Leenei",
     "adrese": "oiķ?",
     "Lielā Kalēju ielā": "leelâ Saleşu eelà"
    },
@@ -3593,6 +3611,13 @@
      "source": "gaps-read 987a, 987b",
      "outcome": "gap closed",
      "why": "Skenējumā „Pasinoju sawai mahsai Leenei …, ka mana adrese ir: leelâ Kaleju eelâ 49, bs. 2. W. …“. Trīs lietas nolasītas (teikuma sākums, iela, paraksta iniciālis), un abi uzvārdi apzināti palikti neielikti, jo to sākuma zīme ir tā pati K/R displeja fraktūras burts, par kuru pārlasīšanas savā starpā nesakrīt. „Paziņoju savai“ bija lasītāja ievadā; „māsai“, „Kalēju“ un „W“ nebija."
+    },
+    {
+     "from": "māsai Lenei",
+     "to": "māsai Lienei",
+     "source": "owner",
+     "outcome": "corrected",
+     "why": "OCR „Leenei“. Vecajā ortogrāfijā ee = ie, nevis e — tātad Liene, nevis Lene."
     }
    ]
   },
