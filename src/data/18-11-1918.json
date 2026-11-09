@@ -850,7 +850,7 @@
      "handle": "@baltijas_zinas",
      "text": "Tajā pašā vietā, kur Rigasche Zeitung raksta, ka angļi latviešus uzskata par boļševiku aizstāvjiem, Baltijas Ziņas citātā ieliek kailu izsaukuma zīmi iekavās — (!) — un lasītājs pats zina, ko tā nozīmē.",
      "via": "Baltijas Ziņas Nr.170, 20.11.1918, „Laikrakstu atbalsis“",
-     "url": "https://periodika.lv/periodika2-viewer/#issue:/881560|article:DIVL57|panel:pa"
+     "url": "https://periodika.lndb.lv/periodika2-viewer/?lang=lv#panel:pa|issue:881560|article:DIVL57"
     }
    ],
    "warn": "Pārlasīts no skenējuma (atkārtotais OCR 264862/DIVL27, tīri ievaddati): palielinājumā lasāms „die Entente den finnischen Bestrebungen mehr Entgegenkommen zeige als den lettischen“ — somu, nevis igauņu centieniem. Vecais OCR šai vietā deva tikai drumslas („st ni sch e n“), un agrākais „igauņu“ ir atsaukts; nākamais teikums igauņus un latviešus min kopā, kas šo lasījumu balsta. Gads 1914 un pārējais teikums pārlasīšanā sakrīt ar šo atveidojumu. Šī raksta pārlasīšanas kopējā pārliecība ir „vidēja“, bet šis vārds pārlasītāja neskaidrību sarakstā nav.",
@@ -1298,7 +1298,7 @@
      "handle": "@baltijas_zinas",
      "text": "Sapulcē izpaudās atziņa, ka latvju sociāldemokrātija nevar sekot krievu lieliniekiem, kuri, lietodami brutālu varu, cenšas iemest nedaudzo lielinieku diktatūru pāri demokrātijai.",
      "via": "Baltijas Ziņas Nr.168, 18.11.1918, „Rīga“",
-     "url": "https://periodika.lv/periodika2-viewer/#issue:/869978|article:DIVL101|panel:pa"
+     "url": "https://periodika.lndb.lv/periodika2-viewer/?lang=lv#panel:pa|issue:869978|article:DIVL101"
     }
    ],
    "reread": [
@@ -2090,7 +2090,7 @@
      "handle": "@rigasche_zeitung",
      "text": "Von Freude und Beifall kann natürlich bei uns nicht die Rede sein. — „Par prieku un gavilēm pie mums, protams, nevar būt ne runas.“",
      "via": "Rigasche Zeitung Nr.269, 20.11.1918",
-     "url": "https://periodika.lv/periodika2-viewer/#issue:/159543|article:DIVL27|panel:pa"
+     "url": "https://periodika.lndb.lv/periodika2-viewer/?lang=lv#panel:pa|issue:159543|article:DIVL27"
     }
    ],
    "warn": "Pārlasīts no skenējuma (atkārtotais OCR 723281/DIVL19, tīri ievaddati): rindkopa sakrīt ar šo atveidojumu vārds vārdā. Čakstes iniciālis īpaši pārbaudīts ~5× palielinājumā — fraktūras J, nevis I, kā deva vecais OCR; apstiprināts arī „sw. adw. G. Semgals“ un „(Ilgi, wehtraini aplausi)“.",
@@ -2263,14 +2263,14 @@
      "handle": "@tautas_padome",
      "text": "Latgales priekšstāvja runai seko ilgi, ilgi, visas Padomes un pilsoņu vienprātīgi aplausi. Runa nāca no sirds un gāja pie sirds.",
      "via": "Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918",
-     "url": "https://periodika.lv/periodika2-viewer/#issue:/737483|article:DIVL39|panel:pa"
+     "url": "https://periodika.lndb.lv/periodika2-viewer/?lang=lv#panel:pa|issue:737483|article:DIVL39"
     },
     {
      "name": "Rigasche Zeitung",
      "handle": "@rigasche_zeitung",
      "text": "Die größte Begeisterung riefen die Reden des im Präsidium sitzenden Delegierten aus Polnisch-Livland und des Vertreters aus Kurland hervor. — „Vislielāko sajūsmu izsauca prezidijā sēdošā Polijas Livonijas delegāta un Kurzemes pārstāvja runas.“",
      "via": "Rigasche Zeitung Nr.268, 19.11.1918",
-     "url": "https://periodika.lv/periodika2-viewer/#issue:/222949|article:DIVL87|panel:pa"
+     "url": "https://periodika.lndb.lv/periodika2-viewer/?lang=lv#panel:pa|issue:222949|article:DIVL87"
     }
    ],
    "thread": [

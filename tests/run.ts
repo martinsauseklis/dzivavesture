@@ -19,7 +19,7 @@ const accounts: Record<string, Account> = {
 };
 const base: Post = {
   handle: '@lidums', type: 'citats', at: '16.30', seq: 1, lv: 'Teksts.', ocr: 'Tekſts.',
-  via: 'Līdums', url: 'https://periodika.lv/x', topics: ['A'], atNote: '',
+  via: 'Līdums', url: 'https://periodika.lndb.lv/x', topics: ['A'], atNote: '',
 };
 const post = (over: Partial<Post>): Post => ({ ...base, ...over });
 
@@ -31,7 +31,7 @@ const post = (over: Partial<Post>): Post => ({ ...base, ...over });
 // | no url                       | url ''                                 | nav avota saites              |
 // | javascript: url              | url 'javascript:alert(1)'              | nav avota saites              |
 // | foreign host                 | url 'https://evil.example/periodika.lv'| nav avota saites              |
-// | path traversal in url        | url 'https://periodika.lv/../../etc'   | null (archive host, path is theirs) |
+// | path traversal in url        | url 'https://periodika.lndb.lv/../../etc'   | null (archive host, path is theirs) |
 // | the book archive             | url 'http://eraksti.lv/fetchbook.php…' | null (second archive in the closed set) |
 // | host that only starts alike  | url 'http://eraksti.lv.evil.example/x' | nav avota saites              |
 // | the book archive over https  | url 'https://eraksti.lv/x'             | nav avota saites — the set is closed, and that origin's certificate is self-signed |
@@ -50,7 +50,7 @@ const refusals: [string, Post, string | null][] = [
   ['no url', post({ url: '' }), 'nav avota saites'],
   ['javascript: url', post({ url: 'javascript:alert(1)' }), 'nav avota saites'],
   ['foreign host', post({ url: 'https://evil.example/periodika.lv' }), 'nav avota saites'],
-  ['path traversal in url', post({ url: 'https://periodika.lv/../../etc' }), null],
+  ['path traversal in url', post({ url: 'https://periodika.lndb.lv/../../etc' }), null],
   ['the book archive', post({ url: 'http://eraksti.lv/fetchbook.php?urlkey=2485426' }), null],
   ['host that only starts like the book archive', post({ url: 'http://eraksti.lv.evil.example/x' }), 'nav avota saites'],
   ['the book archive over https', post({ url: 'https://eraksti.lv/x' }), 'nav avota saites'],

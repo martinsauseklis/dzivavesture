@@ -123,7 +123,8 @@ export function holdsLine(posts: Pick<Post, 'type' | 'written'>[]): string {
 // prefix-matched. A bare "truthy url" check would let `javascript:` or a foreign
 // host through the one guard the whole site rests on, and a substring check
 // would admit https://evil.example/periodika.lv.
-//   periodika.lv — the National Library's newspaper scans.
+//   periodika.lndb.lv — the National Library's newspaper scans (the viewer host;
+//   periodika.lv redirects a human but its deep links open an empty viewer).
 //   eraksti.lv   — the 1923 memoir volume „Valsts pieci gadi“, whose only
 //                  public copy is there. It is listed over plain http because
 //                  its TLS certificate is self-signed, so https does not
@@ -131,7 +132,7 @@ export function holdsLine(posts: Pick<Post, 'type' | 'written'>[]): string {
 //                  here rather than hidden behind an https address that 404s.
 // Breaks when: either archive changes host, or eraksti.lv fixes its certificate
 // (then its https origin has to be added — the set is closed on purpose).
-const ARCHIVES = ['https://periodika.lv/', 'http://eraksti.lv/'];
+const ARCHIVES = ['https://periodika.lndb.lv/', 'http://eraksti.lv/'];
 const isArchiveUrl = (url: unknown) => typeof url === 'string' && ARCHIVES.some((a) => url.startsWith(a));
 
 // The structural guards. They make the failure mode unrepresentable rather
