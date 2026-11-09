@@ -110,9 +110,10 @@ check('P6: every profile has the back link in the header (there is no footer)', 
 // corpus text itself may contain the words, so these look for the markup.
 const gone = ['later-btn', 'class="fold later"', 'class="standfirst"', '<p class="when">', '<p class="one">', 'Konts rāda', 'class="badge', 'class="fold src"', '<pre class="ocr"', 'Kā to ierāmēja laikraksts', 'class="src-btn"', '<footer', 'class="inv"', 'Kā robi avotos'];
 check('face: the eight removals render nowhere (no footer on any page)', [feed, ...handles.map((h) => html(page(h)))].every((d) => gone.every((g) => !d.includes(g))));
-// Two archives now: periodika.lv for the newspaper scans, eraksti.lv for the
+// Two archives now: periodika.lndb.lv for the newspaper scans (the viewer
+// host — periodika.lv's deep links open an empty viewer), eraksti.lv for the
 // 1923 volume (http — its certificate is self-signed; see feed.ts ARCHIVES).
-check('face: avots is a plain link to one of the two archives on every segment', [feed, ...handles.map((h) => html(page(h)))].every((d) => (d.match(/<a class="src-link" href="(?:https:\/\/periodika\.lv|http:\/\/eraksti\.lv)\/[^"]*" target="_blank" rel="noopener">avots →<\/a>/g) ?? []).length === (d.match(/<div class="seg">/g) ?? []).length));
+check('face: avots is a plain link to one of the two archives on every segment', [feed, ...handles.map((h) => html(page(h)))].every((d) => (d.match(/<a class="src-link" href="(?:https:\/\/periodika\.lndb\.lv|http:\/\/eraksti\.lv)\/[^"]*" target="_blank" rel="noopener">avots →<\/a>/g) ?? []).length === (d.match(/<div class="seg">/g) ?? []).length));
 
 // --- P7: no dead internal link anywhere in the built site --------------------
 const pages: string[] = [];
