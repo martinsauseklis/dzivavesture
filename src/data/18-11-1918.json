@@ -27,28 +27,28 @@
   "@baltijas_zinas": {
    "name": "Baltijas Ziņas",
    "kind": "publication",
-   "what": "Latviešu dienas laikraksts · Rīga · 20 kapeikas numurs",
-   "bio": "Vienīgā latviešu avīze, kas 18. novembra rītā ir uz Rīgas ielām — pirmdiena, un abi lielie latviešu dienas laikraksti šodien neiznāk. Numurs Nr.168 ir četras lappuses: vadraksts, pasaules ziņas, Rīgas sleja, māksla, tirdzniecība, turpinājumromāns un seši sludinājumu bloki.",
+   "what": "Latviešu dienas laikraksts · Rīga · 15 kapeikas numurs",
+   "bio": "Latviešu dienas laikraksts Rīgā. 18. novembra rītā, pirmdienā, tā ir vienīgā latviešu avīze uz Rīgas ielām. Nr.168 ir vadraksts, pasaules ziņas, Rīgas sleja, māksla, tirdzniecība, turpinājumromāns un sludinājumi.",
    "note": "Fraktūras OCR šim numuram ir slikts. Katrs citāts jāsalasa no skenējuma pirms publicēšanas."
   },
   "@rigasche_zeitung": {
    "name": "Rigasche Zeitung",
    "kind": "publication",
-   "what": "Vācu dienas laikraksts · Rīga · okupācijas varas pilsētas avīze",
-   "bio": "Laikraksts iznāk vācu valodā, un 18. novembrī tas arī ir lasāms. Nr.267 nes vadrakstu par militārās pārvaldes nomaiņu ar civilo, ārzemju ziņas, Rīgas sleju ar teātra un koncertu recenzijām, ģimenes ziņas, kalendāru un trīs sludinājumu lappuses.",
+   "what": "Vācu dienas laikraksts · Rīga",
+   "bio": "Laikraksts iznāk vācu valodā, arī 18. novembrī. Nr.267 nes vadrakstu „Unsere Lage“, ziņas no Vācijas, Rīgas sleju ar teātra un koncerta recenzijām, turpinājumu, dzejoli un kalendāru.",
    "note": "Vācu OCR šajā arhīvā ir stipri bojāts un vietām piesārņots ar kirilicu. Visi vācu citāti jāpārbauda pret skenējumu."
   },
   "@lidums": {
    "name": "Līdums",
    "kind": "publication",
    "what": "Latviešu dienas laikraksts · Rīga",
-   "bio": "Laikraksts iznāk vācu okupētajā Rīgā. Pirmdien, 18. novembrī, tas neiznāk — jaunākais Līdums, kas šorīt ir pie lasītāja, ir svētdienas Nr.217 ar svētdienas slejām: stāstu, dzejoli, dabaszinātņu apcerējumu un grāmatu recenziju. Svinīgo aktu tas aprakstīs 20. novembra numurā."
+   "bio": "Laikraksts iznāk vācu okupētajā Rīgā. Pirmdien, 18. novembrī, tas neiznāk — jaunākais ir svētdienas, 17. novembra, Nr.217 ar stāstu, dzejoli, dabaszinātņu apcerējumu un grāmatu galdu. Svinīgo aktu tas apraksta 20. novembra Nr.219."
   },
   "@tautas_padome": {
    "name": "Latvijas Tautas padome",
    "kind": "org",
-   "what": "Pagaidu parlaments · konstituējusies vakar, 17. novembrī",
-   "bio": "Padomi izveidoja astoņas latviešu partijas un Latgales Zemes padomes pārstāvis. Tā nav ievēlēta vēlēšanās — tās pamatā ir partiju savstarpēja vienošanās. Šodien plkst. 16 Otrā pilsētas teātra zālē tai pāriet augstākā suverēnā vara.",
+   "what": "Pagaidu parlaments · konstituējusies 17. novembrī",
+   "bio": "Padomi izveidoja astoņas latviešu partijas un Latgales Zemes padomes pārstāvis. Tā nav ievēlēta vēlēšanās — tās pamatā ir partiju savstarpēja vienošanās. 18. novembrī plkst. 16 Otrā pilsētas teātra zālē tai pāriet augstākā suverēnā vara.",
    "today": "@Jekaba11",
    "todayWhat": "Saeima"
   },
@@ -56,63 +56,63 @@
    "name": "Latvju kareivju nacionālā savienība",
    "kind": "org",
    "what": "Latviešu virsnieku un kareivju organizācija · Romanova ielā 25",
-   "bio": "Reģistrē latviešu virsniekus un kareivjus dienestam apsardzībā. Šorīt Baltijas Ziņās tai ir trīs teksti: rezolūcija, uzsaukums un atgādinājums, ka reģistrācija turpinās. Visi uzrakstīti, pirms kāds zināja, kas notiks šodien pēcpusdienā."
+   "bio": "Reģistrē latviešu virsniekus un kareivjus dienestam apsardzībā. 18. novembra Baltijas Ziņās tai ir divi teksti: rezolūcija un uzsaukums."
   },
   "@zemes_sargi": {
    "name": "Zemes sargu komanda",
    "kind": "org",
    "what": "Rīgas pašaizsardzības vienība · dibināta 16. novembrī",
-   "bio": "Pilsētas un tās kārtību cienītāju visu šķiru un tautību iedzīvotāju apsardzībai. Tehnisko organizāciju uzņēmusies agrāko krievu virsnieku komiteja, kas iekārtojusies Romas viesnīcā Teātra bulvārī. Paziņojumu paraksta Rīgas igauņu, latviešu, vācu, krievu, žīdu un poļu priekšvīri kopā.",
+   "bio": "Pilsētas un tās kārtību cienītāju visu šķiru un tautību iedzīvotāju apsardzībai. Tehnisko organizāciju uzņēmusies agrāko krievu virsnieku komiteja, kas iekārtojusies Romas viesnīcā Teātra bulvārī. Paziņojumu paraksta Rīgas igauņu, latviešu, vācu, krievu, žīdu, poļu un leišu priekšvīri kopā.",
    "note": "Tautību uzskaitījums OCR ir daļēji nesalasāms („Rigas igauņu, ļaimeescha, ņaķizu, tr-emu schihdu. paļu“). Pirms publicēšanas jāsalasa no skenējuma."
   },
   "@rigas_zaldatu_padome": {
    "name": "Rīgas zaldātu padome",
    "kind": "org",
    "what": "Vācu karaspēka kareivju padome Rīgā · revolūcijas orgāns",
-   "bio": "Nodibināta pēc apvērsuma Vācijā. Tā izdod paziņojumus iedzīvotājiem, lemj par preses brīvību un sēž kopā ar pavēlniecības iestādēm. Vakar tā sapulcējās Lielajā kareivju namā Kaļķu ielā."
+   "bio": "Nodibināta pēc apvērsuma Vācijā. Tā izdod paziņojumus iedzīvotājiem, lemj par preses brīvību un sēž kopā ar pavēlniecības iestādēm."
   },
   "@partikas_valde": {
    "name": "Pārtikas valde",
    "kind": "org",
    "what": "Rīgas pilsētas pārtikas pārvalde · maizes un produktu kartiņas",
-   "bio": "Izdod un apmaina maizes un produktu kartiņas. Publika pie kartiņu izdalīšanas vietām tiek pieņemta dienas vidū; bez kartiņas Rīgā maizi nedabū."
+   "bio": "Izdod un apmaina maizes un produktu kartiņas."
   },
   "@latvju_opera": {
    "name": "Latvju Opera",
    "kind": "org",
    "what": "Latviešu operas trupa · spēlē Otrajā pilsētas teātrī",
-   "bio": "Līdz šim visas izrādes bijušas izpārdotas. Tās namu pārvalda II. pilsētas teātra komiteja — tā pati zāle, kurā šodien plkst. 16 sanāk Tautas padome. Rītvakar afišā ir R. Vāgnera „Klejojošais holandietis“."
+   "bio": "Tās afišu paraksta II. pilsētas teātra komiteja — tā pati zāle, kurā 18. novembrī sanāk Tautas padome. 19. novembra afišā ir R. Vāgnera „Klejojošais holandietis“."
   },
   "@erstes_stadttheater": {
    "name": "Erstes Stadttheater",
    "kind": "org",
    "what": "Rīgas pirmais pilsētas teātris · vācu trupa · aptuveni 200 darbinieku",
-   "bio": "Vācu pilsētas teātris Rīgā. Direktors Staņislavs tikko atkāpies, un jauno direkciju pārņem divi trupas cilvēki. Nedēļas afišā ir Mocarta „Figaro kāzas“ un „Alt-Heidelberg“."
+   "bio": "Vācu pilsētas teātris Rīgā. Direktors Staņislauss Fukss atkāpies, un direkciju pārņem Villijs Šveisguts un Frīdrihs Volfgangs Kreslins. Sestdien, 16. novembrī, tas spēlē „Alt-Heidelberg“."
   },
   "@a_winnig": {
    "name": "Augusts Vinnigs",
    "kind": "person",
    "what": "Vācijas ģenerālpilnvarotais Baltijas zemēs · arodbiedrību vadītājs · 40 gadi",
-   "bio": "Vācu sociāldemokrāts, pēc profesijas bijušais mūrnieks. Amatā kopš 14. novembra, kad militārā pārvalde Baltijā deva vietu civilai. Vakar viņš uzrunāja 8. armijas zaldātu padomju delegātus Kaļķu ielā; sestdien paredzētais brauciens uz Kijevu nenotika.",
-   "silent": "Zālē viņš nav. Viņa paraksts būs vajadzīgs, lai Tautas padomes locekļi dabūtu dzelzceļa biļetes."
+   "bio": "Vācu sociāldemokrāts un arodbiedrību vadītājs. 18. novembra Baltijas Ziņās ir viņa uzsaukums zaldātu padomēm.",
+   "silent": "Zālē 18. novembrī viņu neviena avīze nemin."
   },
   "@k_ulmanis": {
    "name": "Kārlis Ulmanis",
    "kind": "person",
    "what": "Agronoms · Latviešu Zemnieku savienības vadītājs · 41 gads",
-   "bio": "Lauksaimniecības speciālists, kurš mācījies ASV. 1917. gadā dibinātās Zemnieku savienības vadītājs. Šovakar Tautas padome viņam uzdod sastādīt Pagaidu valdību; pārtikas un zemkopības resoru viņš patur sev."
+   "bio": "1917. gadā dibinātās Zemnieku savienības vadītājs. 17. novembrī Tautas padome viņu ievēlēja par Pagaidu valdības vadītāju."
   },
   "@g_zemgals": {
    "name": "Gustavs Zemgals",
    "kind": "person",
    "what": "Zvērināts advokāts · Tautas padomes priekšsēdētāja otrais biedrs · 47 gadi",
-   "bio": "Radikāldemokrāts, jurists. Čakstes prombūtnē viņam pienākas atklāt un slēgt svinīgo aktu Operas namā."
+   "bio": "Radikāldemokrāts, jurists. Čakstes prombūtnē 18. novembrī viņš atklāj un slēdz svinīgo aktu Operas namā."
   },
   "@j_cakste": {
    "name": "Jānis Čakste",
    "kind": "person",
    "what": "Zvērināts advokāts · Tautas padomes priekšsēdētājs · 59 gadi",
-   "bio": "Jurists no Jelgavas, vakar ievēlēts Tautas padomes priekšsēdētājā. Šobrīd atrodas ārzemēs, kur strādā pie Latvijas lietas Rietumeiropā.",
+   "bio": "Jurists no Jelgavas, 17. novembrī ievēlēts Tautas padomes priekšsēdētājā.",
    "silent": "Zālē nav. Prombūtni pieraksta divi avoti — latviešu protokols un vācu reportieris. „Präsident Tschakste war am Erscheinen verhindert.“"
   },
   "@p_kalnins": {
@@ -132,65 +132,64 @@
    "name": "Staņislavs Kambala",
    "kind": "person",
    "what": "Latgales Zemes padomes pārstāvis · Tautas padomes sekretāra biedrs",
-   "bio": "Vienīgais Latgales pārstāvis Tautas padomes prezidijā. Runā par Latgali, kas savā zemē „nebij nekas“; apvienošanās ar pārējo Latviju Latgalei ir dažas nedēļas vecs jautājums."
+   "bio": "Vienīgais Latgales pārstāvis Tautas padomes prezidijā. Runā par Latgali, kurai pašai savā zemē „nekā nebija“."
   },
   "@g_clemenceau": {
    "name": "Žoržs Klemanso",
    "kind": "person",
    "what": "Francijas ministru prezidents",
-   "bio": "Nolasa pamiera noteikumus Francijas tautas vietnieku namam. Studenti viņam sarīkojuši lielas manifestācijas."
+   "bio": "Runā Francijas tautas vietnieku namā pēc pamiera parakstīšanas."
   },
   "@t_masaryk": {
    "name": "Tomašs Masariks",
    "kind": "person",
    "what": "Profesors · čehu-slovāku republikas prezidents kopš 14. novembra",
-   "bio": "Prāgā 14. novembrī tautas sapulce viņu ievēlēja par čehu-slovāku republikas prezidentu. Viņš pašlaik nav zemē, un viņa vietu izpilda valdība.",
-   "silent": "Par Latviju viņš neko nav teicis. Baltijas Ziņas viņu min kā piemēru tam, ka jaunas valstis šonedēļ rodas."
+   "bio": "Prāgā 14. novembrī tautas sapulce viņu ievēlēja par čehu-slovāku republikas prezidentu. Prombūtnē viņa vietu izpilda valdība.",
+   "silent": "Par Latviju viņš neko nav teicis. Baltijas Ziņas 18. novembrī ziņo par viņa ievēlēšanu."
   },
   "@kaizers_vilhelms": {
    "name": "Vilhelms II",
    "kind": "person",
    "what": "Vācijas ķeizars, kura atteikšanos no troņa 9. novembrī paziņoja Berlīne · bēglis Holandē",
-   "bio": "Avīzes ziņo, ka viņš atteicies no troņa: 9. novembrī Berlīnē to paziņoja viņa vārdā, pats viņš to vēl nav parakstījis. 10. novembrī pārbraucis Holandes robežu. Lielbritānijas laikraksti pieprasa viņa izdošanu; vācu neatkarīgie sociāldemokrāti prasa, lai viņu tiesā pati vācu tauta.",
-   "silent": "Viņa vienīgie šodien iespiestie vārdi ir lūgums Holandes karalienei ierādīt viņam kādu mazu vientuļu māju."
+   "bio": "Avīzes ziņo, ka viņš atteicies no troņa: 9. novembrī Berlīnē to paziņoja viņa vārdā. 10. novembrī pārbraucis Holandes robežu. Lielbritānijas laikraksti pieprasa viņa izdošanu; vācu neatkarīgie sociāldemokrāti prasa, lai viņu tiesā pati vācu tauta.",
+   "silent": "Viņa paša vārdus šīs avīzes neiespiež; par viņu raksta Baltijas Ziņas."
   },
   "@h_j_seraphim": {
    "name": "Hanss Jirgens Serafims",
    "kind": "person",
    "what": "19 gadus vecs students · Rigasche Zeitung redaktora Ernsta Serafima dēls",
-   "bio": "Viņa bēgšanas apraksts no Igaunijas pār aizsalušo jūru uz Kurzemi 1918. gada janvārī un februārī iznāk Rigasche Zeitung turpinājumos vēstuļu veidā tēvam; avīze viņu piesaka kā kara brīvprātīgo lauka artilērijas regimentā. Šodien ir 11. turpinājums.",
-   "warn": "Regimenta numurs OCR nav salasāms („Feldartillerieregt«ent 6( iv Schwerin“)."
+   "bio": "Viņa bēgšanas apraksts no Igaunijas pār aizsalušo jūru uz Kurzemi 1918. gada janvārī un februārī iznāk Rigasche Zeitung turpinājumos vēstuļu veidā tēvam; avīze viņu piesaka kā kara brīvprātīgo lauka artilērijas regimentā. 18. novembra numurā ir 11. turpinājums."
   },
   "@w_j_locke": {
    "name": "Viljams Dž. Loks",
    "kind": "person",
    "what": "Angļu romānu rakstnieks · turpinājumromāna autors",
-   "bio": "Viņa romāns „Jūras zvaigzne“ iznāk Baltijas Ziņu turpinājumos. Šodien ir aptuveni 35. turpinājums; varoņi ir Stella, Džons Riska un Herolds.",
+   "bio": "Viņa romāns „Jūras zvaigzne“ iznāk Baltijas Ziņu turpinājumos.",
    "warn": "Turpinājuma numurs OCR ir nesalasāms („3S)“)."
   },
   "@a_saulietis": {
    "name": "A. Saulietis",
    "kind": "person",
    "what": "Latviešu rakstnieks · Līduma turpinājumstāsta autors",
-   "bio": "Viņa stāsts „Laika ratos“ beidzas svētdienas Līdumā — par Juri Lapsiņu, kas Rīgā izspēlē cariskos, kerenskus un ostrubļus."
+   "bio": "Viņa stāsts „Laika ratos“ beidzas 17. novembra Līdumā — par Juri Lapsiņu, kas Rīgā izspēlē cariņus, kerenskus un ostenus."
   },
   "@p_rozitis": {
    "name": "Pāvils Rozītis",
    "kind": "person",
    "what": "Latviešu dzejnieks",
-   "bio": "Šonedēļ viņa vārds ir divās Rīgas avīzēs: svētdienas Līdumā iespiests viņa dzejolis „Čadra“, un Baltijas Ziņu grāmatu slejā viņš minēts „Taurētāja“ 7./8. burtnīcas dzejnieku vidū."
+   "bio": "Viņa vārds ir divās Rīgas avīzēs: 17. novembra Līdumā iespiests viņa dzejolis „Čadra“, un 18. novembra Baltijas Ziņu grāmatu slejā viņš minēts „Taurētāja“ 7./8. burtnīcas dzejnieku vidū."
   },
   "@l_laicens": {
    "name": "Linards Laicens",
    "kind": "person",
-   "what": "Latviešu rakstnieks · trešā stāstu krājuma autors",
-   "bio": "Viņa trešais stāstu krājums „Ieslēgtie“ (1906.—1915.) izdots Valkā un maksā 5 markas. Svētdienas Līdums tam veltī garu recenziju; viņa dzejoļi ir arī „Taurētāja“ jaunajā burtnīcā."
+   "what": "Latviešu rakstnieks · stāstu krājuma „Ieslēgtie“ autors",
+   "bio": "Viņa stāstu krājums „Ieslēgtie“ (stāsti 1906.—1915.) izdots Valkā 1918. gadā un maksā 5 markas. 17. novembra Līdums to min grāmatu galdā; viņa dzejoļi ir arī „Taurētāja“ 7./8. burtnīcā."
   },
   "@carl_waack": {
    "name": "Karls Vāks",
    "kind": "person",
    "what": "Rigasche Zeitung mūzikas recenzents",
-   "bio": "Paraksta vakardienas simfonisko pēcpusdienas koncertu recenziju. Latvju Operas telpās viņš klausījās Rimska-Korsakova „Šeherazādi“ Teodora Reitera vadībā."
+   "bio": "Rigasche Zeitung 18. novembra numurā paraksta recenziju par 17. novembra koncertu, kurā skanēja Rimska-Korsakova „Šeherazāde“."
   },
   "@f_brodermanis": {
    "name": "Frīdrihs Brodermanis",
@@ -202,21 +201,21 @@
    "name": "ASV prezidents",
    "kind": "person",
    "what": "Amats · 1918. gadā to ieņem Vudro Vilsons, 61 gads",
-   "bio": "Vilsona pašnoteikšanās princips ir iemesls, kāpēc šo vārdu sauc no Operas nama zāles. Šorīt Baltijas Ziņu pirmās lappuses ziņu rindā viņš ir reizi, un Rīgas vācu avīzē viņam raksta Vācijas ārlietu valsts sekretārs par blokādi.",
-   "silent": "Vilsons nekad nav bijis Rīgā un par šo dienu neko nav teicis. Viņu piemin no zāles un no avīzes virsrakstiem.",
+   "bio": "Viņa vārdu sauc no Operas nama zāles. 18. novembra Baltijas Ziņu pirmās lappuses ziņu rindā viņš ir reizi.",
+   "silent": "Par Rīgu viņš neko nav teicis. Viņu piemin no zāles un no avīzes virsrakstiem.",
    "live": "Amats ir nepārtraukts: šis ir reāls, šodien aktīvs konts."
   },
   "@ph_scheidemann": {
    "name": "Filips Šeidemanis",
    "kind": "person",
    "what": "Vācijas valsts vadības loceklis · sociāldemokrāts",
-   "bio": "Jaunās Vācijas valdības loceklis. 17. novembrī viņš izteicās preses pārstāvjiem par nepietiekamo uzturu Vācijā un par bada blokādi, uzrādot grūtnieču, nedēļnieču un zīdaiņu skaitļus."
+   "bio": "Jaunās Vācijas valdības loceklis. Preses pārstāvjiem viņš izteicās par nepietiekamo uzturu Vācijā un par bada blokādi, uzrādot grūtnieču, nedēļnieču un zīdaiņu skaitļus."
   },
   "@erasts_bite": {
    "name": "Erasts Bite",
    "kind": "person",
    "what": "Latvijas Demokrātiskā partija · Tautas padomes pirmais sekretārs",
-   "bio": "Tautas padomes pirmais sekretārs. Svinīgā akta sākumā viņš nolasa iepriekšējās dienas sēdes protokolu — dokumentu, no kura zālei top zināms, kas vakar nolemts."
+   "bio": "Tautas padomes pirmais sekretārs. 18. novembra svinīgā akta sākumā viņš nolasa 17. novembra sēdes protokolu un platformu."
   },
   "@g_nonacs": {
    "name": "G. Nonācs",
@@ -251,7 +250,7 @@
   "@fr_paegle": {
    "name": "Fr. Paegle",
    "kind": "person",
-   "what": "Inženieris · Latviešu Neatkarīgā partija · Nacionālpadomes zemes apsardzības sekcija",
+   "what": "Inženieris · Latviešu Neatkarīgā partija",
    "bio": "Inženieris, kas 18. novembra aktā runā Neatkarīgās partijas vārdā par latviskā gara izkopšanu."
   }
  },

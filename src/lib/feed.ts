@@ -279,10 +279,10 @@ export function mentionsOf(handle: string, posts: Post[]): Post[] {
 // the point: a profile with nothing to show states a fact of the day.
 // tests/run.ts asserts this covers exactly the post-less accounts without `silent`.
 export const EMPTY_COPY: Record<string, string> = {
-  '@erasts_bite': 'Tajā dienā viņš runāja — Operas namā nolasīja vakardienas sēdes protokolu —, bet viņa paša vārdus neviena avīze nepierakstīja. Zināms tikai, ka viņš to darīja.',
-  '@h_j_seraphim': 'Viņa vārdi šodien ir Rigasche Zeitung — 11. turpinājums —, bet tie ir vēstule tēvam par janvāri. Par 18. novembri viņš nesaka nekā; avīze viņu iespiež.',
-  '@w_j_locke': 'Viņa romāns „Jūras zvaigzne“ šodien turpinās Baltijas Ziņās, tulkots. Pats viņš par šo dienu Rīgā neko nav teicis.',
-  '@l_laicens': 'Par viņu raksta divas avīzes — Līdums recenzē „Ieslēgtos“, Baltijas Ziņas nosauc viņu „Taurētāja“ dzejnieku vidū —, bet neviena neiespiež viņa paša vārdus.',
+  '@erasts_bite': '18. novembrī viņš runāja — Operas namā nolasīja 17. novembra sēdes protokolu —, bet viņa paša vārdus neviena avīze nepierakstīja. Zināms tikai, ka viņš to darīja.',
+  '@h_j_seraphim': 'Viņa vārdi 18. novembra Rigasche Zeitung ir 11. turpinājums, bet tie ir vēstule tēvam par janvāri. Par 18. novembri viņš nesaka nekā; avīze viņu iespiež.',
+  '@w_j_locke': 'Viņa romāns „Jūras zvaigzne“ 18. novembra Baltijas Ziņās turpinās, tulkots. Pats viņš par Rīgu neko nav teicis.',
+  '@l_laicens': 'Par viņu raksta divas avīzes — 17. novembra Līdums grāmatu galdā min „Ieslēgtos“, 18. novembra Baltijas Ziņas nosauc viņu „Taurētāja“ dzejnieku vidū —, bet neviena neiespiež viņa paša vārdus.',
 };
 
 export type BodyMarkup = {
