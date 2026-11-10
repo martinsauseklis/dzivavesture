@@ -1,17 +1,22 @@
 ---
 // One profile page per account, at /@handle/ — who this is and what they said
-// on 18 November 1918, in feed order. No footer, no page explaining itself:
-// header block, posts, „Kur viņš pieminēts“, back to the feed. A profile
-// with no post is not an empty list — it says why there is nothing, and
-// shows where the papers named the account that day.
+// on 17–20 November 1918, day by day in feed order. No footer, no page
+// explaining itself: header block, posts under their day, „Kur viņš
+// pieminēts“, back to the feed. A profile with no post is not an empty list —
+// it says why there is nothing, and shows where the papers named the account.
+// Only an account reachable from a rendered post or mention gets a page: the
+// memoirists' pages are not built while their recollections are parked.
 import { readFileSync } from 'node:fs';
 import data from '../../data/18-11-1918.json';
 import Head from '../../components/Head.astro';
 import Post from '../../components/Post.astro';
 import {
-  avatarHue, descriptionLines, EMPTY_COPY, holdsLine, initials, lead, mentionsOf, plural, readIdentities, recollectionHeader, refusalReason,
+  avatarHue, DAYS, DAYS_SPAN, dayHeading, descriptionLines, EMPTY_COPY, holdsLine, initials, lead, mentionsOf, plural,
+  publishedOn, reachableHandles, readIdentities, recollectionHeader, renderedPosts,
   type Account, type Post as PostRecord,
 } from '../../lib/feed.ts';
+
+type Corpus = { posts: PostRecord[]; accounts: Record<string, Account> };
 
 // The sourced identity line per account ("what this newspaper / organisation /
 // person is"), researched separately. Read strictly at build time: a wrong shape,
@@ -21,20 +26,25 @@ import {
 const identitiesFile = new URL('../../../rereading/identities.json', import.meta.url);
 const identities = readIdentities(JSON.parse(readFileSync(identitiesFile, 'utf8')), Object.keys(data.accounts));
 
+// Astro hoists getStaticPaths out of the frontmatter: it reaches imports only,
+// so the rendered list comes from feed.ts and is read here twice.
 export function getStaticPaths() {
-  return Object.keys(data.accounts).map((handle) => ({ params: { handle } }));
+  return reachableHandles(data.accounts as Record<string, Account>, renderedPosts(data as Corpus).shown).map((handle) => ({ params: { handle } }));
 }
-const { handle } = Astro.params;
 const accounts = data.accounts as Record<string, Account>;
+const { handle } = Astro.params;
 const a = accounts[handle];
+// The same guards and the same partition as the feed, so a profile can never
+// show a post the feed refused or a parked one, and shows them in day order.
+const all = renderedPosts(data as Corpus).shown;
 const lines = descriptionLines(a, identities.get(handle));
 if (!identities.has(handle)) console.warn(`${handle}: nav rereading/identities.json ierakstā — rāda datu what/bio`);
 
-// The same guards as the feed, so a profile can never show a post the feed refused.
-const all = (data.posts as PostRecord[]).slice().sort((x, y) => x.seq - y.seq)
-  .filter((p) => !refusalReason(p, accounts[p.handle]));
 const posts = all.filter((p) => p.handle === handle);
 const named = mentionsOf(handle, all);
+// The day a post sits on, as the page object — for the heading over each run
+// of posts and for the link into the right day's feed.
+const dayOf = (p: PostRecord) => DAYS.find((d) => d.key === publishedOn(p))!;
 const n = posts.length;
 // Every post a recollection → the header says so, whatever the bio says.
 const allRecollected = recollectionHeader(posts);
@@ -43,11 +53,11 @@ const allRecollected = recollectionHeader(posts);
 const silent = a.silent ?? EMPTY_COPY[handle];
 if (!n && !silent) throw new Error(`${handle}: no post and no empty-state text`);
 
-const title = `${a.name} (${handle}) — 18. novembris 1918 · dzīvā vēsture`;
+const title = `${a.name} (${handle}) — ${DAYS_SPAN} · dzīvā vēsture`;
 // The preview text: who this is (when known, in one sentence), then what the
-// page holds — which for a memoirist is recollections, never that day's papers.
-const description = `${a.name} (${handle})${lines[0] ? ` — ${lead(lines[0])}` : ''}. 1918. gada 18. novembris: ${holdsLine(posts)}.`;
-const imageAlt = `${a.name} (${handle})${lines[0] ? ` — ${lead(lines[0])}` : ''}. dzīvā vēsture, 18. novembris 1918.`;
+// page holds — which for a memoirist is recollections, never those days' papers.
+const description = `${a.name} (${handle})${lines[0] ? ` — ${lead(lines[0])}` : ''}. ${DAYS_SPAN}: ${holdsLine(posts)}.`;
+const imageAlt = `${a.name} (${handle})${lines[0] ? ` — ${lead(lines[0])}` : ''}. dzīvā vēsture, ${DAYS_SPAN}.`;
 // The exact words the paper printed for this account in each naming post.
 const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([, h]) => h === handle).map(([w]) => w).join('“, „');
 ---
@@ -60,7 +70,7 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
   <header>
     <div class="wrap top">
       <a class="back" href="../">← Plūsma</a>
-      <span class="date">18.11.1918</span>
+      <span class="date">{DAYS_SPAN}</span>
     </div>
   </header>
 
@@ -78,13 +88,18 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
       {a.live && (
         <p class="today">{a.live} <a href={`https://x.com/${handle.slice(1)}`} target="_blank" rel="noopener">{handle}</a></p>
       )}
-      <p class="pcount">Pirmdiena, 18. novembris 1918{n > 0 && ` · ${n} ${plural(n)}`}</p>
+      <p class="pcount">{DAYS_SPAN}{n > 0 && ` · ${n} ${plural(n)}`}</p>
       {allRecollected && <p class="written">{allRecollected}</p>}
     </section>
 
     {n > 0 ? (
       <div id="feed">
-        {posts.map((p) => <Post post={p} account={a} accounts={accounts} gapNote={data.conventions.gap} base="../" />)}
+        {DAYS.map((d) => { const mine = posts.filter((p) => publishedOn(p) === d.key); return mine.length > 0 && (
+          <>
+            <h2 class="pday"><a href={`../${d.path}`}>{dayHeading(d)}</a></h2>
+            {mine.map((p) => <Post post={p} account={a} accounts={accounts} gapNote={data.conventions.gap} base="../" />)}
+          </>
+        ); })}
       </div>
     ) : (
       <section class="empty"><p>{silent}</p></section>
@@ -94,8 +109,8 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
       <section class="named">
         <h2>Kur viņš pieminēts</h2>
         {named.map((p) => (
-          <a href={`../#p-${p.seq}`}>
-            <span class="nw">{p.at} · {accounts[p.handle].name}</span><br />
+          <a href={`../${dayOf(p).path}#p-${p.seq}`}>
+            <span class="nw">{dayOf(p).key} · {p.at} · {accounts[p.handle].name}</span><br />
             „{printedIn(p)}“
           </a>
         ))}

@@ -217,274 +217,45 @@
    "kind": "person",
    "what": "Latvijas Demokrātiskā partija · Tautas padomes pirmais sekretārs",
    "bio": "Tautas padomes pirmais sekretārs. Svinīgā akta sākumā viņš nolasa iepriekšējās dienas sēdes protokolu — dokumentu, no kura zālei top zināms, kas vakar nolemts."
+  },
+  "@g_nonacs": {
+   "name": "G. Nonācs",
+   "kind": "person",
+   "what": "Redaktors · Latviešu Zemnieku Savienības frakcija · Tautas padomes loceklis",
+   "bio": "Zemnieku Savienības frakcijas runātājs 18. novembra aktā. Līdums viņu nosauc par redaktoru; pirmvārds avotos nesaskan."
+  },
+  "@d_zeltins": {
+   "name": "D. Zeltiņš",
+   "kind": "person",
+   "what": "Grāmattirgotājs · Latviešu Demokrātu partija",
+   "bio": "Grāmattirgotājs, kas 18. novembra aktā runā Latviešu Demokrātu partijas vārdā."
+  },
+  "@j_zalitis": {
+   "name": "J. Zālītis",
+   "kind": "person",
+   "what": "Bijušais Krievijas valsts domes deputāts · radikāldemokrāts",
+   "bio": "Bijušais Valsts domes deputāts, kas 18. novembra aktā apsveic jauno valsti radikāldemokrātu vārdā."
+  },
+  "@skubikis": {
+   "name": "Skubiķis",
+   "kind": "person",
+   "what": "Sociālists revolucionārs · Tautas padomes sekretāra biedrs",
+   "bio": "Tautas padomes prezidija loceklis un sociālistu revolucionāru runātājs 18. novembrī. Avoti viņu sauc gan par inženieri, gan par ģeologu."
+  },
+  "@strautnieks": {
+   "name": "Strautnieks",
+   "kind": "person",
+   "what": "Latviešu Republikāņu partija",
+   "bio": "Republikāņu partijas runātājs 18. novembra aktā. Līdums viņu sauc par zvērinātu advokātu, Baltijas Ziņas — par miertiesnesi."
+  },
+  "@fr_paegle": {
+   "name": "Fr. Paegle",
+   "kind": "person",
+   "what": "Inženieris · Latviešu Neatkarīgā partija · Nacionālpadomes zemes apsardzības sekcija",
+   "bio": "Inženieris, kas 18. novembra aktā runā Neatkarīgās partijas vārdā par latviskā gara izkopšanu."
   }
  },
  "posts": [
-  {
-   "handle": "@ed_calitis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "09.00",
-   "seq": 130,
-   "lv": "Ielu stūŗos un māju aizvējā tikko kūst vēja sanestā plānā, smiltīm sajauktā sniega kārtiņa. Kā tad pēc vairāku dienu kailsalas laiks šodien pielaidīgāks! — Bet ja rīdzinieku gaitas liekas možākas, viņu sejās redzama dziļa līksmība, tad tas nebūt nav laika nopelns. To panākusi ziņa, kas šorīt aplidoja pilsētu, ka vakar vakarā polītisko partiju pārstāvju starpā panākta vienošanās. Šodien jānotiek neatkarīgās Latvijas proklamēšanai. Un rīdzinieku možums un līksmība izskaidrojama ar to, ka katrs steidzas uz to partijas biroju vaj darbinieku, kuŗas loceklis tas skaitās vaj arī pēc pārliecības jūtas tuvāk, lai no visdrošākiem avotiem pārliecinātos par šīs ziņas pareizību.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 12,
-   "topics": [
-    "Rīgas dzīve",
-    "Valsts pasludināšana"
-   ],
-   "atNote": "Stunda avotā nav. Cālītis raksta par rītu — „ziņa, kas šorīt aplidoja pilsētu“ — tāpēc ieraksts novietots rītā; precīzs laiks ir mūsu novērtējums.",
-   "note": "Sniegs, vējš un rīdzinieku sejas ir tas, ko Cālītis redzēja pats. Ziņu par vakardienas vienošanos viņš apraksta kā tādu, kas „aplidoja pilsētu“ — 18. novembŗa rīta avīzēs tās nav: vienīgā latviešu avīze uz ielas, Baltijas Ziņu Nr.168, par gaidāmo aktu neraksta ne vārda. Kā ziņa izplatījās, Cālītis nesaka.",
-   "warn": "„polītsko[?]“ — grāmatā iespiests tā; nolasāms kā „polītisko“, bet nav izlabots. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
-   "change": [
-    {
-     "from": "polītsko[?]",
-     "to": "polītisko",
-     "source": "warn-determined reading",
-     "outcome": "gap closed"
-    }
-   ]
-  },
-  {
-   "handle": "@ed_calitis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "12.00",
-   "seq": 295,
-   "lv": "Tikai ap pusdienas laiku partiju prezidiji un Tautas Padomes locekļi saņem ieejas kartiņas, kas tik vienkāršas, cik vien iespējams: ar trekniem burtiem uz kartona gabaliņa uzdrukāts šīs dienas datums, bet zem tā apakšā aplokā trīs burti ,,L. T. P.“ Tam vajag nozīmēt: ,,Latvijas Tautas Padome“.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 12,
-   "topics": [
-    "Valsts pasludināšana",
-    "Tautas padome"
-   ],
-   "atNote": "Laiks ir avotā: „ap pusdienas laiku“.",
-   "note": "Kartiņu Cālītis turēja rokā. Viņš nosauc arī, kas tās saņēma — partiju prezidiji un Tautas Padomes locekļi; kuŗā no šīm divām kārtām bija viņš pats, grāmata nekur nepasaka."
-  },
-  {
-   "handle": "@ed_calitis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "14.00",
-   "seq": 405,
-   "lv": "Tas tomēr nenotika, un jau ap pulksten 2 pēc pusdienas agrākajā II Rīgas pilsētas teātrī, toreizējā operā, bet tagad Nacionālajā teātrī, sāka satecēt ļaužu straumes no visām malām. Pārlaižot acis pār ļaužu pulciņiem garderobē, uz trepēm, fuajè un pašās teātŗa telpās uzkrītoši tas, ka starp tiem brīnum maz sieviešu. Sievietes taču pa laikam nevar atturēties no svinīgiem notikumiem, no kaut kā jauna, nebijuša... Un pakavējoties ilgāk pie tiem nedaudzajiem krāšņajiem punktiem melno svārku un pelēko žakešu rindās, nav grūti tanīs pazīt tās sievietes, kuŗas polītiku izraudzījušās par savu speciālitāti un kopš 1905. gada paspējušas izstrādāt pat savu stilu apģērbā, manierēs, sarunā u. t. t. Varbūt šī ,,vīrišķīgākā“ elementa pārsvars piedod visai sapulcei zināmas nopietnības raksturu, zināmu svarīgumu, jo tanī tiešām neredz nevienu bezbēdīgi vaj vieglprātīgi jautru seju, tāpat kā vieglajā balsu dunoņā nepaceļas neviena augstāka, pārgalvīga skaņa.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 12,
-   "topics": [
-    "Valsts pasludināšana",
-    "Rīgas dzīve",
-    "Sievietes"
-   ],
-   "atNote": "Laiks ir avotā: „jau ap pulksten 2 pēc pusdienas“. Līdums raksta, ka publika sāk plūst no plkst. 3 — divi pulksteņi, kas nesakrīt, un šis salikums tos nesaskaņo.",
-   "note": "Ievadvārdi „Tas tomēr nenotika“ attiecas uz iepriekšējo rindkopu, kur Cālītis uzskaita četras svešās varas, kas aktu būtu varējušas aizkavēt: vācu zaldātu deputātu padomi, policijas priekšnieku Fūrmani, guberņas priekšnieku un Vācijas komisāru Baltijas zemēs. — Par publikas apģērbu avoti nesaskan: Cālītis redz „melno svārku un pelēko žakešu rindas“ ar nedaudziem krāšņiem punktiem, Rigasche Zeitung 19. novembrī raksta par dāmām sabiedrības tualetēs, daļu pat dekoltētas, bet Anna Brigadere tajā pašā grāmatā raksta, ka liecinieki ieradās „tumšās darbdienas drēbēs“. Neviens lasījums te nav izvēlēts.",
-   "warn": "„jsutru[?]“ — grāmatā iespiests tā; nolasāms kā „jautru“, bet nav izlabots. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
-   "change": [
-    {
-     "from": "jsutru[?]",
-     "to": "jautru",
-     "source": "warn-determined reading",
-     "outcome": "gap closed"
-    }
-   ]
-  },
-  {
-   "handle": "@ed_calitis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "15.05",
-   "seq": 505,
-   "lv": "Priekš pulksten 3 visas vietas līdz pat pēdējai aizņemtas. Īsi pēc 3 balsu dunoņa parketā apklust: zālē ienāk Tautas Padomes prezidijs un iet itin kā nenoteiktiem, nedrošiem soļiem uz skatuvi. Aiz tā seko Tautas Padomes locekļi. Kā? Pa frakcijām, pa pāŗiem vaj vienam?.. Sapulcētie interesējas arī par to un zīmē gājienā viņiem pazīstamās personas, kuŗas iet gan pa pāŗiem, gan pa vienam, gan cieši cilvēks aiz cilvēka, gan pēc lielākiem atstatumiem, itin kā nodalot partiju no partijas, ieskatu no ieskata. Pēc Tautas Padomes pirmās sesijas pirmās sēdes atklāšanas priekšsēža biedrs Zemgals uzaicina sekretāru Biti nolasīt partiju priekšstāvju pēdējās sēdes protokolu un platformu, uz kuŗas pamata visas partijas apņemas kopīgi darboties un vadīt valsti līdz Satversmes Sapulcei. Uz skatuves, Tautas Padomes vidū, paceļas slaiks un kalsens kungs un ar manāmu augšzemnieku akcentu sāk nolasīt abus dokumentus.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 12,
-   "topics": [
-    "Valsts pasludināšana",
-    "Tautas padome"
-   ],
-   "atNote": "Laiks ir avotā un ir PRETRUNĀ ar pārējo korpusu. Cālītis: „Priekš pulksten 3 visas vietas līdz pat pēdējai aizņemtas. Īsi pēc 3 ... zālē ienāk Tautas Padomes prezidijs.“ Līdums: akta sākums nolikts plkst. 4, Tautas Padomes locekļi iet uz skatuvi puspiecos. Tautas Padomes stenogramma: „Sēdi atklāj plkst. ½8 vakarā.“ Rigasche Zeitung 19. novembrī: akts galā ap trīsceturtdaļ sešiem. Ieraksts novietots pēc Cālīša paša pulksteņa, nevis pēc avīzēm — pretruna ir saturs, ne kļūda.",
-   "note": "„Slaiks un kalsens kungs ... ar manāmu augšzemnieku akcentu“ ir sekretārs E. Bite, ko Cālītis nosauc teikumu agrāk. Akcentu nemin neviena avīze un ne stenogramma.",
-   "warn": "„Pec[?]“ — grāmatā iespiests tā; nolasāms kā „Pēc“. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
-   "change": [
-    {
-     "from": "Pec[?]",
-     "to": "Pēc",
-     "source": "warn-determined reading",
-     "outcome": "gap closed"
-    }
-   ]
-  },
-  {
-   "handle": "@ed_calitis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "17.17",
-   "seq": 645,
-   "lv": "Kad tas noticis, partijām te vēl reiz sapulcētās tautas priekšā nākas apliecināt, ka viņas apņemas pildīt to, ko solījušās protokolā. Sociāldemokrats P. Kalniņš pieceļas un no papīra lapas lasa savu deklarāciju. Tā ir diezgan gaŗa, diezgan sausa un diezgan apnīkstoša ar saviem atkārtotajiem ,,tik tāl, cik tāl“. Šie ,,tik tāl — cik tāl“ atkārtojas tik bieži, ka pār sapulci jau pārlido kā viegls smieklu vējiņš, kaut arī smiekli paši nav dzirdami.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 12.–13. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 12,
-   "topics": [
-    "Valsts pasludināšana",
-    "Tautas padome",
-    "Strādnieki"
-   ],
-   "atNote": "Stunda avotā nav. Novietots tūlīt pēc P. Kalniņa deklarācijas, ko korpuss pēc stenogrammas liek plkst. 17.15. Pēc Cālīša paša pulksteņa (sk. plkst. 15.05 ierakstu) tas būtu noticis krietni agrāk.",
-   "note": "Smieklus Cālītis tieši noliedz: vējiņš pārlido, bet „smiekli paši nav dzirdami“. Vērtējums („diezgan gaŗa, diezgan sausa un diezgan apnīkstoša“) ir viņa, ne stenogrammas, un Līdums Kalniņa deklarāciju atstāsta vienā teikumā, zāles reakciju neminot. Teikums grāmatā pāriet no 12. uz 13. lappusi."
-  },
-  {
-   "handle": "@ed_calitis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "17.42",
-   "seq": 715,
-   "lv": "Svinīgais valsts proklamēšanas akts ir galā. Zemgalis pieceļas, brīdi stomās, itin kā nule meklētu atmiņā sakāmos vārdus, tad, paziņojis, ka Tautas Padomes sēde slēgta, uzsauc Latvijai saules mūžu un iet no skatuves zemē, Viņam seko Tautas Padomes locekļi tādā pat kārtībā, kā ienākot.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 13,
-   "topics": [
-    "Valsts pasludināšana",
-    "Tautas padome"
-   ],
-   "atNote": "Stunda avotā nav. Novietots pie sēdes slēgšanas, ko korpuss pēc stenogrammas liek plkst. 17.43.",
-   "note": "Zemgala stostīšanās ir Cālīša novērojums un nav nevienā laikrakstā: stenogrammā un Līdumā stāv tikai slēguma vārdi. Cālītis vienā nodaļā raksta gan „Zemgals“, gan „Zemgalis“ — abas formas atstātas, kā iespiestas."
-  },
-  {
-   "handle": "@ed_calitis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "17.47",
-   "seq": 748,
-   "lv": "Kad Zemgalis vēl atrodas uz pakāpēm no skatuves zālē, no partera krēsliem pieceļas Fr. Grosvalds un ātriem soļiem steidzas pretim Zemgalim. Tas nav paredzēts valsts proklamēšanas ceremoniālā, ka Tautas Padomes priekšsēdi kāds var aizturēt ceļā. Zemgalis apstājas uz pakāpēm, piesarkst un, neinteresēdamies kādēļ Grosvalds grib tam aizkrustot ceļu, divas reizes atkārto: ,,Tautas Padomes sēde slēgta...“ Tad Grosvalds atkāpjas sānis, un Tautas Padome tam aiziet gaŗām no zāles ārā.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 13,
-   "topics": [
-    "Valsts pasludināšana",
-    "Tautas padome"
-   ],
-   "atNote": "Stunda avotā nav. Notiek tūlīt pēc sēdes slēgšanas (korpusā plkst. 17.43), kamēr Zemgals vēl ir uz pakāpēm no skatuves zālē; novietots turpat.",
-   "note": "Šīs ainas nav nevienā laikrakstā. Ko Fr. Grosvalds gribēja, Cālītis nesaka — un raksta, ka arī Zemgals to neinteresējās uzzināt. Grāmata nedod ne Grosvalda amatu, ne to, kuŗš no Grosvaldiem tas ir; vārds te stāv tāds, kā iespiests, un nav identificēts.",
-   "warn": "„Zenmgalis[?]“ — grāmatā iespiests tā; nolasāms kā „Zemgalis“. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
-   "change": [
-    {
-     "from": "Zenmgalis[?]",
-     "to": "Zemgalis",
-     "source": "warn-determined reading",
-     "outcome": "gap closed"
-    }
-   ]
-  },
-  {
-   "handle": "@ed_calitis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "18.10",
-   "seq": 765,
-   "lv": "Kad iznākam uz ielas, ir jau pilnīga tumsa. Vējš, liekas, kļuvis pa to laiku stiprāks un skarbāks. Uz kanāļa tilta kā arvien staigā, itin kā nevarētu miera atrast, vācu kareivis ar platu bruņu cepuri galvā un uzrakstu uz krūtīm, ka viņš žandarms. Tikpat mierīgi kā vakar un aizvakar pa apledojušo trotuāru šļūc savus nošķiebtos zābakus sirmie vācu zemessargi un smirdina savos milzīgajos pīpjos ķiršu lapas, kumelītes, papardes un ko vēl Dievs devis laukā un mežā, un rūpīgā vācu tauta iepakojusi viņa kareivja tabakas paciņās kā pīpējamās zāles. Vaj šis žandarms un šie zemessargi ar savu līduma dūmu mākuli aiz muguras nav tie, kas šīs dienas svinīgo sēdi padarīja tik bezgala nopietnu? Ejot gar kādu restorānu jau ārpilsētā es tomēr dzirdu pa atvērtām durvīm spēlējam: ,,Dievs, svētī Latviju“. Tas jādzird arī tiem vācu ,,līdumniekiem“ un kaskeniekiem, kas sēd šaī restorānā pie galdiem.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 13,
-   "topics": [
-    "Okupācija",
-    "Rīgas dzīve",
-    "Dievs, svētī Latviju"
-   ],
-   "atNote": "Stunda avotā nav. Cālītis iziet no zāles tūlīt pēc akta un raksta „ir jau pilnīga tumsa“; saule šajā dienā norietēja tūlīt pēc trijiem. Novietots pēc plkst. 17.50 ierakstiem.",
-   "note": "Vienīgā „Dievs, svētī Latviju“ dziedāšana ārpus zāles, kāda šajā dienā ir pierakstīta, un tā ir atmiņa, ne ziņa: Cālītis to dzird pa atvērtām durvīm, ejot gar restorānu ārpilsētā, un neuzraksta ne restorāna, ne ielas vārdu.",
-   "warn": "„kareicvis[?]“ (nolasāms „kareivis“) un „iepakājusi[?]“ (nolasāms „iepakojusi“) — grāmatā iespiests tā, nav izlabots. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
-   "change": [
-    {
-     "from": "kareicvis[?]",
-     "to": "kareivis",
-     "source": "warn-determined reading",
-     "outcome": "gap closed"
-    }
-   ]
-  },
-  {
-   "handle": "@j_ampermanis",
-   "type": "atminas",
-   "written": 1923,
-   "at": "17.43",
-   "seq": 725,
-   "lv": "18. novembrī jau pāris stundas priekš noliktā laika ļaudis bariem vien devās uz krievu teātri, ieņemdami vietas līdz pēdējai iespējamībai. Tautas Padomes locekļiem ierodoties zālē, tauta viņus saņēma ar ilgiem aplausiem, un kad Tautas Padomes vicepriekšsēdis Zemgals (Čakste, atrazdamies Zemgalē, nebij paspējis ierasties, lai gan telegrafiski bija ticis viņa paziņots) pēc Latvijas valsts proklamēšanas uzaicināja vienoties lūgšanā par valsti, nodziedot ,,Dievs, svētī Latviju“, tad sajūsma bija sasniegusi augstāko pakāpi, ne viena vien asaru pērle noritēja pār Tautas Padomes locekļu un dalībnieku vaigiem, piedzīvojot svinīgo brīdi, kad pēc 700 gadiem tauta un zeme top atkal brīva no svešiem kungiem. Vicepriekšsēdim paziņojot tautai par Kārļa Ulmaņa izvēlēšanu par pirmo Latvijas valsts ministru prezidentu, tauta uzņēma šo ziņu ar vētrainiem aplausiem.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 19. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 19,
-   "topics": [
-    "Valsts pasludināšana",
-    "Tautas padome",
-    "Dievs, svētī Latviju"
-   ],
-   "atNote": "Ampermaņa rindkopa ietver visu pēcpusdienu — no ļaužu plūduma „pāris stundas priekš noliktā laika“ līdz himnai akta beigās. Ieraksts novietots pie himnas un sēdes slēgšanas (korpusā plkst. 17.43); rindkopas pirmais teikums attiecas uz plkst. ~14.",
-   "note": "Ampermanis sēdēja uz skatuves kā Tautas Padomes loceklis, Zemnieku Savienības 13 delegātu vidū (Mežmaļu Ata nodaļa, 8. lpp.). Divas vietas, kur viņš pārsniedz to, ko varēja redzēt vai dzirdēt pats: Čakstes prombūtnes iemesls („atrazdamies Zemgalē“) un apgalvojums, ka Zemgals paziņojis tautai par Ulmaņa izvēlēšanu — tādu paziņojumu zālei nemin Līdums, un šajā korpusā tāda nav nevienā ierakstā; Līdums raksta, ka Ulmanis zālē runāja pats. Zemgala amatu Ampermanis sauc par „vicepriekšsēdis“, Līdums — par „priekšsēža otrais biedrs“.",
-   "warn": "„...lai gan telegrafiski bija ticis viņa paziņots[?]“ — iekavās liktais teikums grāmatā ir šādā bojātā formā; tā nozīme nav droša un nav izlabota. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
-   "change": [
-    {
-     "from": "paziņots[?]",
-     "to": "paziņots",
-     "source": "warn-determined reading",
-     "outcome": "gap closed"
-    }
-   ]
-  },
-  {
-   "handle": "@a_brigadere",
-   "type": "atminas",
-   "written": 1923,
-   "at": "16.25",
-   "seq": 545,
-   "lv": "Uz šo ticību dibinājās 18. novembris 1918. gadā. Nekā vairāk nebija jaunajai Latvijai. Ne armijas, ne naudas, ne pajumta pat, kur nolikt galvu. Neviens karogs nepuškoja Rīgas namus. Tumšās darbdienas drēbēs ieradās pasludināšanas akta liecinieki. Un nekādu citu meslu viņiem nebija ko dot jaunajai valstij kā stipra ticība. Latvija būs, par spīti visiem, kas nevēlēja viņas patstāvībai ilgāku mūžu, kā vienu dienu.",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 16. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 16,
-   "topics": [
-    "Valsts pasludināšana",
-    "Rīgas dzīve"
-   ],
-   "atNote": "Stunda avotā nav. Rindkopa ir apcere par dienu, bet divi novērojumi tajā — par karogiem Rīgas namos un par lieciniekiem tumšās darbdienas drēbēs — attiecas uz publiku pirms akta, tāpēc ieraksts novietots tieši pirms tā (korpusā akts sākas plkst. 16.30).",
-   "note": "Brigadere ir viena no tām „brīnum maz sieviešu“, par kuŗām tajā pašā grāmatā raksta Cālītis, un viņas lasījums par apģērbu ir PRETRUNĀ ar Rigasche Zeitung 19. novembŗa aprakstu (dāmas sabiedrības tualetēs, daļa pat dekoltētas) un daļēji ar Cālīti. „Neviens karogs nepuškoja Rīgas namus“ attiecas uz pilsētu, ne uz zāli: zālē karogs bija — Līdums raksta par nacionālo karogu pāri skatuvei, Rigasche Zeitung par sarkanbaltsarkanu audumu uz skatuves un sānu ložās."
-  },
-  {
-   "handle": "@a_brigadere",
-   "type": "atminas",
-   "written": 1923,
-   "at": "17.55",
-   "seq": 755,
-   "lv": "Šai neaizmirstamajā dienā man gadījās mazs piedzīvojums, kuŗu es gribētu uzskatīt par simbolisku. Kad pēc pabeigta akta ātri tukšojās zāle un es izgāju viena no pēdējiem, teātŗa vestibilā uzreiz man piesteidzās — cilvēks, — kuŗš bija labi pazīstams kā Marksa bauslības kalps un internacionāles pielūdzējs. Es viņu personīgi nepazinu, bet viņš piesteidzās man mirdzošām acīm un satvēra manu roku abām savām: ,,Sveiki, sveiki brīvajā Latvijā!“",
-   "ocr": null,
-   "via": "Valsts pieci gadi, Rīga 1923, 16. lpp.",
-   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
-   "page": 16,
-   "topics": [
-    "Valsts pasludināšana",
-    "Rīgas dzīve"
-   ],
-   "atNote": "Stunda avotā nav. Notiek pēc akta, zālei tukšojoties — Brigadere iziet „viena no pēdējiem“; novietots pēc plkst. 17.50 ierakstiem.",
-   "note": "Cilvēku, kas satvēra viņas roku, Brigadere nenosauc un raksta, ka personīgi viņu nepazina. Tāpēc šeit nav neviena vārda, ko varētu identificēt, un mēs to nemēģinām.",
-   "warn": "„uzskatīt pr[?] simbolisku“ — grāmatā iespiests tā; nolasāms kā „par“. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
-   "change": [
-    {
-     "from": "pr[?]",
-     "to": "par",
-     "source": "warn-determined reading",
-     "outcome": "gap closed"
-    }
-   ]
-  },
   {
    "handle": "@rigas_zaldatu_padome",
    "type": "dokuments",
@@ -1025,6 +796,33 @@
    ]
   },
   {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "09.00",
+   "seq": 130,
+   "lv": "Ielu stūŗos un māju aizvējā tikko kūst vēja sanestā plānā, smiltīm sajauktā sniega kārtiņa. Kā tad pēc vairāku dienu kailsalas laiks šodien pielaidīgāks! — Bet ja rīdzinieku gaitas liekas možākas, viņu sejās redzama dziļa līksmība, tad tas nebūt nav laika nopelns. To panākusi ziņa, kas šorīt aplidoja pilsētu, ka vakar vakarā polītisko partiju pārstāvju starpā panākta vienošanās. Šodien jānotiek neatkarīgās Latvijas proklamēšanai. Un rīdzinieku možums un līksmība izskaidrojama ar to, ka katrs steidzas uz to partijas biroju vaj darbinieku, kuŗas loceklis tas skaitās vaj arī pēc pārliecības jūtas tuvāk, lai no visdrošākiem avotiem pārliecinātos par šīs ziņas pareizību.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Rīgas dzīve",
+    "Valsts pasludināšana"
+   ],
+   "atNote": "Stunda avotā nav. Cālītis raksta par rītu — „ziņa, kas šorīt aplidoja pilsētu“ — tāpēc ieraksts novietots rītā; precīzs laiks ir mūsu novērtējums.",
+   "note": "Sniegs, vējš un rīdzinieku sejas ir tas, ko Cālītis redzēja pats. Ziņu par vakardienas vienošanos viņš apraksta kā tādu, kas „aplidoja pilsētu“ — 18. novembŗa rīta avīzēs tās nav: vienīgā latviešu avīze uz ielas, Baltijas Ziņu Nr.168, par gaidāmo aktu neraksta ne vārda. Kā ziņa izplatījās, Cālītis nesaka.",
+   "warn": "„polītsko[?]“ — grāmatā iespiests tā; nolasāms kā „polītisko“, bet nav izlabots. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
+   "change": [
+    {
+     "from": "polītsko[?]",
+     "to": "polītisko",
+     "source": "warn-determined reading",
+     "outcome": "gap closed"
+    }
+   ]
+  },
+  {
    "handle": "@baltijas_zinas",
    "type": "citats",
    "at": "09.05",
@@ -1416,6 +1214,47 @@
    ]
   },
   {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "12.00",
+   "seq": 295,
+   "lv": "Tikai ap pusdienas laiku partiju prezidiji un Tautas Padomes locekļi saņem ieejas kartiņas, kas tik vienkāršas, cik vien iespējams: ar trekniem burtiem uz kartona gabaliņa uzdrukāts šīs dienas datums, bet zem tā apakšā aplokā trīs burti ,,L. T. P.“ Tam vajag nozīmēt: ,,Latvijas Tautas Padome“.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Laiks ir avotā: „ap pusdienas laiku“.",
+   "note": "Kartiņu Cālītis turēja rokā. Viņš nosauc arī, kas tās saņēma — partiju prezidiji un Tautas Padomes locekļi; kuŗā no šīm divām kārtām bija viņš pats, grāmata nekur nepasaka."
+  },
+  {
+   "handle": "@baltijas_zinas",
+   "type": "citats",
+   "at": "12.05",
+   "seq": 297,
+   "lv": "Milicijas lietas. Vakar milišiem izdalīja ieročus Romanova ielā 25. Ieročus izdod visiem tiem, kas pierakstījušies par pastāvīgiem zemes sargiem.",
+   "ocr": "Milizijas le-t». Wakar milnscheem isda!»jg eerotschu» Romanoma eelâ 25. Eerotschu» iîdod «işeem teem, kas peeràijuschee» par pastahwigeem seme» sargeem.",
+   "via": "Baltijas Ziņas Nr.169, 19.11.1918, „Rīga“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL101",
+   "topics": [
+    "Rīgas dzīve",
+    "Zemes sargi"
+   ],
+   "atNote": "Stunda avīzē nav. „Vakar“ 19. novembŗa numurā ir 18. novembris. Pulksten 12 ir mūsu novietojums pēc Latvju Kareivju Nacionālās Savienības uzsaukuma, ko tajā pašā dienā iespiež Jaunākās Ziņas Nr.4 — tas aicina ierasties „18. novembrī pulksten 12 dienā Romanova ielā 25“. Uzsaukums un ziņa sakrīt vietā, bet pati ziņa stundu nenosauc.",
+   "note": "Tā pati vieta — Romanova ielā 25 — jau ir korpusā 14.35 ierakstā par Latviešu Kareivju Nacionālo Savienību un 14.50 sociāldemokrātu mītiņu.",
+   "warn": "Jaunākās Ziņas Nr.4 tai pašā dienā raksta, ka ieročus izdos „šodien plkst. 12 dienā“, t. i. 19. novembrī. Divas 19. novembŗa avīzes tātad nesaskan par dienu. Šis ieraksts seko Baltijas Ziņu „vakar“; pretruna nav izšķirta.",
+   "recon": {
+    "Vakar": "Wakar",
+    "milišiem": "milnscheem",
+    "ieročus": "eerotschu»",
+    "sargiem": "sargeem"
+   }
+  },
+  {
    "handle": "@kareivju_savieniba",
    "type": "dokuments",
    "at": "12.10",
@@ -1689,6 +1528,34 @@
     "Izziņa": "Isstņaja"
    },
    "warn": "„Isstņaja ka to ir“ — teikums OCR ir nepilns, un šeit lasīts kā „Izziņa, ka to ir“. Nav apstiprināts."
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "14.00",
+   "seq": 405,
+   "lv": "Tas tomēr nenotika, un jau ap pulksten 2 pēc pusdienas agrākajā II Rīgas pilsētas teātrī, toreizējā operā, bet tagad Nacionālajā teātrī, sāka satecēt ļaužu straumes no visām malām. Pārlaižot acis pār ļaužu pulciņiem garderobē, uz trepēm, fuajè un pašās teātŗa telpās uzkrītoši tas, ka starp tiem brīnum maz sieviešu. Sievietes taču pa laikam nevar atturēties no svinīgiem notikumiem, no kaut kā jauna, nebijuša... Un pakavējoties ilgāk pie tiem nedaudzajiem krāšņajiem punktiem melno svārku un pelēko žakešu rindās, nav grūti tanīs pazīt tās sievietes, kuŗas polītiku izraudzījušās par savu speciālitāti un kopš 1905. gada paspējušas izstrādāt pat savu stilu apģērbā, manierēs, sarunā u. t. t. Varbūt šī ,,vīrišķīgākā“ elementa pārsvars piedod visai sapulcei zināmas nopietnības raksturu, zināmu svarīgumu, jo tanī tiešām neredz nevienu bezbēdīgi vaj vieglprātīgi jautru seju, tāpat kā vieglajā balsu dunoņā nepaceļas neviena augstāka, pārgalvīga skaņa.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Valsts pasludināšana",
+    "Rīgas dzīve",
+    "Sievietes"
+   ],
+   "atNote": "Laiks ir avotā: „jau ap pulksten 2 pēc pusdienas“. Līdums raksta, ka publika sāk plūst no plkst. 3 — divi pulksteņi, kas nesakrīt, un šis salikums tos nesaskaņo.",
+   "note": "Ievadvārdi „Tas tomēr nenotika“ attiecas uz iepriekšējo rindkopu, kur Cālītis uzskaita četras svešās varas, kas aktu būtu varējušas aizkavēt: vācu zaldātu deputātu padomi, policijas priekšnieku Fūrmani, guberņas priekšnieku un Vācijas komisāru Baltijas zemēs. — Par publikas apģērbu avoti nesaskan: Cālītis redz „melno svārku un pelēko žakešu rindas“ ar nedaudziem krāšņiem punktiem, Rigasche Zeitung 19. novembrī raksta par dāmām sabiedrības tualetēs, daļu pat dekoltētas, bet Anna Brigadere tajā pašā grāmatā raksta, ka liecinieki ieradās „tumšās darbdienas drēbēs“. Neviens lasījums te nav izvēlēts.",
+   "warn": "„jsutru[?]“ — grāmatā iespiests tā; nolasāms kā „jautru“, bet nav izlabots. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
+   "change": [
+    {
+     "from": "jsutru[?]",
+     "to": "jautru",
+     "source": "warn-determined reading",
+     "outcome": "gap closed"
+    }
+   ]
   },
   {
    "handle": "@baltijas_zinas",
@@ -1995,6 +1862,57 @@
    ]
   },
   {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "15.05",
+   "seq": 505,
+   "lv": "Priekš pulksten 3 visas vietas līdz pat pēdējai aizņemtas. Īsi pēc 3 balsu dunoņa parketā apklust: zālē ienāk Tautas Padomes prezidijs un iet itin kā nenoteiktiem, nedrošiem soļiem uz skatuvi. Aiz tā seko Tautas Padomes locekļi. Kā? Pa frakcijām, pa pāŗiem vaj vienam?.. Sapulcētie interesējas arī par to un zīmē gājienā viņiem pazīstamās personas, kuŗas iet gan pa pāŗiem, gan pa vienam, gan cieši cilvēks aiz cilvēka, gan pēc lielākiem atstatumiem, itin kā nodalot partiju no partijas, ieskatu no ieskata. Pēc Tautas Padomes pirmās sesijas pirmās sēdes atklāšanas priekšsēža biedrs Zemgals uzaicina sekretāru Biti nolasīt partiju priekšstāvju pēdējās sēdes protokolu un platformu, uz kuŗas pamata visas partijas apņemas kopīgi darboties un vadīt valsti līdz Satversmes Sapulcei. Uz skatuves, Tautas Padomes vidū, paceļas slaiks un kalsens kungs un ar manāmu augšzemnieku akcentu sāk nolasīt abus dokumentus.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Laiks ir avotā un ir PRETRUNĀ ar pārējo korpusu. Cālītis: „Priekš pulksten 3 visas vietas līdz pat pēdējai aizņemtas. Īsi pēc 3 ... zālē ienāk Tautas Padomes prezidijs.“ Līdums: akta sākums nolikts plkst. 4, Tautas Padomes locekļi iet uz skatuvi puspiecos. Tautas Padomes stenogramma: „Sēdi atklāj plkst. ½8 vakarā.“ Rigasche Zeitung 19. novembrī: akts galā ap trīsceturtdaļ sešiem. Ieraksts novietots pēc Cālīša paša pulksteņa, nevis pēc avīzēm — pretruna ir saturs, ne kļūda.",
+   "note": "„Slaiks un kalsens kungs ... ar manāmu augšzemnieku akcentu“ ir sekretārs E. Bite, ko Cālītis nosauc teikumu agrāk. Akcentu nemin neviena avīze un ne stenogramma.",
+   "warn": "„Pec[?]“ — grāmatā iespiests tā; nolasāms kā „Pēc“. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
+   "change": [
+    {
+     "from": "Pec[?]",
+     "to": "Pēc",
+     "source": "warn-determined reading",
+     "outcome": "gap closed"
+    }
+   ]
+  },
+  {
+   "handle": "@baltijas_zinas",
+   "type": "citats",
+   "at": "15.40",
+   "seq": 507,
+   "lv": "Pār pilsētas latviešu teātri tautas karogs parādījās tikai pēdējā brīdī, bet tauta saprata viņa viļņojošos mājienus un — īsā brīdī pārpildīja plašo namu līdz pēdējai vietiņai — pārpildīja, ka lielai daļai bija jāpaliek ārā. Nekādi ziņojumi, nekādi sludinājumi, — vienīgi tautas karogs sapulcināja [?].",
+   "ocr": "Pahr pilsehtas latmeeschu teātri tautas karogs parah. dijàs tikai pehdejâ brihdî, bet tauta saprata miņa miļņojoschos mahjeenus un — ihşâ brihdi pahrpildija plascho namu lihds pehdejai meetiņai — pahrpildija, ka leelai daļai bija japaleek ahrâ. Nekahdi sinojunli, nekahdi sludinajunli, — w?enigi tautas karogs sapulzinaja",
+   "via": "Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Valsts pasludināšana",
+    "Rīgas dzīve"
+   ],
+   "atNote": "Stunda avīzē nav. Karogs parādījās „pēdējā brīdī“ pirms akta, un zāle jau priekš pulksten 3 bija pilna (korpusa ieraksts 15.05), tāpēc ieraksts novietots īsi pirms tā; precīzs laiks ir mūsu novērtējums.",
+   "note": "Teikums neatkarīgi apstiprina to, ko korpuss jau saka 09.00 ierakstā: 18. novembŗa avīzēs par gaidāmo aktu nebija ne vārda. Šeit to apgalvo pati avīze — „nekādi ziņojumi, nekādi sludinājumi“.",
+   "warn": "Teikums turpinās ar vārdiem, ko OCR nedod salasāmus („isaaidijuschos, isilgojuschos ļautu saļumeem“), tāpēc ieraksts beidzas ar [?]. Tālāk tai pašā rindkopā avīze pāriet uz savu vērtējumu („pēc gadu simteņiem ilgas nebrīvības“) — tas šeit apzināti nav ņemts.",
+   "recon": {
+    "karogs": "karogs",
+    "pārpildīja": "pahrpildija",
+    "vietiņai": "meetiņai",
+    "sludinājumi": "sludinajunli",
+    "vienīgi": "w?enigi"
+   }
+  },
+  {
    "handle": "@rigasche_zeitung",
    "type": "citats",
    "at": "15.30",
@@ -2083,6 +2001,24 @@
    ]
   },
   {
+   "handle": "@a_brigadere",
+   "type": "atminas",
+   "written": 1923,
+   "at": "16.25",
+   "seq": 545,
+   "lv": "Uz šo ticību dibinājās 18. novembris 1918. gadā. Nekā vairāk nebija jaunajai Latvijai. Ne armijas, ne naudas, ne pajumta pat, kur nolikt galvu. Neviens karogs nepuškoja Rīgas namus. Tumšās darbdienas drēbēs ieradās pasludināšanas akta liecinieki. Un nekādu citu meslu viņiem nebija ko dot jaunajai valstij kā stipra ticība. Latvija būs, par spīti visiem, kas nevēlēja viņas patstāvībai ilgāku mūžu, kā vienu dienu.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 16. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 16,
+   "topics": [
+    "Valsts pasludināšana",
+    "Rīgas dzīve"
+   ],
+   "atNote": "Stunda avotā nav. Rindkopa ir apcere par dienu, bet divi novērojumi tajā — par karogiem Rīgas namos un par lieciniekiem tumšās darbdienas drēbēs — attiecas uz publiku pirms akta, tāpēc ieraksts novietots tieši pirms tā (korpusā akts sākas plkst. 16.30).",
+   "note": "Brigadere ir viena no tām „brīnum maz sieviešu“, par kuŗām tajā pašā grāmatā raksta Cālītis, un viņas lasījums par apģērbu ir PRETRUNĀ ar Rigasche Zeitung 19. novembŗa aprakstu (dāmas sabiedrības tualetēs, daļa pat dekoltētas) un daļēji ar Cālīti. „Neviens karogs nepuškoja Rīgas namus“ attiecas uz pilsētu, ne uz zāli: zālē karogs bija — Līdums raksta par nacionālo karogu pāri skatuvei, Rigasche Zeitung par sarkanbaltsarkanu audumu uz skatuves un sānu ložās."
+  },
+  {
    "handle": "@rigasche_zeitung",
    "type": "citats",
    "at": "16.30",
@@ -2111,6 +2047,29 @@
      "why": "„Pusfive“ nav latviešu vārds — latviskais „pus-“ bija salikts ar angļu „five“. OCR dod „Vm Vtb Uhr“ = „Um ½5 Uhr“, t.i. pusfivi. Korpusā citur šī pati stunda no Līduma ir „Puspeezos“ (1918. g. ortogrāfijā), tātad „Puspiecos“."
     }
    ]
+  },
+  {
+   "handle": "@baltijas_zinas",
+   "type": "citats",
+   "at": "16.32",
+   "seq": 552,
+   "lv": "Ar nerimstošiem aplausiem sanākusē tauta sveicināja jaunās, brīvās valsts augstākās varas nesēju — Latvju Tautas Padomi, kuras locekļi ieņēma vietas uz pušķotās skatuves ap puķēs uzcelto galdu, pie kura ieņēma vietas Tautas Padomes priekšsēdētāja Čakstes biedri M. Skujnieks un zv. adv. Zemgals un sekretāri zv. adv. Bite un viņa biedri ģeologs Skubiķis un Latgales priekšstāvis Kambala.",
+   "ocr": "Ar nerimstoşcheem aplauşeem şanahkusè tauta şweizinaja jaunàs, brihwàs malsts augstākās lvaras nesēju — Latmju TautaS Padomi, kuras lozekļi eeņehma mestas us puschtVtas skatumes ap puķēs uszelto galdu, pee kura eeņehma meetas TautaS Padomes preekschşehdetaja Tschakstes beedri M. Şkujneeks un sw adm. Semgals un sekretāri sw. adm. Bite un miņa beedri ģeologs Şkubiķis un Latgales preekşchstahwis Kambala.",
+   "via": "Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Stunda avīzē nav. Rigasche Zeitung to pašu brīdi — prezidija ienākšanu pie sarkanā galda — liek tūlīt pēc puspieciem (korpusa ieraksts 16.30), tāpēc ieraksts novietots turpat.",
+   "note": "Vācu avīze 16.30 ierakstā saskaita „5 kungus, padomes prezidiju“, bet nevienu nenosauc. Šis ir tas pats piecinieks vārdos.",
+   "warn": "Avīze raksta „ģeologs Skubiķis“. Līdums Nr.219 un Jaunākās Ziņas Nr.4 to pašu cilvēku sauc par inženieri („inž. Skubiķis“). Amats tātad avotos nesaskan; uzvārds sakrīt visos trijos. Pirmvārdi nav nevienā no tiem un šeit nav pielikti.",
+   "recon": {
+    "sanākusē": "şanahkusè",
+    "pušķotās": "puschtVtas",
+    "biedri": "beedri",
+    "Skujnieks": "Şkujneeks"
+   }
   },
   {
    "handle": "@rigasche_zeitung",
@@ -2175,6 +2134,50 @@
    ]
   },
   {
+   "handle": "@baltijas_zinas",
+   "type": "citats",
+   "at": "16.45",
+   "seq": 585,
+   "lv": "Kad Tautas Padomes sapulces vadonis bija pasludinājis jaunās valsts suverēno varu ar šodienu pārgājušu Latvju Tautas Padomes rīcībā, brīvās Latvijas valsts pirmais ministru priekšnieks K. Ulmanis nostājās pie priekšsēdības galda. Sapulcētie viņu apsveica ar šalcošiem aplausiem un — pēc jūsmīgas, trīskārtīgas tautas himnas nodziedāšanas viņš turēja sekošu uzrunu:",
+   "ocr": "Kad TautaS Padomes fapulzes madonis bija pasludinājis jaunas malsts suroereno marti ar schodeenu pahrgahjufchu Latmju Tautas Padomes rihzibâ, brihwàS LatmijaS maksts pirmais ministru preekschneeks K. Ulmanis nostahjàs pee preekschschdibatz galda. Ģapulzetee miņu apsmeiza ar schalzoşcheem aplauseem un pehz juhsmigas. trihskahrtigaS tautaS himnas nodseedaschanas miņsch turēja şekoşchu usrnnu:",
+   "via": "Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Stunda avīzē nav. Avīze šo brīdi liek tieši starp protokola nolasīšanu (korpusa ieraksts 16.35) un Ulmaņa runu (16.50), tāpēc ieraksts novietots starp tiem.",
+   "note": "„Ar šodienu“ — avīze citē to, kas tika pateikts zālē 18. novembrī: suverēnā vara pāriet Tautas Padomes rīcībā ar šo dienu.",
+   "recon": {
+    "vadonis": "madonis",
+    "suverēno": "suroereno",
+    "šalcošiem": "schalzoşcheem",
+    "uzrunu": "usrnnu"
+   }
+  },
+  {
+   "handle": "@rigasche_zeitung",
+   "type": "citats",
+   "at": "16.47",
+   "seq": 588,
+   "lv": "Ministru prezidents Ulmanis pateicās par viņam dāvāto [?] un tad ar dažiem stāvoklim atbilstošiem vārdiem pasludināja suverēno Latviju par dzīvē stājušos. Nerimstoši „bravo“ un „slava“ saucieni [un] latviešu [?] dziesma noslēdza šo ceremonijas pirmo daļu, ko magnija uzliesmojuma uzņēmums iemūžināja nākamām paaudzēm.",
+   "ocr": "Prem'dr. min.fter Ulmarm dankte für dnS ihm g sche. kte aud extiA<ic dann mit firigtti der S'taet on entspeckenden Worten! die so.' v'räne Latwija alö iV.S L<ben getrete , Nicht Bravo. a»d Sslawa Rufe d?» Nid der Kefa z deS lettif »n befchl.fs»n diesen -rstra Tri! dn B cm llittn- а, aa» nm Blitzlichtaufnehme sür kommende Geschlechter verewigte",
+   "via": "Rigasche Zeitung Nr.268, 19.11.1918, „Lokales“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:222949|article:DIVL87",
+   "topics": [
+    "Valsts pasludināšana"
+   ],
+   "atNote": "Stunda avīzē nav. Vācu reportieris šo brīdi liek starp protokola nolasīšanu (korpusa ieraksts 16.35) un Ulmaņa programmas runu, tāpēc ieraksts novietots turpat.",
+   "note": "Vienīgā ziņa korpusā par to, ka aktu fotografēja — ar magnija uzliesmojumu, „nākamām paaudzēm“.",
+   "warn": "Šī raksta vācu OCR ir stipri sadrupis un vietām piesārņots ar kirilicu; šis ieraksts NAV pārlasīts no skenējuma. Divas vietas paliek [?]: vārds aiz „dāvāto“ (OCR „g sche. kte“, pēc jēgas uzticību, bet nav nolasīts) un dziesmas apzīmējums (OCR „daS Lied der Kefa z deS lettif »n“). Neviens no tiem nav uzminēts.",
+   "recon": {
+    "pateicās": "dankte",
+    "iemūžināja": "verewigte",
+    "paaudzēm": "Geschlechter",
+    "[un]": "d?»"
+   }
+  },
+  {
    "handle": "@k_ulmanis",
    "type": "atstastits",
    "at": "16.50",
@@ -2206,6 +2209,29 @@
      "why": "Skenējumā „paleekot“; vecais OCR deva „palūkot“, ko pats ieraksts bija atzīmējis kā izskatīgu salasīšanas kļūdu un atstājis neizlabotu."
     }
    ]
+  },
+  {
+   "handle": "@k_ulmanis",
+   "type": "atstastits",
+   "at": "16.52",
+   "seq": 592,
+   "lv": "Brīvās Latvijas brīvās pilsones un pilsoņi! Ap[?]damies sava uzdevuma neaptveŗami lielo un plašo, dziļo un augsto nozīmi un grūto atbildību tautas un dzimtenes, brīvās Latvijas priekšā uzņēmos augsto amatu tikai pamudināts no pilnīgas vienprātības, ar kādu esmu ievēlēts. Lieli, neaptveŗami lieli darbi un uzdevumi guļ uz Pagaidu Valdības, kas veicami iekšējā valsts izbūvē un uz āreni, lai viņa būtu cienīga brīvo tautu savienībā.",
+   "ocr": "BrihwàS LatwijaS brihwàs pilşoneS un pilsoņi! Apstnadamees sama usdemuma ncaptmerami leelo u> plaşcho. dşiļo un augsto nosihmi un gruhLo atbildibu tautas un dsimteneS, drihmàs LatwtzjaS preekschâ usņehmos augsto amatu rikai pamudināts no pilnigas roeenprahtibaS, kahdu esmu eemehletS. Leeli. neaptmerami reeli darbi un usdewumi guļ us Pagaidu MaldibaS. kaS meizami e-k-scheji malsts isbuhwê un us ahreeni, lai miņa buhtu zeeniga brihroo tautu şaweenibâ.",
+   "via": "Atstāstīts: Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Valsts pasludināšana",
+    "Pagaidu valdība"
+   ],
+   "atNote": "Stunda avīzē nav. Avīze šo runu liek tūlīt pēc trīskārtīgās himnas (ieraksts 16.45) un pirms Līduma atstāstītās pieņemšanas runas (korpusa ieraksts 16.50); precīzs laiks ir mūsu novērtējums.",
+   "note": "Šī ir Ulmaņa runas uzruna, ko Līduma atstāsts nedod. Baltijas Ziņas viņa runu iespiež pēdiņās un daudz garāku nekā Līdums; abi atveidojumi stāv blakus, neviens nav izvēlēts par pareizo.",
+   "warn": "Otrais vārds nav nolasīts. Iespiests ir „Apstnadamees“ vai „Apsinadamees“ — pie 230 dpi skenējuma glifs starp garo s un n nešķiras, un 9× palielinājums ir aiz skenējuma patiesās izšķirtspējas. Pēc jēgas tas ir „apzinādamies“, bet burti to neapliecina, tāpēc vieta paliek [?]. Ieraksts sākas bez atverošās pēdiņas, kas iespiesta kā punkts.",
+   "recon": {
+    "pilsones": "pilşoneS",
+    "neaptveŗami": "ncaptmerami",
+    "pamudināts": "pamudināts",
+    "ievēlēts": "eemehletS"
+   }
   },
   {
    "handle": "@lidums",
@@ -2261,6 +2287,30 @@
   {
    "handle": "@k_ulmanis",
    "type": "atstastits",
+   "at": "16.58",
+   "seq": 605,
+   "lv": "Iekšējā valsts izbūvē veicamas nepārredzami lielas un plašas demokrātiskas reformas, kuras sīkumos uzrādīt šobrīd nav iespējams. Pārtikas jautājumā valdība izlietos kā svarīgākā vispirmos enerģiskākos līdzekļus un visus spēkus, bet tikpat nepieciešama ir tautas uzticība un līdzdarbība, ievērojot, ka brīvā valstī nav vietas netaisnībai un pārestībai, bet katram jābūt pienācīgi apgādātam ar uzturu. Pirmā vietā stāv arī zemes (agrar) jautājums un ar to cieši saistītās sabiedriskās (sociālās) reformas un likumu došana. Plašs, dziļš un daudzpusīgs ir iedzīvotāju tiesību un nodrošināta stāvokļa jautājums. Pagaidu Valdība tūliņ gādās par visu kara gūstekņu atlaišanu un to apgādāšanu ar darbu, peļņu un iztiku arī pabalsta veidā.",
+   "ocr": "Eekşchejâ malstS isbuhwê weizamaS nepahrredsami leelas un plaschas demokrātiskas reformas, kuraS sihkumcs usrahdit schobrihd naw eespehjams Pahrtikas jautājumā maldiba isleetoS kà şmarigakâ mispirmos enerģiskākos lihdsekļuS un wişuS spehkus, bet tikpat nepeezeeschama ir tautaS ustizibu un lihdsdarbiba, eemehromt, ka brihwâ malsti nam meetaS netaisnibai un pahrestidai. bet katram jabuht pee» nahzigi apgahdatam ar usturu. Pirmā meeta stahm ari serneS (agrar) jautājums un ar to zeeschi şaistitàs sabeedrtskàS (sozialàs) reformas un likumu doşchana. Plaschs. dsitsch undaudsir eedjihnotaju teesibu un nodroşchinata stahwà jautaminS. Pagaidu Maldiba tuhliņ sahdàS par misu kara guhstekņu atlaischanu un 1o apgahdaschanu ar dārdu, peļņu uņ iftitu ari pabalsta weidâ.",
+   "via": "Atstāstīts: Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Pagaidu valdība",
+    "Pārtika",
+    "Agrārā reforma"
+   ],
+   "atNote": "Stunda avīzē nav. Runas turpinājums; ieraksts novietots tūlīt pēc tās sākuma.",
+   "note": "Līduma kopsavilkums tos pašus uzdevumus saskaita trīs punktos (korpusa ieraksts 16.55). Šeit tie ir Ulmaņa paša vārdos, kā tos iespiež Baltijas Ziņas.",
+   "warn": "„Iztiku“ vecajā OCR bija sadrupis par „iftitu“; vārds nolasīts no skenējuma (lappuse 2, 1. sleja). „Plašs, dziļš un daudzpusīgs“ rindkopā OCR dod „undaudsir“ — vārdu robežas atjaunotas, burti nav mainīti.",
+   "recon": {
+    "nepārredzami": "nepahrredsami",
+    "pārestībai": "pahrestidai",
+    "gūstekņu": "guhstekņu",
+    "iztiku": "iftitu"
+   }
+  },
+  {
+   "handle": "@k_ulmanis",
+   "type": "atstastits",
    "at": "17.00",
    "seq": 610,
    "lv": "Latvijas valstij jābūt demokrātiski taisnai valstij, lai nedotu viņā vietas ne apspiešanai, ne netaisnībai.",
@@ -2273,6 +2323,111 @@
    ],
    "atNote": "Stenogramma. Precīzs runas laiks protokolā nav dots; laiks te ir aplēse starp akta sākumu plkst. 16.30 un beigām plkst. 17.45.",
    "later": "1934. gada 15. maijā Kārlis Ulmanis atlaida Saeimu, aizliedza politiskās partijas un valdīja ar dekrētiem."
+  },
+  {
+   "handle": "@k_ulmanis",
+   "type": "atstastits",
+   "at": "17.02",
+   "seq": 612,
+   "lv": "Latvju darba griba un spēks, apņemšanās un izturība ir tautas īpašības, kuŗām jāizceļas brīvajā valstī vairāk kā līdz šim; viņām jāpiepilda tautas gadu simteņu ilgas un cerības. Ar dziļu pateicību tauta un tautas valdība atminēs tos tautas brīvības cīnītājus, kas sen, sen cīnījušies par Latvijas brīvību. Ja valdība un tauta tā strādās vienprātībā un savstarpīgā uzticībā, tad izdziedēsim ne tikai kara šķēpa [?] brūces, bet arī ilgās nebrīvības brūces, jo nekas nebūs vairs jāgaida no ārienes, no kādas augšienes, bet viss no pašu gribas un spēka.",
+   "ocr": "Latmju darba griba un spehks. apņemschanàs un isturiba ir lautas ihpaschibas, luŗàm jaiszeļas brihwajâ malstî lvairak kà lihds schim' miņam japeepilda taMas gadu şimleņu ilgaS un zeribaS. Ar djitu patetzibu tauta un tautaS maldiba atminēs lo« tautaS brihmibaS zihnitajus, kaS sen, sen zihnijuscheeS par LatmijaS brihwibu. Ja maldiba. un tauta tà strahdàs meenprahÜbâ un sawstarpigâ ustizibâ. tad isdseedefim ne likai kara şijiàs bruhzeS. bet ari ilgàs nedrihmibaS bruhzeS. jo nekas nebuhs mairS jāgaida no ahreencs. no kahdas augscheenes, bet miss no paşchu gribas un spehka.",
+   "via": "Atstāstīts: Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Pagaidu valdība"
+   ],
+   "atNote": "Stunda avīzē nav. Runas turpinājums; ieraksts novietots pēc iepriekšējā.",
+   "warn": "„kara şijiàs bruhzeS“ — OCR nedod salasāmu vārdu starp „kara“ un „brūces“; vieta paliek [?] un nav uzminēta.",
+   "recon": {
+    "apņemšanās": "apņemschanàs",
+    "cīnītājus": "zihnitajus",
+    "ārienes": "ahreencs"
+   }
+  },
+  {
+   "handle": "@k_ulmanis",
+   "type": "atstastits",
+   "at": "17.05",
+   "seq": 615,
+   "lv": "Lai piedalās [?] pie brīvās Latvijas izkopšanas, kas vēlas baudīt brīvās valsts tiesības un labumus! Visi bez tautības izšķirības! Brīva Latvija lai ir demokrātiskas taisnības valsts, kuŗā nav vietas apspiešanai un netaisnībai …",
+   "ocr": "Lai peedalās roch pee brihwàs Làrjaà iskopjchanas. kas mehlas baudīt brihwàs melsts teeşibaS un labumus! Wişi bes taulibas isschķlribas! Brihma Latmļja lai ir demokrātiskas taisnioaS malsts, kura nato wretas apşrZeeşchaņai un ņetaunida«",
+   "via": "Atstāstīts: Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Pagaidu valdība",
+    "Minoritātes"
+   ],
+   "atNote": "Stunda avīzē nav. Runas noslēgums; ieraksts novietots pirms aplausu vētras (ieraksts 17.06).",
+   "note": "Pēdējais teikums ir tas pats, ko Līdums atstāsta korpusa 17.00 ierakstā („lai nedotu viņā vietas ne apspiešanai, ne netaisnībai“). Divi atveidojumi no divām avīzēm.",
+   "warn": "Vārds aiz „piedalās“ OCR ir „roch“ — pēc jēgas „visi“, bet burti to nedod, tāpēc vieta paliek [?]. Avīze pati runu beidz ar daudzpunkti.",
+   "recon": {
+    "izkopšanas": "iskopjchanas",
+    "izšķirības": "isschķlribas",
+    "netaisnībai": "ņetaunida«"
+   }
+  },
+  {
+   "handle": "@rigasche_zeitung",
+   "type": "citats",
+   "at": "17.06",
+   "seq": 617,
+   "lv": "Otro daļu ievadīja ministru prezidenta Kārļa Ulmaņa kunga programmatiska uzruna, kas beidzās ar „lai dzīvo“ brīvajai neatkarīgi demokrātiskajai republikai. Tai sekoja desmit samērā ne garas deklarācijas no Nacionālajā padomē apvienoto politisko grupu pārstāvjiem. Visi izteikumi, no kuŗiem vairāki skāra arī nacionālo minoritāšu tiesības nākamajā [?], uzsvēra latviešu dzimtenes mīlestībai kopīgo pie visas [?] un novēlēja jaunākajai Eiropas republikai laimi dzīves ceļā. No viņiem vislielāko sajūsmu izsauca prezidijā sēdošā Poļu Livonijas delegāta un Kurzemes pārstāvja [runas].",
+   "ocr": "Den zweien Teil leitete eine prog r a m nt a 111 eh e Ansprache deS Premierministers Herrn Karl Ulmarm ein, die mit einen Hoch auf die f«iev »nadhängig>demokratische Republik endete  daran schlaffen fich zeyn v.it)ältniSmäßig nicht lange Etklärungen von Vertretern der im Nationalrat vsrsinigten politischen Gruppen. Alle Ausführungen, von denen verschiedene auch die Rechte der nationalen Minoritäten in dem I.zukünftigen berührte -, betonten daS Gemei»,s<me der lettischeu Heimatlic e bei aller und wünschten der jüngsten Repnilit Europas Glück auf den Lebensweg. ihnen riefe« dte qrößtc Beoeisterung bie T4ehe:i deS im Präsidium sitzenden Deligierien au» Polnisch Livland nn> 'deS Vertreters a«S Kurland hervor.",
+   "via": "Rigasche Zeitung Nr.268, 19.11.1918, „Lokales“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:222949|article:DIVL87",
+   "topics": [
+    "Valsts pasludināšana",
+    "Minoritātes"
+   ],
+   "atNote": "Stunda avīzē nav. Vācu reportieris šo liek tūlīt pēc Ulmaņa programmas runas un pirms sēdes slēgšanas (korpusa ieraksts 17.45), tāpēc ieraksts novietots pēc runas.",
+   "note": "„Desmit deklarācijas“ ir vācu reportiera skaitījums. Latviešu avīzes tās nosauc vārdā — tie ir šī faila ieraksti no 17.08 līdz 17.40. Vislielāko sajūsmu, pēc viņa, izsauca Latgales (Poļu Livonijas) un Kurzemes pārstāvji.",
+   "warn": "Šī raksta vācu OCR ir stipri sadrupis; ieraksts NAV pārlasīts no skenējuma. Trīs vietas paliek [?] — „in dem I.zukünftigen“, „bei aller“ (abās vārds izkritis) un „die T4ehe:i“ (pēc jēgas runas, bet nav nolasīts). Neviens nav uzminēts.",
+   "recon": {
+    "deklarācijas": "Etklärungen",
+    "sajūsmu": "Beoeisterung",
+    "delegāta": "Deligierien"
+   }
+  },
+  {
+   "handle": "@baltijas_zinas",
+   "type": "citats",
+   "at": "17.06",
+   "seq": 618,
+   "lv": "Straujā aplausu vētrā izplūda tautas piekrišana brīvās valsts priekšniekam.",
+   "ocr": "Straņjâ aplausu wrhtrà isplņhda lautaS peekrlschana drihwà» walstS preekşckneetam.",
+   "via": "Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Valsts pasludināšana"
+   ],
+   "atNote": "Stunda avīzē nav. Teikums seko tūlīt aiz Ulmaņa runas, tāpēc ieraksts novietots turpat.",
+   "recon": {
+    "straujā": "Straņjâ",
+    "vētrā": "wrhtrà",
+    "priekšniekam": "preekşckneetam"
+   }
+  },
+  {
+   "handle": "@g_nonacs",
+   "type": "atstastits",
+   "at": "17.08",
+   "seq": 620,
+   "lv": "No Latviešu Zemnieku Savienības frakcijas runā redaktors G. Nonācs. Kopš latviešu tautas vārds tiek minēts, šis ir pirmais gadījums, kur latviešu starpā notikusi tik plaša apvienošanās — no pilsoniskiem līdz sociālistiskiem elementiem. Kur meklējams izskaidrojums šai, varētu teikt, brīnišķai parādībai? Atbilde īsa: latviešu tautas šķiras, viņas politiskās partijas ir nostājušās uz valstiska viedokļa.",
+   "ocr": "No £atu>e(fi}u Semueeku Aawee» nibas frukzijas ru à redaktors G. No n a h z s. Aopşch latweeşchu tautas rvahrds teek nuiìets, şchls ir pirmais gadījums, kur lalwe.şchu starpá notikuşl ixî plaşcha - n»  lihdj joziausuztrem elemente.m. Kur niekìelìMìS işikaiôrojums şài, waretu tei t, bnhnìşchkai parahdibai? Atbilde chja: Utļvccschu iautas wiņas poiìtişkàs partijas ir r.oştahjuşchàs vs w a istişka Veedokļa.",
+   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
+   "topics": [
+    "Valsts pasludināšana",
+    "Zemnieku savienība"
+   ],
+   "atNote": "Stunda avīzē nav. Līdums šo runu liek kā pirmo pēc Ulmaņa; ieraksts novietots tūlīt pēc Ulmaņa runas beigām.",
+   "note": "Pirmā no desmit partiju deklarācijām, ko vācu reportieris saskaita 17.06 ierakstā.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „G. N o n a h z s“, un sākuma burts ir nepārprotama fraktūras N (lappuse 2, 1. sleja). Baltijas Ziņas to pašu vietu iespiež sīkāk, un tur sākuma glifs pie 230 dpi līdzinās R — tāpēc Līduma izlaistais salikums ir izšķirošais. Pirmvārds nav nevienā avotā: Līdums Nr.219 dod iniciāli „G.“, Līdums Nr.218 tā paša cilvēka uzvārdu min ar „D.“ — iniciālis avotos nesaskan un šeit nav izvēlēts. OCR „parahdibai?“ — jautājuma zīme ir teikuma pieturzīme („parādībai? Atbilde īsa“), nevis OCR nenoteiktības zīme.",
+   "recon": {
+    "Nonācs": "No n a h z s",
+    "apvienošanās": "apweenoschanàs",
+    "viedokļa": "Veedokļa"
+   }
   },
   {
    "handle": "@p_kalnins",
@@ -2294,6 +2449,117 @@
    }
   },
   {
+   "handle": "@p_kalnins",
+   "type": "atstastits",
+   "at": "17.16",
+   "seq": 642,
+   "lv": "Dr. Kalniņš nolasa sociāldemokrātijas minimālprogramu, ietvertu 18 punktos, kuŗu piepildīšana tiek uzlikta no sociāldemokrātijas par noteikumu Pagaidu valdības darbībai. No praktiskiem soļiem Dr. Kalniņš prasa tūlītēju pašvaldības organizēšanu,",
+   "ocr": "nolasa sozialdeniokratijas  programu, eetVeh.tu 1.8 pun?tos, kurn peelnldischana teek uflifta nô sozialdeniokratijas par noteikumu pagaidu wt-ld'.bas d..rbibai No praktişkeem şo> ļeen: Dv iialnixşâ' prasi tiibTītciii paschwaldibas organişeschanu,",
+   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
+   "topics": [
+    "Sociāldemokrāti",
+    "Pagaidu valdība"
+   ],
+   "atNote": "Stunda avīzē nav. Turpinājums tam, kas korpusā jau stāv 17.15; ieraksts novietots tūlīt aiz tā.",
+   "note": "Korpusā Kalniņa runa ir viens teikums. Šis pievieno to, ko viņš tur nolasīja: 18 punktus, un ka to izpilde tiek uzlikta valdībai par noteikumu.",
+   "warn": "Vārds „minimālprogramu“ un skaitlis 18 nolasīti no skenējuma (lappuse 2, 2. sleja) — vecais OCR deva „programu, eetVeh.tu 1.8 pun?tos“ un „minimal-“ bija pazaudējis. Ieraksts apzināti nobeigts pie pirmās prasības: tālāk Līduma OCR ir tik sadrupis („Dv iialnixşâ' prasi tiibTītciii“), ka pārējo prasību saraksts no tā nav atveidojams.",
+   "recon": {
+    "minimālprogramu": "sozialdeniokratijas",
+    "punktos": "pun?tos",
+    "pašvaldības": "paschwaldibas"
+   }
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.17",
+   "seq": 645,
+   "lv": "Kad tas noticis, partijām te vēl reiz sapulcētās tautas priekšā nākas apliecināt, ka viņas apņemas pildīt to, ko solījušās protokolā. Sociāldemokrats P. Kalniņš pieceļas un no papīra lapas lasa savu deklarāciju. Tā ir diezgan gaŗa, diezgan sausa un diezgan apnīkstoša ar saviem atkārtotajiem ,,tik tāl, cik tāl“. Šie ,,tik tāl — cik tāl“ atkārtojas tik bieži, ka pār sapulci jau pārlido kā viegls smieklu vējiņš, kaut arī smiekli paši nav dzirdami.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 12.–13. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 12,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome",
+    "Strādnieki"
+   ],
+   "atNote": "Stunda avotā nav. Novietots tūlīt pēc P. Kalniņa deklarācijas, ko korpuss pēc stenogrammas liek plkst. 17.15. Pēc Cālīša paša pulksteņa (sk. plkst. 15.05 ierakstu) tas būtu noticis krietni agrāk.",
+   "note": "Smieklus Cālītis tieši noliedz: vējiņš pārlido, bet „smiekli paši nav dzirdami“. Vērtējums („diezgan gaŗa, diezgan sausa un diezgan apnīkstoša“) ir viņa, ne stenogrammas, un Līdums Kalniņa deklarāciju atstāsta vienā teikumā, zāles reakciju neminot. Teikums grāmatā pāriet no 12. uz 13. lappusi."
+  },
+  {
+   "handle": "@d_zeltins",
+   "type": "atstastits",
+   "at": "17.20",
+   "seq": 650,
+   "lv": "Grāmattirgotājs D. Zeltiņš (demokrāts): Latviešu Demokrātu partija, kura atbalstās uz plašām sīkpilsoņu masām, sagaida no Pagaidu valdības demokrātisko prasību realizēšanu. Ja viņa to izpildīs, tad demokrāti viņu pabalstīs ar visiem spēkiem",
+   "ocr": "Grabmatttraotais D. 5 c l i i « s ch ļ demokrāts): Latweeşchu Denìokratu partija, kura atbalstās ns plaşchàm şihkpilşoņu maşam, şagl?ida no pa« gaidu ķvaldibas demokrātisko praşibu reallseşchanu. )a wiņa to ispildìs, tad demokrāti wiņu pabalstìs ar Vi»eem şp?hkeem",
+   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
+   "topics": [
+    "Valsts pasludināšana",
+    "Demokrāti"
+   ],
+   "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Kalniņa un pirms Zālīša; ieraksts novietots starp tiem.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „D. S e l t i ņ š“ (lappuse 2, 2. sleja), vecajā ortogrāfijā S = Z, tātad Zeltiņš. Baltijas Ziņas tai pašā vietā dod OCR virkni „GolļS“, kas ar šo nesakrīt; kuŗu vārdu iespieda Baltijas Ziņas, šis salikums neizšķir, un tāpēc ieraksta avots ir Līdums.",
+   "recon": {
+    "Grāmattirgotājs": "Grabmatttraotais",
+    "Zeltiņš": "5 c l i i « s ch",
+    "sīkpilsoņu": "şihkpilşoņu",
+    "sagaida": "şagl?ida",
+    "spēkiem": "şp?hkeem"
+   }
+  },
+  {
+   "handle": "@j_zalitis",
+   "type": "atstastits",
+   "at": "17.24",
+   "seq": 660,
+   "lv": "Dep. J. Zālītis (radikāldemokrāts) apsveic neatkarīgas, patstāvīgas valsts nodibināšanu un pasludināšanu un apsveic Latvijas Tautas padomi. Valsts pacelsies no [?] daudz [?] Latvija un kā brīva valsts [ies] Tautu Savienībā. (Aplausi.)",
+   "ocr": "D c p. ). Sahlits sradikaldcnio.  \nfrats) opswsi; neatkariga?, paļstat>mi ņti waists nodibinaşchanu un paşiudinaşchmiu un apşmeiz tatwijas Tautas pa&onu. Valsti pazeisees no  oauds Zt'etoşì îatmija an kà brihma malsts ?cees Tautu Sameenibâ (Aplausi).",
+   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
+   "topics": [
+    "Valsts pasludināšana",
+    "Radikāldemokrāti"
+   ],
+   "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Zeltiņa un pirms Skubiķa; ieraksts novietots starp tiem.",
+   "note": "Baltijas Ziņas to pašu runātāju apraksta kā „bijušo Krievijas valsts domes deputātu Zālīti“ — tas neatkarīgi izskaidro Līduma „Dep.“.",
+   "warn": "Uzvārds un iniciālis nolasīti no skenējuma: Līdums tos iespiež izlaistiem burtiem, „D e p. J. S a h l i t s“ (lappuse 2, 2. slejas apakša). Runas otrais teikums iet pāri slejas lūzumam un tam pāri ir tintes traips; divas vietas paliek [?] un nav uzminētas.",
+   "recon": {
+    "Zālītis": "Sahlits",
+    "pasludināšanu": "paşiudinaşchmiu",
+    "Savienībā": "Sameenibâ",
+    "neatkarīgas": "neatkariga?",
+    "[ies]": "?cees"
+   }
+  },
+  {
+   "handle": "@skubikis",
+   "type": "atstastits",
+   "at": "17.28",
+   "seq": 670,
+   "lv": "„Dosim svētu solījumu,“ saka Skubiķis, „lai ikvienam mūsu valstī iespējams dzīvot cilvēcīgos apstākļos, attīstot savu individualitāti līdz augstākai pilnībai.“",
+   "ocr": "„Voşim şmehtu şolij amu\", şaka Skubikis, „laļ ikmesļia!-: muhşu walsll «eşpehjams dsil»vot zilwezìgos apstah?» ļos, attihstot şamu indiwidualìtati lihds augstākai pìlnibai.",
+   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
+   "topics": [
+    "Valsts pasludināšana",
+    "Sociālisti revolucionāri"
+   ],
+   "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Zālīša un pirms Ķeniņa; ieraksts novietots starp tiem.",
+   "note": "Viena no retajām vietām, kur avīze runātāju liek pēdiņās — tātad tiešā runa, nevis atstāsts.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „Inž. S k u b i ķ i s (sociālists-revolucionārs)“ (lappuse 2, 3. sleja). Baltijas Ziņas viņu sauc par ģeologu, Līdums un Jaunākās Ziņas — par inženieri; amats avotos nesaskan, pirmvārda nav nevienā. Citāta noslēdzošā pēdiņa iespiesta nav.",
+   "recon": {
+    "solījumu": "şolij amu",
+    "cilvēcīgos": "zilwezìgos",
+    "individualitāti": "indiwidualìtati",
+    "apstākļos": "apstah?» ļos"
+   }
+  },
+  {
    "handle": "@a_kenins",
    "type": "atstastits",
    "at": "17.33",
@@ -2310,6 +2576,73 @@
    "recon": {
     "savu valsti": "faJra walstļ",
     "akmens": "c.kmen?,"
+   }
+  },
+  {
+   "handle": "@a_kenins",
+   "type": "atstastits",
+   "at": "17.35",
+   "seq": 685,
+   "lv": "Lielie ūdeņi sāk atbrīvot un tautas ieiet savā dabīgā gultnē. Atgriežoties pie normālas dzīves, nacionālā politika nedrīkst atrasties pretrunā ar sociālo politiku. Tās jāsaskaņo. Bez ekonomiskas labklājības un fiziska miera jādomā par Latvijas gaismas pili. Jādod latviešiem garīga uguns. Tagad, kad esam ārēji līdzīgi ar citām tautām, mums jāuzņemas bez tiesībām arī savi pienākumi, mums jāizceļ mūsu darbs, mūsu īpatnējā kultūra.",
+   "ocr": "Lecìee uhdeņi şah? ati'rist uti tautas eceet şawà dabīga gultnē. Ata jotees pee nolmalas osihrves, nazionalà lolitìka ļiednhkst atrastas pretīuna ar sozialo politiiu. Tàs jāsaskaņo. Bes ekonomiskas labkļaìznbas un şisìşka meera jadomà par ga»ş?nas I pili. latwieeM gariga v g v tt s. Tagad, kad eşam ahrejì lffy« dsigt ar zitàm taut <m, mains jansņ?mas bes teenbam ari fàmî peenadk-lmi, mums jaisz ļ muş/şu dirbs, muhşu  patnejà kullura.",
+   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
+   "topics": [
+    "Valsts pasludināšana",
+    "Nacionāldemokrāti"
+   ],
+   "atNote": "Stunda avīzē nav. Turpinājums tam, kas korpusā jau stāv 17.33; ieraksts novietots tūlīt aiz tā.",
+   "note": "Korpusā Ķeniņa runa beidzas ar „ne ar varu, bet ar taisnību“. Šis ir tās turpinājums — gaismas pils un garīgā uguns.",
+   "warn": "„Latvijas gaismas pili“ un „garīga uguns“ nolasīti no skenējuma (lappuse 2, 3. sleja); vecais OCR tur deva „par ga»ş?nas I pili. latwieeM gariga v g v tt s“ — „gaismas“ bija pazudis pavisam, un „garīga uguns“ Līdumā ir iespiests izlaistiem burtiem. Tai pašā slejā caur rindu „pili“ iet papīra ieloce. Baltijas Ziņas Ķeniņa uzvārdu dod kā OCR virkni „Seniņšch“; Līdums to iespiež izlaistiem burtiem „A. Ķ e ņ i ņ š (nacionāldemokrāts)“, un saturs abās avīzēs sakrīt — tas apstiprina, ka runa ir par vienu un to pašu cilvēku.",
+   "recon": {
+    "gaismas": "ga»ş?nas",
+    "gultnē": "gultnē",
+    "īpatnējā": "patnejà",
+    "sāk": "şah?",
+    "jāuzņemas": "jansņ?mas"
+   }
+  },
+  {
+   "handle": "@strautnieks",
+   "type": "atstastits",
+   "at": "17.36",
+   "seq": 690,
+   "lv": "Zvērinātais advokāts Strautnieks (republikāns) apsveic Latvju [valsti] un Tautas padomi un novēl tam sekmes.",
+   "ocr": "Şwehrinatais admoşats Strauta neeks apşmeì; tatmiĶ  \nwahii un Tauta» pac-omi un noroebl tam seknrss.",
+   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
+   "topics": [
+    "Valsts pasludināšana",
+    "Republikāņi"
+   ],
+   "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Ķeniņa un pirms Paegles; ieraksts novietots starp tiem.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „S t r a u t n e e k s (republikāns)“ (lappuse 2, 3. slejas apakša). Baltijas Ziņas viņu sauc par miertiesnesi, Līdums — par zvērinātu advokātu; amats avotos nesaskan, pirmvārda nav nevienā. Vārds „valsti“ iet pāri slejas lūzumam un OCR to nogriež („apşmeì; tatmiĶ / wahii“); tas iekavās atjaunots pēc Baltijas Ziņu paralēlvietas, nevis nolasīts.",
+   "recon": {
+    "Strautnieks": "Strauta neeks",
+    "novēl": "noroebl",
+    "sekmes": "seknrss"
+   }
+  },
+  {
+   "handle": "@fr_paegle",
+   "type": "atstastits",
+   "at": "17.37",
+   "seq": 696,
+   "lv": "Augstu vēlēšanos izteica Latviešu neatkarīgās partijas vārdā inž. Paegle: jāizkopj latviskais gars un tā īpatnības. Tautiskais gars lai ir neaptumšotā kristāla tīrs, kā saulains rīts. Brīvā Latvijā lai ir tauta ar tīru sirdi, izturīgu un uzņēmīgu garu.",
+   "ocr": "Aņgstņ vehleschaņo» isteiza Latveeschu ņeatkarigà» partija» wahrdâ insch. Paegle: jaiskopj latwlşkai» garS un ta ihpatnibaS. Tautiskai» gars lai ir ncaptumşchotâ kristāla tihrS, kà saulains riht». Brihwâ Latvijā lai ir taņta ar tihru şirdi, isturigu «n ņsņehmigņ garu.",
+   "via": "Atstāstīts: Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
+   "topics": [
+    "Valsts pasludināšana",
+    "Neatkarīgie"
+   ],
+   "atNote": "Stunda avīzē nav. Abas avīzes šo runu liek pēc Strautnieka un pirms Kambalas (korpusa ieraksts 17.39); ieraksts novietots starp tiem.",
+   "note": "Teksts ņemts no Baltijas Ziņām, nevis no Līduma: Līduma paralēlvietā pāri runai ir tintes traips un OCR tur ir neatveidojams.",
+   "warn": "Pirmvārds šajā ierakstā nav nosaukts, jo Baltijas Ziņas to neiespiež. Līdums Nr.219 to pašu runātāju iespiež izlaistiem burtiem kā „Inženieris Fr. P a e g l e (neatkarīgais)“ (2. lpp., 4. sleja) — no turienes nāk „fr“ handlē, un tā ir vienīgā nolasītā liecība. Jaunākās Ziņas Nr.4 to pašu cilvēku min kā „inž. [?]. Paegle“ — iniciāli to OCR nedod, un šī vieta no skenējuma nav pārlasīta. Ieraksta teksts paliek tāds, kāds iespiests Baltijas Ziņās.",
+   "recon": {
+    "vēlēšanos": "vehleschaņo»",
+    "neaptumšotā": "ncaptumşchotâ",
+    "uzņēmīgu": "ņsņehmigņ"
    }
   },
   {
@@ -2386,6 +2719,46 @@
    ]
   },
   {
+   "handle": "@kareivju_savieniba",
+   "type": "atstastits",
+   "at": "17.40",
+   "seq": 710,
+   "lv": "Pulkavnieks Dambits apsveic jauno Valdību no Latvju Kareivju Nacionālās Savienības un paziņo, ka organizētie latvju kareivji nodod sevi Latvijas Tautas padomes [rīcī]bā. (Aplausi.)",
+   "ocr": "p a l ka w ne c k s Daml' l tsap. şmeiz jauno Ivaloibu no Latwm Aacetwju Nazianalàs Saweenibas un pa,!.», ka organisetee latwju kareìwji nodsb şemi Latvijas Tautas padonies iifot« bâ. l Aplausi.)",
+   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
+   "topics": [
+    "Valsts pasludināšana",
+    "Kareivju savienība"
+   ],
+   "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Kambalas (korpusa ieraksts 17.39) un pirms sēdes slēgšanas (17.43); ieraksts novietots starp tiem.",
+   "note": "Baltijas Ziņas to pašu solījumu apraksta plašāk un piebilst, ka „šo svinīgo solījumu tauta uzņēma ar jūsmīgiem, ilgi nerimstošiem aplausiem“. Korpusa 14.35 ierakstā Latviešu Kareivju Nacionālā Savienība parādās tajā pašā dienā, agrāk.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „P a l k a v n e e k s  D a m b i t s“ (lappuse 2, 4. sleja). Baltijas Ziņas neatkarīgi dod OCR virkni „DamditS“ — tā pati burtu virkne. Iespiestajā formā nav garuma zīmes („ih“), tāpēc šeit raksta „Dambits“, nevis „Dambīts“; mūsdienu rakstība un pirmvārds netiek apgalvoti. Runa šajā ierakstā ir atstāstīta uz savienības konta, jo runātāja personu avoti nosauc tikai ar amatu un uzvārdu.",
+   "recon": {
+    "Pulkavnieks": "p a l ka w ne c k s",
+    "Dambits": "Daml' l ts",
+    "organizētie": "organisetee"
+   }
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.42",
+   "seq": 715,
+   "lv": "Svinīgais valsts proklamēšanas akts ir galā. Zemgalis pieceļas, brīdi stomās, itin kā nule meklētu atmiņā sakāmos vārdus, tad, paziņojis, ka Tautas Padomes sēde slēgta, uzsauc Latvijai saules mūžu un iet no skatuves zemē, Viņam seko Tautas Padomes locekļi tādā pat kārtībā, kā ienākot.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 13,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Stunda avotā nav. Novietots pie sēdes slēgšanas, ko korpuss pēc stenogrammas liek plkst. 17.43.",
+   "note": "Zemgala stostīšanās ir Cālīša novērojums un nav nevienā laikrakstā: stenogrammā un Līdumā stāv tikai slēguma vārdi. Cālītis vienā nodaļā raksta gan „Zemgals“, gan „Zemgalis“ — abas formas atstātas, kā iespiestas."
+  },
+  {
    "handle": "@g_zemgals",
    "type": "atstastits",
    "at": "17.43",
@@ -2400,6 +2773,34 @@
    ],
    "atNote": "Stenogramma. Precīzs runas laiks protokolā nav dots; laiks te ir aplēse starp akta sākumu plkst. 16.30 un beigām plkst. 17.45.",
    "later": "„Dievs, svētī Latviju!“ par Latvijas valsts himnu Satversmes Sapulce apstiprināja 1920. gada 7. jūnijā."
+  },
+  {
+   "handle": "@j_ampermanis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.43",
+   "seq": 725,
+   "lv": "18. novembrī jau pāris stundas priekš noliktā laika ļaudis bariem vien devās uz krievu teātri, ieņemdami vietas līdz pēdējai iespējamībai. Tautas Padomes locekļiem ierodoties zālē, tauta viņus saņēma ar ilgiem aplausiem, un kad Tautas Padomes vicepriekšsēdis Zemgals (Čakste, atrazdamies Zemgalē, nebij paspējis ierasties, lai gan telegrafiski bija ticis viņa paziņots) pēc Latvijas valsts proklamēšanas uzaicināja vienoties lūgšanā par valsti, nodziedot ,,Dievs, svētī Latviju“, tad sajūsma bija sasniegusi augstāko pakāpi, ne viena vien asaru pērle noritēja pār Tautas Padomes locekļu un dalībnieku vaigiem, piedzīvojot svinīgo brīdi, kad pēc 700 gadiem tauta un zeme top atkal brīva no svešiem kungiem. Vicepriekšsēdim paziņojot tautai par Kārļa Ulmaņa izvēlēšanu par pirmo Latvijas valsts ministru prezidentu, tauta uzņēma šo ziņu ar vētrainiem aplausiem.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 19. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 19,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome",
+    "Dievs, svētī Latviju"
+   ],
+   "atNote": "Ampermaņa rindkopa ietver visu pēcpusdienu — no ļaužu plūduma „pāris stundas priekš noliktā laika“ līdz himnai akta beigās. Ieraksts novietots pie himnas un sēdes slēgšanas (korpusā plkst. 17.43); rindkopas pirmais teikums attiecas uz plkst. ~14.",
+   "note": "Ampermanis sēdēja uz skatuves kā Tautas Padomes loceklis, Zemnieku Savienības 13 delegātu vidū (Mežmaļu Ata nodaļa, 8. lpp.). Divas vietas, kur viņš pārsniedz to, ko varēja redzēt vai dzirdēt pats: Čakstes prombūtnes iemesls („atrazdamies Zemgalē“) un apgalvojums, ka Zemgals paziņojis tautai par Ulmaņa izvēlēšanu — tādu paziņojumu zālei nemin Līdums, un šajā korpusā tāda nav nevienā ierakstā; Līdums raksta, ka Ulmanis zālē runāja pats. Zemgala amatu Ampermanis sauc par „vicepriekšsēdis“, Līdums — par „priekšsēža otrais biedrs“.",
+   "warn": "„...lai gan telegrafiski bija ticis viņa paziņots[?]“ — iekavās liktais teikums grāmatā ir šādā bojātā formā; tā nozīme nav droša un nav izlabota. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
+   "change": [
+    {
+     "from": "paziņots[?]",
+     "to": "paziņots",
+     "source": "warn-determined reading",
+     "outcome": "gap closed"
+    }
+   ]
   },
   {
    "handle": "@rigasche_zeitung",
@@ -2441,6 +2842,58 @@
    ]
   },
   {
+   "handle": "@tautas_padome",
+   "type": "dokuments",
+   "dated": "18.11.1918",
+   "at": "17.46",
+   "seq": 744,
+   "lv": "Latvijas pilsoņiem. Latvijas Tautas Padome, atzīdama sevi par vienīgo augstākās varas nesēju Latvijas valstī, pasludina, ka: 1) Latvija, apvienota etnogrāfiskās robežās (Kurzeme, Vidzeme un Latgale)[u] ir patstāvīga, neatkarīga, demokrātiski-republikāniska valsts, kuras satversmi un attiecības pret ārvalstīm noteiks tuvākā nākotnē Satversmes Sapulce, sasaukta uz vispārīgu, abu dzimumu, tiešu, vienlīdzīgu, aizklātu un proporcionālu vēlēšanu tiesību pamata; 2) Latvijas Tautas Padome ir nodibinājusi, kā augstāko izpildu varu Latvijā — Latvijas Pagaidu Valdību. Latvijas Tautas Padome uzaicina Latvijas pilsoņus uzturēt mieru un kārtību un visiem spēkiem pabalstīt Latvijas Pagaidu Valdību viņas grūtajā un atbildīgā darbā. Latvijas Pagaidu Valdības Ministru Prezidents: Ulmanis. Latvijas Tautas Padomes Priekšsēdētāja biedrs: Zemgals. Rīgā, 18. novembrī 1918. gadā.",
+   "ocr": "Latwijasv pilfoneeno Lattvijas Tautas Bat-eure, atii«lldauia fewi par weenigo amgftakas waras neseju Latwijas walftL pafludium tu: l) Latwiiiy apweenota etnografiftäs rohes-has Gut-Heute, Widfeme unt-Lukantmk ir vatslahwiga, neattarigm dcinotrak tistkrepublikanifta walsts, turas immerfmi un atteezibas pret akmvatftim uoteiks tuwaka nahst-tue Satwerftnes Sapulze fafaukta us wispahrigm abu djiuuunu, teefchth weenlilpfgth Uäftlalytu un proporziouatu wehlekchanu teefibu pamataz Z) Latuüjas Tautas Padome ir nodiliiuaiufd Ia augstako ifpildu war-u Latzuispjä Fatwijas Pagaivu Waldibuk Latwijas Tautas Padome ujaizina Latwijas pilfonug ujturet meeru un lajlzrtihu un wifeem spehteem pabalftit L xwijas Pagaidu Waldibustvinasxzruhx taZDun utbildiga darba Latmtjak Pngaidtt . Latwijas Tautas Waldibas Miaistru Padomes Prcekfelzs Prefidenvk fehdetaja beedrs: « · Utica-ais. Seinige-IS· Wiss, is· noiventbti 1918 Hat-a.",
+   "via": "Jaunākās Ziņas Nr.4, 19.11.1918, „Vietējās ziņas“",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:1153701|article:DIVL81",
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome",
+    "Pagaidu valdība"
+   ],
+   "atNote": "Dokumentam ir datums, nav stundas: „Rīgā, 18. novembrī 1918. gadā“. Ieraksts novietots akta beigās (vācu aculiecinieks: „trīsceturtdaļos uz sešiem viss bija galā“, korpusa ieraksts 17.45); precīza stunda ir mūsu novērtējums, un dokumenta sejā tās nav.",
+   "note": "Šis korpusā līdz šim nav bijis nemaz. Korpusā stāv politiskā platforma (15.00) — šis ir cits dokuments: Tautas Padomes uzruna pilsoņiem, parakstīta ar abiem vārdiem un datēta ar 18. novembri.",
+   "warn": "Jaunāko Ziņu OCR šai vietai ir pilnīgi sadrupis — paraksti tajā skan „Utica-ais. Seinige-IS· Wiss, is· noiventbti 1918 Hat-a.“ Viss „lv“ nolasīts no skenējuma (5. lappuse, labā sleja, 2,4–3,4× palielinājums): virsraksts, abi punkti, abi paraksti un datums tur ir iespiesti tīri un treknrakstā. Iekavās liktais „[u]“ ir iespiests tā — aiz iekavas aizvēruma avīzē stāv lieks burts „u“ („Latgale)u ir patstāvīga“); tas nav izlabots un nav izmests. Dokuments šeit ir no laikraksta, nevis no oriģināla; cits novietojums var dot citu formulējumu.",
+   "recon": {
+    "pilsoņiem": "pilfoneeno",
+    "etnogrāfiskās": "etnografiftäs",
+    "Ulmanis": "Utica-ais",
+    "Zemgals": "Seinige-IS"
+   }
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.47",
+   "seq": 748,
+   "lv": "Kad Zemgalis vēl atrodas uz pakāpēm no skatuves zālē, no partera krēsliem pieceļas Fr. Grosvalds un ātriem soļiem steidzas pretim Zemgalim. Tas nav paredzēts valsts proklamēšanas ceremoniālā, ka Tautas Padomes priekšsēdi kāds var aizturēt ceļā. Zemgalis apstājas uz pakāpēm, piesarkst un, neinteresēdamies kādēļ Grosvalds grib tam aizkrustot ceļu, divas reizes atkārto: ,,Tautas Padomes sēde slēgta...“ Tad Grosvalds atkāpjas sānis, un Tautas Padome tam aiziet gaŗām no zāles ārā.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 13,
+   "topics": [
+    "Valsts pasludināšana",
+    "Tautas padome"
+   ],
+   "atNote": "Stunda avotā nav. Notiek tūlīt pēc sēdes slēgšanas (korpusā plkst. 17.43), kamēr Zemgals vēl ir uz pakāpēm no skatuves zālē; novietots turpat.",
+   "note": "Šīs ainas nav nevienā laikrakstā. Ko Fr. Grosvalds gribēja, Cālītis nesaka — un raksta, ka arī Zemgals to neinteresējās uzzināt. Grāmata nedod ne Grosvalda amatu, ne to, kuŗš no Grosvaldiem tas ir; vārds te stāv tāds, kā iespiests, un nav identificēts.",
+   "warn": "„Zenmgalis[?]“ — grāmatā iespiests tā; nolasāms kā „Zemgalis“. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
+   "change": [
+    {
+     "from": "Zenmgalis[?]",
+     "to": "Zemgalis",
+     "source": "warn-determined reading",
+     "outcome": "gap closed"
+    }
+   ]
+  },
+  {
    "handle": "@lidums",
    "type": "citats",
    "at": "17.50",
@@ -2458,6 +2911,61 @@
     "Vilsonam": "@POTUS"
    },
    "later": "Sabiedrotie Latviju de iure atzina 1921. gada 26. janvārī. Amerikas Savienotās Valstis — 1922. gada 28. jūlijā."
+  },
+  {
+   "handle": "@a_brigadere",
+   "type": "atminas",
+   "written": 1923,
+   "at": "17.55",
+   "seq": 755,
+   "lv": "Šai neaizmirstamajā dienā man gadījās mazs piedzīvojums, kuŗu es gribētu uzskatīt par simbolisku. Kad pēc pabeigta akta ātri tukšojās zāle un es izgāju viena no pēdējiem, teātŗa vestibilā uzreiz man piesteidzās — cilvēks, — kuŗš bija labi pazīstams kā Marksa bauslības kalps un internacionāles pielūdzējs. Es viņu personīgi nepazinu, bet viņš piesteidzās man mirdzošām acīm un satvēra manu roku abām savām: ,,Sveiki, sveiki brīvajā Latvijā!“",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 16. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 16,
+   "topics": [
+    "Valsts pasludināšana",
+    "Rīgas dzīve"
+   ],
+   "atNote": "Stunda avotā nav. Notiek pēc akta, zālei tukšojoties — Brigadere iziet „viena no pēdējiem“; novietots pēc plkst. 17.50 ierakstiem.",
+   "note": "Cilvēku, kas satvēra viņas roku, Brigadere nenosauc un raksta, ka personīgi viņu nepazina. Tāpēc šeit nav neviena vārda, ko varētu identificēt, un mēs to nemēģinām.",
+   "warn": "„uzskatīt pr[?] simbolisku“ — grāmatā iespiests tā; nolasāms kā „par“. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
+   "change": [
+    {
+     "from": "pr[?]",
+     "to": "par",
+     "source": "warn-determined reading",
+     "outcome": "gap closed"
+    }
+   ]
+  },
+  {
+   "handle": "@ed_calitis",
+   "type": "atminas",
+   "written": 1923,
+   "at": "18.10",
+   "seq": 765,
+   "lv": "Kad iznākam uz ielas, ir jau pilnīga tumsa. Vējš, liekas, kļuvis pa to laiku stiprāks un skarbāks. Uz kanāļa tilta kā arvien staigā, itin kā nevarētu miera atrast, vācu kareivis ar platu bruņu cepuri galvā un uzrakstu uz krūtīm, ka viņš žandarms. Tikpat mierīgi kā vakar un aizvakar pa apledojušo trotuāru šļūc savus nošķiebtos zābakus sirmie vācu zemessargi un smirdina savos milzīgajos pīpjos ķiršu lapas, kumelītes, papardes un ko vēl Dievs devis laukā un mežā, un rūpīgā vācu tauta iepakojusi viņa kareivja tabakas paciņās kā pīpējamās zāles. Vaj šis žandarms un šie zemessargi ar savu līduma dūmu mākuli aiz muguras nav tie, kas šīs dienas svinīgo sēdi padarīja tik bezgala nopietnu? Ejot gar kādu restorānu jau ārpilsētā es tomēr dzirdu pa atvērtām durvīm spēlējam: ,,Dievs, svētī Latviju“. Tas jādzird arī tiem vācu ,,līdumniekiem“ un kaskeniekiem, kas sēd šaī restorānā pie galdiem.",
+   "ocr": null,
+   "via": "Valsts pieci gadi, Rīga 1923, 13. lpp.",
+   "url": "http://eraksti.lv/fetchbook.php?urlkey=2485426",
+   "page": 13,
+   "topics": [
+    "Okupācija",
+    "Rīgas dzīve",
+    "Dievs, svētī Latviju"
+   ],
+   "atNote": "Stunda avotā nav. Cālītis iziet no zāles tūlīt pēc akta un raksta „ir jau pilnīga tumsa“; saule šajā dienā norietēja tūlīt pēc trijiem. Novietots pēc plkst. 17.50 ierakstiem.",
+   "note": "Vienīgā „Dievs, svētī Latviju“ dziedāšana ārpus zāles, kāda šajā dienā ir pierakstīta, un tā ir atmiņa, ne ziņa: Cālītis to dzird pa atvērtām durvīm, ejot gar restorānu ārpilsētā, un neuzraksta ne restorāna, ne ielas vārdu.",
+   "warn": "„kareicvis[?]“ (nolasāms „kareivis“) un „iepakājusi[?]“ (nolasāms „iepakojusi“) — grāmatā iespiests tā, nav izlabots. Marķieris [?] noņemts: vārds atjaunots pēc iespieduma kļūdas, teksts citādi neskarts.",
+   "change": [
+    {
+     "from": "kareicvis[?]",
+     "to": "kareivis",
+     "source": "warn-determined reading",
+     "outcome": "gap closed"
+    }
+   ]
   },
   {
    "handle": "@latvju_opera",

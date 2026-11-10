@@ -40,6 +40,13 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 .top { display:flex; align-items:center; justify-content:space-between; height:48px; }
 .brand { font-weight:600; font-size:17px; letter-spacing:-.01em; }
 .top .date { font-size:14px; color:var(--soft); }
+/* The day between its neighbours — paging a feed, not picking a date. The
+   chevrons are 34 px tall for the thumb; at an end of the span the chevron
+   stays, faded, so the row keeps its width and the date does not jump. */
+.days { display:flex; align-items:center; }
+.days a, .days .end { font-size:20px; line-height:1; padding:0 10px; min-height:34px; display:inline-flex; align-items:center; }
+.days a { color:var(--ink); text-decoration:none; }
+.days .end { color:var(--line); }
 
 /* The day is the headline of the whole page — the one fact framing every post.
    (padding-top/bottom only: a shorthand here would wipe .wrap's side gutter.) */
@@ -143,6 +150,11 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 .phead .bio { margin:10px 0 0; font-size:16px; }
 .phead .pwarn, .phead .today { margin:10px 0 0; font-size:13px; color:var(--soft); }
 .pcount { margin:14px 0 0; font-size:14px; color:var(--soft); }
+/* A profile spans the days; each run of posts is headed by its day, which is
+   the way to that day's page. */
+.pday { margin:14px 0 0; font-size:13px; font-weight:600; }
+.pday a { color:var(--soft); text-decoration:none; }
+.pday a:hover { color:var(--accent); }
 /* The account said nothing that day: a statement, not an empty list. */
 .empty { margin:16px 0; padding:14px 16px; border-radius:10px; background:var(--panel); font-size:16px; }
 .empty p { margin:0; }

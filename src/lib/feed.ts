@@ -27,6 +27,13 @@ export type Post = {
   // The year a recollection was written. Required when type is 'atminas';
   // `at` stays the 1918 clock time of the moment it describes.
   written?: number;
+  // The date printed ON a document itself, 'DD.MM.YYYY'. His rule, 2026-11-10:
+  // a document DATED and ISSUED on a day belongs to that day even when the
+  // paper that printed it came out later — „Latvijas pilsoņiem“, dated „Rīgā,
+  // 18. novembrī 1918. gadā“ and printed on the 19th, sits on the 18th. A
+  // newspaper's REPORT about a day carries no `dated` and belongs to the day it
+  // was printed. To reverse the rule, drop the `dated` line in publishedOn.
+  dated?: string;
   at: string;
   seq: number;
   lv: string;
@@ -114,9 +121,9 @@ function writtenYears(posts: Pick<Post, 'type' | 'written'>[]): string | null {
 // No full stop — the caller punctuates.
 export function holdsLine(posts: Pick<Post, 'type' | 'written'>[]): string {
   const n = posts.length;
-  if (!n) return 'Tajā dienā neko nesaka — avīzes min';
+  if (!n) return 'Tajās dienās neko nesaka — avīzes min';
   const years = writtenYears(posts);
-  return `${n} ${plural(n)} ${years ? `— atmiņas, rakstītas ${years} gadā` : 'tās dienas Rīgas avīzēs'}`;
+  return `${n} ${plural(n)} ${years ? `— atmiņas, rakstītas ${years} gadā` : 'to dienu Rīgas avīzēs'}`;
 }
 
 // Every source permalink must point into an archive — a CLOSED set of origins,
@@ -161,6 +168,91 @@ export function refusalReason(post: Post, account: Account | undefined): string 
   return null;
 }
 
+// The days the site renders, one page each, in order. The 18th is the front
+// page (path ''); every other day lives at /DD-11-1918/. The set is closed on
+// purpose: a post whose source was published on a day not listed here fails
+// the build (partitionByDay) instead of quietly landing on no page. Breaks
+// when a day outside November 1918 is added — then month and year join the
+// record and the three helpers below.
+export type Day = { key: string; path: string; weekday: string; n: number };
+export const DAYS: Day[] = [
+  { key: '17.11.1918', path: '17-11-1918/', weekday: 'Svētdiena', n: 17 },
+  { key: '18.11.1918', path: '',            weekday: 'Pirmdiena', n: 18 },
+  { key: '19.11.1918', path: '19-11-1918/', weekday: 'Otrdiena',  n: 19 },
+  { key: '20.11.1918', path: '20-11-1918/', weekday: 'Trešdiena', n: 20 },
+];
+// „Pirmdiena, 1918. gada 18. novembris“ — the headline of a day page.
+export const dayHeading = (d: Day) => `${d.weekday}, 1918. gada ${d.n}. novembris`;
+// „1918. gada 18. novembrī“ — the day in the locative, over „kas notiek“.
+export const dayOn = (d: Day) => `1918. gada ${d.n}. novembrī`;
+// „17.–20. novembris 1918“ — the span a profile covers.
+export const DAYS_SPAN = `${DAYS[0].n}.–${DAYS[DAYS.length - 1].n}. novembris 1918`;
+
+// The day a post belongs to: the day its source was PUBLISHED, read off the
+// `via` citation („Baltijas Ziņas Nr.168, 18.11.1918, …“) — never the day the
+// events it describes happened. That is what keeps every post traceable: the
+// page it sits on is the issue it came from. Two departures, both deliberate:
+//   - a document carrying its own date (`dated`, see the Post type) belongs
+//     to that day;
+//   - a recollection (`atminas`) belongs to no day — parked, his call of
+//     2026-11-10 („for now dismiss the memories from 1923“). The data and the
+//     type machinery stay; to bring them back, give them a day here.
+// Null means "on no page". A newspaper post whose via names no date is a
+// broken citation, and partitionByDay refuses it.
+export function publishedOn(post: Pick<Post, 'type' | 'via' | 'dated'>): string | null {
+  if (post.type === 'atminas') return null;
+  if (post.dated) return post.dated;
+  return /\b(\d\d\.\d\d\.\d{4})\b/.exec(post.via)?.[1] ?? null;
+}
+
+export type Partition = { byDay: Map<string, Post[]>; parked: Post[] };
+
+// Every post onto exactly one day page, or parked — in the order given. Throws
+// on a day the site does not render and on a dated source with no date, so a
+// post can never fall through unrendered (a hostile `dated` lands here too).
+export function partitionByDay(posts: Post[]): Partition {
+  const byDay = new Map(DAYS.map((d) => [d.key, [] as Post[]]));
+  const parked: Post[] = [];
+  for (const p of posts) {
+    const day = publishedOn(p);
+    if (day === null && p.type === 'atminas') { parked.push(p); continue; }
+    if (day === null) throw new Error(`seq ${p.seq}: via „${p.via}“ nenosauc izdošanas dienu`);
+    const list = byDay.get(day);
+    if (!list) throw new Error(`seq ${p.seq}: izdots ${day} — tādas dienas lapas nav (feed.ts DAYS)`);
+    list.push(p);
+  }
+  return { byDay, parked };
+}
+
+// What the site renders, from the data in one pass: the structural guards
+// first (refused posts are returned, so the build can name them), then the
+// partition. `shown` is in site order — day by day, seq within a day. One
+// function, so the day pages, the profiles and the card tools can never
+// disagree about what is on the site.
+export type Rendered = { shown: Post[]; byDay: Map<string, Post[]>; refused: Post[]; parked: Post[] };
+export function renderedPosts(data: { posts: Post[]; accounts: Record<string, Account> }): Rendered {
+  const sorted = data.posts.slice().sort((a, b) => a.seq - b.seq);
+  const refused = sorted.filter((p) => refusalReason(p, data.accounts[p.handle]) !== null);
+  const { byDay, parked } = partitionByDay(sorted.filter((p) => !refused.includes(p)));
+  return { shown: DAYS.flatMap((d) => byDay.get(d.key)!), byDay, refused, parked };
+}
+
+// Which accounts get a page: those with a rendered post, or named by one. A
+// parked account (the memoirists, while their recollections are parked) has
+// neither, so its page is not built — it comes back with its posts.
+export function reachableHandles(accounts: Record<string, Account>, shown: Post[]): string[] {
+  const seen = new Set([...shown.map((p) => p.handle), ...shown.flatMap((p) => Object.values(p.mentions ?? {}))]);
+  return Object.keys(accounts).filter((h) => seen.has(h));
+}
+
+// The link-preview card of a day page shows one real post from THAT day, so
+// the card cannot show words the page does not hold (tests/profiles.ts asserts
+// the post is published on its day). tools/og-days.mjs renders them.
+export const DAY_CARD_SEQ: Record<string, number> = { '17.11.1918': 940, '18.11.1918': 20, '19.11.1918': 618, '20.11.1918': 610 };
+// What the card shows, for og:image:alt — the day, the account, the words.
+export const cardAlt = (day: Day, post: Pick<Post, 'handle' | 'at' | 'lv'>) =>
+  `dzīvā vēsture, ${day.n}. novembris 1918 — ieraksts (${post.handle}, ${post.at}): „${post.lv}“`;
+
 // `at` is the one timestamp format the whole feed uses: HH.MM, 24-hour.
 export const isClock = (at: string) => /^([01]\d|2[0-3])\.[0-5]\d$/.test(at);
 
@@ -190,7 +282,7 @@ export const EMPTY_COPY: Record<string, string> = {
   '@erasts_bite': 'Tajā dienā viņš runāja — Operas namā nolasīja vakardienas sēdes protokolu —, bet viņa paša vārdus neviena avīze nepierakstīja. Zināms tikai, ka viņš to darīja.',
   '@h_j_seraphim': 'Viņa vārdi šodien ir Rigasche Zeitung — 11. turpinājums —, bet tie ir vēstule tēvam par janvāri. Par 18. novembri viņš nesaka nekā; avīze viņu iespiež.',
   '@w_j_locke': 'Viņa romāns „Jūras zvaigzne“ šodien turpinās Baltijas Ziņās, tulkots. Pats viņš par šo dienu Rīgā neko nav teicis.',
-  '@l_laicens': 'Šodien par viņu raksta divas avīzes — Līdums recenzē „Ieslēgtos“, Baltijas Ziņas nosauc viņu „Taurētāja“ dzejnieku vidū —, bet neviena neiespiež viņa paša vārdus.',
+  '@l_laicens': 'Par viņu raksta divas avīzes — Līdums recenzē „Ieslēgtos“, Baltijas Ziņas nosauc viņu „Taurētāja“ dzejnieku vidū —, bet neviena neiespiež viņa paša vārdus.',
 };
 
 export type BodyMarkup = {

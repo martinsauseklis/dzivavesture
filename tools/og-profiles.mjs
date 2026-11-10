@@ -1,29 +1,31 @@
 // Render one link-preview card per account to public/og/@handle.png (1200×630).
 //
-//   node tools/og-profiles.mjs            — all 33
+//   node tools/og-profiles.mjs            — every account with a page
 //   node tools/og-profiles.mjs @k_ulmanis — one
 //
 // Same idea as tools/og-card.sh: the card is HTML rendered in Chrome, so it
 // uses the very same tokens, hues and initials as the page and cannot drift.
-// Each card says who this is and that it is 18 November 1918 — a profile link
-// shared on its own must be comprehensible from the preview alone.
+// Each card says who this is and that it is 17–20 November 1918 — a profile
+// link shared on its own must be comprehensible from the preview alone.
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { avatarHue, descriptionLines, escapeHtml, holdsLine, initials, readIdentities, refusalReason } from '../src/lib/feed.ts';
+import { avatarHue, DAYS_SPAN, descriptionLines, escapeHtml, holdsLine, initials, reachableHandles, readIdentities, renderedPosts } from '../src/lib/feed.ts';
 
 const root = new URL('..', import.meta.url).pathname;
 const data = JSON.parse(readFileSync(join(root, 'src/data/18-11-1918.json'), 'utf8'));
 const css = readFileSync(join(root, 'public/feed.css'), 'utf8');
 // The hues come from the stylesheet, not a copy of it.
 const hues = Object.fromEntries([...css.matchAll(/\.avatar\.h-(\d+)\s*\{\s*background:(#[0-9a-f]{6})/g)].map((m) => [m[1], m[2]]));
-const posts = data.posts.filter((p) => !refusalReason(p, data.accounts[p.handle]));
+// The same list the pages render — never a parked post, never a refused one.
+const { shown: posts } = renderedPosts(data);
 // The same description the page renders, read with the same strict check.
 const identities = readIdentities(JSON.parse(readFileSync(join(root, 'rereading/identities.json'), 'utf8')), Object.keys(data.accounts));
 
 const only = process.argv[2];
-const handles = Object.keys(data.accounts).filter((h) => !only || h === only);
+// Only accounts that get a page: a parked account's card is not re-rendered.
+const handles = reachableHandles(data.accounts, posts).filter((h) => !only || h === only);
 mkdirSync(join(root, 'public/og'), { recursive: true });
 const work = join(tmpdir(), 'dzivavesture-og');
 mkdirSync(work, { recursive: true });
@@ -55,7 +57,7 @@ for (const handle of handles) {
          display:-webkit-box; -webkit-line-clamp:${clamp}; -webkit-box-orient:vertical; overflow:hidden; }
   .n { margin-top:auto; padding:18px 0 28px; font-size:30px; color:var(--soft); border-top:2px solid var(--line); }
   </style>
-  <div class="top"><b>dzīvā vēsture</b><span>Pirmdiena, 18. novembris 1918 · Rīga</span></div>
+  <div class="top"><b>dzīvā vēsture</b><span>${escapeHtml(DAYS_SPAN)} · Rīga</span></div>
   <div class="who"><span class="avatar">${escapeHtml(initials(a.name))}</span>
     <div><div class="name">${escapeHtml(a.name)}</div><div class="handle">${escapeHtml(handle)}</div></div></div>
   ${lines.map((line, i) => `<p class="${i === 0 && lines.length > 1 ? 'what' : 'bio'}">${escapeHtml(line)}</p>`).join('\n  ')}

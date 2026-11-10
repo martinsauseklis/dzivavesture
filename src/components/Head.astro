@@ -8,8 +8,8 @@ import { GOATCOUNTER_CODE, ORIGIN } from '../lib/site.ts';
 interface Props {
   title: string;
   description: string;
-  path: string;      // '' for the feed, '@handle/' for a profile — appended to ORIGIN
-  base: string;      // '' on the feed, '../' on a profile — prefix for relative assets
+  path: string;      // '' for the front day, '19-11-1918/' for another day, '@handle/' for a profile — appended to ORIGIN
+  base: string;      // '' on the front day, '../' on any other page — prefix for relative assets
   image: string;     // relative to the site root, e.g. 'og.png' or 'og/@k_ulmanis.png'
   imageAlt: string;
 }
@@ -36,7 +36,7 @@ const csp = [
 <meta name="description" content={description} />
 <link rel="canonical" href={`${ORIGIN}/${path}`} />
 
-<meta property="og:type" content={path ? 'profile' : 'website'} />
+<meta property="og:type" content={path.startsWith('@') ? 'profile' : 'website'} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={`${ORIGIN}/${path}`} />

@@ -1,0 +1,124 @@
+---
+// One page per day, from one template: the 18th at `/` and every other day at
+// /DD-11-1918/ — a rest route (`[...day]`), because the front page has no
+// path segment. Everything on a page is rendered at build time from
+// src/data/18-11-1918.json — the judged corpus, copied verbatim; fix a record
+// upstream, never here. A post sits on the day its source was PUBLISHED
+// (feed.ts publishedOn), never on the day the events happened — so the 18th
+// holds what Rīga could read on the 18th, and the papers' account of the
+// proclamation arrives on the 19th, as it did.
+import data from '../../data/18-11-1918.json';
+import Head from '../../components/Head.astro';
+import Post from '../../components/Post.astro';
+import {
+  cardAlt, DAY_CARD_SEQ, DAYS, dayHeading, dayOn, invariantLine, plural, publishedOn, refusalReason, renderedPosts, trends,
+  type Account, type Day, type Post as PostRecord,
+} from '../../lib/feed.ts';
+
+export function getStaticPaths() {
+  // `undefined` is how a rest route spells the root.
+  return DAYS.map((d) => ({ params: { day: d.path ? d.path.slice(0, -1) : undefined }, props: { day: d } }));
+}
+const { day } = Astro.props as { day: Day };
+const i = DAYS.indexOf(day);
+const [prev, next] = [DAYS[i - 1], DAYS[i + 1]];
+// The front day is the site root; every other day is one directory down.
+const base = day.path ? '../' : '';
+
+// The JSON is the boundary. Shapes are asserted here once and every record
+// then passes through refusalReason, which is the closed-set check.
+const accounts = data.accounts as Record<string, Account>;
+// How many posts are visible before the reader scrolls. Five fills a phone
+// screen without filling it twice; raising it only costs the lazy effect,
+// never correctness — every post is in the HTML either way.
+const EAGER = 5;
+
+// A refused record is reported at build and never rendered. (The count used
+// to print in a footer; the refusal itself is unchanged.) The parked
+// recollections are counted in the build log too, so "none shown" stays
+// distinguishable from "none exist".
+const { byDay, refused, parked } = renderedPosts(data as { posts: PostRecord[]; accounts: Record<string, Account> });
+for (const p of refused) console.error(`ieraksts atteikts: ${p.handle} seq ${p.seq} — ${refusalReason(p, accounts[p.handle])}`);
+const shown = byDay.get(day.key)!;
+const ranking = trends(shown);
+// The invariant line is no longer printed on the page (his choice); it still
+// ships, per day, into the build log — at zero too.
+console.log(`${day.key}: ${invariantLine(shown.length, refused.filter((p) => publishedOn(p) === day.key).length, shown.filter((p) => p.warn).length)} · novietoti malā (atmiņas): ${parked.length}`);
+
+const title = `dzīvā vēsture — 1918. gada ${day.n}. novembris`;
+// One line per day on what the page is — the 18th's is the original.
+const DESCRIPTION: Record<string, string> = {
+  '17.11.1918': 'Svētdiena Rīgā — Līdums, kā tas iznāca 17. novembrī, kā plūsma. Katrs ieraksts ar avotu periodika.lv.',
+  '18.11.1918': 'Diena, kad pasludināja Latviju — kā to rakstīja tajā dienā. Tās dienas avīzes kā plūsma; katrs ieraksts ar avotu periodika.lv.',
+  '19.11.1918': 'Diena pēc pasludināšanas — kā Rīgas avīzes 19. novembrī rakstīja par vakardienu. Katrs ieraksts ar avotu periodika.lv.',
+  '20.11.1918': 'Trešdiena Rīgā — Līdums par pasludināšanas aktu, kā tas iznāca 20. novembrī. Katrs ieraksts ar avotu periodika.lv.',
+};
+const description = DESCRIPTION[day.key];
+// The card shows one real post of this day (tools/og-days.mjs renders it);
+// the alt says which. The front day keeps public/og.png as its address.
+const card = shown.find((p) => p.seq === DAY_CARD_SEQ[day.key]);
+if (!card) throw new Error(`${day.key}: kartītes ieraksts seq ${DAY_CARD_SEQ[day.key]} nav šīs dienas plūsmā`);
+const image = day.path ? `og/${day.path.slice(0, -1)}.png` : 'og.png';
+---
+<!doctype html>
+<html lang="lv">
+<head>
+  <Head title={title} description={description} path={day.path} base={base} image={image} imageAlt={cardAlt(day, card)} />
+</head>
+<body>
+  <header>
+    <div class="wrap top">
+      <span class="brand">dzīvā vēsture</span>
+      {/* Paging between days, the way a feed moves on: the date, a day back, a day on. */}
+      <nav class="days" aria-label="Dienas">
+        {prev ? <a href={`${base}${prev.path}`} aria-label={`Iepriekšējā diena, ${prev.key}`}>‹</a> : <span class="end" aria-hidden="true">‹</span>}
+        <span class="date">{day.key}</span>
+        {next ? <a href={`${base}${next.path}`} aria-label={`Nākamā diena, ${next.key}`}>›</a> : <span class="end" aria-hidden="true">›</span>}
+      </nav>
+    </div>
+  </header>
+
+  {/* The day is the headline — and, by his choice, the only thing the page
+      says about itself: no place line, no standfirst. The reader-explanation
+      question is parked, not answered here. */}
+  <div class="wrap hero">
+    <h1>{dayHeading(day)}</h1>
+  </div>
+
+  <nav class="tabs wrap" role="tablist">
+    <button type="button" role="tab" data-tab="feed" aria-selected="true" aria-controls="panel-feed">Plūsma</button>
+    <button type="button" role="tab" data-tab="trends" aria-selected="false" aria-controls="panel-trends">Kas notiek</button>
+  </nav>
+
+  <main class="wrap">
+    <div id="panel-feed" role="tabpanel">
+      <div id="filterbar" hidden><button type="button" id="chip"></button></div>
+      <div id="feed">
+        {shown.map((p, i) => (
+          <Post post={p} account={accounts[p.handle]} accounts={accounts} gapNote={data.conventions.gap} base={base} later={i >= EAGER} />
+        ))}
+      </div>
+      <div id="more" aria-hidden="true"></div>
+    </div>
+
+    <div id="panel-trends" role="tabpanel" hidden>
+      <div id="trends">
+        <div class="k">{dayOn(day)} · sakārtots pēc ierakstu skaita</div>
+        {ranking.map((t, i) => (
+          <button type="button" class="trend" data-topic={t.topic}>
+            <span class="scope">{i + 1}. vietā</span>
+            <b>{t.topic}</b>
+            <span class="n">{t.n} {plural(t.n)}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  {/* Nothing below the last post — by his choice: no invariant line, no
+      conventions, no credit. The guards that produced the invariant still run
+      at build (refusalReason above, tests/run.ts, tests/profiles.ts,
+      check-18nov-corpus.py); only the display is gone. Attribution for the
+      National Library's scans now exists only per item (each „avots →“). */}
+</body>
+</html>

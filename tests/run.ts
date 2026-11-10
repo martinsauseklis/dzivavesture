@@ -3,7 +3,8 @@ import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
   avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
-  isWrittenYear, recollectionLine, recollectionHeader, holdsLine, type Post, type Account,
+  isWrittenYear, recollectionLine, recollectionHeader, holdsLine, publishedOn, partitionByDay, reachableHandles, renderedPosts,
+  DAYS, DAYS_SPAN, DAY_CARD_SEQ, cardAlt, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -83,19 +84,22 @@ check('recollectionHeader: two years, both named', recollectionHeader([{ type: '
 check('recollectionHeader: one contemporary post → null', recollectionHeader([{ type: 'atminas', written: 1923 }, { type: 'citats' }]) === null);
 check('recollectionHeader: no posts → null', recollectionHeader([]) === null);
 // --- holdsLine: the preview line may not call a recollection a newspaper ----
+// CHANGED 2026-11-10: „tās dienas“ → „to dienu“, „Tajā dienā“ → „Tajās dienās“.
+// The site now spans 17–20 November, so a profile holds several days' papers;
+// the singular would say the wrong thing. Behaviour changed, so the rows did.
 // | input                                   | expected                                      |
-// | [citats, citats]                        | '2 ieraksti tās dienas Rīgas avīzēs'          |
+// | [citats, citats]                        | '2 ieraksti to dienu Rīgas avīzēs'            |
 // | [atminas 1923] × 8                      | '8 ieraksti — atmiņas, rakstītas 1923. gadā'   |
 // | [atminas 1923, atminas 1925]            | '2 ieraksti — atmiņas, rakstītas 1923., 1925. gadā' |
-// | [atminas 1923, citats] (mixed)          | '2 ieraksti tās dienas Rīgas avīzēs'          |
-// | [atminas, written missing]              | '1 ieraksts tās dienas Rīgas avīzēs' (refused anyway) |
-// | []                                      | 'Tajā dienā neko nesaka — avīzes min'         |
-check('holdsLine: contemporary posts name the papers', holdsLine([{ type: 'citats' }, { type: 'citats' }]) === '2 ieraksti tās dienas Rīgas avīzēs');
+// | [atminas 1923, citats] (mixed)          | '2 ieraksti to dienu Rīgas avīzēs'            |
+// | [atminas, written missing]              | '1 ieraksts to dienu Rīgas avīzēs' (refused anyway) |
+// | []                                      | 'Tajās dienās neko nesaka — avīzes min'       |
+check('holdsLine: contemporary posts name the papers', holdsLine([{ type: 'citats' }, { type: 'citats' }]) === '2 ieraksti to dienu Rīgas avīzēs');
 check('holdsLine: all recollections name the writing year, not the papers',
   holdsLine(Array(8).fill({ type: 'atminas', written: 1923 })) === '8 ieraksti — atmiņas, rakstītas 1923. gadā');
 check('holdsLine: two writing years, both named', holdsLine([{ type: 'atminas', written: 1925 }, { type: 'atminas', written: 1923 }]) === '2 ieraksti — atmiņas, rakstītas 1923., 1925. gadā');
-check('holdsLine: one contemporary post among them → the papers', holdsLine([{ type: 'atminas', written: 1923 }, { type: 'citats' }]) === '2 ieraksti tās dienas Rīgas avīzēs');
-check('holdsLine: no posts → the account said nothing, never a zero', holdsLine([]) === 'Tajā dienā neko nesaka — avīzes min');
+check('holdsLine: one contemporary post among them → the papers', holdsLine([{ type: 'atminas', written: 1923 }, { type: 'citats' }]) === '2 ieraksti to dienu Rīgas avīzēs');
+check('holdsLine: no posts → the account said nothing, never a zero', holdsLine([]) === 'Tajās dienās neko nesaka — avīzes min');
 check('isWrittenYear: 1919 and 2099 yes; 1918, 2100, 1923.5, "1923" no',
   isWrittenYear(1919) && isWrittenYear(2099) && !isWrittenYear(1918) && !isWrittenYear(2100) && !isWrittenYear(1923.5) && !isWrittenYear('1923'));
 for (const [name, p, want] of refusals)
@@ -223,6 +227,60 @@ check('readIdentities: an over-long bio fails loudly', throws(() => readIdentiti
 check('readIdentities: a numeric identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: 5, bio: null }] }, ['@a']), 'string or null'));
 check('readIdentities: an object identity fails loudly', throws(() => readIdentities({ accounts: [{ handle: '@a', identity: {}, bio: null }] }, ['@a']), 'string or null'));
 
+// --- publishedOn: a post belongs to the day its source was PUBLISHED ---------
+// | case                              | input                                            | expected      |
+// | newspaper citation                | via 'Baltijas Ziņas Nr.168, 18.11.1918, „Rīga“'  | '18.11.1918'  |
+// | reported citation                 | via 'Atstāstīts: Līdums Nr.219, 20.11.1918'      | '20.11.1918'  |
+// | document carrying its own date    | via '… 19.11.1918 …', dated '18.11.1918'         | '18.11.1918'  |
+// | recollection                      | atminas, via 'Valsts pieci gadi, Rīga 1923'      | null (parked) |
+// | recollection with a date in via   | atminas, via '…, 18.11.1918'                     | null          |
+// | citation without a date           | via 'Līdums'                                     | null          |
+// | ISO-shaped date                   | via '1918-11-18'                                 | null          |
+const days: [string, Pick<Post, 'type' | 'via' | 'dated'>, string | null][] = [
+  ['newspaper citation', { type: 'citats', via: 'Baltijas Ziņas Nr.168, 18.11.1918, „Rīga“' }, '18.11.1918'],
+  ['reported citation', { type: 'atstastits', via: 'Atstāstīts: Līdums Nr.219, 20.11.1918' }, '20.11.1918'],
+  ['document carrying its own date', { type: 'dokuments', via: 'Jaunākās Ziņas Nr.4, 19.11.1918, „Vietējās ziņas“', dated: '18.11.1918' }, '18.11.1918'],
+  ['recollection', { type: 'atminas', via: 'Valsts pieci gadi, Rīga 1923, 12. lpp.' }, null],
+  ['recollection with a date in via', { type: 'atminas', via: 'Valsts pieci gadi, 18.11.1918' }, null],
+  ['citation without a date', { type: 'citats', via: 'Līdums' }, null],
+  ['ISO-shaped date', { type: 'citats', via: '1918-11-18' }, null],
+];
+for (const [name, p, want] of days) check(`publishedOn: ${name}`, publishedOn(p) === want, `want ${want}`);
+
+// --- partitionByDay: every post on exactly one day page, or parked -----------
+// | case                                  | expected                                   |
+// | 2×18th, 1×20th, 1 atminas             | 18:[1,3] 20:[2] 17:[] 19:[] parked:[4]     |
+// | a day the site has no page for        | throws 'tādas dienas lapas nav'            |
+// | hostile dated                         | throws (not in the closed set)             |
+// | newspaper post without a date         | throws 'nenosauc izdošanas dienu'          |
+const part = partitionByDay([
+  post({ seq: 1, via: 'Baltijas Ziņas Nr.168, 18.11.1918' }), post({ seq: 2, via: 'Līdums Nr.219, 20.11.1918' }),
+  post({ seq: 3, via: 'Rigasche Zeitung Nr.267, 18.11.1918' }), post({ seq: 4, handle: '@k_ulmanis', type: 'atminas', written: 1923, via: 'Valsts pieci gadi, Rīga 1923' }),
+]);
+check('partitionByDay: posts land on their day in the order given, recollections parked',
+  [...part.byDay].map(([k, v]) => `${k}:${v.map((p) => p.seq)}`).join(' ') === '17.11.1918: 18.11.1918:1,3 19.11.1918: 20.11.1918:2' && part.parked.map((p) => p.seq).join() === '4');
+check('partitionByDay: a day the site does not render fails loudly', throws(() => partitionByDay([post({ via: 'Līdums Nr.220, 21.11.1918' })]), 'tādas dienas lapas nav'));
+check('partitionByDay: a hostile dated fails loudly', throws(() => partitionByDay([post({ dated: 'javascript:alert(1)' })]), 'tādas dienas lapas nav'));
+check('partitionByDay: a newspaper post without a date fails loudly', throws(() => partitionByDay([post({ via: 'Līdums' })]), 'nenosauc izdošanas dienu'));
+
+// --- DAYS: the closed set of pages ------------------------------------------
+// | rule                                                        |
+// | 4 days, keys ascending, exactly one with path '' — the 18th |
+// | every other path is DD-11-1918/ and matches its key         |
+// | DAYS_SPAN reads „17.–20. novembris 1918“                    |
+check('DAYS: four days in order, the 18th at the root', DAYS.length === 4 && DAYS.map((d) => d.key).join() === '17.11.1918,18.11.1918,19.11.1918,20.11.1918'
+  && DAYS.filter((d) => d.path === '').map((d) => d.key).join() === '18.11.1918');
+check('DAYS: every other path is DD-11-1918/ and names its own key', DAYS.filter((d) => d.path).every((d) => d.path === `${d.n}-11-1918/` && d.key === `${d.n}.11.1918`));
+check('DAYS_SPAN', DAYS_SPAN === '17.–20. novembris 1918');
+check('cardAlt names the day, the account and the words', cardAlt(DAYS[1], { handle: '@lidums', at: '16.30', lv: 'Teksts.' }) === 'dzīvā vēsture, 18. novembris 1918 — ieraksts (@lidums, 16.30): „Teksts.“');
+
+// --- reachableHandles: which accounts get a page -----------------------------
+// | input                                             | expected        |
+// | @lidums posts; @POTUS mentioned; @k_ulmanis neither | lidums, POTUS  |
+// | a mention to a handle with no account              | ignored         |
+check('reachableHandles: a post or a mention reaches an account, nothing else does',
+  reachableHandles(accounts, [post({ mentions: { x: '@POTUS', y: '@ghost' } })]).join() === '@lidums,@POTUS');
+
 // --- descriptionLines: the identity alone; null is two different things ------
 // | handle           | identity      | expected       |
 // | @x               | 'Laikraksts'  | ['Laikraksts'] |
@@ -325,13 +383,17 @@ check('corpus: sampler saw both sides', reasons.length > 0 && refusals.some(([, 
 const personRendered = corpus.filter((p) => p.type === 'atstastits' && data.accounts[p.handle].kind === 'person');
 check('corpus: every person-account rendering names its reporter on the face', personRendered.length > 0 && personRendered.every((p) => reportedBy(p.via)),
   personRendered.filter((p) => !reportedBy(p.via)).map((p) => p.seq).join());
-// The post-less accounts without `silent` text in the data are exactly the
-// ones with page copy — no default empty state, and no copy shadowing data.
-const postless = Object.keys(data.accounts).filter((h) => !corpus.some((p) => p.handle === h));
+// The post-less accounts WITH A PAGE and without `silent` text in the data are
+// exactly the ones with page copy — no default empty state, and no copy
+// shadowing data. Counted over the rendered posts: a parked memoirist has no
+// page, so needs no copy.
+const rendered = renderedPosts(data);
+const withPage = reachableHandles(data.accounts, rendered.shown);
+const postless = withPage.filter((h) => !rendered.shown.some((p) => p.handle === h));
 const needCopy = postless.filter((h) => !data.accounts[h].silent).sort();
-check('profiles: 8 accounts have no post', postless.length === 8, postless.join());
+check('profiles: 8 accounts with a page have no post', postless.length === 8, postless.join());
 check('profiles: EMPTY_COPY covers exactly the post-less accounts without silent text', JSON.stringify(Object.keys(EMPTY_COPY).sort()) === JSON.stringify(needCopy), `need ${needCopy.join()}`);
-check('profiles: every post-less account has a mention to show', postless.every((h) => mentionsOf(h, corpus).length > 0), postless.filter((h) => !mentionsOf(h, corpus).length).join());
+check('profiles: every post-less account has a mention to show', postless.every((h) => mentionsOf(h, rendered.shown).length > 0), postless.filter((h) => !mentionsOf(h, rendered.shown).length).join());
 const gapped = corpus.filter((p) => p.lv.includes('[?]'));
 check('corpus: every [?] post carries a warn that explains it', gapped.length > 0 && gapped.every((p) => p.warn), gapped.filter((p) => !p.warn).map((p) => p.seq).join());
 
@@ -350,10 +412,29 @@ check('corpus: every recollection carries via, an archive url and a page number'
 check('corpus: a recollection has no ocr, every scanned post has one',
   corpus.every((p) => (p.type === 'atminas') === (p.ocr === null || p.ocr === undefined)),
   corpus.filter((p) => (p.type === 'atminas') !== (p.ocr === null || p.ocr === undefined)).map((p) => p.seq).join());
-// The three 1918-11-17 recollections were parked, not merged: a recollection of
-// the previous day dissolves a one-day feed. They stay in rereading/atminas.json.
-check('corpus: no post is dated to another day', corpus.every((p) => !(p as { date?: string }).date),
-  corpus.filter((p) => (p as { date?: string }).date).map((p) => p.seq).join());
+// CHANGED 2026-11-10 — behaviour changed, so the row did. This row used to
+// assert that no post carried a `date`: the site was one day. It now renders
+// four days, and a post's day is read off the PUBLICATION date in its `via`
+// (publishedOn), so the row became the partition: every post on exactly one
+// day or parked, with the counts he decided — 18 Nov keeps the two papers that
+// came out that day plus the two documents dated that day (the proceedings and
+// „Latvijas pilsoņiem“); the 1923 recollections are parked, all eleven.
+// | day        | posts |
+// | 17.11.1918 |     6 |   Līdums Nr.217
+// | 18.11.1918 |    55 |   Baltijas Ziņas Nr.168 (35) + Rigasche Zeitung Nr.267 (16) + sēdes Nr.1 (3) + seq 744
+// | 19.11.1918 |    18 |   Rigasche Zeitung Nr.268 (8) + Baltijas Ziņas Nr.169 (10)
+// | 20.11.1918 |    17 |   Līdums Nr.219
+// | parked     |    11 |   atminas, 1923
+const counts = [...rendered.byDay].map(([k, v]) => `${k}:${v.length}`).join(' ');
+check('corpus: every post sits on one of the four days or is parked, with the decided counts',
+  counts === '17.11.1918:6 18.11.1918:55 19.11.1918:18 20.11.1918:17' && rendered.parked.length === 11 && rendered.shown.length + rendered.parked.length + rendered.refused.length === corpus.length,
+  `${counts} parked:${rendered.parked.length} refused:${rendered.refused.length}`);
+check('corpus: the parked posts are exactly the recollections', rendered.parked.every((p) => p.type === 'atminas') && rendered.parked.length === corpus.filter((p) => p.type === 'atminas').length);
+check('corpus: exactly one post carries its own date — „Latvijas pilsoņiem“, printed on the 19th, dated the 18th',
+  corpus.filter((p) => p.dated).map((p) => `${p.seq}:${p.dated}`).join() === '744:18.11.1918' && publishedOn(corpus.find((p) => p.seq === 744)!) === '18.11.1918');
+check('corpus: the three memoirists have no page while parked; every other account does',
+  Object.keys(data.accounts).filter((h) => !withPage.includes(h)).sort().join() === '@a_brigadere,@ed_calitis,@j_ampermanis');
+check('corpus: each day card shows a post of that day', DAYS.every((d) => rendered.byDay.get(d.key)!.some((p) => p.seq === DAY_CARD_SEQ[d.key])));
 
 // --- threads: one printed item split at sentence boundaries, nothing else ---
 // | rule                                                      |
