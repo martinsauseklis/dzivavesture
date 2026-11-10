@@ -146,8 +146,13 @@ header.pinned { position:sticky; top:0; z-index:5; }
 .bar { display:flex; gap:0 12px; flex-wrap:wrap; align-items:center; margin-top:2px; }
 .bar button { font-size:14px; color:var(--soft); min-height:34px; display:inline-flex; align-items:center; }
 .bar button:hover, .bar button[aria-expanded="true"] { color:var(--ink); }
-.bar .src-link { margin-left:auto; font-size:14px; color:var(--soft); text-decoration:none; min-height:34px; display:inline-flex; align-items:center; }
-.bar .src-link:hover { color:var(--accent); }
+.bar a { font-size:14px; color:var(--soft); text-decoration:none; min-height:34px; display:inline-flex; align-items:center; }
+.bar a:hover { color:var(--accent); }
+/* The links sit at the right, as a feed's share does. avots → stays last — it
+   is the site; dalīties comes before it on a post, and a later segment of a
+   thread has only avots. */
+.bar .share, .bar .src-link { margin-left:auto; }
+.bar .share + .src-link { margin-left:0; }
 
 /* ---- the one fold left: replies under the article ------------------------ */
 .fold { margin:4px 0 8px; font-size:14px; }

@@ -285,6 +285,50 @@ export const DAY_CARD_SEQ: Record<string, number> = { '17.11.1918': 940, '18.11.
 export const cardAlt = (day: Day, post: Pick<Post, 'handle' | 'at' | 'lv'>) =>
   `dzīvā vēsture, ${day.n}. novembris 1918 — ieraksts (${post.handle}, ${post.at}): „${post.lv}“`;
 
+// --- share to X -------------------------------------------------------------
+// X counts every URL as 23 characters (t.co), whatever its length, and a post
+// is 280 — so the text may hold at most 257 code points. The excerpt is capped
+// well under that so the attribution always fits: 120 + „…“ + a 35-character
+// name (the longest in the data) + the date comes to under 200. Breaks when:
+// X changes the t.co length or the post limit, or an account name past ~60
+// characters is added — the corpus row in tests/run.ts counts every post.
+export const SHARE_TEXT_MAX = 280 - 23;
+export const SHARE_EXCERPT = 120;
+
+// The first words of a post: cut on a space at or before `max` code points —
+// never inside a word, a macron'd letter (one code point here; the corpus has
+// no combining marks) or a [?] gap marker (which holds no space) — trailing
+// punctuation dropped, and closed with an ellipsis. Text that fits is whole.
+export function excerpt(text: string, max = SHARE_EXCERPT): string {
+  const cps = [...text];
+  if (cps.length <= max) return text;
+  const head = cps.slice(0, max + 1).join('');
+  const cut = head.lastIndexOf(' ');
+  // No space in the first `max` code points — one run longer than the cap,
+  // which this corpus never has. Cut hard rather than return nothing.
+  const kept = cut > 0 ? head.slice(0, cut) : cps.slice(0, max).join('');
+  return kept.replace(/[\s,;:—–-]+$/u, '') + '…';
+}
+
+// The share link of one post: X's web intent with the words and the post's
+// address. No script, no API, no key — a string in an href.
+//   url  — the post's DAY page plus its fragment, so X picks up that day's
+//          link-preview card (crawlers ignore the fragment) and the reader
+//          lands on the post itself.
+//   text — „the first words…“ — Name, 1918. gada 19. novembris. The account's
+//          NAME, never its @handle: in X's own text a handle tags whoever owns
+//          that name on X today, and @lidums is not ours to tag.
+// A post on no day (a parked recollection) has no address and throws: it never
+// renders, so this is the build refusing, not a reader seeing it.
+export function shareHref(origin: string, post: Pick<Post, 'seq' | 'lv' | 'type' | 'via' | 'dated'>, account: Pick<Account, 'name'>): string {
+  const key = publishedOn(post);
+  const day = DAYS.find((d) => d.key === key);
+  if (!day) throw new Error(`seq ${post.seq}: nav dienas lapas — nav adreses, ko dalīt`);
+  const text = `„${excerpt(post.lv)}“ — ${account.name}, 1918. gada ${day.n}. novembris`;
+  const url = `${origin}/${day.path}#p-${post.seq}`;
+  return `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+}
+
 // `at` is the one timestamp format the whole feed uses: HH.MM, 24-hour.
 export const isClock = (at: string) => /^([01]\d|2[0-3])\.[0-5]\d$/.test(at);
 

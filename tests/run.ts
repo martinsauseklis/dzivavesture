@@ -4,7 +4,7 @@ import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
   avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
   isWrittenYear, recollectionLine, recollectionHeader, holdsLine, publishedOn, partitionByDay, reachableHandles, renderedPosts,
-  DAYS, DAYS_SPAN, DAY_CARD_SEQ, cardAlt, dayCounts, dayStripLabel, proclamationLine, PROCLAMATION_TOPIC, type Post, type Account,
+  DAYS, DAYS_SPAN, DAY_CARD_SEQ, cardAlt, dayCounts, dayStripLabel, proclamationLine, PROCLAMATION_TOPIC, excerpt, shareHref, SHARE_TEXT_MAX, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -387,6 +387,45 @@ for (const [name, t] of [['light', light], ['dark', dark]] as const) {
     check(`css ${name}: ${fg} on ${bg} ≥ 4.5:1`, !!t[fg] && !!t[bg] && contrast(t[fg], t[bg]) >= 4.5, t[fg] && t[bg] ? contrast(t[fg], t[bg]).toFixed(2) : 'token missing');
 }
 
+// --- share to X: the excerpt ----------------------------------------------------
+// | case                           | input                                  | expected                                   |
+// | fits                           | 'Teksts.'                              | 'Teksts.' — whole, no ellipsis             |
+// | cut on a space                 | 'aaaa bbbb cccc' max 9                 | 'aaaa bbbb…' never mid-word                |
+// | limit falls inside a word      | 'aaaa bbbb cccc' max 11                | 'aaaa bbbb…'                               |
+// | limit falls inside [?]         | 'aaaa [?] cccc' max 6                  | 'aaaa…' — the marker is whole or gone      |
+// | macrons count as one           | 'ā'×9 + ' b' max 9                     | 'āāāāāāāāā…' (9 code points kept)          |
+// | trailing comma dropped         | 'aaaa, bbbb' max 6                     | 'aaaa…'                                    |
+// | one run longer than the cap    | 'aaaaaaaaaa' max 4                     | 'aaaa…' — cut hard, never empty            |
+check('excerpt: text that fits is returned whole', excerpt('Teksts.') === 'Teksts.');
+check('excerpt: cuts on a space', excerpt('aaaa bbbb cccc', 9) === 'aaaa bbbb…');
+check('excerpt: never mid-word', excerpt('aaaa bbbb cccc', 11) === 'aaaa bbbb…', excerpt('aaaa bbbb cccc', 11));
+check('excerpt: never inside a [?] marker', excerpt('aaaa [?] cccc', 6) === 'aaaa…', excerpt('aaaa [?] cccc', 6));
+check('excerpt: a macron is one code point', excerpt('ā'.repeat(9) + ' b', 9) === 'ā'.repeat(9) + '…');
+check('excerpt: trailing punctuation dropped before the ellipsis', excerpt('aaaa, bbbb', 6) === 'aaaa…', excerpt('aaaa, bbbb', 6));
+check('excerpt: one run longer than the cap is cut hard, never empty', excerpt('aaaaaaaaaa', 4) === 'aaaa…');
+
+// --- share to X: the href ---------------------------------------------------------
+// | case                      | post                                  | expected                                                   |
+// | front day                 | seq 20, via 18.11.1918                | url = ORIGIN/#p-20                                         |
+// | another day               | seq 12, via 19.11.1918                | url = ORIGIN/19-11-1918/#p-12                              |
+// | dated document            | dated 18.11.1918, via 19.11.1918      | url = ORIGIN/#p-N — the day the rule puts it on            |
+// | text names the account    | name 'Līdums', handle '@lidums'       | text holds „…“ — Līdums, 1918. gada 19. novembris; no '@'  |
+// | hostile words             | lv '&url=https://evil.example #x @y'  | all inside text=, encoded; url= still ours                 |
+// | parked recollection       | atminas                               | throws                                                     |
+const O = 'https://dzivavesture.mai.lv';
+const params = (href: string) => { const u = new URL(href); return { host: u.origin + u.pathname, text: u.searchParams.get('text') ?? '', url: u.searchParams.get('url') ?? '' }; };
+check('shareHref: front day → ORIGIN/#p-seq', params(shareHref(O, post({ seq: 20, via: 'Līdums Nr.1, 18.11.1918' }), { name: 'Līdums' })).url === `${O}/#p-20`);
+check('shareHref: another day → ORIGIN/DD-11-1918/#p-seq', params(shareHref(O, post({ seq: 12, via: 'Līdums Nr.1, 19.11.1918' }), { name: 'Līdums' })).url === `${O}/19-11-1918/#p-12`);
+check('shareHref: a dated document shares on its own day', params(shareHref(O, post({ seq: 7, dated: '18.11.1918', via: 'Līdums Nr.1, 19.11.1918' }), { name: 'Līdums' })).url === `${O}/#p-7`);
+const shared = params(shareHref(O, post({ via: 'Līdums Nr.1, 19.11.1918' }), { name: 'Līdums' }));
+check('shareHref: text is „words“ — Name, date, and never a handle', shared.text === '„Teksts.“ — Līdums, 1918. gada 19. novembris' && !shared.text.includes('@'), shared.text);
+check('shareHref: goes to x.com/intent/post', shared.host === 'https://x.com/intent/post');
+const hostileShare = shareHref(O, post({ lv: '&url=https://evil.example #x @y', via: 'Līdums Nr.1, 19.11.1918' }), { name: 'L' });
+// The words round-trip intact, the raw href holds exactly one `&url=` (the
+// hostile one is encoded, so it cannot open a second parameter), and url= is ours.
+check('shareHref: hostile words stay inside text=, the url= is ours', params(hostileShare).url === `${O}/19-11-1918/#p-1` && params(hostileShare).text.includes('&url=https://evil.example #x @y') && hostileShare.split('&url=').length === 2);
+check('shareHref: a parked recollection throws', (() => { try { shareHref(O, post({ type: 'atminas', written: 1923 }), { name: 'x' }); return false; } catch { return true; } })());
+
 // --- the pure layer imports no framework ------------------------------------
 const src = readFileSync(new URL('../src/lib/feed.ts', import.meta.url), 'utf8');
 check('feed.ts has no imports at all', !/^\s*import\s/m.test(src), 'a framework import here would make the logic untestable without a browser');
@@ -481,6 +520,12 @@ check('corpus: exactly one post carries its own date — „Latvijas pilsoņiem�
 check('corpus: the three memoirists have no page while parked; every other account does',
   Object.keys(data.accounts).filter((h) => !withPage.includes(h)).sort().join() === '@a_brigadere,@ed_calitis,@j_ampermanis');
 check('corpus: each day card shows a post of that day', DAYS.every((d) => rendered.byDay.get(d.key)!.some((p) => p.seq === DAY_CARD_SEQ[d.key])));
+// | every shown post | share text ≤ 257 code points, no partial '[?', and a day url | counted, so zero posts would show as zero |
+const shareTexts = rendered.shown.map((p) => params(shareHref(O, p, data.accounts[p.handle])).text);
+const longest = Math.max(...shareTexts.map((t) => [...t].length));
+check(`corpus: ${shareTexts.length} share texts, longest ${longest} ≤ ${SHARE_TEXT_MAX} code points`, shareTexts.length === rendered.shown.length && longest <= SHARE_TEXT_MAX);
+// An editorial bracket („Latvju [valsti]“, seq 690) is the paper's; only a split gap marker is ours to forbid.
+check('corpus: no share text holds a split [?] marker or an @handle', shareTexts.every((t) => { const s = t.replace(/\[\?\]/g, ''); return !s.includes('[?') && !s.includes('?]') && !s.includes('@'); }));
 
 // --- threads: one printed item split at sentence boundaries, nothing else ---
 // | rule                                                      |

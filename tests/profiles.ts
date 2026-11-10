@@ -6,6 +6,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname, resolve, relative } from 'node:path';
 import { DAYS, DAYS_SPAN, DAY_CARD_SEQ, dayCounts, dayStripLabel, descriptionLines, proclamationLine, plural, publishedOn, reachableHandles, readIdentities, renderedPosts, type Account, type Post } from '../src/lib/feed.ts';
+import { ORIGIN } from '../src/lib/site.ts';
 
 const DIST = resolve(new URL('../dist', import.meta.url).pathname);
 if (!existsSync(join(DIST, 'index.html'))) { console.error('dist/ missing — run pnpm build first'); process.exit(1); }
@@ -168,6 +169,30 @@ check('credit: no profile page has a footer — a profile still ends at its last
 // 1923 volume (http — its certificate is self-signed; see feed.ts ARCHIVES).
 check('face: avots is a plain link to one of the two archives on every segment', everyPage.every((d) => (d.match(/<a class="src-link" href="(?:https:\/\/periodika\.lndb\.lv|http:\/\/eraksti\.lv)\/[^"]*" target="_blank" rel="noopener">avots →<\/a>/g) ?? []).length === (d.match(/<div class="seg">/g) ?? []).length));
 
+// --- the deployment host: every absolute address is the one we serve ---------
+// | built page    | expected                                                        |
+// | every page    | canonical starts with ORIGIN; the old host dzivavesture.lv absent |
+// | every <article class="post"> | exactly one dalīties link, url= its day page + #p-seq |
+const allPages: string[] = [];
+(function walk(dir: string) { for (const f of readdirSync(dir)) { const p = join(dir, f); statSync(p).isDirectory() ? walk(p) : f.endsWith('.html') && allPages.push(p); } })(DIST);
+check('host: ORIGIN is the mai.lv subdomain', ORIGIN === 'https://dzivavesture.mai.lv');
+check('host: every page is canonical on ORIGIN and names the old host nowhere', allPages.length > 0 && allPages.every((p) => { const d = html(p); return (attr(d, /<link rel="canonical" href="([^"]*)"/g)[0] ?? '').startsWith(ORIGIN + '/') && !/dzivavesture\.lv/.test(d); }));
+const dayPath = new Map(DAYS.map((d) => [d.key, d.path]));
+let articles = 0, shares = 0;
+const misaddressed: string[] = [];
+for (const p of allPages) {
+  const d = html(p);
+  for (const m of d.matchAll(/<article class="post[^"]*" id="p-(\d+)"[\s\S]*?<\/article>/g)) {
+    articles++;
+    const links = attr(m[0], /<a class="share" href="([^"]*)" target="_blank" rel="noopener">dalīties<\/a>/g);
+    shares += links.length;
+    const post = (data.posts as Post[]).find((x) => x.seq === Number(m[1]))!;
+    const want = `${ORIGIN}/${dayPath.get(publishedOn(post)!)}#p-${m[1]}`;
+    if (links.length !== 1 || new URL(links[0].replace(/&amp;/g, '&')).searchParams.get('url') !== want) misaddressed.push(`${relative(DIST, p)}#p-${m[1]}`);
+  }
+}
+check(`host: ${articles} rendered posts carry ${shares} share links, each to its own day page`, articles > 0 && shares === articles && misaddressed.length === 0, misaddressed.slice(0, 5).join(' '));
+
 // --- P7: no dead internal link anywhere in the built site --------------------
 const pages: string[] = [];
 (function walk(dir: string) { for (const f of readdirSync(dir)) { const p = join(dir, f); statSync(p).isDirectory() ? walk(p) : f.endsWith('.html') && pages.push(p); } })(DIST);
@@ -195,7 +220,9 @@ check('P7: every profile links back only with relative paths (no leading slash)'
 const shared = statSync(join(DIST, 'feed.css')).size + statSync(join(DIST, 'feed.js')).size;
 const sizes = handles.map((h) => statSync(page(h)).size + shared);
 check('P8: every profile first load ≤ 1 MB', sizes.every((s) => s <= 1_000_000), `largest ${Math.max(...sizes)} B`);
-check('P8: no profile page carries a script other than feed.js', handles.every((h) => attr(html(page(h)), /<script[^>]*src="([^"]*)"/g).join() === '../feed.js'));
+// CHANGED 2026-11-11: GoatCounter is on (his account) — the closed set of
+// scripts is feed.js plus count.js from gc.zgo.at, in that order, and nothing else.
+check('P8: no profile page carries a script other than feed.js and GoatCounter', handles.every((h) => attr(html(page(h)), /<script[^>]*src="([^"]*)"/g).join() === '../feed.js,https://gc.zgo.at/count.js'));
 const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 check('P8: still one dependency', Object.keys(pkg.dependencies).join() === 'astro' && !pkg.devDependencies);
 
