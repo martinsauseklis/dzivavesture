@@ -189,37 +189,36 @@ export const dayOn = (d: Day) => `1918. gada ${d.n}. novembrī`;
 export const DAYS_SPAN = `${DAYS[0].n}.–${DAYS[DAYS.length - 1].n}. novembris 1918`;
 
 // The topic a post carries when it proclaims the state or reports it. It is a
-// value the corpus already uses, not a judgement made here, and the counts are
-// the day strip's whole story: 0 of 6 on the 17th, 3 of 55 on the 18th (the
-// act itself — the Tautas Padome's own session record and the proclamation
+// value the corpus already uses, not a judgement made here, and its counts are
+// the only narrative device on the page: 0 of 6 on the 17th, 3 of 55 on the
+// 18th (the act itself — the Tautas Padome's own session record and the
 // document dated that day), then 12 of 18 and 13 of 17 once the papers catch
 // up. Breaks when: the corpus renames this topic; the test row that counts it
-// per day then fails loudly rather than drawing an empty bar.
+// per day then fails loudly rather than quietly printing nothing.
 export const PROCLAMATION_TOPIC = 'Valsts pasludināšana';
 
-// What one cell of the day strip draws: how many posts the day holds, how many
-// of them report the proclamation, and the day's weight against the fullest day
-// (1 for the 18th). `share` is the bar's width, so the strip says without words
-// that the 18th is the anchor and that the news arrives on the 19th — the
-// reader sees the red appear exactly where it appeared in the papers.
-export type DayWeight = { n: number; proclaimed: number; share: number };
-export function dayWeights(byDay: Map<string, Pick<Post, 'topics'>[]>): Map<string, DayWeight> {
-  const counts = DAYS.map((d) => byDay.get(d.key)?.length ?? 0);
-  // The 1 is a floor for an empty corpus only: a day with posts already gives
-  // a maximum of at least 1, so it never divides a real count.
-  const fullest = Math.max(...counts, 1);
-  return new Map(DAYS.map((d, i) => [d.key, {
-    n: counts[i],
-    proclaimed: (byDay.get(d.key) ?? []).filter((p) => p.topics.includes(PROCLAMATION_TOPIC)).length,
-    share: counts[i] / fullest,
-  }]));
+// The two numbers a day page knows about itself: how many posts it holds, and
+// how many of those report the proclamation.
+export type DayCount = { n: number; proclaimed: number };
+export function dayCounts(byDay: Map<string, Pick<Post, 'topics'>[]>): Map<string, DayCount> {
+  return new Map(DAYS.map((d) => {
+    const posts = byDay.get(d.key) ?? [];
+    return [d.key, { n: posts.length, proclaimed: posts.filter((p) => p.topics.includes(PROCLAMATION_TOPIC)).length }];
+  }));
 }
 
-// The bar is decoration a screen reader never sees, so every day says the same
-// thing in words — as its accessible name and as the title a mouse reader gets
-// on hover, which is how every other mark on this site explains itself.
-export const dayStripLabel = (d: Day, w: DayWeight) =>
-  `${d.n}. novembris — ${w.n} ${plural(w.n)}${w.proclaimed ? `, ${w.proclaimed} par valsts pasludināšanu` : ''}`;
+// A day cell in the strip shows „18.“ over „55“ — two bare numbers, which read
+// as a date and a count only in context. This is the sentence a screen reader
+// gets in their place.
+export const dayStripLabel = (d: Day, c: DayCount) => `${d.n}. novembris — ${c.n} ${plural(c.n)}`;
+
+// The one line under a day's headline, when that day's papers carry the
+// proclamation at all — said in words and whole numbers, because the share is
+// the story (3 of 55 on the 18th against 12 of 18 on the 19th) and a reader
+// should not have to decode it. Null on a day that says nothing about it: an
+// absence states itself better than „nekā par pasludināšanu“ would.
+export const proclamationLine = (c: DayCount) =>
+  c.proclaimed ? `${c.proclaimed} ${plural(c.proclaimed)} par valsts pasludināšanu` : null;
 
 // The day a post belongs to: the day its source was PUBLISHED, read off the
 // `via` citation („Baltijas Ziņas Nr.168, 18.11.1918, …“) — never the day the

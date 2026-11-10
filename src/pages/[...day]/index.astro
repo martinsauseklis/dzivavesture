@@ -12,8 +12,8 @@ import Head from '../../components/Head.astro';
 import Post from '../../components/Post.astro';
 import Mark from '../../components/Mark.astro';
 import {
-  cardAlt, DAY_CARD_SEQ, DAYS, dayHeading, dayOn, dayStripLabel, dayWeights, invariantLine, plural, publishedOn,
-  refusalReason, renderedPosts, trends,
+  cardAlt, DAY_CARD_SEQ, DAYS, dayCounts, dayHeading, dayOn, dayStripLabel, invariantLine, plural, proclamationLine,
+  publishedOn, refusalReason, renderedPosts, trends,
   type Account, type Day, type Post as PostRecord,
 } from '../../lib/feed.ts';
 
@@ -40,7 +40,7 @@ const EAGER = 5;
 const { byDay, refused, parked } = renderedPosts(data as { posts: PostRecord[]; accounts: Record<string, Account> });
 for (const p of refused) console.error(`ieraksts atteikts: ${p.handle} seq ${p.seq} — ${refusalReason(p, accounts[p.handle])}`);
 const shown = byDay.get(day.key)!;
-const weights = dayWeights(byDay);
+const counts = dayCounts(byDay);
 const ranking = trends(shown);
 // The invariant line is no longer printed on the page (his choice); it still
 // ships, per day, into the build log — at zero too.
@@ -76,33 +76,22 @@ const image = day.path ? `og/${day.path.slice(0, -1)}.png` : 'og.png';
   {/* The four days, side by side, as the span they are — not a date picker.
       It is the one row that stays on screen while the reader scrolls (the
       brand above it scrolls away), because moving between days is the only
-      navigation this site has. Each cell carries a bar: its width is that
-      day's share of the fullest day, and the carmine part is the posts that
-      report the proclamation — so the 18th is visibly the anchor and the news
-      visibly breaks on the 19th. Numbers in feed.ts, said in words in each
-      cell's title and accessible name. */}
+      navigation this site has. Each cell is the date over that day's number of
+      posts: 55 against 6 says which day the papers were full of, in the one
+      encoding that needs no key and no hover — a number. (A bar drawn to scale
+      was tried here first and cut: at 92 px a cell it was four grey dashes at
+      four different offsets, unreadable and unexplained. His word: blotches.)
+      What the papers made of the day is said in words below the headline. */}
   <nav class="daystrip" aria-label="Dienas">
     <div class="wrap row">
-      {DAYS.map((d) => {
-        const w = weights.get(d.key)!;
-        const label = dayStripLabel(d, w);
-        // Centred in the cell: half the unused room on each side. The bar is
-        // drawn as SVG rects, not styled widths, because the page's CSP is
-        // `style-src 'self'` — a style attribute would be blocked.
-        const bar = w.share * 100;
-        const red = w.n ? (w.proclaimed / w.n) * bar : 0;
-        const x = (100 - bar) / 2;
-        return (
-          <a class="day" href={d.key === day.key ? './' : `${base}${d.path}`}
-             aria-current={d.key === day.key ? 'page' : undefined} aria-label={label} title={label}>
-            <span class="n">{d.n}.</span>
-            <svg class="w" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true">
-              <rect class="pro" x={x} y="0" width={red} height="4" />
-              <rect class="rest" x={x + red} y="0" width={bar - red} height="4" />
-            </svg>
-          </a>
-        );
-      })}
+      {DAYS.map((d) => (
+        <a class="day" href={d.key === day.key ? './' : `${base}${d.path}`}
+           aria-current={d.key === day.key ? 'page' : undefined}
+           aria-label={dayStripLabel(d, counts.get(d.key)!)}>
+          <span class="n">{d.n}.</span>
+          <span class="c">{counts.get(d.key)!.n}</span>
+        </a>
+      ))}
     </div>
   </nav>
 
@@ -111,6 +100,11 @@ const image = day.path ? `og/${day.path.slice(0, -1)}.png` : 'og.png';
       question is parked, not answered here. */}
   <div class="wrap hero">
     <h1>{dayHeading(day)}</h1>
+    {/* The one line the page says about itself, and only when there is one to
+        say: how much of this day's printing was the proclamation. It is the
+        narrative the four days hold — 3 of 55 on the 18th, 12 of 18 on the
+        19th — and it is told in words, where a reader cannot misread it. */}
+    {proclamationLine(counts.get(day.key)!) && <p class="holds">{proclamationLine(counts.get(day.key)!)}</p>}
   </div>
 
   <nav class="tabs wrap" role="tablist">

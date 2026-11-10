@@ -48,31 +48,26 @@ header.pinned { position:sticky; top:0; z-index:5; }
 /* ---- the day strip: four days side by side, the span the site covers -----
    A day is a cell, not a chevron: the reader sees where they are among the
    four and reaches any of them in one tap. At 400 px a cell is 92 px wide
-   ((400 − the wrap's 32 px of gutter) / 4) and 45 px tall — four fit with no
+   ((400 − the wrap's 32 px of gutter) / 4) and 46 px tall — four fit with no
    horizontal scroll, and each is past the 34 px the thumb needs. Breaks when:
-   a fifth day joins DAYS — then 73 px a cell, and the strip needs rethinking.
-   The bar under the number is the day's weight (see index.astro). */
+   a fifth day joins DAYS — then 73 px a cell, and the strip needs rethinking. */
 .daystrip { position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line); }
-.daystrip .row { display:flex; }
-.day { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;
-       padding:9px 0 8px; color:var(--soft); text-decoration:none; border-radius:8px; }
-.day .n { font-size:16px; line-height:1.1; font-weight:600; letter-spacing:-.01em; }
-/* The day you are on: ink on a panel. The carmine in the bars means "about
-   the proclamation", so it must not be the thing that says "you are here" —
-   the panel is, and it cannot be confused with the bars. */
+.daystrip .row { display:flex; gap:4px; padding:5px 12px; }
+.day { flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;
+       padding:5px 0 6px; color:var(--soft); text-decoration:none; border-radius:9px; }
+.day .n { font-size:16px; line-height:1.2; font-weight:600; letter-spacing:-.01em; }
+/* The count, not a bar: 55 against 6 is read at a glance and needs no key. */
+.day .c { font-size:12px; line-height:1.2; }
+/* The day you are on is the one cell with a ground under it. */
 .day[aria-current="page"] { color:var(--ink); background:var(--panel); }
 .day:hover { color:var(--ink); }
-.day .w { width:100%; height:4px; display:block; }
-.day .w .pro { fill:var(--accent); }
-.day .w .rest { fill:var(--line); }
-/* The current day's bar darkens with it, so a nearly empty bar (the 17th:
-   6 posts) does not leave the cell looking unselected. */
-.day[aria-current="page"] .w .rest { fill:var(--soft); }
 
 /* The day is the headline of the whole page — the one fact framing every post.
    (padding-top/bottom only: a shorthand here would wipe .wrap's side gutter.) */
 .hero { padding-top:22px; padding-bottom:10px; }
 .hero h1 { margin:0; font-size:30px; line-height:1.15; font-weight:600; letter-spacing:-.02em; }
+/* What this day's papers made of the proclamation, under the headline. */
+.hero .holds { margin:8px 0 0; font-size:14px; color:var(--soft); }
 
 .tabs { display:flex; border-bottom:1px solid var(--line); }
 .tabs button { flex:1; font-size:15px; padding:13px 0; text-align:center; color:var(--soft);
@@ -195,10 +190,16 @@ header.pinned { position:sticky; top:0; z-index:5; }
 .trend b { font-size:16px; font-weight:600; flex:1; }
 .trend .n { font-size:13px; color:var(--soft); }
 
-/* The feed ends with room for the thumb; on a day page the one credit follows. */
+/* The feed ends with room for the thumb — and on a day page, with the credit. */
 main { padding-bottom:48px; }
-.credit { padding:16px 16px 40px; border-top:1px solid var(--line); }
-.credit p { margin:0; font-size:13px; line-height:1.5; color:var(--soft); }
+/* The credit is deliberately NOT a card: no hairline above it, not the full
+   measure, well clear of the last post. A rule over a full-width block IS how
+   this page separates posts, and the one thing a credit may never be mistaken
+   for is a sourced 1918 document. Centred, narrow and small instead — the
+   shape of a colophon. The 40 px is its own, because the feed column's bottom
+   padding does not reach here. */
+.credit { margin-top:40px; padding:0 16px 44px; }
+.credit p { max-width:38ch; margin:0 auto; text-align:center; font-size:12px; line-height:1.6; color:var(--soft); }
 
 /* Lazy reveal. The hiding is CSS, not script, because the page's CSP is
    'self' with no hashes — there is no inline script that could hide these

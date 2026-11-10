@@ -5,7 +5,7 @@
 //   node tests/profiles.ts http://host:8150 — additionally fetches every page (P1: 200)
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname, resolve, relative } from 'node:path';
-import { DAYS, DAYS_SPAN, DAY_CARD_SEQ, dayStripLabel, dayWeights, descriptionLines, plural, publishedOn, reachableHandles, readIdentities, renderedPosts, type Account, type Post } from '../src/lib/feed.ts';
+import { DAYS, DAYS_SPAN, DAY_CARD_SEQ, dayCounts, dayStripLabel, descriptionLines, proclamationLine, plural, publishedOn, reachableHandles, readIdentities, renderedPosts, type Account, type Post } from '../src/lib/feed.ts';
 
 const DIST = resolve(new URL('../dist', import.meta.url).pathname);
 if (!existsSync(join(DIST, 'index.html'))) { console.error('dist/ missing — run pnpm build first'); process.exit(1); }
@@ -258,16 +258,22 @@ check('lazy: a back_forward arrival skips the staged reveal', feedJs.includes("t
 check('lazy: #more sentinel on every day page and on no profile', dayDocs.every(([, doc]) => doc.includes('<div id="more"')) && handles.every((h) => !html(page(h)).includes('id="more"')));
 
 // --- days: the day strip ----------------------------------------------------
-// CHANGED 2026-11-10 — behaviour changed, so the row did. The ‹ date › cluster
-// is gone: every day page now carries all four days side by side, so these
-// rows assert the whole strip, not a pair of chevrons. What they hold to:
-// | page       | the four hrefs, in order                              |
-// | 17.11.1918 | ./ · ../ · ../19-11-1918/ · ../20-11-1918/            |
-// | 18.11.1918 | 17-11-1918/ · ./ · 19-11-1918/ · 20-11-1918/           |
-// | every page | exactly one aria-current="page", on the day you are on |
-// | every page | each cell's accessible name = dayStripLabel (the bar is aria-hidden) |
+// CHANGED 2026-11-10 — behaviour changed, so the rows did. The ‹ date › cluster
+// is gone: every day page carries all four days side by side. CHANGED AGAIN the
+// same day: each cell drew a bar to scale, which he could not read („just black
+// blotches“), so a cell is now the date over that day's post count, and what the
+// papers made of the day is said in words under the headline. What these hold to:
+// | page       | the four hrefs, in order                               |
+// | 17.11.1918 | ./ · ../ · ../19-11-1918/ · ../20-11-1918/             |
+// | 18.11.1918 | 17-11-1918/ · ./ · 19-11-1918/ · 20-11-1918/            |
+// | every page | exactly one aria-current="page", on the day you are on  |
+// | every page | the four visible counts are the four days' real totals  |
+// | every page | each cell's accessible name = dayStripLabel — two bare numbers do not read aloud |
+// | every page | no bar, no svg: the strip draws nothing that needs a key |
+// | 17.11.1918 | no line under the headline (0 posts about the proclamation) |
+// | 18/19/20   | the line, in words, matching proclamationLine            |
 // | a profile  | no strip, and its posts grouped under day headings linking to those days |
-const weights = dayWeights(byDay);
+const counts = dayCounts(byDay);
 for (const [d, doc] of dayDocs) {
   const base = d.path ? '../' : '';
   const strip = /<nav class="daystrip"[\s\S]*?<\/nav>/.exec(doc)?.[0] ?? '';
@@ -276,10 +282,16 @@ for (const [d, doc] of dayDocs) {
   check(`days: ${d.key} — all four days in the strip, the current one self-linked`,
     JSON.stringify(got) === JSON.stringify(want)
     && (strip.match(/aria-current="page"/g) ?? []).length === 1
-    && new RegExp(`href="\\./" aria-current="page"`).test(strip), `got ${JSON.stringify(got)}`);
-  check(`days: ${d.key} — every cell says its count in words, and the bar is hidden from the reader who cannot see it`,
-    JSON.stringify(attr(strip, /<a class="day"[^>]*aria-label="([^"]*)"/g)) === JSON.stringify(DAYS.map((n) => dayStripLabel(n, weights.get(n.key)!)))
-    && (strip.match(/<svg class="w" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true">/g) ?? []).length === DAYS.length);
+    && strip.includes('href="./" aria-current="page"'), `got ${JSON.stringify(got)}`);
+  check(`days: ${d.key} — every cell shows its day's real post count, and says it in words for a reader who cannot see it`,
+    JSON.stringify(attr(strip, /<span class="c">(\d+)<\/span>/g)) === JSON.stringify(DAYS.map((n) => String(counts.get(n.key)!.n)))
+    && JSON.stringify(attr(strip, /<a class="day"[^>]*aria-label="([^"]*)"/g)) === JSON.stringify(DAYS.map((n) => dayStripLabel(n, counts.get(n.key)!))),
+    attr(strip, /<span class="c">(\d+)<\/span>/g).join());
+  check(`days: ${d.key} — the strip draws nothing that would need a key (no bar, no svg)`,
+    !strip.includes('<svg') && !strip.includes('<rect'));
+  const line = proclamationLine(counts.get(d.key)!);
+  check(`days: ${d.key} — ${line ? `„${line}“ under the headline` : 'no line under the headline, because the day holds nothing about it'}`,
+    line ? doc.includes(`<p class="holds">${line}</p>`) : !doc.includes('class="holds"'));
 }
 check('days: a profile has no day strip (its header is the way back)', handles.every((h) => !html(page(h)).includes('class="daystrip"')));
 check('days: a profile heads each run of posts with its day, linking to that day\'s page', handles.filter((h) => feedPosts.some((p) => p.handle === h)).every((h) => {
