@@ -309,6 +309,16 @@ check('corpus: no meta post in the data', corpus.every((p) => p.type !== 'nezina
 check('corpus: every ident renders inside its post and names its evidence kind', corpus.every((p) => (p.ident ?? []).every((i) =>
   p.lv.includes(i.rendered) && i.candidate_source && i.glyph_match && (i.evidence === 'glyphs' || (i.evidence === 'corroboration' && i.corroboration)))));
 check('corpus: no ident record argues from word length or shape', corpus.every((p) => (p.ident ?? []).every((i) => !/zīm(es|ēm)|garum|form/.test(i.glyph_match))));
+// An account `warn` is PRINTED on that account's public profile. Six of them
+// were working notes — publication to-dos and copyright arithmetic — and they
+// shipped onto the page. Internal notes belong in `note`, which nothing
+// renders. This fails on the words such a note is written with.
+const INTERNAL_WORDS = /pirms publicēšanas|jāiegūst|jāsalasa|jāsalīdzina|jāpārbauda|Autortiesības|mūžs\+70|ŠIS APRAKSTS/i;
+const leaked = Object.entries(data.accounts).filter(([, a]: [string, any]) => a.warn && INTERNAL_WORDS.test(a.warn)).map(([h]) => h);
+check('accounts: no internal working note in a rendered `warn`', leaked.length === 0, leaked.join(', ') || 'checked ' + Object.keys(data.accounts).length + ' accounts');
+const notesHeld = Object.values(data.accounts).filter((a: any) => a.note).length;
+check('accounts: the internal notes were kept, not deleted', notesHeld === 6, `${notesHeld} accounts carry \`note\``);
+
 const reachable = new Set([...corpus.map((p) => p.handle), ...corpus.flatMap((p) => Object.values(p.mentions ?? {}))]);
 check('corpus: every account is reachable from a post or a printed mention', Object.keys(data.accounts).every((h) => reachable.has(h)), Object.keys(data.accounts).filter((h) => !reachable.has(h)).join());
 check('corpus: sampler saw both sides', reasons.length > 0 && refusals.some(([, , w]) => w !== null), 'guards rejected hostile fixtures above AND accepted the corpus');

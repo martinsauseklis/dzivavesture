@@ -8,35 +8,35 @@
    "kind": "person",
    "what": "Atmiņu autors · zālē 18. novembrī · „Valsts pieci gadi“ (1923)",
    "bio": "Piecgadu krājumā viņam ir divas nodaļas: „Valsts pirmā diena (Atmiņas)“ (12.–13. lpp.) un „Latvijas un ,,Latvijas“ “ (24.–26. lpp.). 18. novembrī viņš ir zālē ar ieejas kartiņu un raksta no parketa — no viņa vietas apklust „balsu dunoņa parketā“ un „no partera krēsliem“ pieceļas Fr. Grosvalds. Kas viņš bija pēc amata, krājums nesaka.",
-   "warn": "ŠIS APRAKSTS IR CELTS VIENĪGI NO GRĀMATAS PAŠAS. Pilns vārds, dzimšanas gads, amats un partijas piederība nav noskaidroti un pirms publicēšanas jāiegūst no ārēja reģistra. Autortiesības: miris 1947 → brīvs no 2018 (Latvijā mūžs+70)."
+   "note": "ŠIS APRAKSTS IR CELTS VIENĪGI NO GRĀMATAS PAŠAS. Pilns vārds, dzimšanas gads, amats un partijas piederība nav noskaidroti un pirms publicēšanas jāiegūst no ārēja reģistra. Autortiesības: miris 1947 → brīvs no 2018 (Latvijā mūžs+70)."
   },
   "@j_ampermanis": {
    "name": "Jānis Ampermanis",
    "kind": "person",
    "what": "Tautas Padomes loceklis · Zemnieku Savienības Kārķu nodaļas delegāts",
    "bio": "Grāmatā viņš ir Zemnieku Savienības Kārķu nodaļas delegāts, kas 15. novembrī kopā ar J. Ābelīti ierodas Valkas konferencē „Līduma“ redakcijas telpās, tiek ievēlēts to delegātu vidū, kuŗus tās pašas dienas plkst. 8 vakara vilciens aizved uz Rīgu, un 17. novembrī ir viens no Zemnieku Savienības 13 delegātiem, kas nodibina Tautas Padomi (Mežmaļu Ata nodaļa, 8. lpp.). 18. novembrī viņš sēž uz skatuves. Savu nodaļu „Lielajā brīdī (Atmiņas)“ (18.–19. lpp.) viņš paraksta: „Kārķu Siguros, 9. novembrī 1923. g.“",
-   "warn": "ŠIS APRAKSTS IR CELTS VIENĪGI NO GRĀMATAS PAŠAS. Dzimšanas gads un vēlākā gaita nav noskaidroti un pirms publicēšanas jāiegūst no ārēja reģistra. Autortiesības: miris 1942 → brīvs no 2013 (Latvijā mūžs+70)."
+   "note": "ŠIS APRAKSTS IR CELTS VIENĪGI NO GRĀMATAS PAŠAS. Dzimšanas gads un vēlākā gaita nav noskaidroti un pirms publicēšanas jāiegūst no ārēja reģistra. Autortiesības: miris 1942 → brīvs no 2013 (Latvijā mūžs+70)."
   },
   "@a_brigadere": {
    "name": "Anna Brigadere",
    "kind": "person",
    "what": "Rakstniece · zālē 18. novembrī · „Valsts pieci gadi“ (1923)",
    "bio": "Krājumā viņas nodaļa ir „Valsts ticības svētkos“ (15.–16. lpp.). Tā sākas ar 1917. gada sapulcēm Maskavā, kur viņa bija bēgļu vidū, un ar okupācijas ziemas lauksaimniecības lekciju, ko lasīja Kārlis Ulmanis un kuŗā viņa klausījās „pavisam ko citu“. 18. novembrī viņa ir zālē un iziet no tās „viena no pēdējiem“. Grāmatā viņa parakstās „Anna Brigader“.",
-   "warn": "Dzīves gadi šim salikumam pārbaudīti tikai autortiesību dēļ: mirusi 1933. gada 25. jūnijā → brīva no 2004 (Latvijā mūžs+70). Viss pārējais šajā aprakstā ir no grāmatas pašas un pirms publicēšanas jāsalīdzina ar ārēju reģistru."
+   "note": "Dzīves gadi šim salikumam pārbaudīti tikai autortiesību dēļ: mirusi 1933. gada 25. jūnijā → brīva no 2004 (Latvijā mūžs+70). Viss pārējais šajā aprakstā ir no grāmatas pašas un pirms publicēšanas jāsalīdzina ar ārēju reģistru."
   },
   "@baltijas_zinas": {
    "name": "Baltijas Ziņas",
    "kind": "publication",
    "what": "Latviešu dienas laikraksts · Rīga · 20 kapeikas numurs",
    "bio": "Vienīgā latviešu avīze, kas 18. novembra rītā ir uz Rīgas ielām — pirmdiena, un abi lielie latviešu dienas laikraksti šodien neiznāk. Numurs Nr.168 ir četras lappuses: vadraksts, pasaules ziņas, Rīgas sleja, māksla, tirdzniecība, turpinājumromāns un seši sludinājumu bloki.",
-   "warn": "Fraktūras OCR šim numuram ir slikts. Katrs citāts jāsalasa no skenējuma pirms publicēšanas."
+   "note": "Fraktūras OCR šim numuram ir slikts. Katrs citāts jāsalasa no skenējuma pirms publicēšanas."
   },
   "@rigasche_zeitung": {
    "name": "Rigasche Zeitung",
    "kind": "publication",
    "what": "Vācu dienas laikraksts · Rīga · okupācijas varas pilsētas avīze",
    "bio": "Iznāk vācu valodā un iznāk arī šodien. Nr.267 nes vadrakstu par militārās pārvaldes nomaiņu ar civilo, ārzemju ziņas, Rīgas sleju ar teātra un koncertu recenzijām, ģimenes ziņas, kalendāru un trīs sludinājumu lappuses.",
-   "warn": "Vācu OCR šajā arhīvā ir stipri bojāts un vietām piesārņots ar kirilicu. Visi vācu citāti jāpārbauda pret skenējumu."
+   "note": "Vācu OCR šajā arhīvā ir stipri bojāts un vietām piesārņots ar kirilicu. Visi vācu citāti jāpārbauda pret skenējumu."
   },
   "@lidums": {
    "name": "Līdums",
@@ -63,7 +63,7 @@
    "kind": "org",
    "what": "Rīgas pašaizsardzības vienība · dibināta 16. novembrī",
    "bio": "Pilsētas un tās kārtību cienītāju visu šķiru un tautību iedzīvotāju apsardzībai. Tehnisko organizāciju uzņēmusies agrāko krievu virsnieku komiteja, kas iekārtojusies Romas viesnīcā Teātra bulvārī. Paziņojumu paraksta Rīgas igauņu, latviešu, vācu, krievu, žīdu un poļu priekšvīri kopā.",
-   "warn": "Tautību uzskaitījums OCR ir daļēji nesalasāms („Rigas igauņu, ļaimeescha, ņaķizu, tr-emu schihdu. paļu“). Pirms publicēšanas jāsalasa no skenējuma."
+   "note": "Tautību uzskaitījums OCR ir daļēji nesalasāms („Rigas igauņu, ļaimeescha, ņaķizu, tr-emu schihdu. paļu“). Pirms publicēšanas jāsalasa no skenējuma."
   },
   "@rigas_zaldatu_padome": {
    "name": "Rīgas zaldātu padome",

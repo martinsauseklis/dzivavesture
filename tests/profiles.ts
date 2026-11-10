@@ -96,10 +96,18 @@ check('P11: 28 profiles render their BIO as the one description paragraph (never
 // hers states her verified death year first. The wording is the source's.)
 const memoirHandles = handles.filter((h) => !identities.has(h));
 const pwarn = (h) => [...html(page(h)).matchAll(/<p class="pwarn">([^<]*)<\/p>/g)].map((m) => unescape(m[1]));
-check('P11: the 3 unresearched memoirists show the volume-built what and bio, and their warning word for word',
+// CHANGED 2026-11-10, and the old assertion was wrong, not merely outdated.
+// It required these three profiles to PRINT their warning word for word — but
+// that warning was a working note to ourselves ("to be obtained from an
+// external register before publication", the copyright arithmetic), and the
+// owner found it on the live page. Those notes now live in `note`, which
+// nothing renders. The row now asserts the opposite: the description still
+// shows, and the internal note does NOT reach the page.
+check('P11: the 3 unresearched memoirists show the volume-built what and bio, and NO internal note',
   memoirHandles.length === 3 && memoirHandles.every((h) => JSON.stringify(paras(h)) === JSON.stringify([['what', accounts[h].what], ['bio', accounts[h].bio]])
-    && JSON.stringify(pwarn(h)) === JSON.stringify([accounts[h].warn])
-    && accounts[h].warn!.includes('pirms publicēšanas')), memoirHandles.join());
+    && pwarn(h).length === 0
+    && !html(page(h)).includes('pirms publicēšanas')
+    && !!(accounts[h] as any).note), memoirHandles.join());
 check('P11: @zemes_sargi keeps the paper-sourced what and bio', JSON.stringify(paras('@zemes_sargi')) === JSON.stringify(descriptionLines(accounts['@zemes_sargi'], identities.get('@zemes_sargi')!).map((l, i) => [i === 0 ? 'what' : 'bio', l])));
 check('P11: @f_brodermanis renders no description at all', paras('@f_brodermanis').length === 0 && html(page('@f_brodermanis')).includes('<div class="handle">@f_brodermanis</div>'));
 
