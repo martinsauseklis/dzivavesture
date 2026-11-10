@@ -87,7 +87,10 @@ check('P4: no profile reuses the feed og:image', handles.every((h) => meta(html(
 check('P4: every profile og:image file exists', handles.every((h) => existsSync(join(DIST, 'og', `${h}.png`))), handles.filter((h) => !existsSync(join(DIST, 'og', `${h}.png`))).join());
 
 // --- P5: the post-less accounts render their own state, never a zero -------
-check('P5: 8 post-less accounts', postless.length === 8, postless.join());
+// CHANGED 2026-11-11 — 8 -> 10, for the reason written at the same row in
+// tests/run.ts: @j_zalitis and @strautnieks held nothing but the paper's
+// report ABOUT them, which moved to @lidums. Their pages now say so.
+check('P5: 10 post-less accounts', postless.length === 10, postless.join());
 for (const h of postless) {
   const doc = html(page(h));
   const body = doc.slice(doc.indexOf('<body'));

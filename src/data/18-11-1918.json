@@ -233,7 +233,8 @@
    "name": "J. Zālītis",
    "kind": "person",
    "what": "Bijušais Krievijas valsts domes deputāts · radikāldemokrāts",
-   "bio": "Bijušais Valsts domes deputāts, kas 18. novembra aktā apsveic jauno valsti radikāldemokrātu vārdā."
+   "bio": "Bijušais Valsts domes deputāts, kas 18. novembra aktā apsveic jauno valsti radikāldemokrātu vārdā.",
+   "silent": "18. novembra aktā viņš runā — apsveic neatkarīgas valsts pasludināšanu radikāldemokrātu vārdā —, bet Līdums viņa runu tikai atstāsta. Paša vārdus neviena avīze pēdiņās neliek."
   },
   "@skubikis": {
    "name": "Skubiķis",
@@ -245,7 +246,8 @@
    "name": "Strautnieks",
    "kind": "person",
    "what": "Latviešu Republikāņu partija",
-   "bio": "Republikāņu partijas runātājs 18. novembra aktā. Līdums viņu sauc par zvērinātu advokātu, Baltijas Ziņas — par miertiesnesi."
+   "bio": "Republikāņu partijas runātājs 18. novembra aktā. Līdums viņu sauc par zvērinātu advokātu, Baltijas Ziņas — par miertiesnesi.",
+   "silent": "18. novembra aktā viņš apsveic jauno valsti republikāņu vārdā, bet avīzes viņa runu tikai atstāsta; paša vārdus neviena neiespiež. Līdums viņu sauc par zvērinātu advokātu, Baltijas Ziņas — par miertiesnesi."
   },
   "@fr_paegle": {
    "name": "Fr. Paegle",
@@ -2097,13 +2099,13 @@
    }
   },
   {
-   "handle": "@g_zemgals",
-   "type": "atstastits",
+   "handle": "@lidums",
+   "type": "citats",
    "at": "16.40",
    "seq": 580,
    "lv": "Tā kā Latviešu Tautas padomes priekšsēdētājs J. Čakste sapulcē nav klāt, tad to atklāj priekšsēdētāja otrais biedrs, zv. adv. G. Zemgals, kurš konstatē, ka no šīs dienas sākot uz Latvijas Tautas padomi pārgājusi augstākā suverēnā vara Latvijā. (Ilgi, vētraini aplausi.)",
    "ocr": "Tà kà îatweelchu Tautas Pa>omes preekşchşehdetajs I. Tşchakfte şapulzè naw kļaht, tad to atklahj preekşchşehdetaja otrais beedrs, sw. adw. G. S emg a l s, kurşch konstitè ka no tcbìs deenas şahşot us tatwi-as Tautas padomi vahrgahjust augst-ìkà şuwerenà mara tatwijâ. ş)lgi, weh« traini aplaufi",
-   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918",
+   "via": "Līdums Nr.219, 20.11.1918",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
    "topics": [
     "Valsts pasludināšana",
@@ -2111,6 +2113,7 @@
    ],
    "atNote": "Stenogramma. Precīzs runas laiks protokolā nav dots; laiks te ir aplēse starp akta sākumu plkst. 16.30 un beigām plkst. 17.45.",
    "mentions": {
+    "G. Zemgals": "@g_zemgals",
     "J. Čakste": "@j_cakste"
    },
    "comments": [
@@ -2130,7 +2133,8 @@
      "confidence": "high",
      "text": "Tà kà Latweeschu Tautas Padomes preekschsehdetajs J. Tschakste sapulzê naw klaht, tad to atklahj preekschsehdetaja otrais beedrs, sw. adw. G. Semgals, kursch konstatè, ka no schìs deenas sahkot us Latwijas Tautas Padomi pahrgahjusi augstakà suwerenà wara Latwijâ. (Ilgi, wehtraini aplausi)."
     }
-   ]
+   ],
+   "note": "Pārvietots Līdums kontā (2026-11-11): viss teksts ir laikraksta balss par runātāju, nevis viņa paša vārdi, un kontā, kas nav laikraksta, var stāvēt tikai paša runātāja teiktais. Teksts nav mainīts; tips mainīts uz „citāts“."
   },
   {
    "handle": "@baltijas_zinas",
@@ -2413,7 +2417,7 @@
    "type": "atstastits",
    "at": "17.08",
    "seq": 620,
-   "lv": "No Latviešu Zemnieku Savienības frakcijas runā redaktors G. Nonācs. Kopš latviešu tautas vārds tiek minēts, šis ir pirmais gadījums, kur latviešu starpā notikusi tik plaša apvienošanās — no pilsoniskiem līdz sociālistiskiem elementiem. Kur meklējams izskaidrojums šai, varētu teikt, brīnišķai parādībai? Atbilde īsa: latviešu tautas šķiras, viņas politiskās partijas ir nostājušās uz valstiska viedokļa.",
+   "lv": "Kopš latviešu tautas vārds tiek minēts, šis ir pirmais gadījums, kur latviešu starpā notikusi tik plaša apvienošanās — no pilsoniskiem līdz sociālistiskiem elementiem. Kur meklējams izskaidrojums šai, varētu teikt, brīnišķai parādībai? Atbilde īsa: latviešu tautas šķiras, viņas politiskās partijas ir nostājušās uz valstiska viedokļa.",
    "ocr": "No £atu>e(fi}u Semueeku Aawee» nibas frukzijas ru à redaktors G. No n a h z s. Aopşch latweeşchu tautas rvahrds teek nuiìets, şchls ir pirmais gadījums, kur lalwe.şchu starpá notikuşl ixî plaşcha - n»  lihdj joziausuztrem elemente.m. Kur niekìelìMìS işikaiôrojums şài, waretu tei t, bnhnìşchkai parahdibai? Atbilde chja: Utļvccschu iautas wiņas poiìtişkàs partijas ir r.oştahjuşchàs vs w a istişka Veedokļa.",
    "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
@@ -2423,9 +2427,8 @@
    ],
    "atNote": "Stunda avīzē nav. Līdums šo runu liek kā pirmo pēc Ulmaņa; ieraksts novietots tūlīt pēc Ulmaņa runas beigām.",
    "note": "Pirmā no desmit partiju deklarācijām, ko vācu reportieris saskaita 17.06 ierakstā.",
-   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „G. N o n a h z s“, un sākuma burts ir nepārprotama fraktūras N (lappuse 2, 1. sleja). Baltijas Ziņas to pašu vietu iespiež sīkāk, un tur sākuma glifs pie 230 dpi līdzinās R — tāpēc Līduma izlaistais salikums ir izšķirošais. Pirmvārds nav nevienā avotā: Līdums Nr.219 dod iniciāli „G.“, Līdums Nr.218 tā paša cilvēka uzvārdu min ar „D.“ — iniciālis avotos nesaskan un šeit nav izvēlēts. OCR „parahdibai?“ — jautājuma zīme ir teikuma pieturzīme („parādībai? Atbilde īsa“), nevis OCR nenoteiktības zīme.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „G. N o n a h z s“, un sākuma burts ir nepārprotama fraktūras N (lappuse 2, 1. sleja). Baltijas Ziņas to pašu vietu iespiež sīkāk, un tur sākuma glifs pie 230 dpi līdzinās R — tāpēc Līduma izlaistais salikums ir izšķirošais. Pirmvārds nav nevienā avotā: Līdums Nr.219 dod iniciāli „G.“, Līdums Nr.218 tā paša cilvēka uzvārdu min ar „D.“ — iniciālis avotos nesaskan un šeit nav izvēlēts. OCR „parahdibai?“ — jautājuma zīme ir teikuma pieturzīme („parādībai? Atbilde īsa“), nevis OCR nenoteiktības zīme. Avīzes ievadfrāze („No Latviešu Zemnieku Savienības frakcijas runā redaktors G. Nonācs.“) šeit netiek atveidota: tie ir laikraksta, nevis runātāja vārdi, un personas kontā stāv tikai viņa paša teiktais. Pilnu rindkopu rāda „avots“.",
    "recon": {
-    "Nonācs": "No n a h z s",
     "apvienošanās": "apweenoschanàs",
     "viedokļa": "Veedokļa"
    }
@@ -2450,25 +2453,28 @@
    }
   },
   {
-   "handle": "@p_kalnins",
-   "type": "atstastits",
+   "handle": "@lidums",
+   "type": "citats",
    "at": "17.16",
    "seq": 642,
    "lv": "Dr. Kalniņš nolasa sociāldemokrātijas minimālprogramu, ietvertu 18 punktos, kuŗu piepildīšana tiek uzlikta no sociāldemokrātijas par noteikumu Pagaidu valdības darbībai. No praktiskiem soļiem Dr. Kalniņš prasa tūlītēju pašvaldības organizēšanu,",
    "ocr": "nolasa sozialdeniokratijas  programu, eetVeh.tu 1.8 pun?tos, kurn peelnldischana teek uflifta nô sozialdeniokratijas par noteikumu pagaidu wt-ld'.bas d..rbibai No praktişkeem şo> ļeen: Dv iialnixşâ' prasi tiibTītciii paschwaldibas organişeschanu,",
-   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "via": "Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
    "topics": [
     "Sociāldemokrāti",
     "Pagaidu valdība"
    ],
    "atNote": "Stunda avīzē nav. Turpinājums tam, kas korpusā jau stāv 17.15; ieraksts novietots tūlīt aiz tā.",
-   "note": "Korpusā Kalniņa runa ir viens teikums. Šis pievieno to, ko viņš tur nolasīja: 18 punktus, un ka to izpilde tiek uzlikta valdībai par noteikumu.",
+   "note": "Korpusā Kalniņa runa ir viens teikums. Šis pievieno to, ko viņš tur nolasīja: 18 punktus, un ka to izpilde tiek uzlikta valdībai par noteikumu. Pārvietots Līdums kontā (2026-11-11): viss teksts ir laikraksta balss par runātāju, nevis viņa paša vārdi, un kontā, kas nav laikraksta, var stāvēt tikai paša runātāja teiktais. Teksts nav mainīts; tips mainīts uz „citāts“.",
    "warn": "Vārds „minimālprogramu“ un skaitlis 18 nolasīti no skenējuma (lappuse 2, 2. sleja) — vecais OCR deva „programu, eetVeh.tu 1.8 pun?tos“ un „minimal-“ bija pazaudējis. Ieraksts apzināti nobeigts pie pirmās prasības: tālāk Līduma OCR ir tik sadrupis („Dv iialnixşâ' prasi tiibTītciii“), ka pārējo prasību saraksts no tā nav atveidojams.",
    "recon": {
     "minimālprogramu": "sozialdeniokratijas",
     "punktos": "pun?tos",
     "pašvaldības": "paschwaldibas"
+   },
+   "mentions": {
+    "Dr. Kalniņš": "@p_kalnins"
    }
   },
   {
@@ -2495,7 +2501,7 @@
    "type": "atstastits",
    "at": "17.20",
    "seq": 650,
-   "lv": "Grāmattirgotājs D. Zeltiņš (demokrāts): Latviešu Demokrātu partija, kura atbalstās uz plašām sīkpilsoņu masām, sagaida no Pagaidu valdības demokrātisko prasību realizēšanu. Ja viņa to izpildīs, tad demokrāti viņu pabalstīs ar visiem spēkiem",
+   "lv": "Latviešu Demokrātu partija, kura atbalstās uz plašām sīkpilsoņu masām, sagaida no Pagaidu valdības demokrātisko prasību realizēšanu. Ja viņa to izpildīs, tad demokrāti viņu pabalstīs ar visiem spēkiem",
    "ocr": "Grabmatttraotais D. 5 c l i i « s ch ļ demokrāts): Latweeşchu Denìokratu partija, kura atbalstās ns plaşchàm şihkpilşoņu maşam, şagl?ida no pa« gaidu ķvaldibas demokrātisko praşibu reallseşchanu. )a wiņa to ispildìs, tad demokrāti wiņu pabalstìs ar Vi»eem şp?hkeem",
    "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
@@ -2504,30 +2510,28 @@
     "Demokrāti"
    ],
    "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Kalniņa un pirms Zālīša; ieraksts novietots starp tiem.",
-   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „D. S e l t i ņ š“ (lappuse 2, 2. sleja), vecajā ortogrāfijā S = Z, tātad Zeltiņš. Baltijas Ziņas tai pašā vietā dod OCR virkni „GolļS“, kas ar šo nesakrīt; kuŗu vārdu iespieda Baltijas Ziņas, šis salikums neizšķir, un tāpēc ieraksta avots ir Līdums.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „D. S e l t i ņ š“ (lappuse 2, 2. sleja), vecajā ortogrāfijā S = Z, tātad Zeltiņš. Baltijas Ziņas tai pašā vietā dod OCR virkni „GolļS“, kas ar šo nesakrīt; kuŗu vārdu iespieda Baltijas Ziņas, šis salikums neizšķir, un tāpēc ieraksta avots ir Līdums. Avīzes ievadfrāze („Grāmattirgotājs D. Zeltiņš (demokrāts):“) šeit netiek atveidota: tie ir laikraksta, nevis runātāja vārdi, un personas kontā stāv tikai viņa paša teiktais. Pilnu rindkopu rāda „avots“.",
    "recon": {
-    "Grāmattirgotājs": "Grabmatttraotais",
-    "Zeltiņš": "5 c l i i « s ch",
     "sīkpilsoņu": "şihkpilşoņu",
     "sagaida": "şagl?ida",
     "spēkiem": "şp?hkeem"
    }
   },
   {
-   "handle": "@j_zalitis",
-   "type": "atstastits",
+   "handle": "@lidums",
+   "type": "citats",
    "at": "17.24",
    "seq": 660,
    "lv": "Dep. J. Zālītis (radikāldemokrāts) apsveic neatkarīgas, patstāvīgas valsts nodibināšanu un pasludināšanu un apsveic Latvijas Tautas padomi. Valsts pacelsies no [?] daudz [?] Latvija un kā brīva valsts [ies] Tautu Savienībā. (Aplausi.)",
    "ocr": "D c p. ). Sahlits sradikaldcnio.  \nfrats) opswsi; neatkariga?, paļstat>mi ņti waists nodibinaşchanu un paşiudinaşchmiu un apşmeiz tatwijas Tautas pa&onu. Valsti pazeisees no  oauds Zt'etoşì îatmija an kà brihma malsts ?cees Tautu Sameenibâ (Aplausi).",
-   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "via": "Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
    "topics": [
     "Valsts pasludināšana",
     "Radikāldemokrāti"
    ],
    "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Zeltiņa un pirms Skubiķa; ieraksts novietots starp tiem.",
-   "note": "Baltijas Ziņas to pašu runātāju apraksta kā „bijušo Krievijas valsts domes deputātu Zālīti“ — tas neatkarīgi izskaidro Līduma „Dep.“.",
+   "note": "Baltijas Ziņas to pašu runātāju apraksta kā „bijušo Krievijas valsts domes deputātu Zālīti“ — tas neatkarīgi izskaidro Līduma „Dep.“. Pārvietots Līdums kontā (2026-11-11): viss teksts ir laikraksta balss par runātāju, nevis viņa paša vārdi, un kontā, kas nav laikraksta, var stāvēt tikai paša runātāja teiktais. Teksts nav mainīts; tips mainīts uz „citāts“.",
    "warn": "Uzvārds un iniciālis nolasīti no skenējuma: Līdums tos iespiež izlaistiem burtiem, „D e p. J. S a h l i t s“ (lappuse 2, 2. slejas apakša). Runas otrais teikums iet pāri slejas lūzumam un tam pāri ir tintes traips; divas vietas paliek [?] un nav uzminētas.",
    "recon": {
     "Zālītis": "Sahlits",
@@ -2535,6 +2539,9 @@
     "Savienībā": "Sameenibâ",
     "neatkarīgas": "neatkariga?",
     "[ies]": "?cees"
+   },
+   "mentions": {
+    "Zālītis": "@j_zalitis"
    }
   },
   {
@@ -2542,7 +2549,7 @@
    "type": "atstastits",
    "at": "17.28",
    "seq": 670,
-   "lv": "„Dosim svētu solījumu,“ saka Skubiķis, „lai ikvienam mūsu valstī iespējams dzīvot cilvēcīgos apstākļos, attīstot savu individualitāti līdz augstākai pilnībai.“",
+   "lv": "Dosim svētu solījumu, lai ikvienam mūsu valstī iespējams dzīvot cilvēcīgos apstākļos, attīstot savu individualitāti līdz augstākai pilnībai.",
    "ocr": "„Voşim şmehtu şolij amu\", şaka Skubikis, „laļ ikmesļia!-: muhşu walsll «eşpehjams dsil»vot zilwezìgos apstah?» ļos, attihstot şamu indiwidualìtati lihds augstākai pìlnibai.",
    "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
@@ -2552,7 +2559,7 @@
    ],
    "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Zālīša un pirms Ķeniņa; ieraksts novietots starp tiem.",
    "note": "Viena no retajām vietām, kur avīze runātāju liek pēdiņās — tātad tiešā runa, nevis atstāsts.",
-   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „Inž. S k u b i ķ i s (sociālists-revolucionārs)“ (lappuse 2, 3. sleja). Baltijas Ziņas viņu sauc par ģeologu, Līdums un Jaunākās Ziņas — par inženieri; amats avotos nesaskan, pirmvārda nav nevienā. Citāta noslēdzošā pēdiņa iespiesta nav.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „Inž. S k u b i ķ i s (sociālists-revolucionārs)“ (lappuse 2, 3. sleja). Baltijas Ziņas viņu sauc par ģeologu, Līdums un Jaunākās Ziņas — par inženieri; amats avotos nesaskan, pirmvārda nav nevienā. Avīze viņa vārdus liek pēdiņās un starp tām iesprauž savu frāzi „saka Skubiķis“; šeit stāv tikai pēdiņās iespiestais, jo personas kontā var būt tikai paša runātāja vārdi. Noslēdzošā pēdiņa iespiesta nav.",
    "recon": {
     "solījumu": "şolij amu",
     "cilvēcīgos": "zilwezìgos",
@@ -2604,13 +2611,13 @@
    }
   },
   {
-   "handle": "@strautnieks",
-   "type": "atstastits",
+   "handle": "@lidums",
+   "type": "citats",
    "at": "17.36",
    "seq": 690,
    "lv": "Zvērinātais advokāts Strautnieks (republikāns) apsveic Latvju [valsti] un Tautas padomi un novēl tam sekmes.",
    "ocr": "Şwehrinatais admoşats Strauta neeks apşmeì; tatmiĶ  \nwahii un Tauta» pac-omi un noroebl tam seknrss.",
-   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "via": "Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
    "topics": [
     "Valsts pasludināšana",
@@ -2622,14 +2629,18 @@
     "Strautnieks": "Strauta neeks",
     "novēl": "noroebl",
     "sekmes": "seknrss"
-   }
+   },
+   "mentions": {
+    "Strautnieks": "@strautnieks"
+   },
+   "note": "Pārvietots Līdums kontā (2026-11-11): viss teksts ir laikraksta balss par runātāju, nevis viņa paša vārdi, un kontā, kas nav laikraksta, var stāvēt tikai paša runātāja teiktais. Teksts nav mainīts; tips mainīts uz „citāts“."
   },
   {
    "handle": "@fr_paegle",
    "type": "atstastits",
    "at": "17.37",
    "seq": 696,
-   "lv": "Augstu vēlēšanos izteica Latviešu neatkarīgās partijas vārdā inž. Paegle: jāizkopj latviskais gars un tā īpatnības. Tautiskais gars lai ir neaptumšotā kristāla tīrs, kā saulains rīts. Brīvā Latvijā lai ir tauta ar tīru sirdi, izturīgu un uzņēmīgu garu.",
+   "lv": "Jāizkopj latviskais gars un tā īpatnības. Tautiskais gars lai ir neaptumšotā kristāla tīrs, kā saulains rīts. Brīvā Latvijā lai ir tauta ar tīru sirdi, izturīgu un uzņēmīgu garu.",
    "ocr": "Aņgstņ vehleschaņo» isteiza Latveeschu ņeatkarigà» partija» wahrdâ insch. Paegle: jaiskopj latwlşkai» garS un ta ihpatnibaS. Tautiskai» gars lai ir ncaptumşchotâ kristāla tihrS, kà saulains riht». Brihwâ Latvijā lai ir taņta ar tihru şirdi, isturigu «n ņsņehmigņ garu.",
    "via": "Atstāstīts: Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
@@ -2639,9 +2650,8 @@
    ],
    "atNote": "Stunda avīzē nav. Abas avīzes šo runu liek pēc Strautnieka un pirms Kambalas (korpusa ieraksts 17.39); ieraksts novietots starp tiem.",
    "note": "Teksts ņemts no Baltijas Ziņām, nevis no Līduma: Līduma paralēlvietā pāri runai ir tintes traips un OCR tur ir neatveidojams.",
-   "warn": "Pirmvārds šajā ierakstā nav nosaukts, jo Baltijas Ziņas to neiespiež. Līdums Nr.219 to pašu runātāju iespiež izlaistiem burtiem kā „Inženieris Fr. P a e g l e (neatkarīgais)“ (2. lpp., 4. sleja) — no turienes nāk „fr“ handlē, un tā ir vienīgā nolasītā liecība. Jaunākās Ziņas Nr.4 to pašu cilvēku min kā „inž. [?]. Paegle“ — iniciāli to OCR nedod, un šī vieta no skenējuma nav pārlasīta. Ieraksta teksts paliek tāds, kāds iespiests Baltijas Ziņās.",
+   "warn": "Pirmvārds šajā ierakstā nav nosaukts, jo Baltijas Ziņas to neiespiež. Līdums Nr.219 to pašu runātāju iespiež izlaistiem burtiem kā „Inženieris Fr. P a e g l e (neatkarīgais)“ (2. lpp., 4. sleja) — no turienes nāk „fr“ handlē, un tā ir vienīgā nolasītā liecība. Jaunākās Ziņas Nr.4 to pašu cilvēku min kā „inž. [?]. Paegle“ — iniciāli to OCR nedod, un šī vieta no skenējuma nav pārlasīta. Ieraksta teksts paliek tāds, kāds iespiests Baltijas Ziņās. Avīzes ievadfrāze („Augstu vēlēšanos izteica Latviešu neatkarīgās partijas vārdā inž. Paegle:“) šeit netiek atveidota: tie ir laikraksta, nevis runātāja vārdi, un personas kontā stāv tikai viņa paša teiktais. Pilnu rindkopu rāda „avots“. Pirmais vārds tagad sāk ierakstu, tāpēc rakstīts ar lielo burtu („jāizkopj“ → „Jāizkopj“); neviens cits burts nav mainīts.",
    "recon": {
-    "vēlēšanos": "vehleschaņo»",
     "neaptumšotā": "ncaptumşchotâ",
     "uzņēmīgu": "ņsņehmigņ"
    }
@@ -2720,25 +2730,28 @@
    ]
   },
   {
-   "handle": "@kareivju_savieniba",
-   "type": "atstastits",
+   "handle": "@lidums",
+   "type": "citats",
    "at": "17.40",
    "seq": 710,
    "lv": "Pulkavnieks Dambits apsveic jauno Valdību no Latvju Kareivju Nacionālās Savienības un paziņo, ka organizētie latvju kareivji nodod sevi Latvijas Tautas padomes [rīcī]bā. (Aplausi.)",
    "ocr": "p a l ka w ne c k s Daml' l tsap. şmeiz jauno Ivaloibu no Latwm Aacetwju Nazianalàs Saweenibas un pa,!.», ka organisetee latwju kareìwji nodsb şemi Latvijas Tautas padonies iifot« bâ. l Aplausi.)",
-   "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
+   "via": "Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
    "topics": [
     "Valsts pasludināšana",
     "Kareivju savienība"
    ],
    "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Kambalas (korpusa ieraksts 17.39) un pirms sēdes slēgšanas (17.43); ieraksts novietots starp tiem.",
-   "note": "Baltijas Ziņas to pašu solījumu apraksta plašāk un piebilst, ka „šo svinīgo solījumu tauta uzņēma ar jūsmīgiem, ilgi nerimstošiem aplausiem“. Korpusa 14.35 ierakstā Latviešu Kareivju Nacionālā Savienība parādās tajā pašā dienā, agrāk.",
+   "note": "Baltijas Ziņas to pašu solījumu apraksta plašāk un piebilst, ka „šo svinīgo solījumu tauta uzņēma ar jūsmīgiem, ilgi nerimstošiem aplausiem“. Korpusa 14.35 ierakstā Latviešu Kareivju Nacionālā Savienība parādās tajā pašā dienā, agrāk. Pārvietots Līdums kontā (2026-11-11): viss teksts ir laikraksta balss par runātāju, nevis viņa paša vārdi, un kontā, kas nav laikraksta, var stāvēt tikai paša runātāja teiktais. Teksts nav mainīts; tips mainīts uz „citāts“.",
    "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „P a l k a v n e e k s  D a m b i t s“ (lappuse 2, 4. sleja). Baltijas Ziņas neatkarīgi dod OCR virkni „DamditS“ — tā pati burtu virkne. Iespiestajā formā nav garuma zīmes („ih“), tāpēc šeit raksta „Dambits“, nevis „Dambīts“; mūsdienu rakstība un pirmvārds netiek apgalvoti. Runa šajā ierakstā ir atstāstīta uz savienības konta, jo runātāja personu avoti nosauc tikai ar amatu un uzvārdu.",
    "recon": {
     "Pulkavnieks": "p a l ka w ne c k s",
     "Dambits": "Daml' l ts",
     "organizētie": "organisetee"
+   },
+   "mentions": {
+    "Latvju Kareivju Nacionālās Savienības": "@kareivju_savieniba"
    }
   },
   {
@@ -2764,15 +2777,34 @@
    "type": "atstastits",
    "at": "17.43",
    "seq": 720,
-   "lv": "G. Zemgals, Latvijas Tautas Padomes sēdi slēdzot, griežas pie visiem tautas dzīvajiem spēkiem ar uzaicinājumu nākt palīgā pie grūtā Latvijas izveidošanas darba. Vienīgā mūsu vēlēšanās — lai Latvijai saules mūžs. Lai dzīvo demokrātiskā Latvija! Lielā sajūsmā trīs reizes atkal nodzied „Dievs, svētī Latviju!“",
+   "lv": "Vienīgā mūsu vēlēšanās — lai Latvijai saules mūžs. Lai dzīvo demokrātiskā Latvija!",
    "ocr": "G. Semgals, Latwijas Tautas Padomes şehdi şlehdsot, greeschas pee wişeem tautas dsihwajeem şpehkecm ar usaizinajumu nahtt palihgâ pee gŗuhtà Latwijas isweidoşchauas darba. Weenigà muhşu wehleşchanàs lai Latwijai şaules muhschs. Lai dsihwo demokratişkà Latwija! Leelâ şajuhsmâ trihs reiscs atkal nodseed „Deews, şwehtì Latwiju!\"",
    "via": "Atstāstīts: Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, stenogramma",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:737483|article:DIVL39",
+   "topics": [
+    "Valsts pasludināšana"
+   ],
+   "atNote": "Stenogramma. Precīzs runas laiks protokolā nav dots; laiks te ir aplēse starp akta sākumu plkst. 16.30 un beigām plkst. 17.45.",
+   "warn": "Šis ieraksts atveido rindkopas vidu — Zemgala paša vārdus. Rindkopas ievads („G. Zemgals … griežas pie visiem tautas dzīvajiem spēkiem…“) un tās noslēgums („Lielā sajūsmā trīs reizes atkal nodzied…“) ir stenogrammas, nevis viņa balss, un stāv Tautas padomes kontā (ieraksts 17.44). „ocr“ abos ierakstos ir viena un tā pati arhīva virkne."
+  },
+  {
+   "handle": "@tautas_padome",
+   "type": "citats",
+   "at": "17.44",
+   "seq": 722,
+   "lv": "G. Zemgals, Latvijas Tautas Padomes sēdi slēdzot, griežas pie visiem tautas dzīvajiem spēkiem ar uzaicinājumu nākt palīgā pie grūtā Latvijas izveidošanas darba. … Lielā sajūsmā trīs reizes atkal nodzied „Dievs, svētī Latviju!“",
+   "ocr": "G. Semgals, Latwijas Tautas Padomes şehdi şlehdsot, greeschas pee wişeem tautas dsihwajeem şpehkecm ar usaizinajumu nahtt palihgâ pee gŗuhtà Latwijas isweidoşchauas darba. Weenigà muhşu wehleşchanàs lai Latwijai şaules muhschs. Lai dsihwo demokratişkà Latwija! Leelâ şajuhsmâ trihs reiscs atkal nodseed „Deews, şwehtì Latwiju!\"",
+   "via": "Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, stenogramma",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:737483|article:DIVL39",
    "topics": [
     "Valsts pasludināšana",
     "Dievs, svētī Latviju"
    ],
    "atNote": "Stenogramma. Precīzs runas laiks protokolā nav dots; laiks te ir aplēse starp akta sākumu plkst. 16.30 un beigām plkst. 17.45.",
+   "mentions": {
+    "G. Zemgals": "@g_zemgals"
+   },
+   "warn": "Stenogrammas pašas balss: rindkopas ievads un noslēgums. Izlaistais vidus ir Zemgala paša vārdi un stāv viņa kontā (ieraksts 17.43); izlaidums atzīmēts ar daudzpunkti. „ocr“ abos ierakstos ir viena un tā pati arhīva virkne, neaiztikta.",
    "later": "„Dievs, svētī Latviju!“ par Latvijas valsts himnu Satversmes Sapulce apstiprināja 1920. gada 7. jūnijā."
   },
   {

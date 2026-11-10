@@ -571,7 +571,13 @@ const rendered = renderedPosts(data);
 const withPage = reachableHandles(data.accounts, rendered.shown);
 const postless = withPage.filter((h) => !rendered.shown.some((p) => p.handle === h));
 const needCopy = postless.filter((h) => !data.accounts[h].silent).sort();
-check('profiles: 8 accounts with a page have no post', postless.length === 8, postless.join());
+// CHANGED 2026-11-11 — 8 -> 10. Behaviour genuinely changed, not red turned
+// green: @j_zalitis and @strautnieks had one post each and both were the
+// PAPER's report about them, never their own words, so both moved to @lidums.
+// The procedure's own answer applies — the person keeps a profile, reachable
+// by a mention, showing the empty state — and their `silent` text in the data
+// says what the sources do and do not hold.
+check('profiles: 10 accounts with a page have no post', postless.length === 10, postless.join());
 check('profiles: EMPTY_COPY covers exactly the post-less accounts without silent text', JSON.stringify(Object.keys(EMPTY_COPY).sort()) === JSON.stringify(needCopy), `need ${needCopy.join()}`);
 check('profiles: every post-less account has a mention to show', postless.every((h) => mentionsOf(h, rendered.shown).length > 0), postless.filter((h) => !mentionsOf(h, rendered.shown).length).join());
 const gapped = corpus.filter((p) => p.lv.includes('[?]'));
@@ -609,9 +615,15 @@ check('corpus: a recollection has no ocr, every scanned post has one',
 // was split into the two notices the paper set. Not red turned green.
 // | 20.11.1918 |    17 |   Līdums Nr.219
 // | parked     |    11 |   atminas, 1923
+// CHANGED 2026-11-11 — 55 -> 56 on the 18th. One stenogram paragraph held two
+// voices: Zemgals's own closing words, and the record's frame and closing
+// stage direction around them („Lielā sajūsmā trīs reizes atkal nodzied…“).
+// A person's account carries only his words, so it was split — his two
+// sentences stay on @g_zemgals, the record's voice is a post of the Tautas
+// padome's own session record. Both keep the same `ocr`, byte for byte.
 const counts = [...rendered.byDay].map(([k, v]) => `${k}:${v.length}`).join(' ');
 check('corpus: every post sits on one of the four days or is parked, with the decided counts',
-  counts === '17.11.1918:6 18.11.1918:55 19.11.1918:19 20.11.1918:17' && rendered.parked.length === 11 && rendered.shown.length + rendered.parked.length + rendered.refused.length === corpus.length,
+  counts === '17.11.1918:6 18.11.1918:56 19.11.1918:19 20.11.1918:17' && rendered.parked.length === 11 && rendered.shown.length + rendered.parked.length + rendered.refused.length === corpus.length,
   `${counts} parked:${rendered.parked.length} refused:${rendered.refused.length}`);
 // The day strip and the line under each headline, against the real corpus.
 // The sampler saw both sides: a day that says nothing about the proclamation
@@ -624,8 +636,11 @@ const stripCounts = DAYS.map((d) => `${d.n}:${strip.get(d.key)!.n}/${strip.get(d
 // CHANGED 2026-11-11 — the 19th went 18 -> 19 posts for the reason at the row
 // above; its proclamation count is unchanged, because neither half of the
 // split classifieds block is about the act.
-check('corpus: the strip counts 6/0 · 55/3 · 19/12 · 17/13, so a silent day and a loud one are both seen',
-  stripCounts === '17:6/0 18:55/3 19:19/12 20:17/13'
+// CHANGED 2026-11-11 — the 18th went 55/3 -> 56/4 for the voice split at the
+// row above. Here the proclamation count DOES move: the closing of the act is
+// what the new post holds.
+check('corpus: the strip counts 6/0 · 56/4 · 19/12 · 17/13, so a silent day and a loud one are both seen',
+  stripCounts === '17:6/0 18:56/4 19:19/12 20:17/13'
   && proclamationLine(strip.get('17.11.1918')!) === null
   && DAYS.some((d) => strip.get(d.key)!.proclaimed > strip.get(d.key)!.n / 2), stripCounts);
 check('corpus: the parked posts are exactly the recollections', rendered.parked.every((p) => p.type === 'atminas') && rendered.parked.length === corpus.filter((p) => p.type === 'atminas').length);
@@ -657,6 +672,76 @@ const classifieds = corpus.filter((p) => /sludinājum/i.test(p.via));
 const spliced = classifieds.filter((p) => p.lv.includes(' — ')).map((p) => p.seq);
 check(`corpus: ${classifieds.length} posts from a classifieds column, none splicing two notices with an em dash`,
   classifieds.length > 0 && spliced.length === 0, spliced.length ? `seq ${spliced.join()}` : 'one notice each');
+
+// --- a person's account never narrates that person from outside -----------
+// He asked for this once — „only direct text can be tweeted that the person
+// said; if there is indirect quote then that tweet can be attributed to
+// newspaper“ — it was not carried out, and on 2026-11-11 he found a second
+// one himself: @g_zemgals narrating Zemgals in the third person, with his
+// title and „(Ilgi, vētraini aplausi.)“ attached. A man tweeting about
+// himself. Ten posts were moved or stripped; this row is so an eleventh
+// cannot ship.
+//   What it looks for, on a PERSON account only, in two narrow shapes:
+//   1. the holder's own surname within 60 characters of a THIRD-PERSON
+//      reporting verb — „saka Skubiķis“, „Dr. Kalniņš nolasa“;
+//   2. the paper's speaker label at the head — the holder's name followed by
+//      the party parenthesis and a colon, „D. Zeltiņš (demokrāts): “.
+// Narrow on purpose, so it does not cry wolf: a speaker naming himself in his
+// own speech („Es, Zemgals, saku jums: …“) has no third-person verb and no
+// party tag, and passes. A reporting verb with nobody's surname beside it
+// passes. The surname comes from the HANDLE — a stable id — with diacritics
+// folded, so „Dr. Kalniņš“ is reached as `kalnin`.
+// Known limit, stated rather than hidden: only the nominative stem is
+// matched, so a declined surname („par Zālīti“) slips through. Every shape
+// that actually shipped prints the nominative.
+// | case                                                | expected |
+// | „saka Skubiķis“ inside his own quotation            | FAIL     |
+// | „Dep. J. Zālītis (radikāldemokrāts) apsveic …“      | FAIL     |
+// | „Grāmattirgotājs D. Zeltiņš (demokrāts): …“         | FAIL     |
+// | „… izteica … inž. Paegle: jāizkopj …“               | FAIL     |
+// | „G. Zemgals … griežas pie visiem …“                 | FAIL     |
+// | a speaker naming himself in his own speech          | pass     |
+// | a reporting verb with no surname beside it          | pass     |
+// | every post on a person account in the corpus        | pass     |
+const FOLD: Record<string, string> = { ā: 'a', č: 'c', ē: 'e', ģ: 'g', ī: 'i', ķ: 'k', ļ: 'l', ņ: 'n', š: 's', ū: 'u', ž: 'z', ŗ: 'r' };
+const fold = (s: string) => s.toLowerCase().replace(/[āčēģīķļņšūžŗ]/g, (c) => FOLD[c]);
+// Gate 3 of store/systems/dienas-korpuss.md, written folded: third-person
+// reporting verbs. First person („saku“, „uzsveru“) is deliberately absent —
+// that is the speaker's own voice and the whole point of the account.
+const REPORTS = /\b(saka|teica|teic|turpina|piebilst|norada|uzsver|paskaidro|apsveic|sveic|nolasa|prasa|izteica|izsakas|runa|griezas|konstate|pazino|novel|atbild)\b/g;
+// @g_zemgals → zemgal · @j_zalitis → zalit · @fr_paegle → paegl · @p_kalnins → kalnin
+const surnameStem = (handle: string) => {
+  const stem = handle.replace(/^@/, '').split('_').pop()!.replace(/(is|s|e)$/, '');
+  return stem.length >= 4 ? stem : null;
+};
+function narratesFromOutside(lv: string, handle: string): boolean {
+  const stem = surnameStem(handle);
+  if (!stem) return false;
+  const t = fold(lv);
+  const label = /^(.{0,60}?)\([^)]{1,30}\):\s/.exec(t);
+  if (label && label[1].includes(stem)) return true;
+  const names = [...t.matchAll(new RegExp(stem, 'g'))].map((m) => m.index!);
+  return names.length > 0 && [...t.matchAll(REPORTS)].some((v) => names.some((n) => Math.abs(v.index! - n) <= 60));
+}
+// The shapes that shipped, as they stood before 2026-11-11, so the row is
+// known to fire — a checker that never saw a positive proves nothing.
+const outsideFixtures: [string, string, string, boolean][] = [
+  ['the paper speaking inside his quotation', '@skubikis', '„Dosim svētu solījumu,“ saka Skubiķis, „lai ikvienam mūsu valstī iespējams dzīvot cilvēcīgos apstākļos.“', true],
+  ['the whole report on the speaker', '@j_zalitis', 'Dep. J. Zālītis (radikāldemokrāts) apsveic neatkarīgas, patstāvīgas valsts nodibināšanu un pasludināšanu un apsveic Latvijas Tautas padomi. (Aplausi.)', true],
+  ['a speaker label with the party tag', '@d_zeltins', 'Grāmattirgotājs D. Zeltiņš (demokrāts): Latviešu Demokrātu partija, kura atbalstās uz plašām sīkpilsoņu masām, sagaida no Pagaidu valdības demokrātisko prasību realizēšanu.', true],
+  ['a frame ending in a colon', '@fr_paegle', 'Augstu vēlēšanos izteica Latviešu neatkarīgās partijas vārdā inž. Paegle: jāizkopj latviskais gars un tā īpatnības.', true],
+  ['the man closing the session, in the third person', '@g_zemgals', 'G. Zemgals, Latvijas Tautas Padomes sēdi slēdzot, griežas pie visiem tautas dzīvajiem spēkiem ar uzaicinājumu nākt palīgā.', true],
+  ['the man reading out his programme', '@p_kalnins', 'Dr. Kalniņš nolasa sociāldemokrātijas minimālprogramu, ietvertu 18 punktos.', true],
+  ['a speaker naming himself in his own speech', '@g_zemgals', 'Es, Zemgals, saku jums: Latvija būs brīva un demokrātiska valsts.', false],
+  ['a reporting verb with no surname beside it', '@k_ulmanis', 'Pagaidu Valdība prasa no katra pilsoņa mieru un kārtību, un gādās par gūstekņu atlaišanu.', false],
+];
+for (const [name, handle, lv, expected] of outsideFixtures) {
+  check(`third person on a person account — ${name}`, narratesFromOutside(lv, handle) === expected);
+}
+const onPerson = corpus.filter((p) => data.accounts[p.handle].kind === 'person');
+const narrated = onPerson.filter((p) => narratesFromOutside(p.lv, p.handle)).map((p) => p.seq);
+check(`corpus: ${onPerson.length} posts on person accounts, none narrating their own holder from outside`,
+  onPerson.length > 0 && narrated.length === 0, narrated.length ? `seq ${narrated.join()}` : 'every one in the speaker\'s own voice');
 
 // --- threads: one printed item split at sentence boundaries, nothing else ---
 // | rule                                                      |
