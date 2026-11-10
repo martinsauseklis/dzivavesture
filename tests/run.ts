@@ -452,15 +452,20 @@ const ENDPOINT: Record<string, string> = {
   x: 'https://x.com/intent/post',
   facebook: 'https://www.facebook.com/sharer/sharer.php',
   threads: 'https://www.threads.com/intent/post',
+  linkedin: 'https://www.linkedin.com/sharing/share-offsite/',
 };
-check('SHARE_TARGETS is the three he named, and every one has an endpoint row',
-  SHARE_TARGETS.join() === 'x,facebook,threads' && SHARE_TARGETS.every((t) => ENDPOINT[t]));
+// CHANGED 2026-11-11 — behaviour changed, so the row did. LinkedIn joined the
+// row (his call) and goes LAST, after the three he named first. Checked live:
+// share-offsite resolves and LinkedIn itself rewrites it to the older
+// shareArticle, so share-offsite is the form to send; it is url-only.
+check('SHARE_TARGETS is his four, in the order they sit on the card, and every one has an endpoint row',
+  SHARE_TARGETS.join() === 'x,facebook,threads,linkedin' && SHARE_TARGETS.every((t) => ENDPOINT[t]));
 // Which parameter each target carries the address in, and which carries the
 // words. They differ per platform, so the rows below read them by name rather
 // than guessing: x keeps them apart, facebook has only the address, threads
 // has only the text and the address rides inside it.
-const ADDRESS: Record<string, string> = { x: 'url', facebook: 'u', threads: 'text' };
-const WORDS: Record<string, string | null> = { x: 'text', facebook: null, threads: 'text' };
+const ADDRESS: Record<string, string> = { x: 'url', facebook: 'u', threads: 'text', linkedin: 'url' };
+const WORDS: Record<string, string | null> = { x: 'text', facebook: null, threads: 'text', linkedin: null };
 for (const t of SHARE_TARGETS) {
   const u = new URL(shareHref(O, basePost, acct, t));
   check(`shareHref ${t}: goes to its own endpoint and nowhere else`, u.origin + u.pathname === ENDPOINT[t], u.origin + u.pathname);
@@ -472,8 +477,11 @@ for (const t of SHARE_TARGETS) {
 }
 check('shareHref x: the words ride in text=, the address in its own url=',
   params(shareHref(O, basePost, acct, 'x')).text === wantText && params(shareHref(O, basePost, acct, 'x')).url === wantUrl);
-check('shareHref facebook: the words are not sent — facebook drops them and renders our og: card',
-  !new URL(shareHref(O, basePost, acct, 'facebook')).search.includes('text'));
+check('shareHref facebook and linkedin: no words are sent — both drop them and render our og: card instead',
+  (['facebook', 'linkedin'] as const).every((t) => {
+    const u = new URL(shareHref(O, basePost, acct, t));
+    return !u.search.includes('text') && [...u.searchParams].length === 1 && u.searchParams.get(ADDRESS[t]) === wantUrl;
+  }));
 check('shareHref threads: no url parameter exists, so the address is last inside the text',
   new URL(shareHref(O, basePost, acct, 'threads')).searchParams.get('url') === null
   && (new URL(shareHref(O, basePost, acct, 'threads')).searchParams.get('text') ?? '') === `${wantText} ${wantUrl}`);

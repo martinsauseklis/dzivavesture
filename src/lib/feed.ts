@@ -319,10 +319,13 @@ export function excerpt(text: string, max = SHARE_EXCERPT): string {
 // Where a post can be shared from the desktop row, as a closed set. The OS
 // share sheet covers everything else on a phone (see feed.js); these three are
 // the fallback where no sheet exists, and they are the three he named.
-export type ShareTarget = 'x' | 'facebook' | 'threads';
-export const SHARE_TARGETS: ShareTarget[] = ['x', 'facebook', 'threads'];
+export type ShareTarget = 'x' | 'facebook' | 'threads' | 'linkedin';
+// The order they sit in on the card. LinkedIn is last because it came last:
+// the other three are the ones he named first, and this is where the readers
+// arrive from once the project's own LinkedIn post IS dzīvā vēsture.
+export const SHARE_TARGETS: ShareTarget[] = ['x', 'facebook', 'threads', 'linkedin'];
 // The platform's own name, shown beside its mark and read out with it.
-export const SHARE_NAME: Record<ShareTarget, string> = { x: 'X', facebook: 'Facebook', threads: 'Threads' };
+export const SHARE_NAME: Record<ShareTarget, string> = { x: 'X', facebook: 'Facebook', threads: 'Threads', linkedin: 'LinkedIn' };
 
 // The post's own address: its DAY page plus its fragment, so a crawler fetching
 // the link gets that day's preview card (fragments are not sent) and the reader
@@ -354,6 +357,11 @@ export function shareText(post: Pick<Post, 'seq' | 'lv' | 'type' | 'via' | 'date
 //              dropped, which is why the day cards exist.
 //   threads  — takes text and no url, so the address goes last inside the
 //              text. threads.NET 301s to threads.COM, so .com is used directly.
+//   linkedin — url only, the same as facebook: on both of them the day's og:
+//              card IS the whole message, so nothing we could add here would
+//              be shown. `sharing/share-offsite` is the current front door and
+//              LinkedIn itself rewrites it to the older `shareArticle`, so
+//              share-offsite is what we send.
 // An unknown target is a refusal, never a fallthrough to some default.
 export function shareHref(origin: string, post: Pick<Post, 'seq' | 'lv' | 'type' | 'via' | 'dated'>, account: Pick<Account, 'name'>, target: ShareTarget = 'x'): string {
   const url = shareUrl(origin, post);
@@ -361,6 +369,7 @@ export function shareHref(origin: string, post: Pick<Post, 'seq' | 'lv' | 'type'
   switch (target) {
     case 'x': return `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     case 'facebook': return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    case 'linkedin': return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
     case 'threads': return `https://www.threads.com/intent/post?text=${encodeURIComponent(`${text} ${url}`)}`;
     default: throw new Error(`nezināma dalīšanās vietne: ${target}`);
   }
