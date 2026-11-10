@@ -594,12 +594,16 @@ check('corpus: a recollection has no ocr, every scanned post has one',
 // | day        | posts |
 // | 17.11.1918 |     6 |   Līdums Nr.217
 // | 18.11.1918 |    55 |   Baltijas Ziņas Nr.168 (35) + Rigasche Zeitung Nr.267 (16) + sēdes Nr.1 (3) + seq 744
-// | 19.11.1918 |    18 |   Rigasche Zeitung Nr.268 (8) + Baltijas Ziņas Nr.169 (10)
+// | 19.11.1918 |    19 |   Rigasche Zeitung Nr.268 (9) + Baltijas Ziņas Nr.169 (10)
+// CHANGED 2026-11-11 — 18 -> 19 on the 19th. The corpus genuinely holds one
+// more post: DIVL142 was a classifieds COLUMN carrying two notices in one
+// record (a photo studio's Christmas ad spliced to a death notice), and it
+// was split into the two notices the paper set. Not red turned green.
 // | 20.11.1918 |    17 |   Līdums Nr.219
 // | parked     |    11 |   atminas, 1923
 const counts = [...rendered.byDay].map(([k, v]) => `${k}:${v.length}`).join(' ');
 check('corpus: every post sits on one of the four days or is parked, with the decided counts',
-  counts === '17.11.1918:6 18.11.1918:55 19.11.1918:18 20.11.1918:17' && rendered.parked.length === 11 && rendered.shown.length + rendered.parked.length + rendered.refused.length === corpus.length,
+  counts === '17.11.1918:6 18.11.1918:55 19.11.1918:19 20.11.1918:17' && rendered.parked.length === 11 && rendered.shown.length + rendered.parked.length + rendered.refused.length === corpus.length,
   `${counts} parked:${rendered.parked.length} refused:${rendered.refused.length}`);
 // The day strip and the line under each headline, against the real corpus.
 // The sampler saw both sides: a day that says nothing about the proclamation
@@ -609,8 +613,11 @@ check('corpus: every post sits on one of the four days or is parked, with the de
 // topic, every count goes to 0 and this fails rather than printing nothing.
 const strip = dayCounts(rendered.byDay);
 const stripCounts = DAYS.map((d) => `${d.n}:${strip.get(d.key)!.n}/${strip.get(d.key)!.proclaimed}`).join(' ');
-check('corpus: the strip counts 6/0 · 55/3 · 18/12 · 17/13, so a silent day and a loud one are both seen',
-  stripCounts === '17:6/0 18:55/3 19:18/12 20:17/13'
+// CHANGED 2026-11-11 — the 19th went 18 -> 19 posts for the reason at the row
+// above; its proclamation count is unchanged, because neither half of the
+// split classifieds block is about the act.
+check('corpus: the strip counts 6/0 · 55/3 · 19/12 · 17/13, so a silent day and a loud one are both seen',
+  stripCounts === '17:6/0 18:55/3 19:19/12 20:17/13'
   && proclamationLine(strip.get('17.11.1918')!) === null
   && DAYS.some((d) => strip.get(d.key)!.proclaimed > strip.get(d.key)!.n / 2), stripCounts);
 check('corpus: the parked posts are exactly the recollections', rendered.parked.every((p) => p.type === 'atminas') && rendered.parked.length === corpus.filter((p) => p.type === 'atminas').length);
@@ -625,6 +632,23 @@ const longest = Math.max(...shareTexts.map((t) => [...t].length));
 check(`corpus: ${shareTexts.length} share texts, longest ${longest} ≤ ${SHARE_TEXT_MAX} code points`, shareTexts.length === rendered.shown.length && longest <= SHARE_TEXT_MAX);
 // An editorial bracket („Latvju [valsti]“, seq 690) is the paper's; only a split gap marker is ours to forbid.
 check('corpus: no share text holds a split [?] marker or an @handle', shareTexts.every((t) => { const s = t.replace(/\[\?\]/g, ''); return !s.includes('[?') && !s.includes('?]') && !s.includes('@'); }));
+
+// --- one post = one notice as the newspaper set it -------------------------
+// The archive's `DIVLnn` is a LAYOUT BLOCK, not an editorial unit. For a
+// classifieds column one block holds many notices and its OCR reads ACROSS the
+// print columns, so unrelated notices arrive braided into one string — DIVL142
+// shipped a photo studio's Christmas ad welded to a death notice with ' — '.
+// Narrow on purpose: ' — ' is ordinary prose in 25 other posts (ellipsis and
+// elision inside continuous text), so this row only looks at posts whose `via`
+// names a classifieds column, where the dash cannot be prose joining one
+// notice to itself. Counted and printed, so an empty subset would show as 0.
+// | case                                              | expected |
+// | classifieds post holding one notice               | pass     |
+// | classifieds post splicing two notices with ' — '  | FAIL     |
+const classifieds = corpus.filter((p) => /sludinājum/i.test(p.via));
+const spliced = classifieds.filter((p) => p.lv.includes(' — ')).map((p) => p.seq);
+check(`corpus: ${classifieds.length} posts from a classifieds column, none splicing two notices with an em dash`,
+  classifieds.length > 0 && spliced.length === 0, spliced.length ? `seq ${spliced.join()}` : 'one notice each');
 
 // --- threads: one printed item split at sentence boundaries, nothing else ---
 // | rule                                                      |

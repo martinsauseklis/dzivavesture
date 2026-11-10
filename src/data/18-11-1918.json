@@ -2328,7 +2328,7 @@
    "type": "atstastits",
    "at": "17.02",
    "seq": 612,
-   "lv": "Latvju darba griba un spēks, apņemšanās un izturība ir tautas īpašības, kuŗām jāizceļas brīvajā valstī vairāk kā līdz šim; viņām jāpiepilda tautas gadu simteņu ilgas un cerības. Ar dziļu pateicību tauta un tautas valdība atminēs tos tautas brīvības cīnītājus, kas sen, sen cīnījušies par Latvijas brīvību. Ja valdība un tauta tā strādās vienprātībā un savstarpīgā uzticībā, tad izdziedēsim ne tikai kara šķēpa [?] brūces, bet arī ilgās nebrīvības brūces, jo nekas nebūs vairs jāgaida no ārienes, no kādas augšienes, bet viss no pašu gribas un spēka.",
+   "lv": "Latvju darba griba un spēks, apņemšanās un izturība ir tautas īpašības, kuŗām jāizceļas brīvajā valstī vairāk kā līdz šim; viņām jāpiepilda tautas gadu simteņu ilgas un cerības. Ar dziļu pateicību tauta un tautas valdība atminēs tos tautas brīvības cīnītājus, kas sen, sen cīnījušies par Latvijas brīvību. Ja valdība un tauta tā strādās vienprātībā un savstarpīgā uzticībā, tad izdziedēsim ne tikai kara sistās brūces, bet arī ilgās nebrīvības brūces, jo nekas nebūs vairs jāgaida no ārienes, no kādas augšienes, bet viss no pašu gribas un spēka.",
    "ocr": "Latmju darba griba un spehks. apņemschanàs un isturiba ir lautas ihpaschibas, luŗàm jaiszeļas brihwajâ malstî lvairak kà lihds schim' miņam japeepilda taMas gadu şimleņu ilgaS un zeribaS. Ar djitu patetzibu tauta un tautaS maldiba atminēs lo« tautaS brihmibaS zihnitajus, kaS sen, sen zihnijuscheeS par LatmijaS brihwibu. Ja maldiba. un tauta tà strahdàs meenprahÜbâ un sawstarpigâ ustizibâ. tad isdseedefim ne likai kara şijiàs bruhzeS. bet ari ilgàs nedrihmibaS bruhzeS. jo nekas nebuhs mairS jāgaida no ahreencs. no kahdas augscheenes, bet miss no paşchu gribas un spehka.",
    "via": "Atstāstīts: Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
@@ -2336,8 +2336,9 @@
     "Pagaidu valdība"
    ],
    "atNote": "Stunda avīzē nav. Runas turpinājums; ieraksts novietots pēc iepriekšējā.",
-   "warn": "„kara şijiàs bruhzeS“ — OCR nedod salasāmu vārdu starp „kara“ un „brūces“; vieta paliek [?] un nav uzminēta.",
+   "warn": "„kara şijiàs bruhzeS“ — OCR nedeva salasāmu vārdu starp „kara“ un „brūces“. ★ Vieta NOLASĪTA no skenējuma (2026-11-11, Gemini uz lapas pikseļiem, divi neatkarīgi modeļi, 771180/DIVL22, 2. lpp.): iespiests ir „ſiſtàs“, t.i. „sistās“. Abi modeļi lasa tos pašus burtus (ſ-i-ſ-t-à-s) ar augstu pārliecību un nenorāda nekādu bojājumu; arī krops 12× palielinājumā rāda to pašu. Pirms: „kara šķēpa [?] brūces“ → tagad: „kara sistās brūces“. Vārds „šķēpa“ ir NOŅEMTS — pikseļos starp „kara“ un „brūces“ ir tikai VIENS vārds, ne divi, un „šķēpa“ nebija ar ko segt.",
    "recon": {
+    "sistās": "şijiàs",
     "apņemšanās": "apņemschanàs",
     "cīnītājus": "zihnitajus",
     "ārienes": "ahreencs"
@@ -2348,7 +2349,7 @@
    "type": "atstastits",
    "at": "17.05",
    "seq": 615,
-   "lv": "Lai piedalās [?] pie brīvās Latvijas izkopšanas, kas vēlas baudīt brīvās valsts tiesības un labumus! Visi bez tautības izšķirības! Brīva Latvija lai ir demokrātiskas taisnības valsts, kuŗā nav vietas apspiešanai un netaisnībai …",
+   "lv": "Lai piedalās visi pie brīvās Latvijas izkopšanas, kas vēlas baudīt brīvās valsts tiesības un labumus! Visi bez tautības izšķirības! Brīva Latvija lai ir demokrātiskas taisnības valsts, kuŗā nav vietas apspiešanai un netaisnībai …",
    "ocr": "Lai peedalās roch pee brihwàs Làrjaà iskopjchanas. kas mehlas baudīt brihwàs melsts teeşibaS un labumus! Wişi bes taulibas isschķlribas! Brihma Latmļja lai ir demokrātiskas taisnioaS malsts, kura nato wretas apşrZeeşchaņai un ņetaunida«",
    "via": "Atstāstīts: Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
@@ -2358,8 +2359,9 @@
    ],
    "atNote": "Stunda avīzē nav. Runas noslēgums; ieraksts novietots pirms aplausu vētras (ieraksts 17.06).",
    "note": "Pēdējais teikums ir tas pats, ko Līdums atstāsta korpusa 17.00 ierakstā („lai nedotu viņā vietas ne apspiešanai, ne netaisnībai“). Divi atveidojumi no divām avīzēm.",
-   "warn": "Vārds aiz „piedalās“ OCR ir „roch“ — pēc jēgas „visi“, bet burti to nedod, tāpēc vieta paliek [?]. Avīze pati runu beidz ar daudzpunkti.",
+   "warn": "Vārds aiz „piedalās“ OCR ir „roch“. ★ Vieta NOLASĪTA no skenējuma (2026-11-11, Gemini uz lapas pikseļiem, divi neatkarīgi modeļi, 771180/DIVL22, 2. lpp.): iespiests ir „wiſi“, t.i. „visi“ — abi modeļi ar augstu pārliecību, bez norādīta bojājuma, burti w-i-ſ-i; krops 12× palielinājumā rāda to pašu. Pirms: „Lai piedalās [?] pie“ → tagad: „Lai piedalās visi pie“. Tas, ko šis ieraksts agrāk sauca par jēgas minējumu, tagad ir nolasīts burtiski. Avīze pati runu beidz ar daudzpunkti.",
    "recon": {
+    "visi": "roch",
     "izkopšanas": "iskopjchanas",
     "izšķirības": "isschķlribas",
     "netaisnībai": "ņetaunida«"
@@ -3672,9 +3674,24 @@
   {
    "handle": "@rigasche_zeitung",
    "type": "citats",
+   "at": "20.50",
+   "seq": 903,
+   "lv": "Ņemot vērā apgrūtinātos darba apstākļus, lūdzam pasūtījumus Ziemassvētkiem. Mendenspergers un Co., Foto nams.",
+   "ocr": "Hinsichtlich der erschwerten ArheitarerhUtiüese erbitte« I . m , I Aufträge für das Veihnachtsfest Im 17 November 1»18 entschlief sanft nach langen schweren Leiden meine liebe Frau, l# ' Я ' „.Мтввио,.! I w-ine Mnt.-r I Mdensperger & Co.. Photo Haus. I Лша musCbke, vcrw. Bulbc, |Beteiliyung.\" ; VW ***** W 2013 an die Bnchdr. P. Kerkovius. BCb. ©fftfcbt, I » 250 Meter, 70 cm. Spur-9 jelaOaiinnietS Tt' 2 Kippwagen d«n, ЯН es' eu i * « . Jr . . *. .. . •* Ketten, schwere und leichte, SB vie Beerdigung findet a« Donneritag, dem 21. November, '/.2 Uhr statt vom Trauerhanse, Щ b\"niiS w'«lo-is о \" ■ Schlocksche 6tx. Nr. 82, anf dem Johannis-Friedhof bei der Mar.inskirche.",
+   "via": "Rigasche Zeitung Nr.268, 19.11.1918, sludinājumu sleja",
+   "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:222949|article:DIVL142",
+   "topics": [
+    "Rīgas dzīve"
+   ],
+   "atNote": "Sludinājumu sleja. Laiks ir vakara lasīšanas aplēse.",
+   "warn": "Sludinājumu sleja DIVL142 nav viens sludinājums, bet vesels slejas bloks, un arhīva OCR to nolasījis pāri divām blakus esošām iespieduma slejām, rindu pa rindai, tāpēc vienā virknē savijušies vairāki nesaistīti sludinājumi. Lauks `ocr` ir arhīva paša teksts un ir atstāts neaiztikts — tas ir viss bloks, no kura nāk arī nākamais ieraksts. Šeit atveidota tikai Mendenspergera foto nama daļa; tā paša bloka nāves sludinājums ir atsevišķs ieraksts (vieta 905). Pārējās bloka atlūzas — šaursliežu sliedes un vagonetes („250 Meter, 70 cm. Spur“, „2 Kippwagen“, „Ketten, schwere und leichte“) un rinda „an die Buchdr. P. Kerkovius“ — nav atveidotas: tām nav ne salasāma sludinātāja, ne teikuma, un tās būtu jāsacer."
+  },
+  {
+   "handle": "@rigasche_zeitung",
+   "type": "citats",
    "at": "20.55",
    "seq": 905,
-   "lv": "Ņemot vērā apgrūtinātos darba apstākļus, lūdzam pasūtījumus Ziemassvētkiem. Mendenspergers un Co., Foto nams. — 1918. gada 17. novembrī pēc ilgām grūtām ciešanām mierīgi aizmiga mana mīļā sieva, mana māte, Anna Muške, atraitne Gulbe, dzim. Efīdta. Apbedīšana notiek ceturtdien, 21. novembrī, pusdivos, no sēru nama Slokas ielā Nr. 82, Jāņa kapos pie Mārtiņa baznīcas.",
+   "lv": "1918. gada 17. novembrī pēc ilgām grūtām ciešanām mierīgi aizmiga mana mīļā sieva, mana māte, Anna Muške, atraitne Gulbe, dzim. Efīdta. Apbedīšana notiek ceturtdien, 21. novembrī, pusdivos, no sēru nama Slokas ielā Nr. 82, Jāņa kapos pie Mārtiņa baznīcas.",
    "ocr": "Hinsichtlich der erschwerten ArheitarerhUtiüese erbitte« I . m , I Aufträge für das Veihnachtsfest Im 17 November 1»18 entschlief sanft nach langen schweren Leiden meine liebe Frau, l# ' Я ' „.Мтввио,.! I w-ine Mnt.-r I Mdensperger & Co.. Photo Haus. I Лша musCbke, vcrw. Bulbc, |Beteiliyung.\" ; VW ***** W 2013 an die Bnchdr. P. Kerkovius. BCb. ©fftfcbt, I » 250 Meter, 70 cm. Spur-9 jelaOaiinnietS Tt' 2 Kippwagen d«n, ЯН es' eu i * « . Jr . . *. .. . •* Ketten, schwere und leichte, SB vie Beerdigung findet a« Donneritag, dem 21. November, '/.2 Uhr statt vom Trauerhanse, Щ b\"niiS w'«lo-is о \" ■ Schlocksche 6tx. Nr. 82, anf dem Johannis-Friedhof bei der Mar.inskirche.",
    "via": "Rigasche Zeitung Nr.268, 19.11.1918, sludinājumu sleja",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:222949|article:DIVL142",
@@ -3688,7 +3705,7 @@
     "1918": "1»18",
     "pusdivos": "'/.2 Uhr"
    },
-   "warn": "Mirušās pirmslaulību uzvārds joprojām nav nolasāms, un [?] paliek. Robu lasījums (vieta 905, 16× palielinājums, zema pārliecība) nolasa drošu lielo E un drošu galotni „-iedt“, bet divas garās zīmes pa vidu nolaižas zem pamatlīnijas (kas liecina par f) un vienlaikus rāda tikai kreisās puses izcilni, ne pilnu šķērssvītru (kas liecina par garo s) — tāpēc gan „Effiedt“, gan „Essiedt“ paliek dzīvi, un lasītājs atteicās izšķirties par uzvārdu. Fiziskais iemesls: liels, smagi piesūcināts fraktūras displeja iespiedums. Agrākais minējums „Gešta“ ar šo lasījumu nesaskan un ir galīgi atkritis. LABOTS atraitnes uzvārds: pārlasīšana sludinājuma salasāmajā daļā lasa „Anna Muschke, verw. Gulbe“, nevis „Bulbe“, kā deva vecais OCR. Pārējais sludinājums pārlasīšanā sakrīt vārds vārdā, ieskaitot 21. novembri, pusdivus, Slokas ielu Nr. 82 un Jāņa kapus pie Mārtiņa baznīcas. Sludinājumu slejas OCR savij divus blakus esošus sludinājumus, un starp tiem ir citu sludinājumu atlūzas, kas šeit nav atveidotas. Šis raksts otrās pārlasīšanas lokā neietilpst. Pirmslaulību uzvārds tagad ir ielikts kā Efīdta (vāciski Effiedt). Divas neatkarīgas pārlasīšanas lasa „Eff“: robu lasījums (kas gan pieļāva arī „Essiedt“) un Gemini, kas pamato dubulto f ar diviem augšupvilkumiem ar vidus šķērssvītrām un lielo burtu sauc par fraktūras E ar raksturīgo kreiso cilpu, nevis S. Redzes lasījuma „Schiedt“ paliek mazākumā. LATVISKOJUMS „Efīdta“ ir jāpārbauda.",
+   "warn": "Mirušās pirmslaulību uzvārds joprojām nav nolasāms, un [?] paliek. Robu lasījums (vieta 905, 16× palielinājums, zema pārliecība) nolasa drošu lielo E un drošu galotni „-iedt“, bet divas garās zīmes pa vidu nolaižas zem pamatlīnijas (kas liecina par f) un vienlaikus rāda tikai kreisās puses izcilni, ne pilnu šķērssvītru (kas liecina par garo s) — tāpēc gan „Effiedt“, gan „Essiedt“ paliek dzīvi, un lasītājs atteicās izšķirties par uzvārdu. Fiziskais iemesls: liels, smagi piesūcināts fraktūras displeja iespiedums. Agrākais minējums „Gešta“ ar šo lasījumu nesaskan un ir galīgi atkritis. LABOTS atraitnes uzvārds: pārlasīšana sludinājuma salasāmajā daļā lasa „Anna Muschke, verw. Gulbe“, nevis „Bulbe“, kā deva vecais OCR. Pārējais sludinājums pārlasīšanā sakrīt vārds vārdā, ieskaitot 21. novembri, pusdivus, Slokas ielu Nr. 82 un Jāņa kapus pie Mārtiņa baznīcas. Sludinājumu slejas OCR savij divus blakus esošus sludinājumus, un starp tiem ir citu sludinājumu atlūzas, kas šeit nav atveidotas. Otrs no tiem — Mendenspergera foto nama sludinājums — tagad ir atsevišķs ieraksts (vieta 903); abi nes vienu un to pašu arhīva `ocr` virkni, jo abi nāk no viena bloka DIVL142. Šis raksts otrās pārlasīšanas lokā neietilpst. Pirmslaulību uzvārds tagad ir ielikts kā Efīdta (vāciski Effiedt). Divas neatkarīgas pārlasīšanas lasa „Eff“: robu lasījums (kas gan pieļāva arī „Essiedt“) un Gemini, kas pamato dubulto f ar diviem augšupvilkumiem ar vidus šķērssvītrām un lielo burtu sauc par fraktūras E ar raksturīgo kreiso cilpu, nevis S. Redzes lasījuma „Schiedt“ paliek mazākumā. LATVISKOJUMS „Efīdta“ ir jāpārbauda.",
    "reread": [
     {
      "pass": "gaps-read",
@@ -3701,6 +3718,13 @@
     }
    ],
    "change": [
+    {
+     "from": "Ņemot vērā apgrūtinātos darba apstākļus, lūdzam pasūtījumus Ziemassvētkiem. Mendenspergers un Co., Foto nams. — 1918. gada 17. novembrī pēc ilgām grūtām ciešanām mierīgi aizmiga mana mīļā sieva, mana māte, Anna Muške, atraitne Gulbe, dzim. Efīdta. Apbedīšana notiek ceturtdien, 21. novembrī, pusdivos, no sēru nama Slokas ielā Nr. 82, Jāņa kapos pie Mārtiņa baznīcas.",
+     "to": "1918. gada 17. novembrī pēc ilgām grūtām ciešanām mierīgi aizmiga mana mīļā sieva, mana māte, Anna Muške, atraitne Gulbe, dzim. Efīdta. Apbedīšana notiek ceturtdien, 21. novembrī, pusdivos, no sēru nama Slokas ielā Nr. 82, Jāņa kapos pie Mārtiņa baznīcas.",
+     "source": "owner",
+     "outcome": "corrected",
+     "why": "Ierakstā bija salikti divi nesaistīti sludinājumi: Mendenspergera foto nama Ziemassvētku sludinājums un Annas Muškes nāves sludinājums. Arhīva bloks DIVL142 ir vesela sludinājumu sleja, nevis viens sludinājums, un tā OCR lasīts pāri divām iespieduma slejām. Sludinājums izdalīts atsevišķā ierakstā (vieta 903); šeit paliek tikai nāves sludinājums, uz kuru attiecas `recon`, `warn`, `reread` un šis pats `change`."
+    },
     {
      "from": "atraitne Bulbe",
      "to": "atraitne Gulbe",
