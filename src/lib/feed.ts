@@ -227,7 +227,7 @@ export function bodyHtml(
     const needle = escapeHtml(word);
     if (!out.includes(needle)) { unmatched.push(word); continue; }
     out = out.replace(needle,
-      `<span class="recon" title="Rekonstruēts no bojāta OCR: „${escapeHtml(raw)}“">${needle}</span>`);
+      `<span class="recon" title="Atjaunots pēc bojāta OCR teksta: „${escapeHtml(raw)}“">${needle}</span>`);
   }
 
   for (const [printed, handle] of Object.entries(post.mentions ?? {})) {
@@ -242,7 +242,7 @@ export function bodyHtml(
     const needle = escapeHtml(i.rendered);
     if (!out.includes(needle)) { unmatched.push(i.rendered); continue; }
     out = out.replace(needle,
-      `<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „${escapeHtml(i.ocr)}“">${needle}</span><span class="gap" title="Identificēts pēc ${escapeHtml(i.candidate_source)} — ${escapeHtml(i.evidence === 'glyphs' ? 'burtu atbilstība' : 'dokumentārs apliecinājums')}: ${escapeHtml(i.glyph_match)}">[≈]</span>`);
+      `<span class="ident" title="Vārds noteikts pēc ārēja reģistra, nevis nolasīts no avota. OCR: „${escapeHtml(i.ocr)}“">${needle}</span><span class="gap" title="Identificēts pēc ${escapeHtml(i.candidate_source)} — ${escapeHtml(i.evidence === 'glyphs' ? 'burtu atbilstība' : 'dokumentārs apliecinājums')}: ${escapeHtml(i.glyph_match)}">[≈]</span>`);
   }
 
   out = out.replaceAll('[?]',

@@ -1,7 +1,7 @@
 ---
 // One profile page per account, at /@handle/ — who this is and what they said
 // on 18 November 1918, in feed order. No footer, no page explaining itself:
-// header block, posts, „Pieminējumi tajā dienā“, back to the feed. A profile
+// header block, posts, „Kur viņš pieminēts“, back to the feed. A profile
 // with no post is not an empty list — it says why there is nothing, and
 // shows where the papers named the account that day.
 import { readFileSync } from 'node:fs';
@@ -92,7 +92,7 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
 
     {named.length > 0 && (
       <section class="named">
-        <h2>Pieminējumi tajā dienā</h2>
+        <h2>Kur viņš pieminēts</h2>
         {named.map((p) => (
           <a href={`../#p-${p.seq}`}>
             <span class="nw">{p.at} · {accounts[p.handle].name}</span><br />

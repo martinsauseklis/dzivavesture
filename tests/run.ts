@@ -134,7 +134,7 @@ check('mention whose key is not printed is reported, not rendered', notPrinted.u
 
 const recon = bodyHtml('kļuvis par', { recon: { kļuvis: 'ļļņ"miS' } }, accounts, gap);
 check('recon: dotted span with escaped raw tooltip',
-  recon.html.includes('<span class="recon" title="Rekonstruēts no bojāta OCR: „ļļņ&quot;miS“">kļuvis</span>'));
+  recon.html.includes('<span class="recon" title="Atjaunots pēc bojāta OCR teksta: „ļļņ&quot;miS“">kļuvis</span>'));
 
 // A gap mark is a span (there is no panel to open) whose title is the post's
 // own warn — the explanation the fold used to hold — or the convention when
@@ -145,7 +145,7 @@ check('[?] without a warn falls back to the convention', bodyHtml('[?]', {}, acc
 
 const ident = bodyHtml('Raiņa „Spēlēju, dancoju“ (turpinājums)', { ident: [{ rendered: 'Spēlēju, dancoju', ocr: '.Äpehlciu "Sanža', evidence: 'glyphs', candidate_source: 's', glyph_match: 'g' }] }, accounts, gap);
 check('ident: wavy span with escaped OCR, followed by a [≈] mark naming source, evidence kind and match',
-  ident.html.includes('<span class="ident" title="Identificēts pēc ārēja reģistra, nevis nolasīts. OCR: „.Äpehlciu &quot;Sanža“">Spēlēju, dancoju</span><span class="gap" title="Identificēts pēc s — burtu atbilstība: g">[≈]</span>'));
+  ident.html.includes('<span class="ident" title="Vārds noteikts pēc ārēja reģistra, nevis nolasīts no avota. OCR: „.Äpehlciu &quot;Sanža“">Spēlēju, dancoju</span><span class="gap" title="Identificēts pēc s — burtu atbilstība: g">[≈]</span>'));
 check('ident whose rendered string is not in the text is reported', bodyHtml('x', { ident: [{ rendered: 'y', ocr: '', evidence: 'glyphs', candidate_source: '', glyph_match: '' }] }, accounts, gap).unmatched[0] === 'y');
 
 check('escapeHtml covers quotes', escapeHtml(`"'<>&`) === '&quot;&#39;&lt;&gt;&amp;');
