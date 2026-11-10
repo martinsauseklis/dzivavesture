@@ -391,10 +391,12 @@ export function bodyHtml(
   let out = escapeHtml(text);
   const unmatched: string[] = [];
 
+  // Every replacement below is a function, not a string: with a string, `$&`,
+  // `` $` `` and `$'` inside OCR text would be expanded by String.replace.
   for (const [word, raw] of Object.entries(post.recon ?? {})) {
     const needle = escapeHtml(word);
     if (!out.includes(needle)) { unmatched.push(word); continue; }
-    out = out.replace(needle,
+    out = out.replace(needle, () =>
       `<span class="recon" title="Atjaunots pēc bojāta OCR teksta: „${escapeHtml(raw)}“">${needle}</span>`);
   }
 
@@ -402,14 +404,14 @@ export function bodyHtml(
     const needle = escapeHtml(printed);
     // Never link a profile that does not exist, and never a string that is not printed.
     if (!accounts[handle] || !out.includes(needle)) { unmatched.push(printed); continue; }
-    out = out.replace(needle,
+    out = out.replace(needle, () =>
       `${needle} <span class="m">(<a class="mention" href="${escapeHtml(profilePath(handle, base))}">${escapeHtml(handle)}</a>)</span>`);
   }
 
   for (const i of post.ident ?? []) {
     const needle = escapeHtml(i.rendered);
     if (!out.includes(needle)) { unmatched.push(i.rendered); continue; }
-    out = out.replace(needle,
+    out = out.replace(needle, () =>
       `<span class="ident" title="Vārds noteikts pēc ārēja reģistra, nevis nolasīts no avota. OCR: „${escapeHtml(i.ocr)}“">${needle}</span><span class="gap" title="Identificēts pēc ${escapeHtml(i.candidate_source)} — ${escapeHtml(i.evidence === 'glyphs' ? 'burtu atbilstība' : 'dokumentārs apliecinājums')}: ${escapeHtml(i.glyph_match)}">[≈]</span>`);
   }
 
@@ -457,7 +459,7 @@ export function reportedBy(via: string): string | null {
 // the "Atstāstīts: " prefix it carries in the data rather than say it twice.
 export const viaText = (via: string) => via.replace(/^Atstāstīts: /, '');
 
-// rereading/identities.json — the researched identity line per account ("what
+// src/data/identities.json — the researched identity line per account ("what
 // this newspaper, organisation or person IS"), an ARRAY under `accounts`, not a
 // handle-keyed map. Read strictly: a wrong shape, an unknown handle or a
 // duplicate throws, so the build fails instead of a profile quietly losing its
@@ -469,7 +471,7 @@ export const viaText = (via: string) => via.replace(/^Atstāstīts: /, '');
 // us, never for the page.
 export type Identity = { handle: string; identity: string | null; bio: string | null };
 export function readIdentities(raw: unknown, handles: string[]): Map<string, Identity> {
-  const file = 'rereading/identities.json';
+  const file = 'src/data/identities.json';
   if (typeof raw !== 'object' || raw === null || !Array.isArray((raw as { accounts?: unknown }).accounts)) {
     throw new Error(`${file}: expected { accounts: [ … ] } — an array, not a map`);
   }

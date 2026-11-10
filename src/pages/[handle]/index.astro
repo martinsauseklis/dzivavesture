@@ -6,8 +6,8 @@
 // it says why there is nothing, and shows where the papers named the account.
 // Only an account reachable from a rendered post or mention gets a page: the
 // memoirists' pages are not built while their recollections are parked.
-import { readFileSync } from 'node:fs';
 import data from '../../data/18-11-1918.json';
+import identitiesRaw from '../../data/identities.json';
 import Head from '../../components/Head.astro';
 import Post from '../../components/Post.astro';
 import {
@@ -19,12 +19,12 @@ import {
 type Corpus = { posts: PostRecord[]; accounts: Record<string, Account> };
 
 // The sourced identity line per account ("what this newspaper / organisation /
-// person is"), researched separately. Read strictly at build time: a wrong shape,
-// a missing file or an unknown handle fails the build rather than render a
-// profile without its bio. An account not researched yet keeps its what/bio
-// and is named below, so it is never silent and never a broken build.
-const identitiesFile = new URL('../../../rereading/identities.json', import.meta.url);
-const identities = readIdentities(JSON.parse(readFileSync(identitiesFile, 'utf8')), Object.keys(data.accounts));
+// person is"), researched separately. Imported like the corpus, not read by path:
+// at build time import.meta.url points into dist/.prerender, not at src/. Read
+// strictly: a wrong shape or an unknown handle fails the build rather than
+// render a profile without its bio. An account not researched yet keeps its
+// what/bio and is named below, so it is never silent and never a broken build.
+const identities = readIdentities(identitiesRaw, Object.keys(data.accounts));
 
 // Astro hoists getStaticPaths out of the frontmatter: it reaches imports only,
 // so the rendered list comes from feed.ts and is read here twice.
@@ -38,7 +38,7 @@ const a = accounts[handle];
 // show a post the feed refused or a parked one, and shows them in day order.
 const all = renderedPosts(data as Corpus).shown;
 const lines = descriptionLines(a, identities.get(handle));
-if (!identities.has(handle)) console.warn(`${handle}: nav rereading/identities.json ierakstā — rāda datu what/bio`);
+if (!identities.has(handle)) console.warn(`${handle}: nav src/data/identities.json ierakstā — rāda datu what/bio`);
 
 const posts = all.filter((p) => p.handle === handle);
 const named = mentionsOf(handle, all);

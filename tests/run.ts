@@ -130,6 +130,10 @@ check('text is escaped before any markup', !hostile.html.includes('<script>') &&
 const injectedKey = bodyHtml('a <b> c', { mentions: { '<b>': '@POTUS' } }, accounts, gap);
 check('mention key containing markup is matched escaped, not raw', injectedKey.html.includes('&lt;b&gt; <span class="m">(<a'));
 
+// | recon raw holds `$&`      | the tooltip shows the raw string, not a String.replace expansion |
+const dollar = bodyHtml('Vārds Keks te.', { recon: { Keks: 'K$&ks' } }, accounts, gap);
+check('a $-pattern in OCR text is not expanded by String.replace', dollar.html.includes('„K$&amp;ks“'), dollar.html);
+
 const unknownHandle = bodyHtml('Vilsonam', { mentions: { Vilsonam: '@ghost' } }, accounts, gap);
 check('mention to a handle with no account is not linked', !unknownHandle.html.includes('mention') && unknownHandle.unmatched[0] === 'Vilsonam');
 

@@ -103,7 +103,7 @@ for (const h of postless) {
 //                                   `identity` is the record, never the page             |
 // | @zemes_sargi    | null      | the paper-sourced what + bio                          |
 // | @f_brodermanis  | null      | no description paragraph at all                       |
-const identities = readIdentities(JSON.parse(readFileSync(new URL('../rereading/identities.json', import.meta.url), 'utf8')), handles);
+const identities = readIdentities(JSON.parse(readFileSync(new URL('../src/data/identities.json', import.meta.url), 'utf8')), handles);
 // `?.` not `!.`: an account the identities file does not list yet is not an
 // error (feed.ts says so) — the three memoirists are described from the 1923
 // volume alone, and the page falls back to the data's own what/bio.

@@ -21,7 +21,7 @@ const hues = Object.fromEntries([...css.matchAll(/\.avatar\.h-(\d+)\s*\{\s*backg
 // The same list the pages render — never a parked post, never a refused one.
 const { shown: posts } = renderedPosts(data);
 // The same description the page renders, read with the same strict check.
-const identities = readIdentities(JSON.parse(readFileSync(join(root, 'rereading/identities.json'), 'utf8')), Object.keys(data.accounts));
+const identities = readIdentities(JSON.parse(readFileSync(join(root, 'src/data/identities.json'), 'utf8')), Object.keys(data.accounts));
 
 const only = process.argv[2];
 // Only accounts that get a page: a parked account's card is not re-rendered.
