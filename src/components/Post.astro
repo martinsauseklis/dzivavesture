@@ -8,13 +8,15 @@ import Segment from './Segment.astro';
 import { avatarHue, bodyHtml, initials, profilePath, reportedBy, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
 
 interface Props {
+  /** Hidden at first paint and revealed on scroll. Feed only; profiles are short. */
+  later?: boolean;
   post: Post;
   account: Account;
   accounts: Record<string, Account>;
   gapNote: string;
   base?: string;  // relative path to the site root from the page rendering this post
 }
-const { post: p, account, accounts, gapNote, base = '' } = Astro.props;
+const { post: p, account, accounts, gapNote, base = '', later = false } = Astro.props;
 
 const segments: Seg[] = p.thread ?? [{ lv: p.lv, ocr: p.ocr, recon: p.recon, warn: p.warn, ident: p.ident }];
 const bodies = segments.map((s) => bodyHtml(s.lv, { recon: s.recon, mentions: p.mentions, ident: s.ident, warn: s.warn }, accounts, gapNote, base));
@@ -28,7 +30,7 @@ const n = segments.length;
 // A person's words as a paper rendered them: said in language on the face.
 const reporter = account.kind === 'person' && p.type === 'atstastits' ? reportedBy(p.via) : null;
 ---
-<article class="post" id={`p-${p.seq}`} data-topics={p.topics.join('\n')}>
+<article class={later ? 'post later' : 'post'} id={`p-${p.seq}`} data-topics={p.topics.join('\n')}>
   <div class="who">
     {/* Circle for a person, rounded square for a paper or an office; one hue per
         account. The name beside it is the link to the account's page. */}

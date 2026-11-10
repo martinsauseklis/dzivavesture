@@ -164,3 +164,10 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 
 /* Nothing below the last post; the feed ends with room for the thumb. */
 main { padding-bottom:48px; }
+
+/* Lazy reveal. The hiding is CSS, not script, because the page's CSP is
+   'self' with no hashes — there is no inline script that could hide these
+   before first paint, and doing it from feed.js would flash all 86 posts.
+   feed.js removes .later in batches; nojs.css shows them all instead. */
+.post.later { display: none; }
+#more { height: 1px; }

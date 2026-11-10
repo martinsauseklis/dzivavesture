@@ -171,6 +171,32 @@ check(`atmiņas: ${memoirists.length} account(s) whose every post is a recollect
   && handles.filter((h) => !memoirists.includes(h)).every((h) => !html(page(h)).includes('Visi ieraksti ir atmiņas')),
   memoirists.length ? memoirists.join() : 'none in the corpus yet — structural until the merge lands');
 
+// --- lazy reveal: the feed opens on five posts, the rest are in the HTML -----
+// | case                       | expected                                             |
+// | built feed                 | exactly 5 .post without `later`, the other 81 with it |
+// | built feed                 | all 86 posts in the HTML — nothing is fetched         |
+// | feed.css                   | hides .post.later (CSS, not script: no flash, no CSP hash) |
+// | nojs.css                   | un-hides .post.later                                  |
+// | every profile              | zero posts carry `later` (profiles are short)         |
+// | feed.js filterTopic        | calls revealAll() before it touches .hidden           |
+// | #more sentinel             | on the feed, on no profile                            |
+// | feed.js, Back without bfcache | reveals all before the browser restores scroll (no IO staging) |
+const EAGER = 5;  // mirrors src/pages/index.astro; a change there must change this row
+const eager = attr(feed, /<article class="(post)" /g).length;
+const later = attr(feed, /<article class="post (later)" /g).length;
+check(`lazy: exactly ${EAGER} eager posts and ${feedPosts.length - EAGER} later ones on the feed`, eager === EAGER && later === feedPosts.length - EAGER, `${eager} eager, ${later} later`);
+check('lazy: every post is in the feed HTML regardless of later', eager + later === feedPosts.length && attr(feed, /<article class="post[^"]*" id="p-(\d+)"/g).length === feedPosts.length);
+check('lazy: feed.css hides .post.later', /\.post\.later\s*\{\s*display:\s*none/.test(css));
+check('lazy: nojs.css shows .post.later', /\.post\.later\s*\{\s*display:\s*block/.test(html(join(DIST, 'nojs.css'))));
+check('lazy: no profile post carries later', handles.every((h) => !html(page(h)).includes('class="post later"')));
+const filterFn = html(join(DIST, 'feed.js')).match(/function filterTopic[\s\S]*?\n\}/)?.[0] ?? '';
+check('lazy: filterTopic reveals all before it filters', filterFn.includes('revealAll()') && filterFn.includes('.hidden =') && filterFn.indexOf('revealAll()') < filterFn.indexOf('.hidden ='),
+  filterFn ? '' : 'filterTopic not found in feed.js');
+const feedJs = html(join(DIST, 'feed.js'));
+check('lazy: a back_forward arrival skips the staged reveal', feedJs.includes("type === 'back_forward'") && /if \(sentinel && !returning && /.test(feedJs),
+  'without this, Back (no bfcache) restores scroll into a five-post document — see the 2026-11-10 report');
+check('lazy: #more sentinel on the feed and on no profile', feed.includes('<div id="more"') && handles.every((h) => !html(page(h)).includes('id="more"')));
+
 // --- P1 over HTTP, when a server is given ---------------------------------
 const origin = process.argv[2];
 if (origin) {

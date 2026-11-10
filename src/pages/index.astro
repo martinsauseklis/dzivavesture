@@ -10,6 +10,11 @@ import { plural, refusalReason, trends, type Account, type Post as PostRecord } 
 // The JSON is the boundary. Shapes are asserted here once and every record
 // then passes through refusalReason, which is the closed-set check.
 const accounts = data.accounts as Record<string, Account>;
+// How many posts are visible before the reader scrolls. Five fills a phone
+// screen without filling it twice; raising it only costs the lazy effect,
+// never correctness — every post is in the HTML either way.
+const EAGER = 5;
+
 const posts = (data.posts as PostRecord[]).slice().sort((a, b) => a.seq - b.seq);
 
 // A refused record is reported at build and never rendered. (The count used
@@ -56,10 +61,11 @@ const description = 'Diena, kad pasludināja Latviju — kā to rakstīja tajā 
     <div id="panel-feed" role="tabpanel">
       <div id="filterbar" hidden><button type="button" id="chip"></button></div>
       <div id="feed">
-        {shown.map((p) => (
-          <Post post={p} account={accounts[p.handle]} accounts={accounts} gapNote={data.conventions.gap} />
+        {shown.map((p, i) => (
+          <Post post={p} account={accounts[p.handle]} accounts={accounts} gapNote={data.conventions.gap} later={i >= EAGER} />
         ))}
       </div>
+      <div id="more" aria-hidden="true"></div>
     </div>
 
     <div id="panel-trends" role="tabpanel" hidden>

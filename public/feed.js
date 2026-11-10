@@ -59,6 +59,7 @@ for (const b of $$('.thread-toggle'))
 // Topics are joined with "\n" in data-topics because topic names contain
 // commas ("Dievs, svētī Latviju"); a newline cannot occur in a JSON topic string.
 function filterTopic(topic) {
+  if (topic !== null) revealAll();
   for (const a of $$('.post')) a.hidden = topic !== null && !a.dataset.topics.split('\n').includes(topic);
   for (const b of $$('.trend')) b.classList.toggle('on', b.dataset.topic === topic);
   $('#filterbar').hidden = topic === null;
@@ -67,3 +68,50 @@ function filterTopic(topic) {
 for (const b of $$('.trend'))
   b.addEventListener('click', () => { filterTopic(b.dataset.topic); showTab('feed'); logEvent('topic'); });
 $('#chip')?.addEventListener('click', () => filterTopic(null));
+
+// ---- lazy reveal (feed page only) ------------------------------------------
+// Every post is already in the HTML — crawlers, view-source and reader mode see
+// all of them, and nothing is ever fetched. The stylesheet hides everything
+// past the fifth; this reveals them a batch at a time as the reader arrives at
+// the bottom, so the page opens like a feed rather than as one long wall.
+//
+// `.later` is used rather than `hidden` on purpose: `hidden` belongs to the
+// trends filter above, and if both owned it they would silently undo each
+// other — filtering a topic and then scrolling would bring back posts the
+// filter had excluded.
+const BATCH = 5;          // posts revealed per arrival at the bottom
+const DELAY_MS = 200;     // his ask: a beat before the next batch lands
+
+const sentinel = $('#more');
+
+function revealAll() {
+  for (const a of $$('#feed .post.later')) a.classList.remove('later');
+  sentinel?.remove();
+}
+
+// Arriving by the browser's Back button without a bfcache restore reloads the
+// page, and the browser then puts the reader back at their old scroll position
+// — into a document that is only five posts tall at that moment, so they land
+// somewhere they never were. The reader has already seen this feed: reveal it
+// all before that restore, exactly as the page behaved before lazy reveal.
+const returning = performance.getEntriesByType('navigation')[0]?.type === 'back_forward';
+
+if (sentinel && !returning && $$('#feed .post.later').length && 'IntersectionObserver' in window) {
+  let busy = false;
+  const io = new IntersectionObserver((entries) => {
+    if (busy || !entries.some((e) => e.isIntersecting)) return;
+    busy = true;
+    setTimeout(() => {
+      for (const a of $$('#feed .post.later').slice(0, BATCH)) a.classList.remove('later');
+      busy = false;
+      // Last batch: stop observing and drop the sentinel, so a reader who
+      // scrolls back down does not keep triggering an empty reveal.
+      if (!$$('#feed .post.later').length) { io.disconnect(); sentinel.remove(); }
+    }, DELAY_MS);
+  }, { rootMargin: '300px' });   // start the beat before the reader hits the end
+  io.observe(sentinel);
+} else {
+  // No IntersectionObserver (or nothing to reveal): show everything rather than
+  // leave posts permanently unreachable.
+  revealAll();
+}

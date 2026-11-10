@@ -1,3 +1,6 @@
 /* Loaded only inside <noscript>. Every fold and the trends panel are already in
    the HTML; without scripts nothing can open them, so they are simply shown. */
 .fold[hidden], .thread[hidden], #panel-trends[hidden] { display: block; }
+
+/* Without scripts nothing can reveal them, so every post is simply shown. */
+.post.later { display: block; }
