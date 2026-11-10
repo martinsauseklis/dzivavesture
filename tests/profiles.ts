@@ -5,7 +5,7 @@
 //   node tests/profiles.ts http://host:8150 — additionally fetches every page (P1: 200)
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname, resolve, relative } from 'node:path';
-import { DAYS, DAYS_SPAN, DAY_CARD_SEQ, descriptionLines, plural, publishedOn, reachableHandles, readIdentities, renderedPosts, type Account, type Post } from '../src/lib/feed.ts';
+import { DAYS, DAYS_SPAN, DAY_CARD_SEQ, dayStripLabel, dayWeights, descriptionLines, plural, publishedOn, reachableHandles, readIdentities, renderedPosts, type Account, type Post } from '../src/lib/feed.ts';
 
 const DIST = resolve(new URL('../dist', import.meta.url).pathname);
 if (!existsSync(join(DIST, 'index.html'))) { console.error('dist/ missing — run pnpm build first'); process.exit(1); }
@@ -143,11 +143,26 @@ check('P11: @f_brodermanis renders no description at all', paras('@f_brodermanis
 // --- P6: back to the feed on every profile ----------------------------------
 check('P6: every profile has the back link in the header (there is no footer)', handles.every((h) => { const d = html(page(h)); return d.includes('<a class="back" href="../">') && !d.includes('<footer'); }));
 // The eight removals: nothing of the reveal, standfirst, place line, one-day
-// note, footers, type badge, source fold or invariant line renders on any page — the
+// note, type badge, source fold or invariant line renders on any page — the
 // corpus text itself may contain the words, so these look for the markup.
-const gone = ['later-btn', 'class="fold later"', 'class="standfirst"', '<p class="when">', '<p class="one">', 'Konts rāda', 'class="badge', 'class="fold src"', '<pre class="ocr"', 'Kā to ierāmēja laikraksts', 'class="src-btn"', '<footer', 'class="inv"', 'Kā robi avotos'];
+// CHANGED 2026-11-10 — behaviour changed, so the row did. `<footer` left this
+// list: a day page now carries exactly one footer, the site-level credit to
+// the National Library's periodika collection, which is what lets the site
+// republish the scans at all (he asked for it: „for copyright purposes“). It
+// is NOT a licence to put footers back: his „all the footer — gone“ still
+// holds everywhere else, so the next two rows pin the footer to the day pages
+// and keep P6's no-footer rule on every profile.
+const gone = ['later-btn', 'class="fold later"', 'class="standfirst"', '<p class="when">', '<p class="one">', 'Konts rāda', 'class="badge', 'class="fold src"', '<pre class="ocr"', 'Kā to ierāmēja laikraksts', 'class="src-btn"', 'class="inv"', 'Kā robi avotos'];
 const everyPage = [...dayDocs.map(([, doc]) => doc), ...handles.map((h) => html(page(h)))];
-check('face: the eight removals render nowhere (no footer on any page)', everyPage.every((d) => gone.every((g) => !d.includes(g))));
+check('face: the eight removals render nowhere', everyPage.every((d) => gone.every((g) => !d.includes(g))));
+const footers = (d: string) => (d.match(/<footer/g) ?? []).length;
+check('credit: every day page ends with exactly one footer naming periodika.lndb.lv and the public domain',
+  dayDocs.every(([, d]) => footers(d) === 1 && /<footer class="wrap credit">/.test(d)
+    && d.includes('<a href="https://periodika.lndb.lv/" target="_blank" rel="noopener">periodika.lndb.lv</a>')
+    && d.includes('sabiedriskajā īpašumā')),
+  dayDocs.map(([d, doc]) => `${d.key}:${footers(doc)}`).join(' '));
+check('credit: no profile page has a footer — a profile still ends at its last post',
+  handles.every((h) => footers(html(page(h))) === 0));
 // Two archives now: periodika.lndb.lv for the newspaper scans (the viewer
 // host — periodika.lv's deep links open an empty viewer), eraksti.lv for the
 // 1923 volume (http — its certificate is self-signed; see feed.ts ARCHIVES).
@@ -242,21 +257,31 @@ check('lazy: a back_forward arrival skips the staged reveal', feedJs.includes("t
   'without this, Back (no bfcache) restores scroll into a five-post document — see the 2026-11-10 report');
 check('lazy: #more sentinel on every day page and on no profile', dayDocs.every(([, doc]) => doc.includes('<div id="more"')) && handles.every((h) => !html(page(h)).includes('id="more"')));
 
-// --- days: paging between the four pages ------------------------------------
-// | page       | ‹ links to     | › links to     |
-// | 17.11.1918 | nothing (end)  | ../ (the 18th) |
-// | 18.11.1918 | 17-11-1918/    | 19-11-1918/    |
-// | 19.11.1918 | ../            | ../20-11-1918/ |
-// | 20.11.1918 | ../19-11-1918/ | nothing (end)  |
-// | a profile  | its posts grouped under day headings linking to those days; „Kur viņš pieminēts“ links into the right day |
+// --- days: the day strip ----------------------------------------------------
+// CHANGED 2026-11-10 — behaviour changed, so the row did. The ‹ date › cluster
+// is gone: every day page now carries all four days side by side, so these
+// rows assert the whole strip, not a pair of chevrons. What they hold to:
+// | page       | the four hrefs, in order                              |
+// | 17.11.1918 | ./ · ../ · ../19-11-1918/ · ../20-11-1918/            |
+// | 18.11.1918 | 17-11-1918/ · ./ · 19-11-1918/ · 20-11-1918/           |
+// | every page | exactly one aria-current="page", on the day you are on |
+// | every page | each cell's accessible name = dayStripLabel (the bar is aria-hidden) |
+// | a profile  | no strip, and its posts grouped under day headings linking to those days |
+const weights = dayWeights(byDay);
 for (const [d, doc] of dayDocs) {
-  const i = DAYS.indexOf(d);
   const base = d.path ? '../' : '';
-  const want = [DAYS[i - 1], DAYS[i + 1]].map((n) => n ? `${base}${n.path}` : null);
-  const got = [/aria-label="Iepriekšējā diena, [^"]*"/.test(doc) ? attr(doc, /<a href="([^"]*)" aria-label="Iepriekšējā diena/g)[0] : null,
-    /aria-label="Nākamā diena, [^"]*"/.test(doc) ? attr(doc, /<a href="([^"]*)" aria-label="Nākamā diena/g)[0] : null];
-  check(`days: ${d.key} — ‹ ${want[0] ?? 'end'} · › ${want[1] ?? 'end'}`, JSON.stringify(got) === JSON.stringify(want) && doc.includes(`<span class="date">${d.key}</span>`), `got ${JSON.stringify(got)}`);
+  const strip = /<nav class="daystrip"[\s\S]*?<\/nav>/.exec(doc)?.[0] ?? '';
+  const want = DAYS.map((n) => n.key === d.key ? './' : `${base}${n.path}`);
+  const got = attr(strip, /<a class="day" href="([^"]*)"/g);
+  check(`days: ${d.key} — all four days in the strip, the current one self-linked`,
+    JSON.stringify(got) === JSON.stringify(want)
+    && (strip.match(/aria-current="page"/g) ?? []).length === 1
+    && new RegExp(`href="\\./" aria-current="page"`).test(strip), `got ${JSON.stringify(got)}`);
+  check(`days: ${d.key} — every cell says its count in words, and the bar is hidden from the reader who cannot see it`,
+    JSON.stringify(attr(strip, /<a class="day"[^>]*aria-label="([^"]*)"/g)) === JSON.stringify(DAYS.map((n) => dayStripLabel(n, weights.get(n.key)!)))
+    && (strip.match(/<svg class="w" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true">/g) ?? []).length === DAYS.length);
 }
+check('days: a profile has no day strip (its header is the way back)', handles.every((h) => !html(page(h)).includes('class="daystrip"')));
 check('days: a profile heads each run of posts with its day, linking to that day\'s page', handles.filter((h) => feedPosts.some((p) => p.handle === h)).every((h) => {
   const doc = html(page(h));
   const want = DAYS.filter((d) => feedPosts.some((p) => p.handle === h && publishedOn(p) === d.key)).map((d) => `../${d.path}`);

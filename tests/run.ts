@@ -4,7 +4,7 @@ import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
   avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
   isWrittenYear, recollectionLine, recollectionHeader, holdsLine, publishedOn, partitionByDay, reachableHandles, renderedPosts,
-  DAYS, DAYS_SPAN, DAY_CARD_SEQ, cardAlt, type Post, type Account,
+  DAYS, DAYS_SPAN, DAY_CARD_SEQ, cardAlt, dayWeights, dayStripLabel, PROCLAMATION_TOPIC, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -272,6 +272,36 @@ check('DAYS: four days in order, the 18th at the root', DAYS.length === 4 && DAY
   && DAYS.filter((d) => d.path === '').map((d) => d.key).join() === '18.11.1918');
 check('DAYS: every other path is DD-11-1918/ and names its own key', DAYS.filter((d) => d.path).every((d) => d.path === `${d.n}-11-1918/` && d.key === `${d.n}.11.1918`));
 check('DAYS_SPAN', DAYS_SPAN === '17.–20. novembris 1918');
+
+// --- dayWeights / dayStripLabel: what one cell of the day strip draws -------
+// The bar is decoration; these two are the numbers behind it and the words a
+// screen reader gets instead. NEW 2026-11-10 with the day strip.
+// | case                                  | input                       | expected                 |
+// | the fullest day                       | 4 posts, 1 proclaiming      | n 4, proclaimed 1, share 1 |
+// | a thin day against it                 | 1 post, 0 proclaiming       | n 1, proclaimed 0, share .25 |
+// | a day absent from the map             | —                           | n 0, share 0             |
+// | every day empty (hostile: no corpus)  | —                           | share 0, no division by zero |
+// | label, no proclamation                | 17th, n 6                   | „17. novembris — 6 ieraksti“ |
+// | label, one post (Latvian singular)    | 17th, n 1                   | „… — 1 ieraksts“         |
+// | label, with proclamation              | 19th, n 18, 12              | „… 18 ieraksti, 12 par valsts pasludināšanu“ |
+const pro = { topics: [PROCLAMATION_TOPIC] };
+const other = { topics: ['Rīgas dzīve'] };
+const w = dayWeights(new Map([['18.11.1918', [pro, other, other, other]], ['20.11.1918', [other]]]));
+check('dayWeights: the fullest day fills the bar, and its proclaiming posts are counted',
+  JSON.stringify(w.get('18.11.1918')) === JSON.stringify({ n: 4, proclaimed: 1, share: 1 }), JSON.stringify(w.get('18.11.1918')));
+check('dayWeights: a thin day is drawn against the fullest one',
+  JSON.stringify(w.get('20.11.1918')) === JSON.stringify({ n: 1, proclaimed: 0, share: 0.25 }), JSON.stringify(w.get('20.11.1918')));
+check('dayWeights: a day missing from the map is an empty cell, never a crash',
+  JSON.stringify(w.get('17.11.1918')) === JSON.stringify({ n: 0, proclaimed: 0, share: 0 }));
+const empty = dayWeights(new Map());
+check('dayWeights: no corpus at all — every share 0, nothing divided by zero',
+  DAYS.every((d) => empty.get(d.key)!.share === 0) && empty.size === DAYS.length);
+check('dayStripLabel: a day with nothing about the proclamation says only its count',
+  dayStripLabel(DAYS[0], { n: 6, proclaimed: 0, share: 0.1 }) === '17. novembris — 6 ieraksti');
+check('dayStripLabel: one post takes the Latvian singular',
+  dayStripLabel(DAYS[0], { n: 1, proclaimed: 0, share: 0.1 }) === '17. novembris — 1 ieraksts');
+check('dayStripLabel: a day with the proclamation says how much of it',
+  dayStripLabel(DAYS[2], { n: 18, proclaimed: 12, share: 0.33 }) === '19. novembris — 18 ieraksti, 12 par valsts pasludināšanu');
 check('cardAlt names the day, the account and the words', cardAlt(DAYS[1], { handle: '@lidums', at: '16.30', lv: 'Teksts.' }) === 'dzīvā vēsture, 18. novembris 1918 — ieraksts (@lidums, 16.30): „Teksts.“');
 
 // --- reachableHandles: which accounts get a page -----------------------------
@@ -429,6 +459,17 @@ const counts = [...rendered.byDay].map(([k, v]) => `${k}:${v.length}`).join(' ')
 check('corpus: every post sits on one of the four days or is parked, with the decided counts',
   counts === '17.11.1918:6 18.11.1918:55 19.11.1918:18 20.11.1918:17' && rendered.parked.length === 11 && rendered.shown.length + rendered.parked.length + rendered.refused.length === corpus.length,
   `${counts} parked:${rendered.parked.length} refused:${rendered.refused.length}`);
+// The day strip's bars against the real corpus. The sampler saw both sides:
+// days whose posts never touch the proclamation (the 17th) and days that are
+// mostly it (the 19th, 20th) — and the 18th in between, where the act itself
+// is in the Tautas Padome's own record while the papers have not caught up.
+// If the corpus renames the topic, every count goes to 0 and this fails.
+const strip = dayWeights(rendered.byDay);
+const stripCounts = DAYS.map((d) => `${d.n}:${strip.get(d.key)!.n}/${strip.get(d.key)!.proclaimed}`).join(' ');
+check('corpus: the day strip draws 6/0 · 55/3 · 18/12 · 17/13, so both an empty bar and a full one are seen',
+  stripCounts === '17:6/0 18:55/3 19:18/12 20:17/13'
+  && DAYS.some((d) => strip.get(d.key)!.proclaimed === 0) && DAYS.some((d) => strip.get(d.key)!.proclaimed > strip.get(d.key)!.n / 2)
+  && strip.get('18.11.1918')!.share === 1, stripCounts);
 check('corpus: the parked posts are exactly the recollections', rendered.parked.every((p) => p.type === 'atminas') && rendered.parked.length === corpus.filter((p) => p.type === 'atminas').length);
 check('corpus: exactly one post carries its own date — „Latvijas pilsoņiem“, printed on the 19th, dated the 18th',
   corpus.filter((p) => p.dated).map((p) => `${p.seq}:${p.dated}`).join() === '744:18.11.1918' && publishedOn(corpus.find((p) => p.seq === 744)!) === '18.11.1918');

@@ -67,7 +67,8 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
   <Head title={title} description={description} path={`${handle}/`} base="../" image={`og/${handle}.png`} imageAlt={imageAlt} />
 </head>
 <body>
-  <header>
+  {/* No day strip here, so this header is the row that stays on screen. */}
+  <header class="pinned">
     <div class="wrap top">
       <a class="back" href="../">← Plūsma</a>
       <span class="date">{DAYS_SPAN}</span>

@@ -188,6 +188,39 @@ export const dayOn = (d: Day) => `1918. gada ${d.n}. novembrī`;
 // „17.–20. novembris 1918“ — the span a profile covers.
 export const DAYS_SPAN = `${DAYS[0].n}.–${DAYS[DAYS.length - 1].n}. novembris 1918`;
 
+// The topic a post carries when it proclaims the state or reports it. It is a
+// value the corpus already uses, not a judgement made here, and the counts are
+// the day strip's whole story: 0 of 6 on the 17th, 3 of 55 on the 18th (the
+// act itself — the Tautas Padome's own session record and the proclamation
+// document dated that day), then 12 of 18 and 13 of 17 once the papers catch
+// up. Breaks when: the corpus renames this topic; the test row that counts it
+// per day then fails loudly rather than drawing an empty bar.
+export const PROCLAMATION_TOPIC = 'Valsts pasludināšana';
+
+// What one cell of the day strip draws: how many posts the day holds, how many
+// of them report the proclamation, and the day's weight against the fullest day
+// (1 for the 18th). `share` is the bar's width, so the strip says without words
+// that the 18th is the anchor and that the news arrives on the 19th — the
+// reader sees the red appear exactly where it appeared in the papers.
+export type DayWeight = { n: number; proclaimed: number; share: number };
+export function dayWeights(byDay: Map<string, Pick<Post, 'topics'>[]>): Map<string, DayWeight> {
+  const counts = DAYS.map((d) => byDay.get(d.key)?.length ?? 0);
+  // The 1 is a floor for an empty corpus only: a day with posts already gives
+  // a maximum of at least 1, so it never divides a real count.
+  const fullest = Math.max(...counts, 1);
+  return new Map(DAYS.map((d, i) => [d.key, {
+    n: counts[i],
+    proclaimed: (byDay.get(d.key) ?? []).filter((p) => p.topics.includes(PROCLAMATION_TOPIC)).length,
+    share: counts[i] / fullest,
+  }]));
+}
+
+// The bar is decoration a screen reader never sees, so every day says the same
+// thing in words — as its accessible name and as the title a mouse reader gets
+// on hover, which is how every other mark on this site explains itself.
+export const dayStripLabel = (d: Day, w: DayWeight) =>
+  `${d.n}. novembris — ${w.n} ${plural(w.n)}${w.proclaimed ? `, ${w.proclaimed} par valsts pasludināšanu` : ''}`;
+
 // The day a post belongs to: the day its source was PUBLISHED, read off the
 // `via` citation („Baltijas Ziņas Nr.168, 18.11.1918, …“) — never the day the
 // events it describes happened. That is what keeps every post traceable: the

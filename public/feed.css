@@ -34,19 +34,40 @@ a { color:var(--accent); }
 button { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; text-align:left; }
 :focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:3px; }
 
-/* ---- top bar: the name and the day, nothing else, always in view -------- */
-header { position:sticky; top:0; z-index:5; background:var(--bg);
-         border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top,0px); }
+/* ---- top bar: the name, and on a profile the way back ------------------- */
+header { background:var(--bg); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top,0px); }
+/* Exactly one row stays on screen while reading, and it is the row that does
+   something: on a day page the day strip below (the brand scrolls away), on a
+   profile — which has no strip — this header, holding the way back. */
+header.pinned { position:sticky; top:0; z-index:5; }
 .top { display:flex; align-items:center; justify-content:space-between; height:48px; }
-.brand { font-weight:600; font-size:17px; letter-spacing:-.01em; }
+.brand { display:flex; align-items:center; gap:6px; font-weight:600; font-size:17px; letter-spacing:-.01em; }
+.brand .mark { flex:none; fill:var(--accent); }
 .top .date { font-size:14px; color:var(--soft); }
-/* The day between its neighbours — paging a feed, not picking a date. The
-   chevrons are 34 px tall for the thumb; at an end of the span the chevron
-   stays, faded, so the row keeps its width and the date does not jump. */
-.days { display:flex; align-items:center; }
-.days a, .days .end { font-size:20px; line-height:1; padding:0 10px; min-height:34px; display:inline-flex; align-items:center; }
-.days a { color:var(--ink); text-decoration:none; }
-.days .end { color:var(--line); }
+
+/* ---- the day strip: four days side by side, the span the site covers -----
+   A day is a cell, not a chevron: the reader sees where they are among the
+   four and reaches any of them in one tap. At 400 px a cell is 92 px wide
+   ((400 − the wrap's 32 px of gutter) / 4) and 45 px tall — four fit with no
+   horizontal scroll, and each is past the 34 px the thumb needs. Breaks when:
+   a fifth day joins DAYS — then 73 px a cell, and the strip needs rethinking.
+   The bar under the number is the day's weight (see index.astro). */
+.daystrip { position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line); }
+.daystrip .row { display:flex; }
+.day { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;
+       padding:9px 0 8px; color:var(--soft); text-decoration:none; border-radius:8px; }
+.day .n { font-size:16px; line-height:1.1; font-weight:600; letter-spacing:-.01em; }
+/* The day you are on: ink on a panel. The carmine in the bars means "about
+   the proclamation", so it must not be the thing that says "you are here" —
+   the panel is, and it cannot be confused with the bars. */
+.day[aria-current="page"] { color:var(--ink); background:var(--panel); }
+.day:hover { color:var(--ink); }
+.day .w { width:100%; height:4px; display:block; }
+.day .w .pro { fill:var(--accent); }
+.day .w .rest { fill:var(--line); }
+/* The current day's bar darkens with it, so a nearly empty bar (the 17th:
+   6 posts) does not leave the cell looking unselected. */
+.day[aria-current="page"] .w .rest { fill:var(--soft); }
 
 /* The day is the headline of the whole page — the one fact framing every post.
    (padding-top/bottom only: a shorthand here would wipe .wrap's side gutter.) */
@@ -174,8 +195,10 @@ header { position:sticky; top:0; z-index:5; background:var(--bg);
 .trend b { font-size:16px; font-weight:600; flex:1; }
 .trend .n { font-size:13px; color:var(--soft); }
 
-/* Nothing below the last post; the feed ends with room for the thumb. */
+/* The feed ends with room for the thumb; on a day page the one credit follows. */
 main { padding-bottom:48px; }
+.credit { padding:16px 16px 40px; border-top:1px solid var(--line); }
+.credit p { margin:0; font-size:13px; line-height:1.5; color:var(--soft); }
 
 /* Lazy reveal. The hiding is CSS, not script, because the page's CSP is
    'self' with no hashes — there is no inline script that could hide these
