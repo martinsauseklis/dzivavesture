@@ -207,10 +207,16 @@ export function dayCounts(byDay: Map<string, Pick<Post, 'topics'>[]>): Map<strin
   }));
 }
 
-// A day cell in the strip shows „18.“ over „55“ — two bare numbers, which read
-// as a date and a count only in context. This is the sentence a screen reader
-// gets in their place.
-export const dayStripLabel = (d: Day, c: DayCount) => `${d.n}. novembris — ${c.n} ${plural(c.n)}`;
+// A cell of the day strip: the date over the count, both said in full. His
+// note, 2026-11-11: „6“ alone „looks dumb“, and a bare „17.“ stops meaning
+// anything the moment a second month exists. Because both now read as words,
+// the cell needs no aria-label — the visible text IS the accessible name,
+// which is also what voice control needs („tap 17. nov.“).
+// Breaks when: a day outside November joins DAYS. The month lives here and
+// nowhere else, so it moves onto the Day record in one edit — see the note on
+// the Day type, where the year is parked for the same reason.
+export const dayStripDate = (d: Day) => `${d.n}. nov.`;
+export const dayStripCount = (c: DayCount) => `${c.n} ${plural(c.n)}`;
 
 // The one line under a day's headline, when that day's papers carry the
 // proclamation at all — said in words and whole numbers, because the share is
@@ -310,23 +316,54 @@ export function excerpt(text: string, max = SHARE_EXCERPT): string {
   return kept.replace(/[\s,;:—–-]+$/u, '') + '…';
 }
 
-// The share link of one post: X's web intent with the words and the post's
-// address. No script, no API, no key — a string in an href.
-//   url  — the post's DAY page plus its fragment, so X picks up that day's
-//          link-preview card (crawlers ignore the fragment) and the reader
-//          lands on the post itself.
-//   text — „the first words…“ — Name, 1918. gada 19. novembris. The account's
-//          NAME, never its @handle: in X's own text a handle tags whoever owns
-//          that name on X today, and @lidums is not ours to tag.
-// A post on no day (a parked recollection) has no address and throws: it never
-// renders, so this is the build refusing, not a reader seeing it.
-export function shareHref(origin: string, post: Pick<Post, 'seq' | 'lv' | 'type' | 'via' | 'dated'>, account: Pick<Account, 'name'>): string {
-  const key = publishedOn(post);
-  const day = DAYS.find((d) => d.key === key);
+// Where a post can be shared from the desktop row, as a closed set. The OS
+// share sheet covers everything else on a phone (see feed.js); these three are
+// the fallback where no sheet exists, and they are the three he named.
+export type ShareTarget = 'x' | 'facebook' | 'threads';
+export const SHARE_TARGETS: ShareTarget[] = ['x', 'facebook', 'threads'];
+// The platform's own name, shown beside its mark and read out with it.
+export const SHARE_NAME: Record<ShareTarget, string> = { x: 'X', facebook: 'Facebook', threads: 'Threads' };
+
+// The post's own address: its DAY page plus its fragment, so a crawler fetching
+// the link gets that day's preview card (fragments are not sent) and the reader
+// lands on the post itself. A post on no day (a parked recollection) has no
+// address and throws: it never renders, so this is the build refusing, not a
+// reader seeing it.
+export function shareUrl(origin: string, post: Pick<Post, 'seq' | 'type' | 'via' | 'dated'>): string {
+  const day = DAYS.find((d) => d.key === publishedOn(post));
   if (!day) throw new Error(`seq ${post.seq}: nav dienas lapas — nav adreses, ko dalīt`);
-  const text = `„${excerpt(post.lv)}“ — ${account.name}, 1918. gada ${day.n}. novembris`;
-  const url = `${origin}/${day.path}#p-${post.seq}`;
-  return `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+  return `${origin}/${day.path}#p-${post.seq}`;
+}
+
+// What the share says: „the first words…“ — Name, 1918. gada 19. novembris.
+// The account's NAME, never its @handle: in someone else's post a handle tags
+// whoever owns that name there today, and @lidums is not ours to tag.
+export function shareText(post: Pick<Post, 'seq' | 'lv' | 'type' | 'via' | 'dated'>, account: Pick<Account, 'name'>): string {
+  const day = DAYS.find((d) => d.key === publishedOn(post));
+  if (!day) throw new Error(`seq ${post.seq}: nav dienas lapas — nav adreses, ko dalīt`);
+  return `„${excerpt(post.lv)}“ — ${account.name}, 1918. gada ${day.n}. novembris`;
+}
+
+// One target's link. No script, no API, no key — a string in an href. Every
+// part that came from the corpus goes through encodeURIComponent, so a hostile
+// string can only ever be the VALUE of the parameter it sits in, never a new
+// parameter and never a new URL. What each platform actually accepts, checked
+// 2026-11-11 against the live endpoints, not against documentation:
+//   x        — takes text and url separately.
+//   facebook — takes ONLY the url and renders our og: tags; the words are
+//              dropped, which is why the day cards exist.
+//   threads  — takes text and no url, so the address goes last inside the
+//              text. threads.NET 301s to threads.COM, so .com is used directly.
+// An unknown target is a refusal, never a fallthrough to some default.
+export function shareHref(origin: string, post: Pick<Post, 'seq' | 'lv' | 'type' | 'via' | 'dated'>, account: Pick<Account, 'name'>, target: ShareTarget = 'x'): string {
+  const url = shareUrl(origin, post);
+  const text = shareText(post, account);
+  switch (target) {
+    case 'x': return `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    case 'facebook': return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    case 'threads': return `https://www.threads.com/intent/post?text=${encodeURIComponent(`${text} ${url}`)}`;
+    default: throw new Error(`nezināma dalīšanās vietne: ${target}`);
+  }
 }
 
 // `at` is the one timestamp format the whole feed uses: HH.MM, 24-hour.

@@ -45,18 +45,22 @@ header.pinned { position:sticky; top:0; z-index:5; }
 .brand .mark { flex:none; fill:var(--accent); }
 .top .date { font-size:14px; color:var(--soft); }
 
-/* ---- the day strip: four days side by side, the span the site covers -----
-   A day is a cell, not a chevron: the reader sees where they are among the
-   four and reaches any of them in one tap. At 400 px a cell is 92 px wide
-   ((400 − the wrap's 32 px of gutter) / 4) and 46 px tall — four fit with no
-   horizontal scroll, and each is past the 34 px the thumb needs. Breaks when:
-   a fifth day joins DAYS — then 73 px a cell, and the strip needs rethinking. */
+/* ---- the day strip: the days as a rail ----------------------------------
+   A day is a cell, not a chevron, and the cells sit in a rail: `flex:1 0 auto`
+   over a `min-width`, so while they fit they share the row, and once they do
+   not they scroll INSIDE the strip. The page never scrolls sideways either way.
+   The 84 px floor is the widest a cell has to be — „55 ieraksti“ at 12 px is
+   ~62 px plus its padding; four of those are 336 px, inside the 368 px a
+   400 px phone leaves. Breaks when: a fifth day joins and the rail starts
+   scrolling — which is the intent, but see the note in index.astro about
+   scrolling the current day into view once that happens. */
 .daystrip { position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line); }
-.daystrip .row { display:flex; gap:4px; padding:5px 12px; }
-.day { flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;
-       padding:5px 0 6px; color:var(--soft); text-decoration:none; border-radius:9px; }
+.daystrip .row { display:flex; gap:4px; padding:5px 12px; overflow-x:auto; scrollbar-width:none; }
+.daystrip .row::-webkit-scrollbar { display:none; }
+.day { flex:1 0 auto; min-width:84px; display:flex; flex-direction:column; align-items:center; gap:1px;
+       padding:5px 6px 6px; color:var(--soft); text-decoration:none; border-radius:9px; white-space:nowrap; }
 .day .n { font-size:16px; line-height:1.2; font-weight:600; letter-spacing:-.01em; }
-/* The count, not a bar: 55 against 6 is read at a glance and needs no key. */
+/* The count, not a bar: „55 ieraksti“ against „6 ieraksti“ is read at a glance. */
 .day .c { font-size:12px; line-height:1.2; }
 /* The day you are on is the one cell with a ground under it. */
 .day[aria-current="page"] { color:var(--ink); background:var(--panel); }
@@ -153,6 +157,22 @@ header.pinned { position:sticky; top:0; z-index:5; }
    thread has only avots. */
 .bar .share, .bar .src-link { margin-left:auto; }
 .bar .share + .src-link { margin-left:0; }
+
+/* ---- where to share one post -------------------------------------------
+   Always on the card, never behind a toggle (his call, 2026-11-11). It has to
+   sit in the action row without out-weighing the words above it, so: the label
+   is the same quiet 14 px as the rest of the row, and the marks are 15 px in
+   the row's own --soft, darkening to --ink only under the pointer or the focus
+   ring. They carry no brand colour at all — one tint of the page's ink, the
+   monochrome treatment each platform's guidelines allow, so the row reads as
+   the newspaper's furniture rather than as a widget bar. The tap target is
+   still the full 34 px the thumb needs; only the drawn mark is small. */
+.icons { display:none; }
+.share { display:inline-flex; align-items:center; gap:2px; }
+.share-label { font-size:14px; color:var(--soft); margin-right:4px; }
+.bar .target { min-width:30px; min-height:34px; justify-content:center; color:var(--soft); }
+.bar .target:hover { color:var(--ink); }
+.si { width:15px; height:15px; fill:currentColor; display:block; }
 
 /* ---- the one fold left: replies under the article ------------------------ */
 .fold { margin:4px 0 8px; font-size:14px; }

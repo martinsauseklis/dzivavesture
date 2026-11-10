@@ -5,7 +5,7 @@
 //   node tests/profiles.ts http://host:8150 — additionally fetches every page (P1: 200)
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname, resolve, relative } from 'node:path';
-import { DAYS, DAYS_SPAN, DAY_CARD_SEQ, dayCounts, dayStripLabel, descriptionLines, proclamationLine, plural, publishedOn, reachableHandles, readIdentities, renderedPosts, type Account, type Post } from '../src/lib/feed.ts';
+import { DAYS, DAYS_SPAN, DAY_CARD_SEQ, dayCounts, dayStripCount, dayStripDate, descriptionLines, proclamationLine, SHARE_NAME, SHARE_TARGETS, shareUrl, plural, publishedOn, reachableHandles, readIdentities, renderedPosts, type Account, type Post } from '../src/lib/feed.ts';
 import { ORIGIN } from '../src/lib/site.ts';
 
 const DIST = resolve(new URL('../dist', import.meta.url).pathname);
@@ -178,20 +178,64 @@ const allPages: string[] = [];
 check('host: ORIGIN is the mai.lv subdomain', ORIGIN === 'https://dzivavesture.mai.lv');
 check('host: every page is canonical on ORIGIN and names the old host nowhere', allPages.length > 0 && allPages.every((p) => { const d = html(p); return (attr(d, /<link rel="canonical" href="([^"]*)"/g)[0] ?? '').startsWith(ORIGIN + '/') && !/dzivavesture\.lv/.test(d); }));
 const dayPath = new Map(DAYS.map((d) => [d.key, d.path]));
+// CHANGED 2026-11-11 — behaviour changed, so the rows did. One „dalīties“ link
+// became a visible row of three: X, Facebook, Threads, in that order, on every
+// post. His instruction was explicit — no toggle, no popover, no share sheet —
+// so these rows also hold the ABSENCE of the folded version that was built
+// first: no button, no fold, nothing that needs a tap before the links exist.
 let articles = 0, shares = 0;
 const misaddressed: string[] = [];
 for (const p of allPages) {
   const d = html(p);
   for (const m of d.matchAll(/<article class="post[^"]*" id="p-(\d+)"[\s\S]*?<\/article>/g)) {
     articles++;
-    const links = attr(m[0], /<a class="share" href="([^"]*)" target="_blank" rel="noopener">dalīties<\/a>/g);
+    const links = attr(m[0], /<a class="target" href="([^"]*)"[^>]*rel="noopener"[^>]*>/g).map((h) => h.replace(/&amp;/g, '&'));
     shares += links.length;
     const post = (data.posts as Post[]).find((x) => x.seq === Number(m[1]))!;
     const want = `${ORIGIN}/${dayPath.get(publishedOn(post)!)}#p-${m[1]}`;
-    if (links.length !== 1 || new URL(links[0].replace(/&amp;/g, '&')).searchParams.get('url') !== want) misaddressed.push(`${relative(DIST, p)}#p-${m[1]}`);
+    // Every one of the three must address THIS post: x and facebook in their
+    // own parameter, threads at the end of its text.
+    const carries = links.map((h) => { const u = new URL(h); return (u.searchParams.get('url') ?? u.searchParams.get('u') ?? u.searchParams.get('text') ?? '').includes(want); });
+    if (links.length !== SHARE_TARGETS.length || carries.some((c) => !c) || want !== shareUrl(ORIGIN, post)) misaddressed.push(`${relative(DIST, p)}#p-${m[1]}`);
   }
 }
-check(`host: ${articles} rendered posts carry ${shares} share links, each to its own day page`, articles > 0 && shares === articles && misaddressed.length === 0, misaddressed.slice(0, 5).join(' '));
+check(`host: ${articles} rendered posts carry ${shares} share links — ${SHARE_TARGETS.length} each, every one addressing its own post`,
+  articles > 0 && shares === articles * SHARE_TARGETS.length && misaddressed.length === 0, misaddressed.slice(0, 5).join(' '));
+
+// --- the share row: always visible, in his order, and nothing to open first --
+// | rule                                                                      |
+// | the row is X · Facebook · Threads, in that order, on every post          |
+// | each link carries a Latvian accessible name, target=_blank, rel=noopener  |
+// | the label „Dalīties“ is beside them, not inside a button                   |
+// | NO share button, NO fold, no aria-expanded — nothing is hidden            |
+// | every <use href="#si-…"> resolves to a <symbol> defined on that same page  |
+const postPages = allPages.filter((p) => html(p).includes('<article class="post'));
+check('share: the row is X · Facebook · Threads, in that order, on every post', postPages.every((p) => {
+  const d = html(p);
+  const order = attr(d, /<svg class="si"[^>]*><use href="#si-([a-z]+)"><\/use><\/svg>/g);
+  const posts = (d.match(/<article class="post/g) ?? []).length;
+  return order.length === posts * SHARE_TARGETS.length
+    && order.every((t, i) => t === SHARE_TARGETS[i % SHARE_TARGETS.length]);
+}), SHARE_TARGETS.join(' · '));
+check('share: every link has its Latvian name, opens in a new tab and carries rel=noopener', postPages.every((p) => {
+  const labels = attr(html(p), /<a class="target"[^>]*aria-label="([^"]*)"/g);
+  const opens = (html(p).match(/<a class="target"[^>]*target="_blank" rel="noopener"/g) ?? []).length;
+  return labels.length === opens && labels.every((l, i) => l === `Dalīties vietnē ${SHARE_NAME[SHARE_TARGETS[i % SHARE_TARGETS.length]]}`);
+}));
+check('share: the label is a plain word beside the marks, never a control', postPages.every((p) => {
+  const d = html(p);
+  return (d.match(/<span class="share-label">Dalīties<\/span>/g) ?? []).length === (d.match(/<article class="post/g) ?? []).length;
+}));
+check('share: nothing is hidden — no share button, no fold, nothing to open first',
+  allPages.every((p) => { const d = html(p); return !d.includes('class="share" aria-controls') && !d.includes('fold share-to') && !/<button[^>]*class="share"/.test(d); }));
+// A <use> pointing at a symbol that is not on the page renders NOTHING, and
+// silently: the link would be an empty 15 px box. So every reference is
+// matched against the ids actually defined in that page's own symbol block.
+check('share: every <use> resolves to a symbol defined on the same page', postPages.every((p) => {
+  const d = html(p);
+  const defined = new Set(attr(d, /<symbol id="(si-[a-z]+)"/g));
+  return defined.size === SHARE_TARGETS.length && attr(d, /<use href="#(si-[a-z]+)">/g).every((id) => defined.has(id));
+}));
 
 // --- P7: no dead internal link anywhere in the built site --------------------
 const pages: string[] = [];
@@ -310,10 +354,14 @@ for (const [d, doc] of dayDocs) {
     JSON.stringify(got) === JSON.stringify(want)
     && (strip.match(/aria-current="page"/g) ?? []).length === 1
     && strip.includes('href="./" aria-current="page"'), `got ${JSON.stringify(got)}`);
-  check(`days: ${d.key} — every cell shows its day's real post count, and says it in words for a reader who cannot see it`,
-    JSON.stringify(attr(strip, /<span class="c">(\d+)<\/span>/g)) === JSON.stringify(DAYS.map((n) => String(counts.get(n.key)!.n)))
-    && JSON.stringify(attr(strip, /<a class="day"[^>]*aria-label="([^"]*)"/g)) === JSON.stringify(DAYS.map((n) => dayStripLabel(n, counts.get(n.key)!))),
-    attr(strip, /<span class="c">(\d+)<\/span>/g).join());
+  // CHANGED 2026-11-11: the cell's two numbers became two phrases, so there is
+  // no aria-label to compare any more — the visible text IS the accessible name.
+  check(`days: ${d.key} — every cell shows its date with the month and its count with the noun`,
+    JSON.stringify(attr(strip, /<span class="n">([^<]*)<\/span>/g)) === JSON.stringify(DAYS.map(dayStripDate))
+    && JSON.stringify(attr(strip, /<span class="c">([^<]*)<\/span>/g)) === JSON.stringify(DAYS.map((n) => dayStripCount(counts.get(n.key)!))),
+    attr(strip, /<span class="c">([^<]*)<\/span>/g).join(' · '));
+  check(`days: ${d.key} — no aria-label left on a cell to disagree with what it shows`,
+    !/<a class="day"[^>]*aria-label=/.test(strip));
   check(`days: ${d.key} — the strip draws nothing that would need a key (no bar, no svg)`,
     !strip.includes('<svg') && !strip.includes('<rect'));
   const line = proclamationLine(counts.get(d.key)!);

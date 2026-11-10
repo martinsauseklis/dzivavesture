@@ -6,7 +6,7 @@
 // not rendered as a panel any more — by his choice; the data keeps them. What
 // remains of them on the face is the inline markers, each explaining itself
 // in a title attribute.
-import { recollectionLine, type Post, type Segment } from '../lib/feed.ts';
+import { recollectionLine, SHARE_NAME, SHARE_TARGETS, type Post, type Segment } from '../lib/feed.ts';
 
 interface Props {
   post: Post;
@@ -14,7 +14,9 @@ interface Props {
   html: string;
   k: number;
   n: number;
-  share?: string;  // the X intent link — first segment only; the fragment addresses the post
+  // Where this post can be shared, one href per target — first segment only;
+  // every href addresses the post by its own fragment.
+  share?: Record<string, string>;
 }
 const { post: p, html, k, n, share } = Astro.props;
 const id = (kind: string) => (k ? `${kind}-${p.seq}-${k + 1}` : `${kind}-${p.seq}`);
@@ -40,7 +42,19 @@ const written = recollectionLine(p);
     {k === 0 && p.comments && (
       <button type="button" aria-controls={id('c')} aria-expanded="false">atbildes · {replies}</button>
     )}
-    {share && <a class="share" href={share} target="_blank" rel="noopener">dalīties</a>}
+    {/* His call, 2026-11-11: no toggle, no popover — the three destinations sit
+        on the card and stay there. Named links, not an OS sheet: a reader
+        chooses where the words go. The marks are quiet enough to skim past. */}
+    {share && (
+      <span class="share">
+        <span class="share-label">Dalīties</span>
+        {SHARE_TARGETS.map((t) => (
+          <a class="target" href={share[t]} target="_blank" rel="noopener" aria-label={`Dalīties vietnē ${SHARE_NAME[t]}`}>
+            <svg class="si" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href={`#si-${t}`} /></svg>
+          </a>
+        ))}
+      </span>
+    )}
     <a class="src-link" href={p.url} target="_blank" rel="noopener">avots →</a>
   </div>
 

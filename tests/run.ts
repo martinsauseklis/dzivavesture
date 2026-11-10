@@ -4,7 +4,7 @@ import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
   avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
   isWrittenYear, recollectionLine, recollectionHeader, holdsLine, publishedOn, partitionByDay, reachableHandles, renderedPosts,
-  DAYS, DAYS_SPAN, DAY_CARD_SEQ, cardAlt, dayCounts, dayStripLabel, proclamationLine, PROCLAMATION_TOPIC, excerpt, shareHref, SHARE_TEXT_MAX, type Post, type Account,
+  DAYS, DAYS_SPAN, DAY_CARD_SEQ, cardAlt, dayCounts, dayStripCount, dayStripDate, proclamationLine, PROCLAMATION_TOPIC, excerpt, shareHref, shareText, shareUrl, SHARE_TARGETS, SHARE_TEXT_MAX, type Post, type Account,
 } from '../src/lib/feed.ts';
 
 let failed = 0;
@@ -301,10 +301,17 @@ check('dayCounts: a day missing from the map counts zero, never crashes',
 const none = dayCounts(new Map());
 check('dayCounts: no corpus at all — all four days keyed, every count 0',
   none.size === DAYS.length && DAYS.every((d) => none.get(d.key)!.n === 0 && none.get(d.key)!.proclaimed === 0));
-check('dayStripLabel: the sentence behind the two bare numbers in a cell',
-  dayStripLabel(DAYS[0], { n: 6, proclaimed: 0 }) === '17. novembris — 6 ieraksti');
-check('dayStripLabel: one post takes the Latvian singular',
-  dayStripLabel(DAYS[0], { n: 1, proclaimed: 0 }) === '17. novembris — 1 ieraksts');
+// CHANGED 2026-11-11 — behaviour changed, so the rows did. A cell used to show
+// „17.“ over „6“ with the sentence hidden in an aria-label; his note was that
+// the bare count „looks dumb“ and that the date needs its month. Both are now
+// visible text, so there is no aria-label left to assert — the visible string
+// IS the accessible name, which is what voice control needs too.
+check('dayStripDate: the date carries its month, so it still means something in a second month',
+  dayStripDate(DAYS[0]) === '17. nov.' && dayStripDate(DAYS[3]) === '20. nov.');
+check('dayStripCount: the count carries its noun', dayStripCount({ n: 6, proclaimed: 0 }) === '6 ieraksti');
+check('dayStripCount: one post takes the Latvian singular', dayStripCount({ n: 1, proclaimed: 0 }) === '1 ieraksts');
+check('dayStripCount: eleven does NOT — the Latvian exception', dayStripCount({ n: 11, proclaimed: 0 }) === '11 ieraksti');
+check('dayStripCount: twenty-one takes the singular again', dayStripCount({ n: 21, proclaimed: 0 }) === '21 ieraksts');
 check('proclamationLine: said in words and whole numbers, not encoded',
   proclamationLine({ n: 18, proclaimed: 12 }) === '12 ieraksti par valsts pasludināšanu');
 check('proclamationLine: one post takes the Latvian singular',
@@ -408,27 +415,115 @@ check('excerpt: a macron is one code point', excerpt('ā'.repeat(9) + ' b', 9) =
 check('excerpt: trailing punctuation dropped before the ellipsis', excerpt('aaaa, bbbb', 6) === 'aaaa…', excerpt('aaaa, bbbb', 6));
 check('excerpt: one run longer than the cap is cut hard, never empty', excerpt('aaaaaaaaaa', 4) === 'aaaa…');
 
-// --- share to X: the href ---------------------------------------------------------
-// | case                      | post                                  | expected                                                   |
-// | front day                 | seq 20, via 18.11.1918                | url = ORIGIN/#p-20                                         |
-// | another day               | seq 12, via 19.11.1918                | url = ORIGIN/19-11-1918/#p-12                              |
-// | dated document            | dated 18.11.1918, via 19.11.1918      | url = ORIGIN/#p-N — the day the rule puts it on            |
-// | text names the account    | name 'Līdums', handle '@lidums'       | text holds „…“ — Līdums, 1918. gada 19. novembris; no '@'  |
-// | hostile words             | lv '&url=https://evil.example #x @y'  | all inside text=, encoded; url= still ours                 |
-// | parked recollection       | atminas                               | throws                                                     |
+// --- share: the address, the words, and one href per target -----------------
+// CHANGED 2026-11-11 — behaviour changed, so the rows did. One X link became
+// three targets, so what used to be asserted about one href is now asserted
+// about each of them, and the hostile fixtures below run against ALL of them
+// rather than against X alone.
+// | case                   | post                             | expected                                              |
+// | front day              | seq 20, via 18.11.1918           | url = ORIGIN/#p-20                                    |
+// | another day            | seq 12, via 19.11.1918           | url = ORIGIN/19-11-1918/#p-12                         |
+// | dated document         | dated 18.11.1918, via 19.11.1918 | url = ORIGIN/#p-N — the day the rule puts it on       |
+// | text names the account | name 'Līdums', handle '@lidums'  | „…“ — Līdums, 1918. gada 19. novembris; no '@'        |
+// | parked recollection    | atminas                          | both shareUrl and shareText throw                     |
+// | unknown target         | 'myspace'                        | throws — a refusal, never a fallthrough to a default  |
 const O = 'https://dzivavesture.mai.lv';
 const params = (href: string) => { const u = new URL(href); return { host: u.origin + u.pathname, text: u.searchParams.get('text') ?? '', url: u.searchParams.get('url') ?? '' }; };
-check('shareHref: front day → ORIGIN/#p-seq', params(shareHref(O, post({ seq: 20, via: 'Līdums Nr.1, 18.11.1918' }), { name: 'Līdums' })).url === `${O}/#p-20`);
-check('shareHref: another day → ORIGIN/DD-11-1918/#p-seq', params(shareHref(O, post({ seq: 12, via: 'Līdums Nr.1, 19.11.1918' }), { name: 'Līdums' })).url === `${O}/19-11-1918/#p-12`);
-check('shareHref: a dated document shares on its own day', params(shareHref(O, post({ seq: 7, dated: '18.11.1918', via: 'Līdums Nr.1, 19.11.1918' }), { name: 'Līdums' })).url === `${O}/#p-7`);
-const shared = params(shareHref(O, post({ via: 'Līdums Nr.1, 19.11.1918' }), { name: 'Līdums' }));
-check('shareHref: text is „words“ — Name, date, and never a handle', shared.text === '„Teksts.“ — Līdums, 1918. gada 19. novembris' && !shared.text.includes('@'), shared.text);
-check('shareHref: goes to x.com/intent/post', shared.host === 'https://x.com/intent/post');
-const hostileShare = shareHref(O, post({ lv: '&url=https://evil.example #x @y', via: 'Līdums Nr.1, 19.11.1918' }), { name: 'L' });
-// The words round-trip intact, the raw href holds exactly one `&url=` (the
-// hostile one is encoded, so it cannot open a second parameter), and url= is ours.
-check('shareHref: hostile words stay inside text=, the url= is ours', params(hostileShare).url === `${O}/19-11-1918/#p-1` && params(hostileShare).text.includes('&url=https://evil.example #x @y') && hostileShare.split('&url=').length === 2);
-check('shareHref: a parked recollection throws', (() => { try { shareHref(O, post({ type: 'atminas', written: 1923 }), { name: 'x' }); return false; } catch { return true; } })());
+check('shareUrl: front day → ORIGIN/#p-seq', shareUrl(O, post({ seq: 20, via: 'Līdums Nr.1, 18.11.1918' })) === `${O}/#p-20`);
+check('shareUrl: another day → ORIGIN/DD-11-1918/#p-seq', shareUrl(O, post({ seq: 12, via: 'Līdums Nr.1, 19.11.1918' })) === `${O}/19-11-1918/#p-12`);
+check('shareUrl: a dated document shares on its own day', shareUrl(O, post({ seq: 7, dated: '18.11.1918', via: 'Līdums Nr.1, 19.11.1918' })) === `${O}/#p-7`);
+const sampleText = shareText(post({ via: 'Līdums Nr.1, 19.11.1918' }), { name: 'Līdums' });
+check('shareText: „words“ — Name, date, and never a handle',
+  sampleText === '„Teksts.“ — Līdums, 1918. gada 19. novembris' && !sampleText.includes('@'), sampleText);
+check('shareUrl: a parked recollection has no address and throws', throws(() => shareUrl(O, post({ type: 'atminas', written: 1923 })), 'nav adreses'));
+check('shareText: a parked recollection throws too', throws(() => shareText(post({ type: 'atminas', written: 1923 }), { name: 'x' }), 'nav adreses'));
+check('shareHref: an unknown target is a refusal, never a fallthrough',
+  throws(() => shareHref(O, post({ via: 'Līdums Nr.1, 19.11.1918' }), { name: 'L' }, 'myspace' as never), 'nezināma dalīšanās vietne'));
+
+// Each target's endpoint and what it carries. Checked 2026-11-11 against the
+// live endpoints, not against documentation: x takes text+url, facebook takes
+// ONLY the url (it renders our og: tags instead of our words), threads takes
+// text and no url at all, so the address rides at the end of the text.
+const basePost = post({ seq: 9, via: 'Līdums Nr.1, 19.11.1918' });
+const acct = { name: 'Līdums' };
+const wantUrl = shareUrl(O, basePost);
+const wantText = shareText(basePost, acct);
+const ENDPOINT: Record<string, string> = {
+  x: 'https://x.com/intent/post',
+  facebook: 'https://www.facebook.com/sharer/sharer.php',
+  threads: 'https://www.threads.com/intent/post',
+};
+check('SHARE_TARGETS is the three he named, and every one has an endpoint row',
+  SHARE_TARGETS.join() === 'x,facebook,threads' && SHARE_TARGETS.every((t) => ENDPOINT[t]));
+// Which parameter each target carries the address in, and which carries the
+// words. They differ per platform, so the rows below read them by name rather
+// than guessing: x keeps them apart, facebook has only the address, threads
+// has only the text and the address rides inside it.
+const ADDRESS: Record<string, string> = { x: 'url', facebook: 'u', threads: 'text' };
+const WORDS: Record<string, string | null> = { x: 'text', facebook: null, threads: 'text' };
+for (const t of SHARE_TARGETS) {
+  const u = new URL(shareHref(O, basePost, acct, t));
+  check(`shareHref ${t}: goes to its own endpoint and nowhere else`, u.origin + u.pathname === ENDPOINT[t], u.origin + u.pathname);
+  const carried = u.searchParams.get(ADDRESS[t]) ?? '';
+  check(`shareHref ${t}: carries OUR address, whole`, carried.includes(wantUrl), carried || 'nothing');
+  const words = WORDS[t] && u.searchParams.get(WORDS[t]!);
+  check(`shareHref ${t}: ${WORDS[t] ? 'carries the words' : 'sends no words — the platform drops them'}`,
+    WORDS[t] ? (words ?? '').includes(wantText) : u.search.includes('text') === false);
+}
+check('shareHref x: the words ride in text=, the address in its own url=',
+  params(shareHref(O, basePost, acct, 'x')).text === wantText && params(shareHref(O, basePost, acct, 'x')).url === wantUrl);
+check('shareHref facebook: the words are not sent — facebook drops them and renders our og: card',
+  !new URL(shareHref(O, basePost, acct, 'facebook')).search.includes('text'));
+check('shareHref threads: no url parameter exists, so the address is last inside the text',
+  new URL(shareHref(O, basePost, acct, 'threads')).searchParams.get('url') === null
+  && (new URL(shareHref(O, basePost, acct, 'threads')).searchParams.get('text') ?? '') === `${wantText} ${wantUrl}`);
+
+// Hostile corpus text, against EVERY target. A post's words are transcribed
+// from damaged scans by several readers and models, so they are input that
+// crossed a boundary: nothing in them may become a parameter, a second URL or
+// markup. For each fixture and each target the invariants are the same — the
+// href still parses, the endpoint is still ours, our address is carried whole,
+// the parameter count is unchanged, and the hostile string survives as DATA.
+// | fixture            | what it would do if it escaped                    |
+// | &url=evil          | open a second parameter and replace the address   |
+// | ?u=evil            | the same against facebook's only parameter        |
+// | <img onerror>      | markup, if an href were ever written unescaped    |
+// | javascript: scheme | a scheme where text belongs                       |
+// | CRLF               | split a parameter, or a header downstream         |
+// | NUL                | truncate a C string downstream                    |
+// | RTL override       | reverse the visible address in a preview          |
+// | astral pair        | a surrogate pair cut in half                      |
+const hostileWords: [string, string][] = [
+  ['&url=evil', '&url=https://evil.example'],
+  ['?u=evil', '?u=https://evil.example&x=1'],
+  ['<img onerror>', '<img src=x onerror=alert(1)>'],
+  ['javascript: scheme', 'javascript:alert(1)'],
+  ['CRLF', 'a\r\nSet-Cookie: x=1'],
+  ['NUL', 'a\u0000b'],
+  ['RTL override', 'a‮b'],
+  ['astral pair', '\u{1F600}\u{1D54F}'],
+];
+for (const [name, words] of hostileWords) {
+  for (const t of SHARE_TARGETS) {
+    const raw = shareHref(O, post({ seq: 9, lv: words, via: 'Līdums Nr.1, 19.11.1918' }), { name: 'L' }, t);
+    let ok = false, note = '';
+    try {
+      const u = new URL(raw);
+      const carried = u.searchParams.get(ADDRESS[t]) ?? '';
+      const said = WORDS[t] ? u.searchParams.get(WORDS[t]!) ?? '' : '';
+      // facebook and threads take one parameter, x takes two. A fixture that
+      // opened another would raise the count; an encoded `&` cannot open one.
+      const wantParams = t === 'x' ? 2 : 1;
+      ok = u.origin + u.pathname === ENDPOINT[t]
+        && [...u.searchParams].length === wantParams
+        && (t === 'threads' ? carried.endsWith(wantUrl) : carried === wantUrl)
+        && (!WORDS[t] || said.includes(words))
+        && !raw.includes('<') && !raw.includes('"') && !/[\r\n\u0000]/.test(raw);
+      note = `${[...u.searchParams].length} param(s)`;
+    } catch (e) { note = `does not parse: ${(e as Error).message}`; }
+    check(`shareHref ${t}: hostile „${name}“ stays data — our endpoint, our address, the parameter count unchanged`, ok, note);
+  }
+}
 
 // --- the pure layer imports no framework ------------------------------------
 const src = readFileSync(new URL('../src/lib/feed.ts', import.meta.url), 'utf8');
