@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import {
   refusalReason, isClock, escapeHtml, bodyHtml, trends, invariantLine, initials, plural,
-  avatarHue, HUE_COUNT, reportedBy, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
+  avatarHue, HUE_COUNT, reporterLine, replyCount, viaText, profilePath, mentionsOf, EMPTY_COPY, descriptionLines, readIdentities, lead,
   isWrittenYear, recollectionLine, recollectionHeader, holdsLine, publishedOn, partitionByDay, reachableHandles, renderedPosts,
   DAYS, DAYS_SPAN, DAY_CARD_SEQ, cardAlt, dayCounts, dayStripCount, dayStripDate, proclamationLine, PROCLAMATION_TOPIC, excerpt, shareHref, shareText, shareUrl, SHARE_TARGETS, SHARE_TEXT_MAX, type Post, type Account,
 } from '../src/lib/feed.ts';
@@ -88,18 +88,22 @@ check('recollectionHeader: no posts → null', recollectionHeader([]) === null);
 // The site now spans 17–20 November, so a profile holds several days' papers;
 // the singular would say the wrong thing. Behaviour changed, so the rows did.
 // | input                                   | expected                                      |
-// | [citats, citats]                        | '2 ieraksti to dienu Rīgas avīzēs'            |
+// CHANGED 2026-11-11 (corrector round 2, A2-21): „to dienu“ → „tā laika“, and
+// the empty state is de-stiffened. The pronouns the corrector proposed for the
+// empty state („pats“, „viņu“) were NOT taken — the line also stands over
+// newspapers and institutions, which is the same fault A2-17 fixes.
+// | [citats, citats]                        | '2 ieraksti tā laika Rīgas avīzēs'            |
 // | [atminas 1923] × 8                      | '8 ieraksti — atmiņas, rakstītas 1923. gadā'   |
 // | [atminas 1923, atminas 1925]            | '2 ieraksti — atmiņas, rakstītas 1923., 1925. gadā' |
-// | [atminas 1923, citats] (mixed)          | '2 ieraksti to dienu Rīgas avīzēs'            |
-// | [atminas, written missing]              | '1 ieraksts to dienu Rīgas avīzēs' (refused anyway) |
-// | []                                      | 'Tajās dienās neko nesaka — avīzes min'       |
-check('holdsLine: contemporary posts name the papers', holdsLine([{ type: 'citats' }, { type: 'citats' }]) === '2 ieraksti to dienu Rīgas avīzēs');
+// | [atminas 1923, citats] (mixed)          | '2 ieraksti tā laika Rīgas avīzēs'            |
+// | [atminas, written missing]              | '1 ieraksts tā laika Rīgas avīzēs' (refused anyway) |
+// | []                                      | 'Šajās dienās neko nesaka — piemin tikai avīzes' |
+check('holdsLine: contemporary posts name the papers', holdsLine([{ type: 'citats' }, { type: 'citats' }]) === '2 ieraksti tā laika Rīgas avīzēs');
 check('holdsLine: all recollections name the writing year, not the papers',
   holdsLine(Array(8).fill({ type: 'atminas', written: 1923 })) === '8 ieraksti — atmiņas, rakstītas 1923. gadā');
 check('holdsLine: two writing years, both named', holdsLine([{ type: 'atminas', written: 1925 }, { type: 'atminas', written: 1923 }]) === '2 ieraksti — atmiņas, rakstītas 1923., 1925. gadā');
-check('holdsLine: one contemporary post among them → the papers', holdsLine([{ type: 'atminas', written: 1923 }, { type: 'citats' }]) === '2 ieraksti to dienu Rīgas avīzēs');
-check('holdsLine: no posts → the account said nothing, never a zero', holdsLine([]) === 'Tajās dienās neko nesaka — avīzes min');
+check('holdsLine: one contemporary post among them → the papers', holdsLine([{ type: 'atminas', written: 1923 }, { type: 'citats' }]) === '2 ieraksti tā laika Rīgas avīzēs');
+check('holdsLine: no posts → the account said nothing, never a zero', holdsLine([]) === 'Šajās dienās neko nesaka — piemin tikai avīzes');
 check('isWrittenYear: 1919 and 2099 yes; 1918, 2100, 1923.5, "1923" no',
   isWrittenYear(1919) && isWrittenYear(2099) && !isWrittenYear(1918) && !isWrittenYear(2100) && !isWrittenYear(1923.5) && !isWrittenYear('1923'));
 for (const [name, p, want] of refusals)
@@ -169,30 +173,57 @@ check('trends: ties sort with Latvian collation (Č after C)',
 // --- invariant line ships at zero -------------------------------------------
 check('invariant line at zero still names the counter', invariantLine(80, 0, 0) === '80 ieraksti · bez avota vai ar nepareizu tipu: 0 · gaida pārbaudi pret skenējumu: 0');
 
-// | n  | expected |
-// | 1  | ieraksts | 2 ieraksti | 11 ieraksti | 21 ieraksts | 111 ieraksti |
-const plurals: [number, string][] = [[1, 'ieraksts'], [2, 'ieraksti'], [11, 'ieraksti'], [21, 'ieraksts'], [111, 'ieraksti']];
-for (const [n, want] of plurals) check(`plural ${n}`, plural(n) === want);
+// CHANGED 2026-11-11 (corrector round 2, A2-02/A2-04): 11–19 and the round
+// tens/hundreds now take the GENITIVE plural, because desmit/simt/tūkstoš are
+// indeclinable and govern what they count — „11 ierakstu“, not „11 ieraksti“.
+// The rows for 11 and 111 flipped because the behaviour genuinely changed; the
+// rows for 1 and 21 are unchanged and pin the boundary that did NOT move.
+// | n   | expected  | why                                               |
+// | 0   | ierakstu  | nulle — genitive                                  |
+// | 1   | ieraksts  | viens — nominative singular (unchanged)           |
+// | 2   | ieraksti  | divi — nominative plural                          |
+// | 10  | ierakstu  | desmit governs the genitive                       |
+// | 11  | ierakstu  | WAS 'ieraksti' — vienpadsmit is a desmit compound |
+// | 19  | ierakstu  | same                                              |
+// | 20  | ierakstu  | divdesmit — a round ten, still desmit-governed    |
+// | 21  | ieraksts  | …viens closes it (unchanged)                      |
+// | 56  | ieraksti  | …seši (unchanged)                                 |
+// | 100 | ierakstu  | simt governs the genitive                         |
+// | 101 | ieraksts  | simt viens                                        |
+// | 111 | ierakstu  | WAS 'ieraksti' — simt vienpadsmit                 |
+// | 120 | ierakstu  | simt divdesmit                                    |
+const plurals: [number, string][] = [[0, 'ierakstu'], [1, 'ieraksts'], [2, 'ieraksti'], [10, 'ierakstu'], [11, 'ierakstu'],
+  [19, 'ierakstu'], [20, 'ierakstu'], [21, 'ieraksts'], [56, 'ieraksti'], [100, 'ierakstu'], [101, 'ieraksts'], [111, 'ierakstu'], [120, 'ierakstu']];
+for (const [n, want] of plurals) check(`plural ${n}`, plural(n) === want, `want ${want}, got ${plural(n)}`);
+
+// The reply button agrees the same way, in its own noun (A2-11).
+// | 1 → „1 atbilde“ | 2 → „2 atbildes“ | 11 → „11 atbilžu“ | 0 → „0 atbilžu“ |
+const replies: [number, string][] = [[1, '1 atbilde'], [2, '2 atbildes'], [11, '11 atbilžu'], [0, '0 atbilžu']];
+for (const [n, want] of replies) check(`replyCount ${n}`, replyCount(n) === want, `want ${want}, got ${replyCount(n)}`);
 
 check('initials', initials('Kārlis Ulmanis') === 'KU' && initials('Līdums') === 'L');
 
-// --- reportedBy: the face says who rendered a person's words -----------------
-// | via                                                              | expected       |
-// | Atstāstīts: Līdums Nr.219, 20.11.1918                            | Līdums         |
-// | Atstāstīts: Baltijas Ziņas Nr.168, 18.11.1918, „Stāvoklis …“     | Baltijas Ziņas |
-// | Atstāstīts: Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, stenogramma | stenogramma |
-// | Līdums Nr.219, 20.11.1918 (no prefix: not a rendering)           | null           |
-// | Atstāstīts: <script> (hostile, wrong shape)                      | null           |
-// | '' (empty)                                                       | null           |
+// --- reporterLine: the face says who rendered a person's words ---------------
+// CHANGED 2026-11-11 (corrector round 2, A2-08): the function now returns the
+// whole face line instead of the bare source, because a stenogram does not
+// „ziņo“ — it records. Keeping the verb in the component would have put the
+// wording out of reach of a test. The rows still pin the same six inputs.
+// | via                                                              | expected               |
+// | Atstāstīts: Līdums Nr.219, 20.11.1918                            | kā ziņo Līdums         |
+// | Atstāstīts: Baltijas Ziņas Nr.168, 18.11.1918, „Stāvoklis …“     | kā ziņo Baltijas Ziņas |
+// | Atstāstīts: Latvijas Tautas Padomes sēdes Nr.1, …, stenogramma   | kā teikts stenogrammā  |
+// | Līdums Nr.219, 20.11.1918 (no prefix: not a rendering)           | null                   |
+// | Atstāstīts: <script> (hostile, wrong shape)                      | null                   |
+// | '' (empty)                                                       | null                   |
 const reported: [string, string | null][] = [
-  ['Atstāstīts: Līdums Nr.219, 20.11.1918', 'Līdums'],
-  ['Atstāstīts: Baltijas Ziņas Nr.168, 18.11.1918, „Stāvoklis Austro-Ungārijā“', 'Baltijas Ziņas'],
-  ['Atstāstīts: Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, stenogramma', 'stenogramma'],
+  ['Atstāstīts: Līdums Nr.219, 20.11.1918', 'kā ziņo Līdums'],
+  ['Atstāstīts: Baltijas Ziņas Nr.168, 18.11.1918, „Stāvoklis Austro-Ungārijā“', 'kā ziņo Baltijas Ziņas'],
+  ['Atstāstīts: Latvijas Tautas Padomes sēdes Nr.1, 18.11.1918, stenogramma', 'kā teikts stenogrammā'],
   ['Līdums Nr.219, 20.11.1918', null],
   ['Atstāstīts: <script>', null],
   ['', null],
 ];
-for (const [via, want] of reported) check(`reportedBy ${JSON.stringify(via).slice(0, 40)}`, reportedBy(via) === want, `want ${want}`);
+for (const [via, want] of reported) check(`reporterLine ${JSON.stringify(via).slice(0, 40)}`, reporterLine(via) === want, `want ${want}`);
 check('viaText drops only the leading prefix', viaText('Atstāstīts: Līdums Nr.219') === 'Līdums Nr.219' && viaText('Līdums Nr.219') === 'Līdums Nr.219');
 
 // --- profile pages: the address, the mentions list, the empty-state copy ----
@@ -271,11 +302,12 @@ check('partitionByDay: a newspaper post without a date fails loudly', throws(() 
 // | rule                                                        |
 // | 4 days, keys ascending, exactly one with path '' — the 18th |
 // | every other path is DD-11-1918/ and matches its key         |
-// | DAYS_SPAN reads „17.–20. novembris 1918“                    |
+// | DAYS_SPAN reads „1918. gada 17.–20. novembris“ (A2-15, 2026-11-11: |
+// | the year leads a Latvian date; was „17.–20. novembris 1918“)       |
 check('DAYS: four days in order, the 18th at the root', DAYS.length === 4 && DAYS.map((d) => d.key).join() === '17.11.1918,18.11.1918,19.11.1918,20.11.1918'
   && DAYS.filter((d) => d.path === '').map((d) => d.key).join() === '18.11.1918');
 check('DAYS: every other path is DD-11-1918/ and names its own key', DAYS.filter((d) => d.path).every((d) => d.path === `${d.n}-11-1918/` && d.key === `${d.n}.11.1918`));
-check('DAYS_SPAN', DAYS_SPAN === '17.–20. novembris 1918');
+check('DAYS_SPAN', DAYS_SPAN === '1918. gada 17.–20. novembris');
 
 // --- dayCounts / dayStripLabel / proclamationLine ---------------------------
 // The two numbers a day page knows about itself, and the two strings made from
@@ -310,10 +342,14 @@ check('dayStripDate: the date carries its month, so it still means something in 
   dayStripDate(DAYS[0]) === '17. nov.' && dayStripDate(DAYS[3]) === '20. nov.');
 check('dayStripCount: the count carries its noun', dayStripCount({ n: 6, proclaimed: 0 }) === '6 ieraksti');
 check('dayStripCount: one post takes the Latvian singular', dayStripCount({ n: 1, proclaimed: 0 }) === '1 ieraksts');
-check('dayStripCount: eleven does NOT — the Latvian exception', dayStripCount({ n: 11, proclaimed: 0 }) === '11 ieraksti');
+// CHANGED 2026-11-11 (A2-02): eleven takes the GENITIVE plural, not the
+// nominative — vienpadsmit is a compound of desmit and governs what it counts.
+// The row is kept, not deleted: it still pins that 11 parts company with 21.
+check('dayStripCount: eleven takes the genitive — the Latvian exception', dayStripCount({ n: 11, proclaimed: 0 }) === '11 ierakstu');
 check('dayStripCount: twenty-one takes the singular again', dayStripCount({ n: 21, proclaimed: 0 }) === '21 ieraksts');
 check('proclamationLine: said in words and whole numbers, not encoded',
-  proclamationLine({ n: 18, proclaimed: 12 }) === '12 ieraksti par valsts pasludināšanu');
+  // CHANGED 2026-11-11 (A2-04): twelve takes the genitive plural.
+  proclamationLine({ n: 18, proclaimed: 12 }) === '12 ierakstu par valsts pasludināšanu');
 check('proclamationLine: one post takes the Latvian singular',
   proclamationLine({ n: 18, proclaimed: 1 }) === '1 ieraksts par valsts pasludināšanu');
 check('proclamationLine: a day that says nothing about it prints no line, never „0 ieraksti“',
@@ -561,8 +597,8 @@ const reachable = new Set([...corpus.map((p) => p.handle), ...corpus.flatMap((p)
 check('corpus: every account is reachable from a post or a printed mention', Object.keys(data.accounts).every((h) => reachable.has(h)), Object.keys(data.accounts).filter((h) => !reachable.has(h)).join());
 check('corpus: sampler saw both sides', reasons.length > 0 && refusals.some(([, , w]) => w !== null), 'guards rejected hostile fixtures above AND accepted the corpus');
 const personRendered = corpus.filter((p) => p.type === 'atstastits' && data.accounts[p.handle].kind === 'person');
-check('corpus: every person-account rendering names its reporter on the face', personRendered.length > 0 && personRendered.every((p) => reportedBy(p.via)),
-  personRendered.filter((p) => !reportedBy(p.via)).map((p) => p.seq).join());
+check('corpus: every person-account rendering names its reporter on the face', personRendered.length > 0 && personRendered.every((p) => reporterLine(p.via)),
+  personRendered.filter((p) => !reporterLine(p.via)).map((p) => p.seq).join());
 // The post-less accounts WITH A PAGE and without `silent` text in the data are
 // exactly the ones with page copy — no default empty state, and no copy
 // shadowing data. Counted over the rendered posts: a parked memoirist has no

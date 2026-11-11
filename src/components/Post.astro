@@ -5,7 +5,7 @@
 // the words. The scholarly fields stay in the data and are not rendered. A long item is a thread: the first segment is the post, the rest
 // hang below it, collapsed behind „rādīt pavedienu (n)“.
 import Segment from './Segment.astro';
-import { avatarHue, bodyHtml, initials, profilePath, reportedBy, shareHref, SHARE_TARGETS, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
+import { avatarHue, bodyHtml, initials, profilePath, reporterLine, shareHref, SHARE_TARGETS, type Account, type Post, type Segment as Seg } from '../lib/feed.ts';
 import { ORIGIN } from '../lib/site.ts';
 
 interface Props {
@@ -29,7 +29,7 @@ const unmatched = Object.keys(p.mentions ?? {}).filter((k) =>
 if (unmatched.length) console.warn(`post ${p.seq}: nav tekstā, netiek rādīts: ${unmatched.join(' · ')}`);
 const n = segments.length;
 // A person's words as a paper rendered them: said in language on the face.
-const reporter = account.kind === 'person' && p.type === 'atstastits' ? reportedBy(p.via) : null;
+const reporter = account.kind === 'person' && p.type === 'atstastits' ? reporterLine(p.via) : null;
 // One share row per post, on its first segment: one href per destination,
 // each addressing the post on its own day page.
 const share = Object.fromEntries(SHARE_TARGETS.map((target) => [target, shareHref(ORIGIN, p, account, target)]));
@@ -51,7 +51,7 @@ const share = Object.fromEntries(SHARE_TARGETS.map((target) => [target, shareHre
   </div>
 
   <div class="body">
-    {reporter && <p class="reporter">kā ziņo {reporter}</p>}
+    {reporter && <p class="reporter">{reporter}</p>}
     <Segment post={p} segment={segments[0]} html={bodies[0].html} k={0} n={n} share={share} />
     {n > 1 && (
       <div class="thread" id={`t-${p.seq}`} hidden>

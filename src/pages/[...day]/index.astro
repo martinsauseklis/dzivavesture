@@ -50,10 +50,10 @@ console.log(`${day.key}: ${invariantLine(shown.length, refused.filter((p) => pub
 const title = `dzīvā vēsture — 1918. gada ${day.n}. novembris`;
 // One line per day on what the page is — the 18th's is the original.
 const DESCRIPTION: Record<string, string> = {
-  '17.11.1918': 'Svētdiena Rīgā — Līdums, kā tas iznāca 17. novembrī, kā plūsma. Katrs ieraksts ar avotu periodika.lv.',
+  '17.11.1918': 'Svētdiena Rīgā — 17. novembra laikraksts „Līdums“ sociālā tīkla plūsmā. Katrs ieraksts ar avotu periodika.lv.',
   '18.11.1918': 'Diena, kad pasludināja Latviju — kā to rakstīja tajā dienā. Tās dienas avīzes kā plūsma; katrs ieraksts ar avotu periodika.lv.',
-  '19.11.1918': 'Diena pēc pasludināšanas — kā Rīgas avīzes 19. novembrī rakstīja par vakardienu. Katrs ieraksts ar avotu periodika.lv.',
-  '20.11.1918': 'Trešdiena Rīgā — Līdums par pasludināšanas aktu, kā tas iznāca 20. novembrī. Katrs ieraksts ar avotu periodika.lv.',
+  '19.11.1918': 'Diena pēc pasludināšanas — ko Rīgas avīzes rakstīja 19. novembrī par iepriekšējo dienu. Katrs ieraksts ar avotu periodika.lv.',
+  '20.11.1918': 'Trešdiena Rīgā — kā 20. novembra „Līdums“ rakstīja par valsts pasludināšanu. Katrs ieraksts ar avotu periodika.lv.',
 };
 const description = DESCRIPTION[day.key];
 // The card shows one real post of this day (tools/og-days.mjs renders it);
@@ -152,7 +152,7 @@ const image = day.path ? `og/${day.path.slice(0, -1)}.png` : 'og.png';
   <footer class="wrap credit">
     {/* Astro drops the whitespace around a line break next to a tag, so the
         dash and the link share a line rather than growing a stray `{' '}`. */}
-    <p>Teksti un lappušu attēli: Latvijas Nacionālās bibliotēkas periodikas krājums — <a href="https://periodika.lndb.lv/" target="_blank" rel="noopener">periodika.lndb.lv</a>. 1918. gada izdevumi ir sabiedriskajā īpašumā.</p>
+    <p>Teksti un lappušu attēli: Latvijas Nacionālās bibliotēkas periodikas krājums — <a href="https://periodika.lndb.lv/" target="_blank" rel="noopener">periodika.lndb.lv</a>. 1918. gada izdevumi ir publiskajā īpašumā.</p>
   </footer>
   <ShareIcons />
 </body>

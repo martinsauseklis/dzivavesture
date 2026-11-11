@@ -121,6 +121,31 @@ check('P11: 28 profiles render their BIO as the one description paragraph (never
 // byte equality with the data, not a shape — a reworded warning is a changed
 // claim. (Two of the three open in capitals; Brigadere's does not, because
 // hers states her verified death year first. The wording is the source's.)
+// --- P12: a bio states standing identity, it does not narrate events --------
+// His rule, 2026-11-11, raised for the SECOND time: „the profiles … still
+// contains dates like 9. novembris etc… that is not how twitter profiels work
+// and i already had said this to you“. A day-and-month date in a description
+// reads as news („9. novembrī paziņota viņa atkāpšanās“), and the X pastiche is
+// the premise of the site. The first pass fixed the tense and left the
+// narration standing — a named defect is a class, not an instance, so this row
+// exists to make the class unrepresentable.
+// The exception is a FOUNDING date: an institution legitimately states when it
+// was established, and that is identity, not news. The set is closed, so a new
+// dated bio fails the row instead of quietly joining the exception.
+// | handle          | allowed because                        |
+// | @tautas_padome  | „dibināts Rīgā 1918. gada 17. novembrī“ |
+// | @zemes_sargi    | „dibināta 16. novembrī“                 |
+// Breaks when: a third institution's founding date belongs on its profile —
+// add the handle here, with the phrase, in the same edit as the bio.
+const FOUNDING_DATE_OK = new Set(['@tautas_padome', '@zemes_sargi']);
+const DAY_MONTH = /\b\d{1,2}\.\s*(?:janvār|februār|mart|aprīl|maij|jūnij|jūlij|august|septembr|oktobr|novembr|decembr)/iu;
+const dated = handles.filter((h) => !FOUNDING_DATE_OK.has(h) && paras(h).some(([, text]) => DAY_MONTH.test(text)));
+check('P12: no profile description narrates a dated event (founding dates excepted)', dated.length === 0, dated.join());
+// The exception must stay honest: a handle listed above has to actually carry a
+// founding date, or the allow-list is covering something it was not opened for.
+const staleException = [...FOUNDING_DATE_OK].filter((h) => handles.includes(h) && !paras(h).some(([, t]) => DAY_MONTH.test(t) && /dibin/i.test(t)));
+check('P12: every founding-date exception still holds a founding date', staleException.length === 0, staleException.join());
+
 const memoirHandles = handles.filter((h) => !identities.has(h));
 const pwarn = (h) => [...html(page(h)).matchAll(/<p class="pwarn">([^<]*)<\/p>/g)].map((m) => unescape(m[1]));
 // CHANGED 2026-11-10, and the old assertion was wrong, not merely outdated.
@@ -163,7 +188,10 @@ const footers = (d: string) => (d.match(/<footer/g) ?? []).length;
 check('credit: every day page ends with exactly one footer naming periodika.lndb.lv and the public domain',
   dayDocs.every(([, d]) => footers(d) === 1 && /<footer class="wrap credit">/.test(d)
     && d.includes('<a href="https://periodika.lndb.lv/" target="_blank" rel="noopener">periodika.lndb.lv</a>')
-    && d.includes('sabiedriskajā īpašumā')),
+    // CHANGED 2026-11-11 (corrector round 2, A2-14): „public domain“ is
+    // „publiskais īpašums“ in Latvian; „sabiedriskais“ means communal. The
+    // footer is the site's only licence statement, so the row pins the word.
+    && d.includes('publiskajā īpašumā')),
   dayDocs.map(([d, doc]) => `${d.key}:${footers(doc)}`).join(' '));
 check('credit: no profile page has a footer — a profile still ends at its last post',
   handles.every((h) => footers(html(page(h))) === 0));
@@ -377,7 +405,7 @@ check('days: a profile heads each run of posts with its day, linking to that day
   const want = DAYS.filter((d) => feedPosts.some((p) => p.handle === h && publishedOn(p) === d.key)).map((d) => `../${d.path}`);
   return JSON.stringify(attr(doc, /<h2 class="pday"><a href="([^"]*)">/g)) === JSON.stringify(want);
 }));
-check('days: „Kur viņš pieminēts“ links into the day page that holds the naming post', handles.every((h) => attr(html(page(h)), /<section class="named">[\s\S]*?<\/section>/g).join('').split('<a href="').slice(1).every((s) => {
+check('days: „Pieminējumi“ links into the day page that holds the naming post', handles.every((h) => attr(html(page(h)), /<section class="named">[\s\S]*?<\/section>/g).join('').split('<a href="').slice(1).every((s) => {
   const href = s.slice(0, s.indexOf('"'));
   const seq = Number(href.split('#p-')[1]);
   const p = feedPosts.find((x) => x.seq === seq);

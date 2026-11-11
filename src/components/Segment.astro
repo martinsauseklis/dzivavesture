@@ -6,7 +6,7 @@
 // not rendered as a panel any more — by his choice; the data keeps them. What
 // remains of them on the face is the inline markers, each explaining itself
 // in a title attribute.
-import { recollectionLine, SHARE_NAME, SHARE_TARGETS, type Post, type Segment } from '../lib/feed.ts';
+import { recollectionLine, replyCount, SHARE_NAME, SHARE_TARGETS, type Post, type Segment } from '../lib/feed.ts';
 
 interface Props {
   post: Post;
@@ -40,7 +40,7 @@ const written = recollectionLine(p);
       <button type="button" class="thread-toggle" aria-controls={id('t')} aria-expanded="false">rādīt pavedienu ({n})</button>
     )}
     {k === 0 && p.comments && (
-      <button type="button" aria-controls={id('c')} aria-expanded="false">atbildes · {replies}</button>
+      <button type="button" aria-controls={id('c')} aria-expanded="false">{replyCount(replies)}</button>
     )}
     {/* His call, 2026-11-11: no toggle, no popover — the three destinations sit
         on the card and stay there. Named links, not an OS sheet: a reader
@@ -60,7 +60,7 @@ const written = recollectionLine(p);
 
   {k === 0 && p.comments && (
     <div class="fold comments" id={id('c')} data-kind="comments" hidden>
-      <div class="k">Saruna pie raksta</div>
+      <div class="k">Saruna pie ieraksta</div>
       {p.comments.map((c) => (
         <div class="cmt">
           <b>{c.name}</b> <span class="chandle">{c.handle}</span><br />

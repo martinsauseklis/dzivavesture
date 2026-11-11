@@ -62,7 +62,7 @@
    "name": "Zemes sargu komanda",
    "kind": "org",
    "what": "Rīgas pašaizsardzības vienība · dibināta 16. novembrī",
-   "bio": "Pilsētas un tās kārtību cienītāju visu šķiru un tautību iedzīvotāju apsardzībai. Tehnisko organizāciju uzņēmusies agrāko krievu virsnieku komiteja, kas iekārtojusies Romas viesnīcā Teātra bulvārī. Paziņojumu paraksta Rīgas igauņu, latviešu, vācu, krievu, žīdu, poļu un leišu priekšvīri kopā.",
+   "bio": "Vienība dibināta, lai apsargātu pilsētu un tos visu šķiru un tautību iedzīvotājus, kas ciena kārtību. Tehnisko organizāciju uzņēmusies agrāko krievu virsnieku komiteja, kas iekārtojusies Romas viesnīcā Teātra bulvārī. Paziņojumu kopīgi parakstījuši Rīgas igauņu, latviešu, vācu, krievu, žīdu, poļu un leišu priekšvīri.",
    "note": "Tautību uzskaitījums OCR ir daļēji nesalasāms („Rigas igauņu, ļaimeescha, ņaķizu, tr-emu schihdu. paļu“). Pirms publicēšanas jāsalasa no skenējuma."
   },
   "@rigas_zaldatu_padome": {
@@ -221,39 +221,39 @@
    "name": "G. Nonācs",
    "kind": "person",
    "what": "Redaktors · Latviešu Zemnieku Savienības frakcija · Tautas padomes loceklis",
-   "bio": "Zemnieku Savienības frakcijas runātājs 18. novembra aktā. Līdums viņu nosauc par redaktoru; pirmvārds avotos nesaskan."
+   "bio": "Zemnieku Savienības frakcijas pārstāvis Tautas padomē. Līdums viņu sauc par redaktoru. Avoti nesakrīt par viņa pirmvārdu."
   },
   "@d_zeltins": {
    "name": "D. Zeltiņš",
    "kind": "person",
    "what": "Grāmattirgotājs · Latviešu Demokrātu partija",
-   "bio": "Grāmattirgotājs, kas 18. novembra aktā runā Latviešu Demokrātu partijas vārdā."
+   "bio": "Grāmattirgotājs, Latviešu Demokrātu partijas pārstāvis."
   },
   "@j_zalitis": {
    "name": "J. Zālītis",
    "kind": "person",
    "what": "Bijušais Krievijas valsts domes deputāts · radikāldemokrāts",
-   "bio": "Bijušais Valsts domes deputāts, kas 18. novembra aktā apsveic jauno valsti radikāldemokrātu vārdā.",
+   "bio": "Bijušais Krievijas Valsts domes deputāts, radikāldemokrātu pārstāvis.",
    "silent": "18. novembra aktā viņš runā — apsveic neatkarīgas valsts pasludināšanu radikāldemokrātu vārdā —, bet Līdums viņa runu tikai atstāsta. Paša vārdus neviena avīze pēdiņās neliek."
   },
   "@skubikis": {
    "name": "Skubiķis",
    "kind": "person",
    "what": "Sociālists revolucionārs · Tautas padomes sekretāra biedrs",
-   "bio": "Tautas padomes prezidija loceklis un sociālistu revolucionāru runātājs 18. novembrī. Avoti viņu sauc gan par inženieri, gan par ģeologu."
+   "bio": "Tautas padomes prezidija loceklis, sociālistu revolucionāru pārstāvis. Avoti viņu sauc gan par inženieri, gan par ģeologu."
   },
   "@strautnieks": {
    "name": "Strautnieks",
    "kind": "person",
    "what": "Latviešu Republikāņu partija",
-   "bio": "Republikāņu partijas runātājs 18. novembra aktā. Līdums viņu sauc par zvērinātu advokātu, Baltijas Ziņas — par miertiesnesi.",
+   "bio": "Republikāņu partijas pārstāvis. Līdums viņu sauc par zvērinātu advokātu, Baltijas Ziņas — par miertiesnesi.",
    "silent": "18. novembra aktā viņš apsveic jauno valsti republikāņu vārdā, bet avīzes viņa runu tikai atstāsta; paša vārdus neviena neiespiež. Līdums viņu sauc par zvērinātu advokātu, Baltijas Ziņas — par miertiesnesi."
   },
   "@fr_paegle": {
    "name": "Fr. Paegle",
    "kind": "person",
    "what": "Inženieris · Latviešu Neatkarīgā partija",
-   "bio": "Inženieris, kas 18. novembra aktā runā Neatkarīgās partijas vārdā par latviskā gara izkopšanu."
+   "bio": "Inženieris, Latviešu Neatkarīgās partijas pārstāvis."
   }
  },
  "posts": [
@@ -1904,7 +1904,7 @@
    ],
    "atNote": "Stunda avīzē nav. Karogs parādījās „pēdējā brīdī“ pirms akta, un zāle jau priekš pulksten 3 bija pilna (korpusa ieraksts 15.05), tāpēc ieraksts novietots īsi pirms tā; precīzs laiks ir mūsu novērtējums.",
    "note": "Teikums neatkarīgi apstiprina to, ko korpuss jau saka 09.00 ierakstā: 18. novembŗa avīzēs par gaidāmo aktu nebija ne vārda. Šeit to apgalvo pati avīze — „nekādi ziņojumi, nekādi sludinājumi“.",
-   "warn": "Teikums turpinās ar vārdiem, ko OCR nedod salasāmus („isaaidijuschos, isilgojuschos ļautu saļumeem“), tāpēc ieraksts beidzas ar [?]. Tālāk tai pašā rindkopā avīze pāriet uz savu vērtējumu („pēc gadu simteņiem ilgas nebrīvības“) — tas šeit apzināti nav ņemts.",
+   "warn": "Teikums turpinās ar vārdiem, ko OCR nedod salasāmus („isaaidijuschos, isilgojuschos ļautu saļumeem“), tāpēc ieraksts beidzas ar [?]. Tālāk tai pašā rindkopā avīze pāriet uz savu vērtējumu („pēc gadu simteņiem ilgas nebrīvības“) — tas šeit apzināti nav ņemts. Korektors (2. kārta, C-507) atzīmēja divkārt atkārtoto „pārpildīja“ un tam sekojošo „ka“ kā iespējamu pazudušu vārdu — pārbaudīts skenējumā (1. lpp., bloks P1_TB00015): avīzē tieši tā arī stāv — „pahrpildija plascho namu lihds pehdejai weetinai — pahrpildija, ka leelai dalai bija japaleek ahrā“. Atkārtojums ir avīzes retorisks paņēmiens; teksts nav mainīts.",
    "recon": {
     "karogs": "karogs",
     "pārpildīja": "pahrpildija",
@@ -2054,7 +2054,7 @@
    "type": "citats",
    "at": "16.32",
    "seq": 552,
-   "lv": "Ar nerimstošiem aplausiem sanākusē tauta sveicināja jaunās, brīvās valsts augstākās varas nesēju — Latvju Tautas Padomi, kuras locekļi ieņēma vietas uz pušķotās skatuves ap puķēs uzcelto galdu, pie kura ieņēma vietas Tautas Padomes priekšsēdētāja Čakstes biedri M. Skujnieks un zv. adv. Zemgals un sekretāri zv. adv. Bite un viņa biedri ģeologs Skubiķis un Latgales priekšstāvis Kambala.",
+   "lv": "Ar nerimstošiem aplausiem sanākuse tauta sveicināja jaunās, brīvās valsts augstākās varas nesēju — Latvju Tautas Padomi, kuras locekļi ieņēma vietas uz pušķotās skatuves ap puķēs uzcelto galdu, pie kura ieņēma vietas Tautas Padomes priekšsēdētāja Čakstes biedri M. Skujnieks un zv. adv. Zemgals un sekretāri zv. adv. Bite un viņa biedri ģeologs Skubiķis un Latgales priekšstāvis Kambala.",
    "ocr": "Ar nerimstoşcheem aplauşeem şanahkusè tauta şweizinaja jaunàs, brihwàs malsts augstākās lvaras nesēju — Latmju TautaS Padomi, kuras lozekļi eeņehma mestas us puschtVtas skatumes ap puķēs uszelto galdu, pee kura eeņehma meetas TautaS Padomes preekschşehdetaja Tschakstes beedri M. Şkujneeks un sw adm. Semgals un sekretāri sw. adm. Bite un miņa beedri ģeologs Şkubiķis un Latgales preekşchstahwis Kambala.",
    "via": "Baltijas Ziņas Nr.169, 19.11.1918, „Brīvas, neatkarīgas patstāvīgas un apvienotas Latvijas pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:771180|article:DIVL22",
@@ -2064,13 +2064,22 @@
    ],
    "atNote": "Stunda avīzē nav. Rigasche Zeitung to pašu brīdi — prezidija ienākšanu pie sarkanā galda — liek tūlīt pēc puspieciem (korpusa ieraksts 16.30), tāpēc ieraksts novietots turpat.",
    "note": "Vācu avīze 16.30 ierakstā saskaita „5 kungus, padomes prezidiju“, bet nevienu nenosauc. Šis ir tas pats piecinieks vārdos.",
-   "warn": "Avīze raksta „ģeologs Skubiķis“. Līdums Nr.219 un Jaunākās Ziņas Nr.4 to pašu cilvēku sauc par inženieri („inž. Skubiķis“). Amats tātad avotos nesaskan; uzvārds sakrīt visos trijos. Pirmvārdi nav nevienā no tiem un šeit nav pielikti.",
+   "warn": "Avīze raksta „ģeologs Skubiķis“. Līdums Nr.219 un Jaunākās Ziņas Nr.4 to pašu cilvēku sauc par inženieri („inž. Skubiķis“). Amats tātad avotos nesaskan; uzvārds sakrīt visos trijos. Pirmvārdi nav nevienā no tiem un šeit nav pielikti. Korektors (2. kārta, C-552) ieteica „sanākusī“ — noraidīts: avīzē iespiests „sanākuse“, un laikmeta pareizrakstības modernizēšana šeit nav atļauta. Nolasīts no skenējuma (1. lpp., bloks P1_TB00015): pēdējais burts ir apaļš „e“. Labots tikai mūsu pašu uzliktais garumzīmes ķeksītis („sanākusē“ → „sanākuse“). Tāpat noraidīts ieteikums par „pie … galdu“: tekstā stāv „ap puķēs uzcelto galdu, pie kura“ — „ap“ prasa akuzatīvu, „pie kura“ jau ir ģenitīvā.",
    "recon": {
-    "sanākusē": "şanahkusè",
     "pušķotās": "puschtVtas",
     "biedri": "beedri",
-    "Skujnieks": "Şkujneeks"
-   }
+    "Skujnieks": "Şkujneeks",
+    "sanākuse": "şanahkusè"
+   },
+   "change": [
+    {
+     "from": "sanākusē",
+     "to": "sanākuse",
+     "source": "Baltijas Ziņas Nr.169, 1. lpp., bloks P1_TB00015, skenējums 230 dpi, 4× palielinājumā",
+     "outcome": "corrected",
+     "why": "Avīzē iespiests „şanahkuşe“ — beigās plats apaļš „e“ bez punkta un bez „h“. Garumzīme nāca no OCR ķeksīša „è“, nevis no iespieduma."
+    }
+   ]
   },
   {
    "handle": "@rigasche_zeitung",
@@ -2467,7 +2476,7 @@
    ],
    "atNote": "Stunda avīzē nav. Turpinājums tam, kas korpusā jau stāv 17.15; ieraksts novietots tūlīt aiz tā.",
    "note": "Korpusā Kalniņa runa ir viens teikums. Šis pievieno to, ko viņš tur nolasīja: 18 punktus, un ka to izpilde tiek uzlikta valdībai par noteikumu. Pārvietots Līdums kontā (2026-11-11): viss teksts ir laikraksta balss par runātāju, nevis viņa paša vārdi, un kontā, kas nav laikraksta, var stāvēt tikai paša runātāja teiktais. Teksts nav mainīts; tips mainīts uz „citāts“.",
-   "warn": "Vārds „minimālprogramu“ un skaitlis 18 nolasīti no skenējuma (lappuse 2, 2. sleja) — vecais OCR deva „programu, eetVeh.tu 1.8 pun?tos“ un „minimal-“ bija pazaudējis. Ieraksts apzināti nobeigts pie pirmās prasības: tālāk Līduma OCR ir tik sadrupis („Dv iialnixşâ' prasi tiibTītciii“), ka pārējo prasību saraksts no tā nav atveidojams.",
+   "warn": "Vārds „minimālprogramu“ un skaitlis 18 nolasīti no skenējuma (lappuse 2, 2. sleja) — vecais OCR deva „programu, eetVeh.tu 1.8 pun?tos“ un „minimal-“ bija pazaudējis. Ieraksts apzināti nobeigts pie pirmās prasības: tālāk Līduma OCR ir tik sadrupis („Dv iialnixşâ' prasi tiibTītciii“), ka pārējo prasību saraksts no tā nav atveidojams. Korektors (2. kārta, C-642) ieteica „minimālprogrammu“ ar diviem „m“ — noraidīts. Skenējumā (2. lpp., 2. sleja, 4× palielinājumā) rindu galā stāv „minimal=“ un nākamās rindas sākumā „programu“: viens „m“, kā to rakstīja pirms 1922. gada. Dubultot to nozīmētu modernizēt 1918. gada ortogrāfiju. Tas pats skenējums apstiprina arī skaitli 18.",
    "recon": {
     "minimālprogramu": "sozialdeniokratijas",
     "punktos": "pun?tos",
@@ -2591,7 +2600,7 @@
    "type": "atstastits",
    "at": "17.35",
    "seq": 685,
-   "lv": "Lielie ūdeņi sāk atbrīvot un tautas ieiet savā dabīgā gultnē. Atgriežoties pie normālas dzīves, nacionālā politika nedrīkst atrasties pretrunā ar sociālo politiku. Tās jāsaskaņo. Bez ekonomiskas labklājības un fiziska miera jādomā par Latvijas gaismas pili. Jādod latviešiem garīga uguns. Tagad, kad esam ārēji līdzīgi ar citām tautām, mums jāuzņemas bez tiesībām arī savi pienākumi, mums jāizceļ mūsu darbs, mūsu īpatnējā kultūra.",
+   "lv": "Lielie ūdeņi sāk [?] un tautas ieiet savā dabīgā gultnē. Atgriežoties pie normālas dzīves, nacionālā politika nedrīkst atrasties pretrunā ar sociālo politiku. Tās jāsaskaņo. Bez ekonomiskas labklājības un fiziska miera jādomā par Latvijas gaismas pili. Jādod latviešiem garīga uguns. Tagad, kad esam ārēji līdzīgi ar citām tautām, mums jāuzņemas bez tiesībām arī savi pienākumi, mums jāizceļ mūsu darbs, mūsu īpatnējā kultūra.",
    "ocr": "Lecìee uhdeņi şah? ati'rist uti tautas eceet şawà dabīga gultnē. Ata jotees pee nolmalas osihrves, nazionalà lolitìka ļiednhkst atrastas pretīuna ar sozialo politiiu. Tàs jāsaskaņo. Bes ekonomiskas labkļaìznbas un şisìşka meera jadomà par ga»ş?nas I pili. latwieeM gariga v g v tt s. Tagad, kad eşam ahrejì lffy« dsigt ar zitàm taut <m, mains jansņ?mas bes teenbam ari fàmî peenadk-lmi, mums jaisz ļ muş/şu dirbs, muhşu  patnejà kullura.",
    "via": "Atstāstīts: Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
@@ -2601,21 +2610,29 @@
    ],
    "atNote": "Stunda avīzē nav. Turpinājums tam, kas korpusā jau stāv 17.33; ieraksts novietots tūlīt aiz tā.",
    "note": "Korpusā Ķeniņa runa beidzas ar „ne ar varu, bet ar taisnību“. Šis ir tās turpinājums — gaismas pils un garīgā uguns.",
-   "warn": "„Latvijas gaismas pili“ un „garīga uguns“ nolasīti no skenējuma (lappuse 2, 3. sleja); vecais OCR tur deva „par ga»ş?nas I pili. latwieeM gariga v g v tt s“ — „gaismas“ bija pazudis pavisam, un „garīga uguns“ Līdumā ir iespiests izlaistiem burtiem. Tai pašā slejā caur rindu „pili“ iet papīra ieloce. Baltijas Ziņas Ķeniņa uzvārdu dod kā OCR virkni „Seniņšch“; Līdums to iespiež izlaistiem burtiem „A. Ķ e ņ i ņ š (nacionāldemokrāts)“, un saturs abās avīzēs sakrīt — tas apstiprina, ka runa ir par vienu un to pašu cilvēku.",
+   "warn": "„Latvijas gaismas pili“ un „garīga uguns“ nolasīti no skenējuma (lappuse 2, 3. sleja); vecais OCR tur deva „par ga»ş?nas I pili. latwieeM gariga v g v tt s“ — „gaismas“ bija pazudis pavisam, un „garīga uguns“ Līdumā ir iespiests izlaistiem burtiem. Tai pašā slejā caur rindu „pili“ iet papīra ieloce. Baltijas Ziņas Ķeniņa uzvārdu dod kā OCR virkni „Seniņšch“; Līdums to iespiež izlaistiem burtiem „A. Ķ e ņ i ņ š (nacionāldemokrāts)“, un saturs abās avīzēs sakrīt — tas apstiprina, ka runa ir par vienu un to pašu cilvēku. ★ Vārds starp „sāk“ un „un“ (2026-11-11) ir atvērts caurums. Vecais OCR dod „şah? ati'rist“; skenējumā (2. lpp., 3. sleja, 7—16× palielinājumā) aiz „at“ redzams viens augšupstiepts burts, tad „r“, tad „i“ ar punktu, tad „ſt“ ligatūra — vārds beidzas ar „-st“, nevis „-ot“, un „b“ tajā nav. Iespējamākais lasījums ir „atkrist“ (burtu skaits un „ſt“ ligatūra sakrīt, un tas noslēdz metaforu par ūdeņiem, kas atkāpjas gultnē), bet tas ir viens lasījums bez otra lasītāja apstiprinājuma, un parastu tekstu pēc nozīmes neatrisina. Agrākais atveidojums „atbrīvot“ izņemts: tam nebija ne burtu atbilstības, ne dokumentāra apliecinājuma. Korektors (2. kārta, C-685) to pašu vietu atzīmēja kā aizdomīgu neatkarīgi.",
    "recon": {
     "gaismas": "ga»ş?nas",
     "gultnē": "gultnē",
     "īpatnējā": "patnejà",
-    "sāk": "şah?",
     "jāuzņemas": "jansņ?mas"
-   }
+   },
+   "change": [
+    {
+     "from": "sāk atbrīvot",
+     "to": "sāk [?]",
+     "source": "Līdums Nr.219, 2. lpp., 3. sleja (bloks P2_TB00003), skenējums 230 dpi, 7—16× palielinājumā",
+     "outcome": "corrected",
+     "why": "Skenējumā šajā vietā stāv vārds, kas beidzas ar „-st“ un satur „r“; „atbrīvot“ no tā nav nolasāms un nebija ierakstīts ne „recon“, ne „warn“ — tas bija minējums. Parasta teksta minējumus Phase 4 neatļauj, tāpēc šeit tagad ir caurums."
+    }
+   ]
   },
   {
    "handle": "@lidums",
    "type": "citats",
    "at": "17.36",
    "seq": 690,
-   "lv": "Zvērinātais advokāts Strautnieks (republikāns) apsveic Latvju [valsti] un Tautas padomi un novēl tam sekmes.",
+   "lv": "Zvērinātais advokāts Strautnieks (republikāns) apsveic Latvju valsti un Tautas padomi un novēl tam sekmes.",
    "ocr": "Şwehrinatais admoşats Strauta neeks apşmeì; tatmiĶ  \nwahii un Tauta» pac-omi un noroebl tam seknrss.",
    "via": "Līdums Nr.219, 20.11.1918, „Latvijas valsts pasludināšana“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:723281|article:DIVL19",
@@ -2624,7 +2641,7 @@
     "Republikāņi"
    ],
    "atNote": "Stunda avīzē nav. Līdums šo runu liek pēc Ķeniņa un pirms Paegles; ieraksts novietots starp tiem.",
-   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „S t r a u t n e e k s (republikāns)“ (lappuse 2, 3. slejas apakša). Baltijas Ziņas viņu sauc par miertiesnesi, Līdums — par zvērinātu advokātu; amats avotos nesaskan, pirmvārda nav nevienā. Vārds „valsti“ iet pāri slejas lūzumam un OCR to nogriež („apşmeì; tatmiĶ / wahii“); tas iekavās atjaunots pēc Baltijas Ziņu paralēlvietas, nevis nolasīts.",
+   "warn": "Uzvārds nolasīts no skenējuma: Līdums to iespiež izlaistiem burtiem, „S t r a u t n e e k s (republikāns)“ (lappuse 2, 3. slejas apakša). Baltijas Ziņas viņu sauc par miertiesnesi, Līdums — par zvērinātu advokātu; amats avotos nesaskan, pirmvārda nav nevienā. Vārds „valsti“ iet pāri slejas lūzumam un OCR to nogriež („apşmeì; tatmiĶ / wahii“), bet skenējumā (4. slejas pirmā rinda) tas ir iespiests skaidri — „walsti un Tautas padomi un nowehl tam sekmes“ — tāpēc tas ir NOLASĪTS, un 2026-11-11 iekavas noņemtas. Agrākais „warn“ apgalvoja pretējo; pretrunu izšķīra skenējums, nevis teksts. Korektors (2. kārta, C-690) norādīja, ka „tam“ nesaskan ne ar „valsti“, ne ar „padomi“, un ieteica „tām“ — noraidīts: tā pati skenējuma rinda rāda, ka avīze iespiedusi „tam“. Nesaskaņa ir avīzes pašas, un tā paliek.",
    "recon": {
     "Strautnieks": "Strauta neeks",
     "novēl": "noroebl",
@@ -2633,7 +2650,16 @@
    "mentions": {
     "Strautnieks": "@strautnieks"
    },
-   "note": "Pārvietots Līdums kontā (2026-11-11): viss teksts ir laikraksta balss par runātāju, nevis viņa paša vārdi, un kontā, kas nav laikraksta, var stāvēt tikai paša runātāja teiktais. Teksts nav mainīts; tips mainīts uz „citāts“."
+   "note": "Pārvietots Līdums kontā (2026-11-11): viss teksts ir laikraksta balss par runātāju, nevis viņa paša vārdi, un kontā, kas nav laikraksta, var stāvēt tikai paša runātāja teiktais. Teksts nav mainīts; tips mainīts uz „citāts“.",
+   "change": [
+    {
+     "from": "Latvju [valsti]",
+     "to": "Latvju valsti",
+     "source": "Līdums Nr.219, 2. lpp., 4. slejas augšā (bloks P2_TB00004), skenējums 230 dpi",
+     "outcome": "gap closed",
+     "why": "Vārds „walsti“ 4. slejas augšā ir iespiests skaidri — tas bija nolasāms, nevis jāatjauno pēc Baltijas Ziņu paralēlvietas. Iekavas noņemtas, jo tās apgalvoja pretējo."
+    }
+   ]
   },
   {
    "handle": "@fr_paegle",
@@ -2891,7 +2917,7 @@
    ],
    "atNote": "Dokumentam ir datums, nav stundas: „Rīgā, 18. novembrī 1918. gadā“. Ieraksts novietots akta beigās (vācu aculiecinieks: „trīsceturtdaļos uz sešiem viss bija galā“, korpusa ieraksts 17.45); precīza stunda ir mūsu novērtējums, un dokumenta sejā tās nav.",
    "note": "Šis korpusā līdz šim nav bijis nemaz. Korpusā stāv politiskā platforma (15.00) — šis ir cits dokuments: Tautas Padomes uzruna pilsoņiem, parakstīta ar abiem vārdiem un datēta ar 18. novembri.",
-   "warn": "Jaunāko Ziņu OCR šai vietai ir pilnīgi sadrupis — paraksti tajā skan „Utica-ais. Seinige-IS· Wiss, is· noiventbti 1918 Hat-a.“ Viss „lv“ nolasīts no skenējuma (5. lappuse, labā sleja, 2,4–3,4× palielinājums): virsraksts, abi punkti, abi paraksti un datums tur ir iespiesti tīri un treknrakstā. Iekavās liktais „[u]“ ir iespiests tā — aiz iekavas aizvēruma avīzē stāv lieks burts „u“ („Latgale)u ir patstāvīga“); tas nav izlabots un nav izmests. Dokuments šeit ir no laikraksta, nevis no oriģināla; cits novietojums var dot citu formulējumu.",
+   "warn": "Jaunāko Ziņu OCR šai vietai ir pilnīgi sadrupis — paraksti tajā skan „Utica-ais. Seinige-IS· Wiss, is· noiventbti 1918 Hat-a.“ Viss „lv“ nolasīts no skenējuma (5. lappuse, labā sleja, 2,4–3,4× palielinājums): virsraksts, abi punkti, abi paraksti un datums tur ir iespiesti tīri un treknrakstā. Iekavās liktais „[u]“ ir iespiests tā — aiz iekavas aizvēruma avīzē stāv lieks burts „u“ („Latgale)u ir patstāvīga“); tas nav izlabots un nav izmests. Dokuments šeit ir no laikraksta, nevis no oriģināla; cits novietojums var dot citu formulējumu. Korektors (2. kārta, C-744) uzskatīja „[u]“ par OCR artefaktu vai nejaušu rakstzīmi — noraidīts: kā šis „warn“ jau saka, burts „u“ aiz iekavas ir iespiests avīzē un apzināti nav izmests. Korektors to nevarēja zināt, jo „warn“ saturu viņam nerāda.",
    "recon": {
     "pilsoņiem": "pilfoneeno",
     "etnogrāfiskās": "etnografiftäs",

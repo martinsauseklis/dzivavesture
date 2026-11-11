@@ -85,7 +85,7 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
       {a.warn && <p class="pwarn">{a.warn}</p>}
       {/* Present-day facts about the institution, never about 1918 — see conventions.today in the data. */}
       {a.today && (
-        <p class="today">Šodien {a.todayWhat} raksta kā <a href={`https://x.com/${a.today.slice(1)}`} target="_blank" rel="noopener">{a.today}</a></p>
+        <p class="today">{a.todayWhat} mūsdienās — <a href={`https://x.com/${a.today.slice(1)}`} target="_blank" rel="noopener">{a.today}</a></p>
       )}
       {a.live && (
         <p class="today">{a.live} <a href={`https://x.com/${handle.slice(1)}`} target="_blank" rel="noopener">{handle}</a></p>
@@ -109,7 +109,7 @@ const printedIn = (p: PostRecord) => Object.entries(p.mentions ?? {}).filter(([,
 
     {named.length > 0 && (
       <section class="named">
-        <h2>Kur viņš pieminēts</h2>
+        <h2>Pieminējumi</h2>
         {named.map((p) => (
           <a href={`../${dayOf(p).path}#p-${p.seq}`}>
             <span class="nw">{dayOf(p).key} · {p.at} · {accounts[p.handle].name}</span><br />

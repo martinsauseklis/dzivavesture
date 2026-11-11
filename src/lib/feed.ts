@@ -121,9 +121,13 @@ function writtenYears(posts: Pick<Post, 'type' | 'written'>[]): string | null {
 // No full stop — the caller punctuates.
 export function holdsLine(posts: Pick<Post, 'type' | 'written'>[]): string {
   const n = posts.length;
-  if (!n) return 'Tajās dienās neko nesaka — avīzes min';
+  // A2-21: the corrector's „Šajās dienās pats neko nesaka — viņu piemin avīzes“
+  // was taken only in part. „pats“/„viņu“ are masculine, and this same line
+  // stands over newspapers and institutions — the very fault A2-17 fixes two
+  // headings away. The de-stiffening is kept, the pronouns are not.
+  if (!n) return 'Šajās dienās neko nesaka — piemin tikai avīzes';
   const years = writtenYears(posts);
-  return `${n} ${plural(n)} ${years ? `— atmiņas, rakstītas ${years} gadā` : 'to dienu Rīgas avīzēs'}`;
+  return `${n} ${plural(n)} ${years ? `— atmiņas, rakstītas ${years} gadā` : 'tā laika Rīgas avīzēs'}`;
 }
 
 // Every source permalink must point into an archive — a CLOSED set of origins,
@@ -185,8 +189,8 @@ export const DAYS: Day[] = [
 export const dayHeading = (d: Day) => `${d.weekday}, 1918. gada ${d.n}. novembris`;
 // „1918. gada 18. novembrī“ — the day in the locative, over „kas notiek“.
 export const dayOn = (d: Day) => `1918. gada ${d.n}. novembrī`;
-// „17.–20. novembris 1918“ — the span a profile covers.
-export const DAYS_SPAN = `${DAYS[0].n}.–${DAYS[DAYS.length - 1].n}. novembris 1918`;
+// „1918. gada 17.–20. novembris“ — the span a profile covers.
+export const DAYS_SPAN = `1918. gada ${DAYS[0].n}.–${DAYS[DAYS.length - 1].n}. novembris`;
 
 // The topic a post carries when it proclaims the state or reports it. It is a
 // value the corpus already uses, not a judgement made here, and its counts are
@@ -289,7 +293,7 @@ export function reachableHandles(accounts: Record<string, Account>, shown: Post[
 export const DAY_CARD_SEQ: Record<string, number> = { '17.11.1918': 940, '18.11.1918': 20, '19.11.1918': 618, '20.11.1918': 610 };
 // What the card shows, for og:image:alt — the day, the account, the words.
 export const cardAlt = (day: Day, post: Pick<Post, 'handle' | 'at' | 'lv'>) =>
-  `dzīvā vēsture, ${day.n}. novembris 1918 — ieraksts (${post.handle}, ${post.at}): „${post.lv}“`;
+  `dzīvā vēsture — 1918. gada ${day.n}. novembra ieraksts no ${post.handle} (${post.at}): „${post.lv}“`;
 
 // --- share to X -------------------------------------------------------------
 // X counts every URL as 23 characters (t.co), whatever its length, and a post
@@ -402,7 +406,7 @@ export function mentionsOf(handle: string, posts: Post[]): Post[] {
 // tests/run.ts asserts this covers exactly the post-less accounts without `silent`.
 export const EMPTY_COPY: Record<string, string> = {
   '@erasts_bite': '18. novembrī viņš runāja — Operas namā nolasīja 17. novembra sēdes protokolu —, bet viņa paša vārdus neviena avīze nepierakstīja. Zināms tikai, ka viņš to darīja.',
-  '@h_j_seraphim': 'Viņa vārdi 18. novembra Rigasche Zeitung ir 11. turpinājums, bet tie ir vēstule tēvam par janvāri. Par 18. novembri viņš nesaka nekā; avīze viņu iespiež.',
+  '@h_j_seraphim': '18. novembra Rigasche Zeitung iespiež viņa vēstules tēvam 11. turpinājumu, un tā ir par janvāri. Par 18. novembri viņš nesaka nekā.',
   '@w_j_locke': 'Viņa romāns „Jūras zvaigzne“ 18. novembra Baltijas Ziņās turpinās, tulkots. Pats viņš par Rīgu neko nav teicis.',
   '@l_laicens': 'Par viņu raksta divas avīzes — 17. novembra Līdums grāmatu galdā min „Ieslēgtos“, 18. novembra Baltijas Ziņas nosauc viņu „Taurētāja“ dzejnieku vidū —, bet neviena neiespiež viņa paša vārdus.',
 };
@@ -485,8 +489,26 @@ export function invariantLine(shown: number, refused: number, warned: number): s
   return `${shown} ieraksti · bez avota vai ar nepareizu tipu: ${refused} · gaida pārbaudi pret skenējumu: ${warned}`;
 }
 
-// Latvian: 1, 21, 31 … take the singular, except 11 (and 111 …).
-export const plural = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'ieraksts' : 'ieraksti');
+// Latvian numeral agreement, decided by the LAST element of the SPOKEN numeral:
+//   …viens              → nominative singular  1, 21, 101 „ieraksts“
+//   …divi … deviņi      → nominative plural    2, 56, 122 „ieraksti“
+//   desmit / simt / tūkstoš and their compounds (10, 11–19, 20, 30, 100, 1000)
+//                       → genitive plural      „desmit ierakstu“, „simt gadu“
+// Those three are indeclinable and behave like nouns, so they take what they
+// count in the genitive; 11–19 are compounds of desmit and follow it, which is
+// why 11 parts company with 21. Zero takes the genitive too („nulle ierakstu“).
+// Corrector's round 2, A2-02/A2-04, 2026-11-11: this replaces a Russian-shaped
+// rule that gave „11 ieraksti“.
+// Breaks when: a form is needed in a case other than the nominative — the whole
+// phrase would then decline, not just the noun.
+const agree = (n: number, [one, few, many]: [string, string, string]) =>
+  n % 100 >= 10 && n % 100 <= 19 ? many : n % 10 === 1 ? one : n % 10 === 0 ? many : few;
+
+export const plural = (n: number) => agree(n, ['ieraksts', 'ieraksti', 'ierakstu']);
+
+// „1 atbilde“ · „2 atbildes“ · „11 atbilžu“ — the reply button. The number leads,
+// as it does everywhere else on the page; „atbildes · 1“ left it unagreed (A2-11).
+export const replyCount = (n: number) => `${n} ${agree(n, ['atbilde', 'atbildes', 'atbilžu'])}`;
 
 // The face of a person-account post whose words a paper rendered says so in
 // language — „kā ziņo Līdums“ — instead of a classification beside the name.
@@ -494,11 +516,14 @@ export const plural = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'ieraksts
 // "Atstāstīts: <source> Nr.<n>, <date>[, <where>]". Anything else returns
 // null and the face shows nothing: the fold still carries the whole line.
 // One closed mapping: when <where> is the word „stenogramma“, the honest
-// reporter is the stenogram, not the session it records.
-export function reportedBy(via: string): string | null {
+// reporter is the stenogram, not the session it records — and a stenogram does
+// not report, it records what was said, so it takes its own verb (A2-08).
+// The whole line is built here, not in the component, so the pure layer keeps
+// the wording and a test can read it.
+export function reporterLine(via: string): string | null {
   const m = /^Atstāstīts: (.+?) Nr\.\d+, \d\d\.\d\d\.\d{4}(?:, (.+))?$/.exec(via);
   if (!m) return null;
-  return m[2] === 'stenogramma' ? 'stenogramma' : m[1];
+  return m[2] === 'stenogramma' ? 'kā teikts stenogrammā' : `kā ziņo ${m[1]}`;
 }
 
 // In the fold the type is printed as its own word, so the `via` line drops
