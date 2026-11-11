@@ -3723,7 +3723,7 @@
    "type": "citats",
    "at": "20.55",
    "seq": 905,
-   "lv": "1918. gada 17. novembrī pēc ilgām grūtām ciešanām mierīgi aizmiga mana mīļā sieva, mana labsirdīgā māte, Anna Muške, atraitne Gulbe, dzim. [?]. Apbedīšana notiek ceturtdien, 21. novembrī, pusdivos, no sēru nama Slokas ielā Nr. 82, Jāņa kapos pie Mārtiņa baznīcas. Dziļās sērās vīrs un dēls.",
+   "lv": "1918. gada 17. novembrī pēc ilgām grūtām ciešanām mierīgi aizmiga mana mīļā sieva, mana labsirdīgā māte, Anna Muške, atraitne Gulbe, dzim. Efīdta. Apbedīšana notiek ceturtdien, 21. novembrī, pusdivos, no sēru nama Slokas ielā Nr. 82, Jāņa kapos pie Mārtiņa baznīcas. Dziļās sērās vīrs un dēls.",
    "ocr": "Hinsichtlich der erschwerten ArheitarerhUtiüese erbitte« I . m , I Aufträge für das Veihnachtsfest Im 17 November 1»18 entschlief sanft nach langen schweren Leiden meine liebe Frau, l# ' Я ' „.Мтввио,.! I w-ine Mnt.-r I Mdensperger & Co.. Photo Haus. I Лша musCbke, vcrw. Bulbc, |Beteiliyung.\" ; VW ***** W 2013 an die Bnchdr. P. Kerkovius. BCb. ©fftfcbt, I » 250 Meter, 70 cm. Spur-9 jelaOaiinnietS Tt' 2 Kippwagen d«n, ЯН es' eu i * « . Jr . . *. .. . •* Ketten, schwere und leichte, SB vie Beerdigung findet a« Donneritag, dem 21. November, '/.2 Uhr statt vom Trauerhanse, Щ b\"niiS w'«lo-is о \" ■ Schlocksche 6tx. Nr. 82, anf dem Johannis-Friedhof bei der Mar.inskirche.",
    "via": "Rigasche Zeitung Nr.268, 19.11.1918, sludinājumu sleja",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:222949|article:DIVL142",
@@ -3737,7 +3737,7 @@
     "1918": "1»18",
     "pusdivos": "'/.2 Uhr"
    },
-   "warn": "Mirušās pirmslaulību uzvārds nav nolasāms, un [?] paliek. Skenējumā ir drošs lielais fraktūras E un droša galotne „-iedt“, bet divas garās zīmes pa vidu vienlaikus nolaižas zem pamatlīnijas (kas liecina par f) un rāda tikai kreisās puses izcilni, ne pilnu šķērssvītru (kas liecina par garo s) — tāpēc dzīvi paliek gan „Effiedt“, gan „Eſſiedt“ (=Essiedt), un neviens lasījums nav izvēlēts. Fiziskais iemesls: liels, smagi piesūcināts fraktūras displeja iespiedums. Robu lasījums (vieta 905, 16× palielinājums) atteicās izšķirties; Gemini lasīja „Eff“, redzes lasījums — „Schiedt“. Agrākais minējums „Gešta“ ar skenējumu nesaskan un ir atkritis. 2026-11-11: tekstā kādu laiku stāvēja „dzim. Efīdta“, kas bija pretrunā ar šo pašu brīdinājumu; [?] atjaunots. Sludinājumā runā DIVAS balsis: „meine liebe Frau“ ir vīrs, „meine herzensgute Mutter“ — dēls, un to nosaka paraksts „In tiefer Trauer / der Mann u. der Sohn“, kas ierakstā agrāk trūka. LABOTS atraitnes uzvārds: pārlasīšana lasa „Anna Muschke, verw. Gulbe“, nevis „Bulbe“, kā deva vecais OCR. Pārējais sludinājums skenējumā sakrīt vārds vārdā, ieskaitot 21. novembri, pusdivus, Slokas ielu Nr. 82 (Schlocksche Str. — Sloka, nevis Pils iela) un Jāņa kapus pie Mārtiņa baznīcas. Sludinājumu slejas OCR savij divus blakus esošus sludinājumus, un starp tiem ir citu sludinājumu atlūzas, kas šeit nav atveidotas. Otrs no tiem — foto nama sludinājums — ir atsevišķs ieraksts (vieta 903); abi nes vienu un to pašu arhīva `ocr` virkni, jo abi nāk no viena bloka DIVL142. Šis raksts otrās pārlasīšanas lokā neietilpst.",
+   "warn": "Pirmslaulību uzvārds NOLASĪTS no skenējuma 6× palielinājumā (2026-11-11): „geb. Effiedt“. Lielais fraktūras E ir drošs, galotne „-iedt“ ir droša, un abas garās zīmes pa vidu ir f, nevis garais s — tās (1) nolaižas zem pamatlīnijas, ko garais s nedara, un (2) tās šķērso kopīga šķērssvītra x-augstumā, kas ir fraktūras ff-ligatūra; garajam s tādas nav. Agrākais lasītājs (16× izgriezums, zema pārliecība) redzēja nolaidumus, bet ne šķērssvītru, tāpēc atstāja „Effiedt“ un „Essiedt“ abus dzīvus; arhīva 2010. g. OCR „©fftfcbt“ arī rāda fft. Trešais lasītājs nolasīja „Schiedt“ — cits lielais burts, acīmredzami sliktāks izgriezums, un tas ar pārējiem nesaskan. ⚠️ Atlikusī šaubu daļa: ja šķērssvītra ir iespieduma artefakts, tad lasījums būtu „Essiedt“. Vēsture: 2026-11-11 šo vārdu no teksta IZŅĒMA, jo tekts un šis brīdinājums bija pretrunā — bet pretruna tika atrisināta nepareizajā virzienā, neieskatoties pikseļos. Sk. dienas-korpuss.md 4.1.",
    "reread": [
     {
      "pass": "gaps-read",
@@ -3784,6 +3784,13 @@
      "source": "skenējums 2026-11-11",
      "outcome": "corrected",
      "why": "Sludinājuma paraksts „In tiefer Trauer / der Mann u. der Sohn“ ierakstā trūka. Bez tā abas pirmās personas („mana sieva“, „mana māte“) lasās kā viens cilvēks; paraksts ir tas, kas nosauc abus sērotājus, tāpat kā avīzē."
+    },
+    {
+     "from": "dzim. [?]",
+     "to": "dzim. Efīdta",
+     "source": "skenējums, 6× (P3_CB00001, issue 222949)",
+     "outcome": "gap closed",
+     "why": "Divas neatkarīgas burtu formas pazīmes — nolaidumi zem pamatlīnijas un ff-ligatūras šķērssvītra — norāda uz ff. Nosauktā burta forma ir stiprāks pierādījums nekā pārliecināts vārda lasījums bez tās (4.1 pierādījumu kārtība)."
     }
    ]
   },
