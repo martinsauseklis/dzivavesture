@@ -3723,7 +3723,7 @@
    "type": "citats",
    "at": "20.55",
    "seq": 905,
-   "lv": "1918. gada 17. novembrī pēc ilgām grūtām ciešanām mierīgi aizmiga mana mīļā sieva, mana māte, Anna Muške, atraitne Gulbe, dzim. Efīdta. Apbedīšana notiek ceturtdien, 21. novembrī, pusdivos, no sēru nama Slokas ielā Nr. 82, Jāņa kapos pie Mārtiņa baznīcas.",
+   "lv": "1918. gada 17. novembrī pēc ilgām grūtām ciešanām mierīgi aizmiga mana mīļā sieva, mana labsirdīgā māte, Anna Muške, atraitne Gulbe, dzim. [?]. Apbedīšana notiek ceturtdien, 21. novembrī, pusdivos, no sēru nama Slokas ielā Nr. 82, Jāņa kapos pie Mārtiņa baznīcas. Dziļās sērās vīrs un dēls.",
    "ocr": "Hinsichtlich der erschwerten ArheitarerhUtiüese erbitte« I . m , I Aufträge für das Veihnachtsfest Im 17 November 1»18 entschlief sanft nach langen schweren Leiden meine liebe Frau, l# ' Я ' „.Мтввио,.! I w-ine Mnt.-r I Mdensperger & Co.. Photo Haus. I Лша musCbke, vcrw. Bulbc, |Beteiliyung.\" ; VW ***** W 2013 an die Bnchdr. P. Kerkovius. BCb. ©fftfcbt, I » 250 Meter, 70 cm. Spur-9 jelaOaiinnietS Tt' 2 Kippwagen d«n, ЯН es' eu i * « . Jr . . *. .. . •* Ketten, schwere und leichte, SB vie Beerdigung findet a« Donneritag, dem 21. November, '/.2 Uhr statt vom Trauerhanse, Щ b\"niiS w'«lo-is о \" ■ Schlocksche 6tx. Nr. 82, anf dem Johannis-Friedhof bei der Mar.inskirche.",
    "via": "Rigasche Zeitung Nr.268, 19.11.1918, sludinājumu sleja",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:222949|article:DIVL142",
@@ -3737,7 +3737,7 @@
     "1918": "1»18",
     "pusdivos": "'/.2 Uhr"
    },
-   "warn": "Mirušās pirmslaulību uzvārds joprojām nav nolasāms, un [?] paliek. Robu lasījums (vieta 905, 16× palielinājums, zema pārliecība) nolasa drošu lielo E un drošu galotni „-iedt“, bet divas garās zīmes pa vidu nolaižas zem pamatlīnijas (kas liecina par f) un vienlaikus rāda tikai kreisās puses izcilni, ne pilnu šķērssvītru (kas liecina par garo s) — tāpēc gan „Effiedt“, gan „Essiedt“ paliek dzīvi, un lasītājs atteicās izšķirties par uzvārdu. Fiziskais iemesls: liels, smagi piesūcināts fraktūras displeja iespiedums. Agrākais minējums „Gešta“ ar šo lasījumu nesaskan un ir galīgi atkritis. LABOTS atraitnes uzvārds: pārlasīšana sludinājuma salasāmajā daļā lasa „Anna Muschke, verw. Gulbe“, nevis „Bulbe“, kā deva vecais OCR. Pārējais sludinājums pārlasīšanā sakrīt vārds vārdā, ieskaitot 21. novembri, pusdivus, Slokas ielu Nr. 82 un Jāņa kapus pie Mārtiņa baznīcas. Sludinājumu slejas OCR savij divus blakus esošus sludinājumus, un starp tiem ir citu sludinājumu atlūzas, kas šeit nav atveidotas. Otrs no tiem — Mendenspergera foto nama sludinājums — tagad ir atsevišķs ieraksts (vieta 903); abi nes vienu un to pašu arhīva `ocr` virkni, jo abi nāk no viena bloka DIVL142. Šis raksts otrās pārlasīšanas lokā neietilpst. Pirmslaulību uzvārds tagad ir ielikts kā Efīdta (vāciski Effiedt). Divas neatkarīgas pārlasīšanas lasa „Eff“: robu lasījums (kas gan pieļāva arī „Essiedt“) un Gemini, kas pamato dubulto f ar diviem augšupvilkumiem ar vidus šķērssvītrām un lielo burtu sauc par fraktūras E ar raksturīgo kreiso cilpu, nevis S. Redzes lasījuma „Schiedt“ paliek mazākumā. LATVISKOJUMS „Efīdta“ ir jāpārbauda.",
+   "warn": "Mirušās pirmslaulību uzvārds nav nolasāms, un [?] paliek. Skenējumā ir drošs lielais fraktūras E un droša galotne „-iedt“, bet divas garās zīmes pa vidu vienlaikus nolaižas zem pamatlīnijas (kas liecina par f) un rāda tikai kreisās puses izcilni, ne pilnu šķērssvītru (kas liecina par garo s) — tāpēc dzīvi paliek gan „Effiedt“, gan „Eſſiedt“ (=Essiedt), un neviens lasījums nav izvēlēts. Fiziskais iemesls: liels, smagi piesūcināts fraktūras displeja iespiedums. Robu lasījums (vieta 905, 16× palielinājums) atteicās izšķirties; Gemini lasīja „Eff“, redzes lasījums — „Schiedt“. Agrākais minējums „Gešta“ ar skenējumu nesaskan un ir atkritis. 2026-11-11: tekstā kādu laiku stāvēja „dzim. Efīdta“, kas bija pretrunā ar šo pašu brīdinājumu; [?] atjaunots. Sludinājumā runā DIVAS balsis: „meine liebe Frau“ ir vīrs, „meine herzensgute Mutter“ — dēls, un to nosaka paraksts „In tiefer Trauer / der Mann u. der Sohn“, kas ierakstā agrāk trūka. LABOTS atraitnes uzvārds: pārlasīšana lasa „Anna Muschke, verw. Gulbe“, nevis „Bulbe“, kā deva vecais OCR. Pārējais sludinājums skenējumā sakrīt vārds vārdā, ieskaitot 21. novembri, pusdivus, Slokas ielu Nr. 82 (Schlocksche Str. — Sloka, nevis Pils iela) un Jāņa kapus pie Mārtiņa baznīcas. Sludinājumu slejas OCR savij divus blakus esošus sludinājumus, un starp tiem ir citu sludinājumu atlūzas, kas šeit nav atveidotas. Otrs no tiem — foto nama sludinājums — ir atsevišķs ieraksts (vieta 903); abi nes vienu un to pašu arhīva `ocr` virkni, jo abi nāk no viena bloka DIVL142. Šis raksts otrās pārlasīšanas lokā neietilpst.",
    "reread": [
     {
      "pass": "gaps-read",
@@ -3763,6 +3763,27 @@
      "source": "gaps-read 905",
      "outcome": "corrected",
      "why": "Pārlasītājs sludinājuma salasāmajā daļā lasa „Anna Muschke, verw. Gulbe“; vecā OCR „Bulbc“ bija fraktūras B/G sajaukums. Pati pirmslaulību uzvārda vieta paliek nolasīta tikai daļēji un tekstā nav ielikta."
+    },
+    {
+     "from": "mana māte, Anna Muške",
+     "to": "mana labsirdīgā māte, Anna Muške",
+     "source": "skenējums 2026-11-11",
+     "outcome": "corrected",
+     "why": "Iespiests ir „meine herzensgute Mutter“; „herzensgute“ atveidojumā bija izkritis."
+    },
+    {
+     "from": "dzim. Efīdta.",
+     "to": "dzim. [?].",
+     "source": "owner",
+     "outcome": "corrected",
+     "why": "Teksts bija pretrunā ar savu paša brīdinājumu, kas saka, ka uzvārds nav nolasāms. Divas pārlasīšanas nesakrita („Effiedt“ / „Eſſiedt“ / „Schiedt“), un neviena no tām uzvārdu neizšķīra, tātad [?] ir pabeigts stāvoklis, nevis neizdarīts darbs."
+    },
+    {
+     "from": "Jāņa kapos pie Mārtiņa baznīcas.",
+     "to": "Jāņa kapos pie Mārtiņa baznīcas. Dziļās sērās vīrs un dēls.",
+     "source": "skenējums 2026-11-11",
+     "outcome": "corrected",
+     "why": "Sludinājuma paraksts „In tiefer Trauer / der Mann u. der Sohn“ ierakstā trūka. Bez tā abas pirmās personas („mana sieva“, „mana māte“) lasās kā viens cilvēks; paraksts ir tas, kas nosauc abus sērotājus, tāpat kā avīzē."
     }
    ]
   },
@@ -3793,7 +3814,7 @@
    "type": "dokuments",
    "at": "21.10",
    "seq": 920,
-   "lv": "Čadra. Pāvila Rozīša čadra, kas augumu tavu kā čaukstoša pasaka glauž, persīkā jaunavu austa, kur rozes kā tīģeri snauž. Ik pavediens smalkākā zīda ir saules un dienvidu pilns. Tos vērpuši persietes pirksti, ko asinis rit smaržojošs vilnis. Tas vilnis, kad saule un zeme zelterēs apreib, to sviež, kā mūžīga pasaka kūsā un jūtas kā virpulī griež. To dara šī čadra ar mani, kad augumu tavu tā skauj, kad topi kā austrumu dzeja, ko pusnakts izlasīt ļauj. Bet krāsas kā kliedzošas dziesmas, kā saule un dienvidi skan. Tur oranžs, sarkans un dzeltens, tur violets apreibt liek man. Šīs krāsas kā mandeles maigi, kā kaislība granātas plaukst. Vēl nardi un činaru koki un smaržaini čaukst.",
+   "lv": "Šī čadra, kas augumu tavu kā čaukstoša pasaka glauž, ir Persijā jaunavu austa, kur rozes kā tīģeri snauž. Ik pavediens smalkākā zīda ir saules un dienvidu pilns. Tos vērpuši persietes pirksti, ko asinis rit smaržojošs vilnis. Tas vilnis, kad saule un zeme zelterēs apreib, to sviež, kā mūžīga pasaka kūsā un jūtas kā virpulī griež. To dara šī čadra ar mani, kad augumu tavu tā skauj, tu topi kā austrumu dzeja, vien pusnakts ko izlasīt ļauj. Bet krāsas kā kliedzošas dziesmas, kā saule un dienvidi skan. Tur oranžs, sarkans un dzeltens, tur violets apreibt liek man. Zied krāsas kā mandeles maigi, kā kaislība granātas plaukst. Vēl nardi un činaru koki un abrikoss smaržaini čaukst. …",
    "ocr": "Tschadra. Pawila Rozischa tşchadra, kas augnmu tamu Kà tschaukstoşcha paşaka glausch, perfiîâ jaunawu austa, Rur roses kà tihģeri şnausch. Ik pawedeens smalkāka fihda Ir iavles un deenwidu pilns. Tos mehrpuşchi perseetes pirksti, Ao aş'nis rit şmarschojoşchs wilns. îas wilnis, kad saule un seme Selteter- ap?eib: ļo sweesch, Aà muhschiga pasaka kuhşà An juhtas kà wirpulî greesch To dara schi tşchadra ar mani, Kad augumu tawu ta skauj, «îu topi kà austrumu dfeja VOctn pusnakts ko islasit ļauj. Äet krahşas kà kleedsoşchas dseeşmas, Aà saule un deenmidi skan. Tur oranscha, sarkans un dseltens, Tur miolets apreibt leek man. Seeo krahşas kà mandeles maigi, Kà kaişliba granātas plaukst/ U?ehl nardi un tşchinaru koki An şmarschaini tşchaukfi.",
    "via": "Līdums Nr.217, 17.11.1918, „Čadra“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:941686|article:DIVL79",
@@ -3808,15 +3829,15 @@
     "apreib": "ap?eib:",
     "Vēl nardi": "U?ehl nardi"
    },
-   "warn": "Dzejolis šeit atveidots kā nepārtraukta rinda, jo OCR nesaglabā rindu dalījumu. Vairākas vietas („zelterēs apreib“, „ko pusnakts izlasīt ļauj“) ir bojātas un lasītas; pirms publicēšanas viss dzejolis jāsalasa no skenējuma. Korektors (2026-11-10) ieteica „persīkā“ → „persiešu“. NAV ieviests, jo ir DIVI vienlīdz ticami kandidāti: „persiešu jaunavu austa“ un „Persijā jaunavu austa“ — abi saskan ar to pašu dzejoli, kurā vēlāk stāv „persietes pirksti“. Tas ir Pāvila Rozīša dzejolis, kur neparasta vārda forma var būt apzināta. Jāsalasa no skenējuma, nevis jāizvēlas.",
+   "warn": "Dzejolis atveidots kā nepārtraukta rinda, jo OCR nesaglabā rindu dalījumu. Iespiestā galva šeit vairs nav atveidota: avīze to salika kā trīs atsevišķus blokus — paraksts „Pawila Rozischa“ virs nosaukuma, nosaukums „Tschadra.“ un tikai tad dzejolis —, bet OCR tos salipināja vienā rindā, un uz paša Pāvila Rozīša konta viņa vārds iznāca kā dzejoļa pirmie vārdi. Nosaukums un paraksts ir avīzes galva; tie stāv laukā „via“. 2026-11-11 dzejolis pārlasīts no skenējuma (Līdums Nr.217, 3. lpp., 1. sleja, 6× palielinājums); pieci labojumi ierakstīti laukā „change“. Neatrisināts paliek: rinda ir „Selteterâ apreibt to ſweeſch“, bet vārds „Selteterâ“ nav identificējams, tāpēc „zelterēs apreib“ ir rekonstrukcija, nevis lasījums. Divas vietas atstātas, kā bija, un nosauktas šeit, nevis izlabotas klusām: iespiests ir „oranscha“ (oranža), mēs rakstām „oranžs“; iespiests ir „wilns“, mēs rakstām „vilnis“. Abās iespiestā forma neiederas blakus vārdos, un izvēle atstāta korektūrai. Ieraksts atveido pirmās sešas no deviņām dzejoļa strofām; pārējās trīs nav atveidotas, un to rāda daudzpunkte beigās. Korektora (2026-11-10) ieteikums „persīkā“ → „persiešu“ atkrīt: skenējumā rinda ir „Ir Perſijâ jaunawu austa“.",
    "thread": [
     {
-     "lv": "Čadra. Pāvila Rozīša čadra, kas augumu tavu kā čaukstoša pasaka glauž, persīkā jaunavu austa, kur rozes kā tīģeri snauž. Ik pavediens smalkākā zīda ir saules un dienvidu pilns. Tos vērpuši persietes pirksti, ko asinis rit smaržojošs vilnis.",
+     "lv": "Šī čadra, kas augumu tavu kā čaukstoša pasaka glauž, ir Persijā jaunavu austa, kur rozes kā tīģeri snauž. Ik pavediens smalkākā zīda ir saules un dienvidu pilns. Tos vērpuši persietes pirksti, ko asinis rit smaržojošs vilnis.",
      "ocr": "Tschadra. Pawila Rozischa tşchadra, kas augnmu tamu Kà tschaukstoşcha paşaka glausch, perfiîâ jaunawu austa, Rur roses kà tihģeri şnausch. Ik pawedeens smalkāka fihda Ir iavles un deenwidu pilns. Tos mehrpuşchi perseetes pirksti, Ao aş'nis rit şmarschojoşchs wilns.",
-     "warn": "Dzejolis šeit atveidots kā nepārtraukta rinda, jo OCR nesaglabā rindu dalījumu. Vairākas vietas („zelterēs apreib“, „ko pusnakts izlasīt ļauj“) ir bojātas un lasītas; pirms publicēšanas viss dzejolis jāsalasa no skenējuma."
+     "warn": "Dzejolis atveidots kā nepārtraukta rinda, jo OCR nesaglabā rindu dalījumu. Iespiestā galva (paraksts un nosaukums) ir avīzes, nevis autora teksts, un šajā ierakstā vairs nav atveidota."
     },
     {
-     "lv": "Tas vilnis, kad saule un zeme zelterēs apreib, to sviež, kā mūžīga pasaka kūsā un jūtas kā virpulī griež. To dara šī čadra ar mani, kad augumu tavu tā skauj, kad topi kā austrumu dzeja, ko pusnakts izlasīt ļauj.",
+     "lv": "Tas vilnis, kad saule un zeme zelterēs apreib, to sviež, kā mūžīga pasaka kūsā un jūtas kā virpulī griež. To dara šī čadra ar mani, kad augumu tavu tā skauj, tu topi kā austrumu dzeja, vien pusnakts ko izlasīt ļauj.",
      "ocr": "îas wilnis, kad saule un seme Selteter- ap?eib: ļo sweesch, Aà muhschiga pasaka kuhşà An juhtas kà wirpulî greesch To dara schi tşchadra ar mani, Kad augumu tawu ta skauj, «îu topi kà austrumu dfeja VOctn pusnakts ko islasit ļauj.",
      "recon": {
       "zelterēs": "Selteter-",
@@ -3824,12 +3845,49 @@
      }
     },
     {
-     "lv": "Bet krāsas kā kliedzošas dziesmas, kā saule un dienvidi skan. Tur oranžs, sarkans un dzeltens, tur violets apreibt liek man. Šīs krāsas kā mandeles maigi, kā kaislība granātas plaukst. Vēl nardi un činaru koki un smaržaini čaukst.",
+     "lv": "Bet krāsas kā kliedzošas dziesmas, kā saule un dienvidi skan. Tur oranžs, sarkans un dzeltens, tur violets apreibt liek man. Zied krāsas kā mandeles maigi, kā kaislība granātas plaukst. Vēl nardi un činaru koki un abrikoss smaržaini čaukst. …",
      "ocr": "Äet krahşas kà kleedsoşchas dseeşmas, Aà saule un deenmidi skan. Tur oranscha, sarkans un dseltens, Tur miolets apreibt leek man. Seeo krahşas kà mandeles maigi, Kà kaişliba granātas plaukst/ U?ehl nardi un tşchinaru koki An şmarschaini tşchaukfi.",
      "recon": {
       "činaru": "tşchinaru",
       "Vēl nardi": "U?ehl nardi"
      }
+    }
+   ],
+   "change": [
+    {
+     "from": "Čadra. Pāvila Rozīša čadra, kas augumu tavu",
+     "to": "Šī čadra, kas augumu tavu",
+     "source": "skenējums 2026-11-11",
+     "outcome": "corrected",
+     "why": "Avīzes galva (paraksts „Pawila Rozischa“ un nosaukums „Tschadra.“) ir divi atsevišķi salikuma bloki virs dzejoļa, un OCR tos iestūma dzejoļa pirmajā rindā. Uz dzejnieka paša konta tas lasījās tā, it kā dzejolis sāktos ar viņa paša vārdu ģenitīvā. Galva noņemta; dzejoļa īstā pirmā rinda ir „Schì tschadra, kas augumu tawu“ — „Šī“ bija pazudis zem tās pašas kļūdas."
+    },
+    {
+     "from": "persīkā jaunavu austa",
+     "to": "ir Persijā jaunavu austa",
+     "source": "skenējums 2026-11-11",
+     "outcome": "corrected",
+     "why": "Skenējumā rinda ir „Ir Perſijâ jaunawu austa,“ — nolasīta pa burtam 6× palielinājumā. Tas izšķir korektora atvērto jautājumu („persiešu“ vai „Persijā“): iespiests ir vietvārds."
+    },
+    {
+     "from": "kad topi kā austrumu dzeja, ko pusnakts izlasīt ļauj",
+     "to": "tu topi kā austrumu dzeja, vien pusnakts ko izlasīt ļauj",
+     "source": "skenējums 2026-11-11",
+     "outcome": "corrected",
+     "why": "Skenējumā „Tu topi kà austrumu dſeja / Ween pusnakts ko islaſit ļauj.“ Vecais OCR („«îu topi“, „VOctn pusnakts ko“) bija sabojājis abus rindu sākumus."
+    },
+    {
+     "from": "Šīs krāsas kā mandeles maigi",
+     "to": "Zied krāsas kā mandeles maigi",
+     "source": "skenējums 2026-11-11",
+     "outcome": "corrected",
+     "why": "Skenējumā „Seed krahſas kà mandeles maigi,“ — pirms 1922. gada `S` ir z un `ee` ir ie, tātad „zied“. Pats dzejnieks „šīs“ raksta „ſchìs“ (nākamās strofas pirmā rinda), tāpēc sajaukšana ir izslēgta."
+    },
+    {
+     "from": "un činaru koki un smaržaini čaukst.",
+     "to": "un činaru koki un abrikoss smaržaini čaukst. …",
+     "source": "skenējums 2026-11-11",
+     "outcome": "corrected",
+     "why": "Skenējumā „Un abrikoſs ſmarſchaini tſchaukſt.“ — vecajā OCR („An ſmarschaini tſchaukfi“) vārds „abrikoss“ bija pazudis. Daudzpunkte pielikta tāpēc, ka ieraksts atveido sešas no deviņām strofām."
     }
    ]
   },
@@ -3838,7 +3896,7 @@
    "type": "dokuments",
    "at": "21.20",
    "seq": 930,
-   "lv": "Laika ratos. A. Saulieša stāsts. (Beigas.) … Viņš tik velk no kabatām ārā cariņus, kerenskus, ostenus un met tos uz visām pusēm veselām gūzmām. Kā kad tā vairs nebūtu nemaz nauda, kura viņam vēl netik sen izlikusies bezgalā vērtīga, bet kaut kādas samazgātas papīra skrandas…",
+   "lv": "Viņš tik velk no kabatām ārā cariņus, kerenskus, ostenus un met tos uz visām pusēm veselām gūzmām. Kā kad tā vairs nebūtu nemaz nauda, kura viņam vēl netik sen izlikusies bezgalā vērtīga, bet kaut kādas samazgātas papīra skrandas…",
    "ocr": "Laika ratos. A. Sauleescha Stahsts. (Beigas^ … tviņsch tik u»elk no kabatām ahrâ zareņus, kerenşkus, ostenus un met tos us mşşàm puttm meşelàm guhsmam. Ka kad ta rvairs nebuhtu nemās nanda, kura »i-r<r»x mehl netik sen isiikuşès btsgolâ mehniga, bet kaut kahdas şamasatas pģpira şkraizdas",
    "via": "Līdums Nr.217, 17.11.1918, „Laika ratos“",
    "url": "https://periodika.lndb.lv/periodika2-viewer/#panel:pa|issue:941686|article:DIVL71",
@@ -3852,11 +3910,8 @@
     "skrandas": "şkraizdas",
     "samazgātas": "şamasatas"
    },
-   "mentions": {
-    "A. Saulieša": "@a_saulietis"
-   },
    "context": "A. Saulieša stāsta „Laika ratos“ beigu daļa: Juris Lapsiņš Rīgā kārtīs izspēlē visu, kas kabatā. „Cariņi“, „kerenski“ un „osteni“ ir trīs naudas, kas 1918. gada novembrī staigā rokās vienlaikus — cariskā, Pagaidu valdības un vācu okupācijas.",
-   "warn": "Ieraksts sākts ar stāsta iespiesto galvu, lai lasītājs redz, ka tas ir stāsts. Abas nedrošās vietas ir pārlasītas no skenējuma (robu lasījums, vieta 930, augsta pārliecība). Pēdējais vārds ir „skrandas“ — papīra lupatas, nevis „skrejlapas“: lasītājs noraidīja ievadā ielikto „skrejlapas“, tāpēc šī ir stipra liecība. Nesalasāmais vārds starp „kura“ un „vēl“ ir „viņam“; tas sēž zem horizontāla skrāpējuma papīrā, kas vecajam OCR izmaksāja visu vārdu. Šis raksts otrās pārlasīšanas lokā neietilpst. Vārds „samazgātas“ NAV salāgots: pārlasītājs rindu pieraksta ar „sawasatas“, kas šo atveidojumu nebalsta, bet pats šo vietu neizcēla kā lasījumu, tāpēc teksts atstāts, kā bija. Nākamā rindkopa sākas „Otrā dienā ap launagu naudas vairs nav“.",
+   "warn": "Ieraksts agrāk sākās ar stāsta iespiesto galvu („Laika ratos. A. Saulieša stāsts. (Beigas.)“). Tā ir noņemta. Avīze to salika kā trīs rindas virs teksta — paraksts „A. Sauleescha“, tad nosaukums „Laika ratos.“, tad „Stāsts. (Beigas.)“ —, un uz paša autora konta tas lasījās kā viņa vārdi; turklāt mūsu rindā tās bija pārkārtotas vienā teikumā, kādu avīze nav salikusi. Nosaukums stāv laukā „via“. Ieraksts atveido stāsta beigu daļas vienu gabalu, kas iespiestajā tekstā sākas ar jaunu teikumu „Viņš tik velk no kabatām ārā…“; nākamā rindkopa sākas „Otrā dienā ap launagu naudas vairs nav“. Abas nedrošās vietas ir pārlasītas no skenējuma (robu lasījums, vieta 930, augsta pārliecība). Pēdējais vārds ir „skrandas“ — papīra lupatas, nevis „skrejlapas“: lasītājs noraidīja ievadā ielikto „skrejlapas“, tāpēc šī ir stipra liecība. Nesalasāmais vārds starp „kura“ un „vēl“ ir „viņam“; tas sēž zem horizontāla skrāpējuma papīrā, kas vecajam OCR izmaksāja visu vārdu. Vārds „samazgātas“ NAV salāgots: pārlasītājs rindu pieraksta ar „sawasatas“, kas šo atveidojumu nebalsta, bet pats šo vietu neizcēla kā lasījumu, tāpēc teksts atstāts, kā bija. Šis raksts otrās pārlasīšanas lokā neietilpst.",
    "reread": [
     {
      "pass": "gaps-read",
@@ -3882,6 +3937,13 @@
      "source": "gaps-read 930",
      "outcome": "corrected",
      "why": "Skenējumā „ſ-k-r-a-n-d-a-s“ — papīra skrandas. Lasītājs noraidīja ievadā ielikto „skrejlapas“, tātad lasījums nav ievada atbalss."
+    },
+    {
+     "from": "Laika ratos. A. Saulieša stāsts. (Beigas.) … Viņš tik velk",
+     "to": "Viņš tik velk",
+     "source": "owner",
+     "outcome": "corrected",
+     "why": "Agrākais pamatojums („lai lasītājs redz, ka tas ir stāsts“) ir atsaukts: galva ir avīzes uzraksts par autoru, nevis autora vārdi, un uz viņa paša konta tā lasās kā viņa teksts. Tas pats defekts, kas ierakstā 920. Fakts, ka šī ir stāsta beigu daļa, paliek laukos „via“ un „context“."
     }
    ]
   },

@@ -743,6 +743,44 @@ const narrated = onPerson.filter((p) => narratesFromOutside(p.lv, p.handle)).map
 check(`corpus: ${onPerson.length} posts on person accounts, none narrating their own holder from outside`,
   onPerson.length > 0 && narrated.length === 0, narrated.length ? `seq ${narrated.join()}` : 'every one in the speaker\'s own voice');
 
+// --- the paper's article head is not the account holder's words ------------
+// Same class as the row above, the other half of it. He found it on the live
+// site on 2026-11-11: @p_rozitis opened „Čadra. Pāvila Rozīša čadra, kas…“ and
+// @a_saulietis opened „Laika ratos. A. Saulieša stāsts. (Beigas.)…“. In both
+// the newspaper set the byline and the title as separate blocks ABOVE the
+// work; the OCR read them into the first line, so on the author's own account
+// the paper's label reads as his opening words. The third-person row cannot
+// see it — there is no reporting verb, and the surname is in the genitive,
+// which that row's nominative stem does not match.
+//   The invariant: a post on a NON-publication account may not open with the
+//   article title its own `via` names. Narrow on purpose — the corpus is full
+//   of legitimate titles. A publication IS the voice that prints the head, so
+//   seq 500 („Latvijas valsts pasludināšana“) and seq 890 („Jūras zvaigzne“)
+//   open with theirs and are right to; they are excluded by account kind, not
+//   by a special case. An org's own proclamation („Uzsaukums.“, „Paziņojums.“)
+//   is its own heading and its `via` names the paper's section, not the title,
+//   so it passes on the data rather than on an exception.
+// | case                                                      | expected |
+// | person post opening with the title in its via             | FAIL     |
+// | person post whose via title appears nowhere in the text   | pass     |
+// | person post naming the title mid-sentence, not at the head| pass     |
+// | publication post opening with its own title               | pass (not examined) |
+// | every post in the corpus off a publication account        | pass     |
+const viaTitle = (via: string) => /„([^“]+)“/.exec(via)?.[1] ?? null;
+const wearsTheHead = (lv: string, via: string) => { const t = viaTitle(via); return t !== null && lv.startsWith(t); };
+const headFixtures: [string, string, string, boolean][] = [
+  ['the paper\'s title and byline as his first words', 'Čadra. Pāvila Rozīša čadra, kas augumu tavu kā čaukstoša pasaka glauž.', 'Līdums Nr.217, 17.11.1918, „Čadra“', true],
+  ['the story head glued to the story', 'Laika ratos. A. Saulieša stāsts. (Beigas.) … Viņš tik velk no kabatām ārā cariņus.', 'Līdums Nr.217, 17.11.1918, „Laika ratos“', true],
+  ['the work standing alone', 'Šī čadra, kas augumu tavu kā čaukstoša pasaka glauž.', 'Līdums Nr.217, 17.11.1918, „Čadra“', false],
+  ['the title named inside the text, not at the head', 'Es rakstīju „Čadra“ pagājušajā nedēļā.', 'Līdums Nr.217, 17.11.1918, „Čadra“', false],
+  ['a via that names a section, not a title', 'Uzsaukums. Ievērojot momenta nopietnību…', 'Līdums Nr.218, 19.11.1918, „Rīga“', false],
+];
+for (const [name, lv, via, expected] of headFixtures) check(`article head on a non-publication account — ${name}`, wearsTheHead(lv, via) === expected);
+const offPaper = corpus.filter((p) => data.accounts[p.handle].kind !== 'publication');
+const headed = offPaper.filter((p) => wearsTheHead(p.lv, p.via)).map((p) => p.seq);
+check(`corpus: ${offPaper.length} posts off a publication account, none opening with the printed article head`,
+  offPaper.length > 0 && headed.length === 0, headed.length ? `seq ${headed.join()}` : 'every one opens on the holder\'s own words');
+
 // --- threads: one printed item split at sentence boundaries, nothing else ---
 // | rule                                                      |
 // | >= 2 segments; segments re-join to exactly lv and ocr     |
