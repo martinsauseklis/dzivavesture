@@ -66,25 +66,35 @@ for (const h of handles) {
 }
 
 // --- P4: unique title / description / canonical / og:* per page ------------
+// CHANGED 2026-11-24 — og:image and og:image:alt left this list. They are now
+// deliberately THE SAME on every page (one site card); uniqueness is still the
+// rule for everything that identifies a page. The og:image rows below assert
+// the new behaviour instead of simply dropping it.
 const docs = [...dayDocs.map(([d, doc]) => [d.key, doc] as const), ...handles.map((h) => [h, html(page(h))] as const)];
-for (const key of ['title', 'description', 'canonical', 'og:title', 'og:url', 'og:image', 'og:image:alt'] as const) {
+for (const key of ['title', 'description', 'canonical', 'og:title', 'og:url'] as const) {
   const values = docs.map(([, d]) => key === 'title' ? titleOf(d) : key === 'canonical' ? attr(d, /<link rel="canonical" href="([^"]*)"/g)[0] ?? '' : meta(d, key));
   check(`P4: ${key} is present and unique across all ${docs.length} pages`, values.every(Boolean) && new Set(values).size === values.length, `${new Set(values).size} distinct`);
 }
 // CHANGED 2026-11-10: a profile spans the four days, so its title names the span, not the 18th.
 check('P4: every profile title names the account and the span of days', handles.every((h) => { const t = titleOf(html(page(h))); return t.includes(accounts[h].name) && t.includes(h) && t.includes(DAYS_SPAN); }));
+// CHANGED 2026-11-24 — ONE og:image for the whole site, not one per page.
+// The behaviour genuinely changed: forty different cards meant forty first
+// impressions, and none had been seen often enough to be recognised. The site
+// now shares a single card so every link reinforces the same thing.
 // | day page   | title names                   | og:image                 | canonical            | og:type |
 // | 18.11.1918 | 1918. gada 18. novembris      | /og.png                  | ORIGIN/              | website |
-// | others     | 1918. gada DD. novembris      | /og/DD-11-1918.png       | ORIGIN/DD-11-1918/   | website |
+// | others     | 1918. gada DD. novembris      | /og.png  (the same one)  | ORIGIN/DD-11-1918/   | website |
 for (const [d, doc] of dayDocs) {
-  const image = d.path ? `/og/${d.path.slice(0, -1)}.png` : '/og.png';
+  const image = '/og.png';
   check(`P4: ${d.key} — title, canonical, og:image and og:type are its own`, titleOf(doc).includes(`1918. gada ${d.n}. novembris`) && (attr(doc, /<link rel="canonical" href="([^"]*)"/g)[0] ?? '').endsWith(`/${d.path}`)
     && meta(doc, 'og:image').endsWith(image) && existsSync(join(DIST, image)) && meta(doc, 'og:type') === 'website');
   const card = byDay.get(d.key)!.find((p) => p.seq === DAY_CARD_SEQ[d.key]);
   check(`P4: ${d.key} — the card post is on this day and the alt quotes it`, !!card && meta(doc, 'og:image:alt').includes(card!.handle) && doc.includes(`id="p-${card!.seq}"`));
 }
-check('P4: no profile reuses the feed og:image', handles.every((h) => meta(html(page(h)), 'og:image').endsWith(`/og/${h}.png`)));
-check('P4: every profile og:image file exists', handles.every((h) => existsSync(join(DIST, 'og', `${h}.png`))), handles.filter((h) => !existsSync(join(DIST, 'og', `${h}.png`))).join());
+// CHANGED 2026-11-24 — was "no profile reuses the feed og:image". Inverted for
+// the reason at the day-page rows above: one card for the whole site.
+check('P4: every profile uses the one site og:image', handles.every((h) => meta(html(page(h)), 'og:image').endsWith('/og.png')));
+check('P4: the one og:image file exists', existsSync(join(DIST, 'og.png')));
 
 // --- P5: the post-less accounts render their own state, never a zero -------
 // CHANGED 2026-11-11 — 8 -> 10, for the reason written at the same row in
