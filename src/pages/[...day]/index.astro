@@ -60,7 +60,7 @@ const description = DESCRIPTION[day.key];
 // the alt says which. The front day keeps public/og.png as its address.
 const card = shown.find((p) => p.seq === DAY_CARD_SEQ[day.key]);
 if (!card) throw new Error(`${day.key}: kartītes ieraksts seq ${DAY_CARD_SEQ[day.key]} nav šīs dienas plūsmā`);
-const image = day.path ? `og/${day.path.slice(0, -1)}.png` : 'og.png';
+const image = 'og.png';  // one unifying card for every page
 ---
 <!doctype html>
 <html lang="lv">
